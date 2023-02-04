@@ -5,6 +5,9 @@
         "node": "^16.19.0",
         "npm": "^8.19.3"
     },
+    "scripts": {
+        "dev": "npm run dev --workspace=apps/frontend"
+    },
     "workspaces": [
         "packages/*",
         "apps/frontend"
