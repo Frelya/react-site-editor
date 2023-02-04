@@ -1,7 +1,9 @@
 {
     "name": "react-site-editor",
+    "private": true,
     "engines": {
-        "node": "^14.0"
+        "node": "^16.19.0",
+        "npm": "^8.19.3"
     },
     "workspaces": [
         "packages/*",
