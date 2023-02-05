@@ -10,4 +10,4 @@ jobs:
               run: npm install
             - name: Run Prettier
               working-directory: .
-              run: npm run format
+              run: npx prettier --write ./ '!**/*.{js,ts,jsx,tsx,html,json}'

@@ -11,4 +11,4 @@ jobs:
               run: npm install
             - name: Run ESLint
               working-directory: .
-              run: npm run lint
+              run: npm eslint --ext .js,.ts,.jsx,.tsx,.json .
