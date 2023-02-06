@@ -1,5 +1,0 @@
-{
-    "singleQuote": false,
-    "prettier.eslintIntegration": true,
-    "prettier.useTabs": false
-}

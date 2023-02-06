@@ -6,10 +6,22 @@
         "npm": "^8.19.3"
     },
     "scripts": {
-        "dev": "npm run dev --workspace=apps/frontend"
+        "dev": "npm run dev --workspace=apps/frontend",
+        "lint": "eslint --ext .js,.ts,.jsx,.tsx,.json .",
+        "lint-fix": "eslint --ext .js,.ts,.jsx,.tsx,.json . --fix",
+        "format": "npx prettier --write ./ '!**/*.{js,ts,jsx,tsx,html,json}'"
     },
     "workspaces": [
         "packages/*",
         "apps/frontend"
-    ]
+    ],
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.50.0",
+        "@typescript-eslint/parser": "^5.50.0",
+        "eslint": "^8.33.0",
+        "eslint-config-prettier": "^8.6.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.32.2",
+        "prettier": "2.8.3"
+    }
 }
