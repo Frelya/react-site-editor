@@ -1,0 +1,14 @@
+name: Format
+on: pull_request
+jobs:
+    prettier:
+        name: Format using Prettier
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Install modules
+              working-directory: .
+              run: npm install
+            - name: Run Prettier
+              working-directory: .
+              run: npx prettier --write ./ '!**/*.{js,ts,jsx,tsx,html,json}'

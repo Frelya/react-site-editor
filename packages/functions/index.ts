@@ -1,1 +1,3 @@
-console.log("Not implemented");
+import { pascalToSnake } from "./pascalToSnake";
+
+export {pascalToSnake}
