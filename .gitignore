@@ -18,7 +18,7 @@ dist-ssr
 .idea
 */**/.DS_Store
 *.suo
-*.ntvs*
+*.ntvs*gcam
 *.njsproj
 *.sln
 *.sw?
