@@ -1,3 +1,3 @@
-import { pascalToSnake } from "./pascalToSnake";
+import { pascalToSnake } from './pascalToSnake';
 
-export {pascalToSnake}
+export { pascalToSnake };
