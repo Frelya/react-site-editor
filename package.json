@@ -7,8 +7,8 @@
     },
     "scripts": {
         "dev": "npm run dev --workspace=apps/frontend",
-        "lint": "eslint --ext .js,.ts,.jsx,.tsx,.json .",
-        "lint-fix": "eslint --ext .js,.ts,.jsx,.tsx,.json . --fix",
+        "lint": "npx eslint --ext .js,.ts,.jsx,.tsx,.json .",
+        "lint-fix": "npx eslint --ext .js,.ts,.jsx,.tsx,.json . --fix",
         "format": "npx prettier --write ./ '!**/*.{js,ts,jsx,tsx,html,json}'"
     },
     "workspaces": [
