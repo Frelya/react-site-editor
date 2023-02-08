@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site Editor</title>
+</head>
+
+<body>
+  <div></div>
+  <div id="drop-target">Drop files here</div>
+
+</body>
+<script>
+  const dropTarget = document.getElementById("drop-target");
+
+  dropTarget.addEventListener("dragover", function (event) {
+    event.preventDefault();
+  });
+
+  dropTarget.addEventListener("drop", function (event) {
+    event.preventDefault();
+    const files = event.dataTransfer.files;
+    console.log(event);
+    console.log(`Dropped ${files.length} file(s)`);
+  });
+
+</script>
+
+</html>
