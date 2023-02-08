@@ -19,7 +19,7 @@ const defaultButtonProps: ButtonProps = {
 
 const Button: React.FC<ButtonProps> = (props) => {
     return (
-        <button style={props?.style} onClick={props?.onClick}>
+        <button draggable style={props?.style} onClick={props?.onClick}>
             {props?.text}
         </button>
     );
