@@ -17,6 +17,7 @@ plugins:
 rules:
     no-shadow: off
     no-use-before-define: off
+    'react/prop-types': 'off'
     'react/react-in-jsx-scope': 'off'
     'react/jsx-pascal-case': 'error'
     'react/no-deprecated': 'error'

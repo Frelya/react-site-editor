@@ -1,6 +1,6 @@
 export interface Component {
-    caller: React.FunctionComponent,
+    caller: React.FunctionComponent;
     defaultProps: {
         [prop: string]: any;
-    }
+    };
 }

@@ -9,13 +9,13 @@ interface ButtonProps {
 
 const defaultButtonProps: ButtonProps = {
     text: 'Button',
-    onClick: () => {},
+    onClick: () => console.log('Button clicked'),
     style: {
         backgroundColor: 'blue',
         color: 'white',
         padding: '10px 20px'
     }
-}
+};
 
 const Button: React.FC<ButtonProps> = (props) => {
     return (

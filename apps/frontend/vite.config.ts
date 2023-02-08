@@ -17,7 +17,7 @@ export default defineConfig({
             {
                 find: '@pages',
                 replacement: '@react-site-editor/frontend/src/pages'
-            },
-        ],
-  },
+            }
+        ]
+    }
 });
