@@ -19,7 +19,11 @@ const defaultButtonProps: ButtonProps = {
 
 const Button: React.FC<ButtonProps> = (props) => {
     return (
-        <button draggable style={props?.style} onClick={props?.onClick}>
+        <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            draggable
+            style={props?.style}
+            onClick={props?.onClick}>
             {props?.text}
         </button>
     );
