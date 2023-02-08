@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    box-shadow: 0 1px 2px 1px #00000022;
+}
+
+.scale1 {
+    width: 25vw;
+}
+
+.scale2 {
+    width: 20vw;
+}

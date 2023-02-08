@@ -1,17 +1,33 @@
 import React from 'react';
+import type { Component } from '@react-site-editor/types';
 
-interface Props {
-    text: string;
-    onClick: () => void;
+interface ButtonProps {
+    text?: string;
+    onClick?: () => void;
     style?: React.CSSProperties;
 }
 
-const Button: React.FC<Props> = ({ text, onClick, style }) => {
+const defaultButtonProps: ButtonProps = {
+    text: 'Button',
+    onClick: () => console.log('Button clicked'),
+    style: {
+        backgroundColor: 'blue',
+        color: 'white',
+        padding: '10px 20px'
+    }
+};
+
+const Button: React.FC<ButtonProps> = (props) => {
     return (
-        <button style={style} onClick={onClick}>
-            {text}
+        <button style={props?.style} onClick={props?.onClick}>
+            {props?.text}
         </button>
     );
 };
 
-export default Button;
+const ButtonComponent: Component = {
+    caller: Button,
+    defaultProps: defaultButtonProps
+};
+
+export default ButtonComponent;

@@ -1,17 +1,9 @@
-import { Button } from '@react-site-editor/ui';
+import EditorPage from './pages/EditorPage/EditorPage';
 
 function App() {
     return (
         <div>
-            <Button
-                text="Click me"
-                onClick={() => alert('Button was clicked!')}
-                style={{
-                    backgroundColor: 'blue',
-                    color: 'white',
-                    padding: '10px 20px'
-                }}
-            />
+            <EditorPage />
         </div>
     );
 }
