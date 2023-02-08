@@ -1,1 +1,6 @@
-console.log('Not implemented');
+export interface Component {
+    caller: React.FunctionComponent,
+    defaultProps: {
+        [prop: string]: any;
+    }
+}
