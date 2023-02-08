@@ -4,26 +4,22 @@ import type { Component } from '@react-site-editor/types';
 interface ButtonProps {
     text?: string;
     onClick?: () => void;
-    style?: React.CSSProperties;
 }
 
 const defaultButtonProps: ButtonProps = {
     text: 'Button',
-    onClick: () => console.log('Button clicked'),
-    style: {
-        backgroundColor: 'blue',
-        color: 'white',
-        padding: '10px 20px'
-    }
+    onClick: () => console.log('Button clicked')
 };
 
 const Button: React.FC<ButtonProps> = (props) => {
+    const handleDragStart = (event: React.DragEvent) => {
+        event.dataTransfer.setData('text/plain', 'Button');
+    };
     return (
         <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            draggable
-            style={props?.style}
-            onClick={props?.onClick}>
+            onClick={props?.onClick}
+            onDragStart={handleDragStart}>
             {props?.text}
         </button>
     );
