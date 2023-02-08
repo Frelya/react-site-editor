@@ -4,6 +4,8 @@ import SideBar from '../../components/SideBar/SideBar';
 import SideBarHeader from '../../components/SideBarHeader/SideBarHeader';
 import ComponentWrapper from '../../components/ComponentWrapper/ComponentWrapper';
 import { components } from '@react-site-editor/ui';
+import Preview from '../../components/Preview/Preview';
+import Draggable from '../../components/Draggable';
 
 const EditorPage: React.FunctionComponent = () => {
     const [selectedComponent, setSelectedComponent] = useState<string | null>(
@@ -25,9 +27,11 @@ const EditorPage: React.FunctionComponent = () => {
                                         setSelectedComponent(componentName)
                                     }>
                                     <ComponentWrapper>
-                                        {component.caller(
-                                            component.defaultProps
-                                        )}
+                                        <Draggable>
+                                            {component.caller(
+                                                component.defaultProps
+                                            )}
+                                        </Draggable>
                                     </ComponentWrapper>
                                 </li>
                             );
@@ -35,7 +39,9 @@ const EditorPage: React.FunctionComponent = () => {
                     )}
                 </ul>
             </SideBar>
-            <div className={EditorStyle.preview}></div>
+            <div className={EditorStyle.preview}>
+                <Preview />
+            </div>
             <SideBar scale="2">
                 <SideBarHeader>
                     <h2>{selectedComponent}</h2>
