@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
+
 import Preview from '@views/Preview/Preview';
+
 
 const routes = createBrowserRouter([
     {
