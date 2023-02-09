@@ -7,7 +7,6 @@ import { components } from '@ui';
 import Preview from '@components/Preview/Preview';
 import Draggable from '@components/Decorator/Draggable';
 
-
 const EditorPage: React.FunctionComponent = () => {
     const [selectedComponent, setSelectedComponent] = useState<string | null>(
         null
@@ -28,9 +27,7 @@ const EditorPage: React.FunctionComponent = () => {
                                         setSelectedComponent(componentName)
                                     }>
                                     <ComponentWrapper>
-
                                         <Draggable type="component">
-
                                             {component.caller(
                                                 component.defaultProps
                                             )}

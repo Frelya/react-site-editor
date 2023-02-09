@@ -3,7 +3,6 @@ import App from '../App';
 
 import Preview from '@views/Preview/Preview';
 
-
 const routes = createBrowserRouter([
     {
         path: '/',
