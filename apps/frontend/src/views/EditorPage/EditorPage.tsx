@@ -27,7 +27,7 @@ const EditorPage: React.FunctionComponent = () => {
                                         setSelectedComponent(componentName)
                                     }>
                                     <ComponentWrapper>
-                                        <Draggable>
+                                        <Draggable type="component">
                                             {component.caller(
                                                 component.defaultProps
                                             )}

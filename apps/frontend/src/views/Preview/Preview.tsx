@@ -1,21 +1,38 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Dropable from '@components/Decorator/Dropable';
 import PreviewStyle from './Preview.module.css';
 
 const PreviewIframe: React.FunctionComponent = () => {
     const [result, setResult] = useState<string>('');
+    const [isHover, setIsHover] = useState<boolean>(false);
+
+    const defaultClassName =
+        'text-black border-blue-500 flex justify-center p-4 border-2';
+    const className = useCallback(() => {
+        if (!isHover) return defaultClassName;
+        return defaultClassName + ' scale-150 ';
+    }, [isHover]);
 
     const handleDrop = (event: React.DragEvent) => {
-        setResult(event.dataTransfer.getData('text/plain'));
+        setResult(event.dataTransfer.getData('component'));
+        setIsHover(false);
+    };
+
+    const handleDragEnter = () => {
+        setIsHover(true);
+    };
+    const handleDragLeave = () => {
+        setIsHover(false);
     };
     return (
         <div className={PreviewStyle.iframe}>
-            <Dropable onDrop={handleDrop}>
-                <div className="text-black bg-blue-500 flex justify-center p-4 border">
-                    Drop it here
-                </div>
+            <Dropable
+                onDrop={handleDrop}
+                onDragEnter={handleDragEnter}
+                onDragLeave={handleDragLeave}
+                type="component">
+                <div className={className()}>Drop it here</div>
             </Dropable>
-            {result}
             <div
                 dangerouslySetInnerHTML={{
                     __html: result
