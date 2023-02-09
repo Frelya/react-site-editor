@@ -1,29 +1,22 @@
-import React, { useCallback, useState } from 'react';
-import { renderToString } from 'react-dom/server';
+import React, { useCallback } from 'react';
 
-const Dropable: React.FC<React.PropsWithChildren> = (props) => {
-    const [result, setResult] = useState('');
-
+interface DropableProps {
+    onDrop: (e: React.DragEvent) => void;
+    children: React.ReactNode;
+}
+const Dropable: React.FC<DropableProps> = ({ children, onDrop }) => {
     const handleDragOver = useCallback((event: React.DragEvent) => {
         event.preventDefault();
-        console.log(event.dataTransfer.getData('text/plain'));
-
         event.dataTransfer.dropEffect = 'move';
     }, []);
 
     const handleDrop = useCallback((event: React.DragEvent) => {
         event.preventDefault();
-        setResult(event.dataTransfer.getData('text/plain'));
-        console.log('event', event.dataTransfer);
+        onDrop(event);
     }, []);
     return (
         <div onDragOver={handleDragOver} onDrop={handleDrop}>
-            {props.children}
-
-            <div
-                dangerouslySetInnerHTML={{
-                    __html: result
-                }}></div>
+            {children}
         </div>
     );
 };
