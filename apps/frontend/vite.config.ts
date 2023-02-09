@@ -1,22 +1,30 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [react()],
     resolve: {
+        // alias: {
+        //     '@': resolve(__dirname, 'src')
+        // }
         alias: [
             {
-                find: '@assets',
-                replacement: '@react-site-editor/frontend/src/assets'
-            },
-            {
                 find: '@components',
-                replacement: '@react-site-editor/frontend/src/components'
+                replacement: resolve(__dirname, 'src/components')
             },
             {
-                find: '@pages',
-                replacement: '@react-site-editor/frontend/src/pages'
+                find: '@assets',
+                replacement: resolve(__dirname, 'src/assets')
+            },
+            {
+                find: '@views',
+                replacement: resolve(__dirname, 'src/views')
+            },
+            {
+                find: '@ui',
+                replacement: '@react-site-editor/ui'
             }
         ]
     }

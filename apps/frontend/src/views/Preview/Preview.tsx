@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import Dropable from '@components/Decorator/Dropable';
 import PreviewStyle from './Preview.module.css';
 
 const PreviewIframe: React.FunctionComponent = () => {
@@ -14,14 +15,12 @@ const PreviewIframe: React.FunctionComponent = () => {
         console.log('event', event.dataTransfer.getData('text/plain'));
     }, []);
     return (
-        <div
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-            className={`${PreviewStyle.iframe}`}>
-            <div
-                dangerouslySetInnerHTML={{
-                    __html: result
-                }}></div>
+        <div className={PreviewStyle.iframe}>
+            <Dropable>
+                <div className="text-black bg-blue-500 flex justify-center p-4 border">
+                    Drop it here
+                </div>
+            </Dropable>
         </div>
     );
 };

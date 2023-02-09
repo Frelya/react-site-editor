@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
-import PreviewIframe from '../components/Preview/PreviewIframe';
+import Preview from '@views/Preview/Preview';
 
 const routes = createBrowserRouter([
     {
@@ -9,7 +9,7 @@ const routes = createBrowserRouter([
     },
     {
         path: '/preview',
-        element: <PreviewIframe />
+        element: <Preview />
     }
 ]);
 
