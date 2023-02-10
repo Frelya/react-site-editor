@@ -2,7 +2,7 @@ import './main.css';
 import Button from './components/Button';
 import type { Component } from '@react-site-editor/types';
 
-type ComponentsMap = Record<string, Component>;
+type ComponentsMap = Record<string, Component<any>>;
 
 async function getAllComponents() {
     const files = import.meta.glob('./components/*.tsx');

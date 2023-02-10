@@ -1,13 +1,14 @@
 import { useCallback } from 'react';
 
-interface DropableProps {
+interface DroppableProps {
     onDrop: (e: React.DragEvent) => void;
     onDragEnter: (e: React.DragEvent) => void;
     onDragLeave: (e: React.DragEvent) => void;
     type: string;
     children: React.ReactNode;
 }
-const Dropable: React.FC<DropableProps> = (props) => {
+
+const Droppable: React.FunctionComponent<DroppableProps> = (props) => {
     const handleDragOver = useCallback((event: React.DragEvent) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = 'move';
@@ -27,6 +28,7 @@ const Dropable: React.FC<DropableProps> = (props) => {
             props.onDragEnter(event);
         }
     };
+
     return (
         <div
             onDragOver={handleDragOver}
@@ -38,4 +40,4 @@ const Dropable: React.FC<DropableProps> = (props) => {
     );
 };
 
-export default Dropable;
+export default Droppable;

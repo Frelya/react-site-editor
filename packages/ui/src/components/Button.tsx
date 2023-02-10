@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Component } from '@react-site-editor/types';
 
 interface ButtonProps {
@@ -11,7 +10,7 @@ const defaultButtonProps: ButtonProps = {
     onClick: () => console.log('Button clicked')
 };
 
-const Button: React.FC<ButtonProps> = (props) => {
+const Button: React.FunctionComponent<ButtonProps> = (props) => {
     const handleDragStart = (event: React.DragEvent) => {
         event.dataTransfer.setData('text/plain', 'Button');
     };
@@ -25,7 +24,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     );
 };
 
-const ButtonComponent: Component = {
+const ButtonComponent: Component<any> = {
     caller: Button,
     defaultProps: defaultButtonProps
 };
