@@ -6,10 +6,11 @@ import { resolve } from 'path';
 export default defineConfig({
     plugins: [react()],
     resolve: {
-        // alias: {
-        //     '@': resolve(__dirname, 'src')
-        // }
         alias: [
+            {
+                find: '@',
+                replacement: resolve(__dirname, 'src')
+            },
             {
                 find: '@components',
                 replacement: resolve(__dirname, 'src/components')
@@ -21,10 +22,6 @@ export default defineConfig({
             {
                 find: '@views',
                 replacement: resolve(__dirname, 'src/views')
-            },
-            {
-                find: '@ui',
-                replacement: '@react-site-editor/ui'
             }
         ]
     }
