@@ -1,4 +1,4 @@
-import './index.css';
+import './main.css';
 import Button from './components/Button';
 import type { Component } from '@react-site-editor/types';
 
