@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 
 interface DropableProps {
     onDrop: (e: React.DragEvent) => void;
