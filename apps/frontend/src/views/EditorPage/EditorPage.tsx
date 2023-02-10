@@ -5,7 +5,7 @@ import SideBarHeader from '@components/SideBarHeader/SideBarHeader';
 import ComponentWrapper from '@components/ComponentWrapper/ComponentWrapper';
 import { components } from '@ui';
 import Preview from '@components/Preview/Preview';
-import Draggable from '@components/Draggable';
+import Draggable from '@components/Decorator/Draggable';
 
 const EditorPage: React.FunctionComponent = () => {
     const [selectedComponent, setSelectedComponent] = useState<string | null>(
@@ -27,7 +27,7 @@ const EditorPage: React.FunctionComponent = () => {
                                         setSelectedComponent(componentName)
                                     }>
                                     <ComponentWrapper>
-                                        <Draggable>
+                                        <Draggable type="component">
                                             {component.caller(
                                                 component.defaultProps
                                             )}

@@ -6,14 +6,17 @@ import { resolve } from 'path';
 export default defineConfig({
     plugins: [react()],
     resolve: {
+        // alias: {
+        //     '@': resolve(__dirname, 'src')
+        // }
         alias: [
-            {
-                find: '@assets',
-                replacement: resolve(__dirname, 'src/assets')
-            },
             {
                 find: '@components',
                 replacement: resolve(__dirname, 'src/components')
+            },
+            {
+                find: '@assets',
+                replacement: resolve(__dirname, 'src/assets')
             },
             {
                 find: '@views',
