@@ -7,13 +7,7 @@ interface DropableProps {
     type: string;
     children: React.ReactNode;
 }
-const Dropable: React.FC<DropableProps> = ({
-    children,
-    type,
-    onDrop,
-    onDragEnter,
-    onDragLeave
-}) => {
+const Dropable: React.FC<DropableProps> = (props) => {
     const handleDragOver = useCallback((event: React.DragEvent) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = 'move';
@@ -21,16 +15,16 @@ const Dropable: React.FC<DropableProps> = ({
 
     const handleDrop = useCallback((event: React.DragEvent) => {
         event.preventDefault();
-        onDrop(event);
+        props.onDrop(event);
     }, []);
 
     const handleDragLeave = (event: React.DragEvent) => {
-        onDragLeave(event);
+        props.onDragLeave(event);
     };
 
     const handleDragEnter = (event: React.DragEvent) => {
-        if (event.dataTransfer.types.includes(type)) {
-            onDragEnter(event);
+        if (event.dataTransfer.types.includes(props.type)) {
+            props.onDragEnter(event);
         }
     };
     return (
@@ -39,7 +33,7 @@ const Dropable: React.FC<DropableProps> = ({
             onDragLeave={handleDragLeave}
             onDragEnter={handleDragEnter}
             onDrop={handleDrop}>
-            {children}
+            {props.children}
         </div>
     );
 };

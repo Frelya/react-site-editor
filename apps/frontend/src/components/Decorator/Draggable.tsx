@@ -6,16 +6,16 @@ interface DraggableProps {
     type: string;
 }
 
-const Draggable: React.FC<DraggableProps> = ({ children, type }) => {
+const Draggable: React.FC<DraggableProps> = (props) => {
     const handleDragStart = (event: React.DragEvent) => {
         event.dataTransfer.setData(
-            type,
-            renderToString(children as React.ReactElement)
+            props.type,
+            renderToString(props.children as React.ReactElement)
         );
     };
     return (
         <div draggable onDragStart={handleDragStart}>
-            {children}
+            {props.children}
         </div>
     );
 };
