@@ -52,6 +52,6 @@ const EditorPage: React.FunctionComponent = () => {
             </SideBar>
         </div>
     );
-}
+};
 
 export default EditorPage;
