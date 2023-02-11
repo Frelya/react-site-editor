@@ -18,7 +18,7 @@ interface SideBarRightProps {
 
 const notRenderedProperties: string[] = ['function'];
 
-const PROPERTIES_MAP: Record<string, React.FunctionComponent<any>> = {
+const PROPERTY_COMPONENTS_MAP: Record<string, React.FunctionComponent<any>> = {
     TEXT: TextProperty,
     SIZE: SizeProperty
 };
@@ -47,7 +47,7 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                               return '';
                           }
                           const Displayed =
-                              PROPERTIES_MAP[prop.type.toUpperCase()];
+                              PROPERTY_COMPONENTS_MAP[prop.type.toUpperCase()];
                           return (
                               <Displayed
                                   key={propName}
