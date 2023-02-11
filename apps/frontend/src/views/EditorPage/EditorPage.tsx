@@ -5,16 +5,15 @@ import { components } from '@react-site-editor/ui';
 import SideBar from '@components/SideBar/SideBar';
 import SideBarHeader from '@components/SideBarHeader/SideBarHeader';
 import SideBarRight from '@components/SideBarRight/SideBarRight';
-import ComponentWrapper from '@components/ComponentWrapper/ComponentWrapper';
 import PreviewIframe from '@components/Preview/PreviewIframe/PreviewIframe';
-import Draggable from '@components/Decorators/Draggable';
+import ComponentsList from '@components/ComponentsList/ComponentsList';
 import Icon from '@components/Decorators/Icon';
 import chevronLeft from '@assets/icons/chevron-left.svg';
 
 const EditorPage: React.FunctionComponent = () => {
-    const [selectedComponent, setSelectedComponent] = useState<string | null>(
-        null
-    );
+    const [selectedComponent, setSelectedComponent] = useState<string>('');
+    const [sidebarRightIsVisible, setSidebarRightIsVisible] =
+        useState<boolean>(false);
 
     return (
         <div className={EditorStyle.container}>
@@ -32,35 +31,20 @@ const EditorPage: React.FunctionComponent = () => {
                 <p className={EditorStyle.componentsListTitle}>
                     All components
                 </p>
-                <ul className={EditorStyle.componentsList}>
-                    {Object.entries(components).map(
-                        ([componentName, component]) => {
-                            return (
-                                <li
-                                    className={EditorStyle.componentsListItem}
-                                    key={componentName}
-                                    onClick={() =>
-                                        setSelectedComponent(componentName)
-                                    }>
-                                    <Draggable type="component">
-                                        <ComponentWrapper>
-                                            {component.caller(
-                                                component.defaultProps
-                                            )}
-                                        </ComponentWrapper>
-                                    </Draggable>
-                                </li>
-                            );
-                        }
-                    )}
-                </ul>
+                <ComponentsList
+                    elements={components}
+                    onClick={(name) => {
+                        setSelectedComponent(name);
+                        setSidebarRightIsVisible(true);
+                    }}
+                />
             </SideBar>
             <PreviewIframe />
             <SideBarRight
-                visible={selectedComponent !== null}
+                visible={sidebarRightIsVisible}
                 scale="1"
                 component={selectedComponent}
-                onClose={() => setSelectedComponent(null)}
+                onClose={() => setSidebarRightIsVisible(false)}
             />
         </div>
     );
