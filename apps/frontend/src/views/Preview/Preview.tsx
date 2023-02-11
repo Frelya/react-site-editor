@@ -25,7 +25,7 @@ const Preview: React.FunctionComponent = () => {
         setIsHovered(false);
     };
     return (
-        <div className={PreviewStyle.iframe}>
+        <div className={PreviewStyle.container}>
             <Droppable
                 onDrop={handleDrop}
                 onDragEnter={handleDragEnter}

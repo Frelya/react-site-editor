@@ -1,26 +1,16 @@
 .container {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    @apply flex w-screen h-screen overflow-hidden;
 }
 
 .preview {
-    flex: 1;
-    height: 100vh;
-    background-color: slategrey;
+    @apply flex-1 h-screen bg-slate-500;
+    box-shadow: inset 14px 0 9px -12px rgba(0, 0, 0, 0.63);
 }
 
 .componentsList {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    list-style: none;
+    @apply flex justify-center w-full list-none;
 }
 
 .componentsListItem {
-    cursor: pointer;
-    width: 95%;
-    margin-inline: auto;
-    margin-block: 1em;
+    @apply cursor-pointer w-11/12 mx-auto my-4;
 }
