@@ -2,7 +2,7 @@ import PreviewIframeStyle from './PreviewIframe.module.css';
 
 const PreviewIframe: React.FunctionComponent = () => {
     return (
-        <div className={`${PreviewIframeStyle.preview}`}>
+        <div className={PreviewIframeStyle.container}>
             <iframe
                 width="80%"
                 height="100%"
