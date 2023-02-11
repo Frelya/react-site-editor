@@ -1,0 +1,7 @@
+.componentsList {
+    @apply flex flex-col justify-center gap-8 w-full list-none;
+}
+
+.componentsListItem {
+    @apply cursor-pointer w-11/12 mx-auto;
+}

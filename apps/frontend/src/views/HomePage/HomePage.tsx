@@ -1,17 +1,12 @@
-import { Button } from '@react-site-editor/ui';
+import { Link } from 'react-router-dom';
+import HomePageStyle from './HomePage.module.css';
 
 const HomePage: React.FunctionComponent = () => {
     return (
-        <div className="Home">
-            {Button.caller({
-                text: 'Click me',
-                onClick: () => alert('Button was clicked!'),
-                style: {
-                    backgroundColor: 'blue',
-                    color: 'white',
-                    padding: '10px 20px'
-                }
-            })}
+        <div className={HomePageStyle.container}>
+            <Link to="/editor" reloadDocument>
+                <button>Go to the editor</button>
+            </Link>
         </div>
     );
 };

@@ -1,14 +1,16 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    box-shadow: 0 1px 2px 1px #00000022;
+    @apply flex flex-col h-screen transition-all duration-200 bg-[#f0f0f0];
+    box-shadow: 0 9px 12px black;
 }
 
 .scale1 {
-    width: 25vw;
+    @apply w-1/5 max-w-[20%];
 }
 
 .scale2 {
-    width: 20vw;
+    @apply w-1/4 max-w-[25%];
+}
+
+.invisible {
+    @apply translate-x-full ml-[-20%];
 }

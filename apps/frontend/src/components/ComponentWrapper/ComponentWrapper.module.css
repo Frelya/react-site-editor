@@ -1,8 +1,5 @@
 .container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: fit-content;
-    padding-block: .5em;
-    border: 1px solid lightblue;
+    @apply flex justify-center w-full h-fit p-2 border-r-2 hover:scale-105 hover:border transition-all;
+    background: #f0f0f0;
+    box-shadow: 5px 5px 10px #cccccc, -5px -5px 10px #ffffff;
 }
