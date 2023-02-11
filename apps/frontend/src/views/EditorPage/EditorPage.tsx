@@ -1,11 +1,15 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import EditorStyle from './EditorPage.module.css';
 import { components } from '@react-site-editor/ui';
 import SideBar from '@components/SideBar/SideBar';
 import SideBarHeader from '@components/SideBarHeader/SideBarHeader';
+import SideBarRight from '@components/SideBarRight/SideBarRight';
 import ComponentWrapper from '@components/ComponentWrapper/ComponentWrapper';
 import PreviewIframe from '@components/Preview/PreviewIframe/PreviewIframe';
 import Draggable from '@components/Decorators/Draggable';
+import Icon from '@components/Decorators/Icon';
+import chevronLeft from '@assets/icons/chevron-left.svg';
 
 const EditorPage: React.FunctionComponent = () => {
     const [selectedComponent, setSelectedComponent] = useState<string | null>(
@@ -14,8 +18,20 @@ const EditorPage: React.FunctionComponent = () => {
 
     return (
         <div className={EditorStyle.container}>
-            <SideBar scale="1">
-                <SideBarHeader></SideBarHeader>
+            <SideBar visible scale="2">
+                <SideBarHeader>
+                    <Link to={'../'}>
+                        <Icon
+                            width={'w-8'}
+                            height={'h-8'}
+                            path={chevronLeft}
+                            description={'Leave Editor'}
+                        />
+                    </Link>
+                </SideBarHeader>
+                <p className={EditorStyle.componentsListTitle}>
+                    All components
+                </p>
                 <ul className={EditorStyle.componentsList}>
                     {Object.entries(components).map(
                         ([componentName, component]) => {
@@ -26,30 +42,26 @@ const EditorPage: React.FunctionComponent = () => {
                                     onClick={() =>
                                         setSelectedComponent(componentName)
                                     }>
-                                    <ComponentWrapper>
-                                        <Draggable type="component">
+                                    <Draggable type="component">
+                                        <ComponentWrapper>
                                             {component.caller(
                                                 component.defaultProps
                                             )}
-                                        </Draggable>
-                                    </ComponentWrapper>
+                                        </ComponentWrapper>
+                                    </Draggable>
                                 </li>
                             );
                         }
                     )}
                 </ul>
             </SideBar>
-            <div className={EditorStyle.preview}>
-                <PreviewIframe />
-            </div>
-            <SideBar scale="2">
-                <SideBarHeader>
-                    <h2>{selectedComponent}</h2>
-                </SideBarHeader>
-                {selectedComponent
-                    ? Object.keys(components[selectedComponent]?.defaultProps)
-                    : ''}
-            </SideBar>
+            <PreviewIframe />
+            <SideBarRight
+                visible={selectedComponent !== null}
+                scale="1"
+                component={selectedComponent}
+                onClose={() => setSelectedComponent(null)}
+            />
         </div>
     );
 };

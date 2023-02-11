@@ -4,8 +4,7 @@ const PreviewIframe: React.FunctionComponent = () => {
     return (
         <div className={PreviewIframeStyle.container}>
             <iframe
-                width="80%"
-                height="100%"
+                className={PreviewIframeStyle.iframe}
                 src="http://localhost:5173/preview"></iframe>
         </div>
     );
