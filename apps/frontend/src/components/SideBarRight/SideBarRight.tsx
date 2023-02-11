@@ -16,7 +16,7 @@ interface SideBarRightProps {
     onClose: () => void;
 }
 
-const notRenderedProperties: string[] = ['function'];
+const notRenderedPropertyTypes: string[] = ['function'];
 
 const PROPERTY_COMPONENTS_MAP: Record<string, React.FunctionComponent<any>> = {
     TEXT: TextProperty,
@@ -43,7 +43,7 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
             {props.component
                 ? Object.entries(components[props.component]?.defaultProps).map(
                       ([propName, prop]) => {
-                          if (notRenderedProperties.includes(typeof prop)) {
+                          if (notRenderedPropertyTypes.includes(typeof prop)) {
                               return '';
                           }
                           const Displayed =
