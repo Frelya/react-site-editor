@@ -1,20 +1,20 @@
-import React, { ReactNode } from 'react';
 import { renderToString } from 'react-dom/server';
 
 interface DraggableProps {
-    children: ReactNode;
+    children: React.ReactNode;
     type: string;
 }
 
-const Draggable: React.FC<DraggableProps> = (props) => {
+const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
     const handleDragStart = (event: React.DragEvent) => {
         event.dataTransfer.setData(
             props.type,
             renderToString(props.children as React.ReactElement)
         );
     };
+
     return (
-        <div draggable onDragStart={handleDragStart}>
+        <div draggable="true" onDragStart={handleDragStart}>
             {props.children}
         </div>
     );

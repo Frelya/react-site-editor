@@ -1,9 +1,9 @@
-import EditorPage from './views/EditorPage/EditorPage';
+import { Outlet } from 'react-router-dom';
 
 function App() {
     return (
         <div>
-            <EditorPage />
+            <Outlet />
         </div>
     );
 }

@@ -1,5 +1,5 @@
-import React from 'react';
 import type { Component } from '@react-site-editor/types';
+import ButtonStyle from './Button.module.css';
 
 interface ButtonProps {
     text?: string;
@@ -11,13 +11,13 @@ const defaultButtonProps: ButtonProps = {
     onClick: () => console.log('Button clicked')
 };
 
-const Button: React.FC<ButtonProps> = (props) => {
+const Button: React.FunctionComponent<ButtonProps> = (props) => {
     const handleDragStart = (event: React.DragEvent) => {
         event.dataTransfer.setData('text/plain', 'Button');
     };
     return (
         <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className={ButtonStyle.baseButton}
             onClick={props?.onClick}
             onDragStart={handleDragStart}>
             {props?.text}
@@ -25,7 +25,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     );
 };
 
-const ButtonComponent: Component = {
+const ButtonComponent: Component<any> = {
     caller: Button,
     defaultProps: defaultButtonProps
 };

@@ -1,8 +1,8 @@
 .container {
     display: flex;
+    align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 100vw;
     height: fit-content;
-    padding-block: 0.5em;
-    border: 1px solid lightblue;
+    min-height: 100vh;
 }
