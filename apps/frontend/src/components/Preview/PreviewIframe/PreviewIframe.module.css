@@ -1,3 +1,8 @@
 .container {
-    @apply flex justify-center items-center w-full h-full p-4;
+    @apply flex flex-1 justify-center items-center h-screen bg-slate-500;
+    box-shadow: inset 14px 0 9px -12px rgba(0, 0, 0, 0.63);
+}
+
+.iframe {
+    @apply aspect-video w-11/12;
 }

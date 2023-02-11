@@ -1,0 +1,11 @@
+.container {
+    @apply flex flex-col w-11/12 mx-auto mb-6;
+}
+
+.label {
+    @apply text-xs;
+}
+
+.input {
+    @apply w-full text-sm p-1 focus:outline focus:outline-blue-500;
+}

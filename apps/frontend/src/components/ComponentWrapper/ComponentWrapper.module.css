@@ -1,3 +1,5 @@
 .container {
-    @apply flex justify-center w-full h-fit p-2 border border-blue-300;
+    @apply flex justify-center w-full h-fit p-2 border-r-2 hover:scale-105 hover:border transition-all;
+    background: #f0f0f0;
+    box-shadow: 5px 5px 10px #cccccc, -5px -5px 10px #ffffff;
 }

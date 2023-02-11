@@ -1,13 +1,15 @@
-import type { Component } from '@react-site-editor/types';
+import type { Component, ComponentProp } from '@react-site-editor/types';
 import ButtonStyle from './Button.module.css';
 
 interface ButtonProps {
-    text?: string;
+    text?: ComponentProp;
+    fontSize?: ComponentProp;
     onClick?: () => void;
 }
 
 const defaultButtonProps: ButtonProps = {
-    text: 'Button',
+    text: { type: 'text', value: 'Button' },
+    fontSize: { type: 'size', value: '2' },
     onClick: () => console.log('Button clicked')
 };
 
@@ -17,10 +19,12 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
     };
     return (
         <button
-            className={ButtonStyle.baseButton}
+            className={`${ButtonStyle.baseButton} ${
+                ButtonStyle[`font-${props.fontSize?.value}`]
+            }`}
             onClick={props?.onClick}
             onDragStart={handleDragStart}>
-            {props?.text}
+            {props.text?.value}
         </button>
     );
 };

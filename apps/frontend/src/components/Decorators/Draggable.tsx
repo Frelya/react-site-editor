@@ -1,4 +1,5 @@
 import { renderToString } from 'react-dom/server';
+import { innerContentOfHtmlDiv } from '@react-site-editor/functions';
 
 interface DraggableProps {
     children: React.ReactNode;
@@ -9,7 +10,9 @@ const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
     const handleDragStart = (event: React.DragEvent) => {
         event.dataTransfer.setData(
             props.type,
-            renderToString(props.children as React.ReactElement)
+            innerContentOfHtmlDiv(
+                renderToString(props.children as React.ReactElement)
+            )
         );
     };
 

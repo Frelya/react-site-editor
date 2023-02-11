@@ -2,15 +2,6 @@
     @apply flex w-screen h-screen overflow-hidden;
 }
 
-.preview {
-    @apply flex-1 h-screen bg-slate-500;
-    box-shadow: inset 14px 0 9px -12px rgba(0, 0, 0, 0.63);
-}
-
-.componentsList {
-    @apply flex justify-center w-full list-none;
-}
-
-.componentsListItem {
-    @apply cursor-pointer w-11/12 mx-auto my-4;
+.componentsListTitle {
+    @apply w-11/12 mx-auto my-4 px-2;
 }
