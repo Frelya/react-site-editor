@@ -11,7 +11,7 @@ async function getAllComponents() {
         const filename = filepath.match(/.*\/(.+)\.tsx$/)?.[1];
 
         if (filename) {
-            const component = await import(filepath/* @vite-ignore */);
+            const component = await import(filepath /* @vite-ignore */);
             components[filename] = component.default;
         }
     }
