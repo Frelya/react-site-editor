@@ -4,3 +4,10 @@ export interface Component<T> {
         [prop: string]: T;
     };
 }
+
+export interface ComponentProp {
+    type: PropType;
+    value: string;
+}
+
+type PropType = 'text' | 'color' | 'size';
