@@ -1,4 +1,5 @@
 import type { Component } from '@react-site-editor/types';
+import ButtonStyle from './Button.module.css';
 
 interface ButtonProps {
     text?: string;
@@ -16,7 +17,7 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
     };
     return (
         <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className={ButtonStyle.baseButton}
             onClick={props?.onClick}
             onDragStart={handleDragStart}>
             {props?.text}
