@@ -7,10 +7,10 @@ const Preview: React.FunctionComponent = () => {
     const [isHovered, setIsHovered] = useState<boolean>(false);
 
     const defaultClassName =
-        'text-black border-blue-500 flex justify-center p-4 border-2';
+        'text-black border-blue-500 flex justify-center items-center p-4 border-2';
     const className = useCallback(() => {
         if (!isHovered) return defaultClassName;
-        return defaultClassName + ' scale-150 ';
+        return defaultClassName + ' h-20 ';
     }, [isHovered]);
 
     const handleDrop = (event: React.DragEvent) => {
