@@ -26,7 +26,10 @@ const Preview: React.FunctionComponent = () => {
                 onDragEnter={handleDragEnter}
                 onDragLeave={handleDragLeave}
                 type="component">
-                <div className={`${PreviewStyle.droppable} ${isHovered ? 'h-20' : 'h-16'}`}>
+                <div
+                    className={`${PreviewStyle.droppable} ${
+                        isHovered ? 'h-20' : 'h-16'
+                    }`}>
                     Drop it here
                 </div>
             </Droppable>
