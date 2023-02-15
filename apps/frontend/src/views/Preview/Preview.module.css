@@ -1,3 +1,8 @@
 .container {
     @apply w-full h-screen bg-white p-1;
 }
+
+.droppable {
+    @apply text-black border-blue-500 flex justify-center items-center p-4 border-2;
+    @apply transition-[height] delay-[200ms];
+}
