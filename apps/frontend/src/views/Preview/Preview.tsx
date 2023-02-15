@@ -1,17 +1,10 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import Droppable from '@components/Decorators/Droppable';
 import PreviewStyle from './Preview.module.css';
 
 const Preview: React.FunctionComponent = () => {
     const [result, setResult] = useState<string>('');
     const [isHovered, setIsHovered] = useState<boolean>(false);
-
-    const defaultClassName =
-        'text-black border-blue-500 flex justify-center p-4 border-2';
-    const className = useCallback(() => {
-        if (!isHovered) return defaultClassName;
-        return defaultClassName + ' scale-150 ';
-    }, [isHovered]);
 
     const handleDrop = (event: React.DragEvent) => {
         setResult(event.dataTransfer.getData('component'));
@@ -21,9 +14,11 @@ const Preview: React.FunctionComponent = () => {
     const handleDragEnter = () => {
         setIsHovered(true);
     };
+
     const handleDragLeave = () => {
         setIsHovered(false);
     };
+
     return (
         <div className={PreviewStyle.container}>
             <Droppable
@@ -31,7 +26,12 @@ const Preview: React.FunctionComponent = () => {
                 onDragEnter={handleDragEnter}
                 onDragLeave={handleDragLeave}
                 type="component">
-                <div className={className()}>Drop it here</div>
+                <div
+                    className={`${PreviewStyle.droppable} ${
+                        isHovered ? 'h-20' : 'h-16'
+                    }`}>
+                    Drop it here
+                </div>
             </Droppable>
             <div
                 dangerouslySetInnerHTML={{
