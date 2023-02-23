@@ -9,7 +9,6 @@ import PreviewIframe from '@components/Preview/PreviewIframe/PreviewIframe';
 import ComponentsList from '@components/ComponentsList/ComponentsList';
 import Icon from '@components/Icons/Icon';
 // import Icon from '@components/Decorators/Icon';
-import chevronLeft from '@assets/icons/chevron-left.svg';
 
 const EditorPage: React.FunctionComponent = () => {
     const [selectedComponent, setSelectedComponent] = useState<string>('');

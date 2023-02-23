@@ -2,7 +2,7 @@ import TextPropertyStyle from './TextProperty.module.css';
 
 interface TextPropertyProps {
     name: string;
-    defaultValue?: any;
+    defaultValue?: string;
     onChange: (e: React.ChangeEvent, p: string) => void;
 }
 

@@ -29,7 +29,7 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
     );
 };
 
-const ButtonComponent: Component<any> = {
+const ButtonComponent: Component<ButtonProps> = {
     caller: Button,
     defaultProps: defaultButtonProps
 };
