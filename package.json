@@ -10,7 +10,8 @@
         "frontend": "npm run --workspace=apps/frontend",
         "lint": "npx eslint --ext .js,.ts,.jsx,.tsx,.json .",
         "lint-fix": "npx eslint --ext .js,.ts,.jsx,.tsx,.json . --fix",
-        "format": "npx prettier --write ./ '!**/*.{js,ts,jsx,tsx,html,json}'"
+        "format": "npx prettier --write ./ '!**/*.{js,ts,jsx,tsx,html,json}'",
+        "push": "npm run lint-fix && npm run format && git push"
     },
     "workspaces": [
         "packages/*",
