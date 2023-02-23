@@ -18,6 +18,7 @@ interface SideBarRightProps {
 
 const notRenderedPropertyTypes: string[] = ['function'];
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const PROPERTY_COMPONENTS_MAP: Record<string, React.FunctionComponent<any>> = {
     TEXT: TextProperty,
     SIZE: SizeProperty

@@ -3,7 +3,7 @@ import SizePropertyStyle from './SizeProperty.module.css';
 
 interface SizePropertyProps {
     name: string;
-    defaultValue?: any;
+    defaultValue?: string | number;
     onChange: (e: React.ChangeEvent, p: string) => void;
 }
 
