@@ -7,7 +7,8 @@ import SideBarHeader from '@components/SideBarHeader/SideBarHeader';
 import SideBarRight from '@components/SideBarRight/SideBarRight';
 import PreviewIframe from '@components/Preview/PreviewIframe/PreviewIframe';
 import ComponentsList from '@components/ComponentsList/ComponentsList';
-import Icon from '@components/Decorators/Icon';
+import Icon from '@components/Icons/Icon';
+// import Icon from '@components/Decorators/Icon';
 import chevronLeft from '@assets/icons/chevron-left.svg';
 
 const EditorPage: React.FunctionComponent = () => {
@@ -21,9 +22,8 @@ const EditorPage: React.FunctionComponent = () => {
                 <SideBarHeader>
                     <Link to={'../'}>
                         <Icon
-                            width={'w-8'}
-                            height={'h-8'}
-                            path={chevronLeft}
+                            name={'chevron-left'}
+                            className="w-8 h-8"
                             description={'Leave Editor'}
                         />
                     </Link>
