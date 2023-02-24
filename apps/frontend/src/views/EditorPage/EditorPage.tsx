@@ -21,7 +21,7 @@ const EditorPage: React.FunctionComponent = () => {
                 <SideBarHeader>
                     <Link to={'../'}>
                         <Icon
-                            name={'chevron-left'}
+                            name="chevron-left"
                             className="w-8 h-8"
                             description={'Leave Editor'}
                         />
