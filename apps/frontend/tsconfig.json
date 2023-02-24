@@ -23,6 +23,6 @@
             "@views/*": ["./src/views/*"]
         }
     },
-    "include": ["src", "scripts"],
+    "include": ["src", "lib"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }
