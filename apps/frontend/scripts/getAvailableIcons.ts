@@ -1,4 +1,7 @@
 import fs from 'fs';
+
+//TODO
+
 function pascalToKebab(s: string) {
     const pattern = /\.?([A-Z]+[a-z]*)/g;
     return s.replace(pattern, function (substring, ...args) {
