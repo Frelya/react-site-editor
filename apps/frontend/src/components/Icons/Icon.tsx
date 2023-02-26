@@ -1,8 +1,9 @@
 import { kebabToPascal } from '@react-site-editor/functions';
 import { lazy, Suspense } from 'react';
+import { AvailableIcon } from './AvailableIcons';
 
 interface IconProps {
-    name: string;
+    name: AvailableIcon;
     description: string;
     className?: string;
 }

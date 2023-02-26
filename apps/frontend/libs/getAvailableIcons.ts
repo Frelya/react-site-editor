@@ -1,6 +1,9 @@
 import fs from 'fs';
-
-//TODO
+/* TODO 
+I don't know why this
+import { pascalToKebab } from '@react-site-editor/functions';
+don't works
+*/
 
 function pascalToKebab(s: string) {
     const pattern = /\.?([A-Z]+[a-z]*)/g;

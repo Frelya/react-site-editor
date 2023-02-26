@@ -1,8 +1,9 @@
 import { pascalToSnake } from './pascalToSnake';
 import { kebabToPascal } from './kebabToPascal';
+import { pascalToKebab } from './pascalToKebab';
 import { innerContentOfHtmlDiv } from './innerContentOfHtmlDiv';
 
-export { pascalToSnake, innerContentOfHtmlDiv, kebabToPascal };
+export { pascalToSnake, innerContentOfHtmlDiv, kebabToPascal, pascalToKebab };
 
 export const config = {
     prefix: '__reb'
