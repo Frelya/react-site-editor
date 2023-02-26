@@ -30,6 +30,7 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                     name={'cross-mark'}
                     className={'w-6 h-6 cursor-pointer'}
                     description={'Close'}
+                    descriptionPlace={'left'}
                     onClick={props.onClose}
                 />
                 <p className={SideBarRightStyle.componentName}>
