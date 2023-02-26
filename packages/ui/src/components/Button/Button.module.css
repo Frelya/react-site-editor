@@ -3,7 +3,7 @@
 }
 
 .font-1 {
-    @apply text-sm;
+    @apply text-xs;
 }
 
 .font-2 {
@@ -11,5 +11,5 @@
 }
 
 .font-3 {
-    @apply text-sm;
+    @apply text-base;
 }

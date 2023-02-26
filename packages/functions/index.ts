@@ -10,7 +10,7 @@ export const config = {
 };
 
 export function capitalize(str: string): string {
-    return [str[0].toUpperCase(), str.substr(1)].join('');
+    return [str[0].toUpperCase(), str.substring(1)].join('');
 }
 
 export function setPrefix(value: string) {

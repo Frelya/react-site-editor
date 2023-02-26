@@ -1,7 +1,6 @@
 import './main.css';
 import type { Component } from '@react-site-editor/types';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ComponentsMap = Record<string, Component<any>>;
 
 async function getAllComponents() {

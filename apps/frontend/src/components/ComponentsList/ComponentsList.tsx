@@ -4,7 +4,6 @@ import Draggable from '@components/Decorators/Draggable';
 import ComponentWrapper from '@components/ComponentWrapper/ComponentWrapper';
 
 interface ComponentsListProps {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     elements: Record<string, Component<any>>;
     onClick: (name: string) => void;
 }
