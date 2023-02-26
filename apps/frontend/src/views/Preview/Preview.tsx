@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import Droppable from '@components/Decorators/Droppable';
 import PreviewStyle from './Preview.module.css';
-
+import { useSelector } from 'react-redux';
+import { selectPreviewTree } from '@/store/previewTree/previewTreeSlice';
 const Preview: React.FunctionComponent = () => {
+    const previewTree = useSelector(selectPreviewTree);
     const [result, setResult] = useState<string>('');
     const [isHovered, setIsHovered] = useState<boolean>(false);
 
@@ -32,6 +34,8 @@ const Preview: React.FunctionComponent = () => {
                     }`}>
                     Drop it here
                 </div>
+
+                {previewTree}
             </Droppable>
             <div
                 dangerouslySetInnerHTML={{
