@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const previewTreeSlice = createSlice({
     name: 'previewTree',
     initialState: {
-        value: ['ded']
+        value: []
     },
     reducers: {
         addComponent: (state) => {
@@ -17,12 +17,24 @@ export const previewTreeSlice = createSlice({
         },
         deleteComponent: (state) => {
             return;
+        },
+        deleteChildren: (state) => {
+            return;
+        },
+        resetTree: (state) => {
+            return;
         }
     }
 });
 
-export const { addComponent, addChildren, arrange, deleteComponent } =
-    previewTreeSlice.actions;
+export const {
+    addComponent,
+    addChildren,
+    arrange,
+    deleteComponent,
+    deleteChildren,
+    resetTree
+} = previewTreeSlice.actions;
 
 export default previewTreeSlice.reducer;
 export const selectPreviewTree = (state) => state.previewTree.value;
