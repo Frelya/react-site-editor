@@ -6,7 +6,7 @@
         "dev": "vite",
         "build": "tsc && vite build",
         "preview": "vite preview",
-        "icons": "./src/libs/load-icons.sh"
+        "icons": "chmod +x ./src/libs/load-icons.sh && ./src/libs/load-icons.sh"
     },
     "dependencies": {
         "@react-site-editor/functions": "1.0.0",
