@@ -5,7 +5,6 @@ import SideBarHeader from '@components/SideBarHeader/SideBarHeader';
 import TextProperty from '@components/PropertiesComponents/TextProperty/TextProperty';
 import SizeProperty from '@components/PropertiesComponents/SizeProperty/SizeProperty';
 import Icon from '@components/Decorators/Icon';
-import xMark from '@assets/icons/xmark.svg';
 
 type SideBarScale = '1' | '2';
 
@@ -18,7 +17,6 @@ interface SideBarRightProps {
 
 const notRenderedPropertyTypes: string[] = ['function'];
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const PROPERTY_COMPONENTS_MAP: Record<string, React.FunctionComponent<any>> = {
     TEXT: TextProperty,
     SIZE: SizeProperty
@@ -29,12 +27,10 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
         <SideBar visible={props.visible} scale={props.scale}>
             <SideBarHeader>
                 <Icon
-                    onClick={props.onClose}
-                    width={'w-6'}
-                    height={'h-6'}
-                    color={'green'}
-                    path={xMark}
+                    name={'cross-mark'}
+                    className={'w-6 h-6 cursor-pointer'}
                     description={'Close'}
+                    onClick={props.onClose}
                 />
                 <p className={SideBarRightStyle.componentName}>
                     {props.component}
