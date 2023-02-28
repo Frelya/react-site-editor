@@ -30,6 +30,7 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
 };
 
 const ButtonComponent: Component<ButtonProps> = {
+    id: 'C/Button',
     caller: Button,
     defaultProps: defaultButtonProps
 };

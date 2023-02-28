@@ -1,27 +1,32 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { TreeElement } from '@react-site-editor/types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+interface PreviewTreeState {
+    value: TreeElement[];
+}
+const initialState: PreviewTreeState = {
+    value: []
+};
 export const previewTreeSlice = createSlice({
     name: 'previewTree',
-    initialState: {
-        value: []
-    },
+    initialState,
     reducers: {
-        addComponent: (state) => {
-            return state;
+        addComponent: (state, actions: PayloadAction<TreeElement>) => {
+            state.value.push(actions.payload);
         },
-        addChildren: (state) => {
+        addChildren: () => {
             return;
         },
-        arrange: (state) => {
+        arrange: () => {
             return;
         },
-        deleteComponent: (state) => {
+        deleteComponent: () => {
             return;
         },
-        deleteChildren: (state) => {
+        deleteChildren: () => {
             return;
         },
-        resetTree: (state) => {
+        resetTree: () => {
             return;
         }
     }

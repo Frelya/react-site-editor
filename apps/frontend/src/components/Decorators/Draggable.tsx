@@ -8,12 +8,7 @@ interface DraggableProps {
 
 const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
     const handleDragStart = (event: React.DragEvent) => {
-        event.dataTransfer.setData(
-            props.type,
-            innerContentOfHtmlDiv(
-                renderToString(props.children as React.ReactElement)
-            )
-        );
+        event.dataTransfer.setData(props.type, props.children?.key);
     };
 
     return (

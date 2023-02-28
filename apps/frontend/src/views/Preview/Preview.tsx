@@ -1,15 +1,25 @@
 import { useState } from 'react';
 import Droppable from '@components/Decorators/Droppable';
 import PreviewStyle from './Preview.module.css';
-import { useSelector } from 'react-redux';
-import { selectPreviewTree } from '@/store/previewTree/previewTreeSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+    selectPreviewTree,
+    addComponent
+} from '@/store/previewTree/previewTreeSlice';
+
 const Preview: React.FunctionComponent = () => {
     const previewTree = useSelector(selectPreviewTree);
-    const [result, setResult] = useState<string>('');
+    const dispatch = useDispatch();
     const [isHovered, setIsHovered] = useState<boolean>(false);
 
     const handleDrop = (event: React.DragEvent) => {
-        setResult(event.dataTransfer.getData('component'));
+        dispatch(
+            addComponent({
+                id: JSON.parse(event.dataTransfer.getData('component')).id,
+                props: JSON.parse(event.dataTransfer.getData('component'))
+                    .defaultProps
+            })
+        );
         setIsHovered(false);
     };
 
@@ -30,18 +40,11 @@ const Preview: React.FunctionComponent = () => {
                 type="component">
                 <div
                     className={`${PreviewStyle.droppable} ${
-                        isHovered ? 'h-20' : 'h-16'
-                    }`}>
-                    Drop it here
-                </div>
-
-                {previewTree}
+                        isHovered ? 'p-4' : 'p-1'
+                    }`}></div>
+                {JSON.stringify(isHovered)}
+                {/* {JSON.stringify(previewTree)} */}
             </Droppable>
-            <div
-                dangerouslySetInnerHTML={{
-                    __html: result
-                }}
-            />
         </div>
     );
 };
