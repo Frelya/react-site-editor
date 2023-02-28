@@ -8,7 +8,6 @@ import * as fs from 'fs';
  * - or from the frontend directory using the command:
  *     > npm run icons
  */
-
 const iconsDirectory = './src/components/Icons';
 const typesFile = './src/libs/types/icons.type.ts';
 
