@@ -1,17 +1,17 @@
-import type { Component, ComponentProp } from '@react-site-editor/types';
+import type {
+    PredefinedComponent,
+    PredefinedComponentProps,
+    ComponentProp,
+    ComponentChildren
+} from '@react-site-editor/types';
 import ButtonStyle from './Button.module.css';
 
 interface ButtonProps {
     text?: ComponentProp;
     fontSize?: ComponentProp;
     onClick?: () => void;
+    children?: ComponentChildren;
 }
-
-const defaultButtonProps: ButtonProps = {
-    text: { type: 'text', value: 'Button' },
-    fontSize: { type: 'size', value: '2' },
-    onClick: () => console.log('Button clicked')
-};
 
 const Button: React.FunctionComponent<ButtonProps> = (props) => {
     const handleDragStart = (event: React.DragEvent) => {
@@ -19,17 +19,23 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
     };
     return (
         <button
-            className={`${ButtonStyle.baseButton} ${
-                ButtonStyle[`font-${props.fontSize?.value}`]
-            }`}
+            className={`${ButtonStyle.baseButton} ${ButtonStyle[`font-${props.fontSize?.value}`]}`}
             onClick={props?.onClick}
             onDragStart={handleDragStart}>
             {props.text?.value}
+            {props.children}
         </button>
     );
 };
 
-const ButtonComponent: Component<ButtonProps> = {
+const defaultButtonProps: PredefinedComponentProps & ButtonProps = {
+    text: { type: 'text', value: 'Button' },
+    fontSize: { type: 'size', value: '2' },
+    onClick: () => console.log('Button clicked'),
+    maxChildren: 2
+};
+
+const ButtonComponent: PredefinedComponent = {
     caller: Button,
     defaultProps: defaultButtonProps
 };

@@ -1,12 +1,12 @@
-import SideBarRightStyle from './SideBarRight.module.css';
 import { components } from '@react-site-editor/ui';
+import type { ComponentProp } from '@react-site-editor/types';
+import type { SideBarScale } from '@libs/types/global.type';
+import SideBarRightStyle from './SideBarRight.module.css';
 import SideBar from '@components/SideBar/SideBar';
 import SideBarHeader from '@components/SideBarHeader/SideBarHeader';
 import TextProperty from '@components/PropertiesComponents/TextProperty/TextProperty';
 import SizeProperty from '@components/PropertiesComponents/SizeProperty/SizeProperty';
 import Icon from '@components/Decorators/Icon';
-
-type SideBarScale = '1' | '2';
 
 interface SideBarRightProps {
     visible: boolean;
@@ -22,6 +22,10 @@ const PROPERTY_COMPONENTS_MAP: Record<string, React.FunctionComponent<any>> = {
     SIZE: SizeProperty
 };
 
+function isComponentProp(prop: object): prop is ComponentProp {
+    return !notRenderedPropertyTypes.includes(typeof prop);
+}
+
 const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
     return (
         <SideBar visible={props.visible} scale={props.scale}>
@@ -33,27 +37,28 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                     descriptionPlace={'left'}
                     onClick={props.onClose}
                 />
-                <p className={SideBarRightStyle.componentName}>
-                    {props.component}
-                </p>
+                <p className={SideBarRightStyle.componentName}>{props.component}</p>
             </SideBarHeader>
+
             <p className={SideBarRightStyle.componentPropsTitle}>Properties</p>
+
             {props.component
                 ? Object.entries(components[props.component]?.defaultProps).map(
                       ([propName, prop]) => {
-                          if (notRenderedPropertyTypes.includes(typeof prop)) {
-                              return '';
+                          if (isComponentProp(prop)) {
+                              const Displayed = PROPERTY_COMPONENTS_MAP[prop.type.toUpperCase()];
+
+                              return (
+                                  <Displayed
+                                      key={propName}
+                                      name={propName}
+                                      defaultValue={prop.value}
+                                      onChange={() => console.log('changed')}
+                                  />
+                              );
                           }
-                          const Displayed =
-                              PROPERTY_COMPONENTS_MAP[prop.type.toUpperCase()];
-                          return (
-                              <Displayed
-                                  key={propName}
-                                  name={propName}
-                                  defaultValue={prop.value}
-                                  onChange={() => console.log('changed')}
-                              />
-                          );
+
+                          return '';
                       }
                   )
                 : ''}

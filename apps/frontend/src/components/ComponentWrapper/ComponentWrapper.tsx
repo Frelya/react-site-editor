@@ -5,12 +5,8 @@ interface ComponentWrapperProps {
     children?: React.ReactNode | React.ReactNode[];
 }
 
-const ComponentWrapper: React.FunctionComponent<ComponentWrapperProps> = (
-    props
-) => {
-    return (
-        <div className={ComponentWrapperStyle.container}>{props.children}</div>
-    );
+const ComponentWrapper: React.FunctionComponent<ComponentWrapperProps> = (props) => {
+    return <div className={ComponentWrapperStyle.container}>{props.children}</div>;
 };
 
 export default ComponentWrapper;

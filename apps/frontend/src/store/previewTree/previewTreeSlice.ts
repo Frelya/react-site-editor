@@ -27,14 +27,8 @@ export const previewTreeSlice = createSlice({
     }
 });
 
-export const {
-    addComponent,
-    addChildren,
-    arrange,
-    deleteComponent,
-    deleteChildren,
-    resetTree
-} = previewTreeSlice.actions;
+export const { addComponent, addChildren, arrange, deleteComponent, deleteChildren, resetTree } =
+    previewTreeSlice.actions;
 
 export default previewTreeSlice.reducer;
 export const selectPreviewTree = (state) => state.previewTree.value;

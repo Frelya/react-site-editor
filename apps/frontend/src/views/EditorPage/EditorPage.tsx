@@ -11,8 +11,7 @@ import Icon from '@components/Decorators/Icon';
 
 const EditorPage: React.FunctionComponent = () => {
     const [selectedComponent, setSelectedComponent] = useState<string>('');
-    const [sidebarRightIsVisible, setSidebarRightIsVisible] =
-        useState<boolean>(false);
+    const [sidebarRightIsVisible, setSidebarRightIsVisible] = useState<boolean>(false);
 
     return (
         <div className={EditorStyle.container}>
@@ -26,9 +25,7 @@ const EditorPage: React.FunctionComponent = () => {
                         />
                     </Link>
                 </SideBarHeader>
-                <p className={EditorStyle.componentsListTitle}>
-                    All components
-                </p>
+                <p className={EditorStyle.componentsListTitle}>All components</p>
                 <ComponentsList
                     elements={components}
                     onClick={(name) => {

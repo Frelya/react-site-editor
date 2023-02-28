@@ -1,11 +1,9 @@
 import './main.css';
-import type { Component } from '@react-site-editor/types';
+import type { ComponentsMap, PredefinedComponent } from '@react-site-editor/types';
 
-type ComponentsMap = Record<string, Component<any>>;
-
-async function getAllComponents() {
-    const files = import.meta.glob('./components/**/*.tsx');
-    const components: ComponentsMap = {};
+async function getAllComponents(): Promise<ComponentsMap<PredefinedComponent>> {
+    const components: ComponentsMap<PredefinedComponent> = {};
+    const files = import.meta.glob(`./components/**/*.tsx`);
 
     for (const filepath in files) {
         const filename = filepath.match(/.*\/(.+)\.tsx$/)?.[1];
@@ -15,7 +13,8 @@ async function getAllComponents() {
             components[filename] = component.default;
         }
     }
-    return components as ComponentsMap;
+
+    return components as ComponentsMap<PredefinedComponent>;
 }
 
 export const components = await getAllComponents();

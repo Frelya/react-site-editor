@@ -20,9 +20,10 @@
             "@/*": ["./src/*"],
             "@components/*": ["./src/components/*"],
             "@assets/*": ["./src/assets/*"],
-            "@views/*": ["./src/views/*"]
+            "@views/*": ["./src/views/*"],
+            "@libs/*": ["./src/libs/*"]
         }
     },
-    "include": ["src", "scripts"],
+    "include": ["src"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }
