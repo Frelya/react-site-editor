@@ -85,6 +85,25 @@ const previewTree: PreviewTree = [
                 }
             }
         ]
+    },
+    {
+        id: 'Button2',
+        props: {},
+        children: []
+    },
+    {
+        id: 'Button2',
+        props: {},
+        children: [
+            {
+                id: 'Button2',
+                props: {
+                    link: 'de',
+                    label: 'ded',
+                    hoverClass: ''
+                }
+            }
+        ]
     }
     /*{
         id: '@/components/Hero1',
