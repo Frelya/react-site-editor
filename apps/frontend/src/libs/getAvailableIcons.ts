@@ -1,21 +1,13 @@
-import * as fs from 'fs';
-/* TODO 
-I don't know why this
 import { pascalToKebab } from '@react-site-editor/functions';
-don't works
-*/
+import * as fs from 'fs';
 
-function pascalToKebab(s: string) {
-    const pattern = /\.?([A-Z]+[a-z]*)/g;
-    return s.replace(pattern, function (substring, ...args) {
-        substring = substring.toLowerCase();
-        if (args[1] > 0) {
-            substring = '-' + substring;
-        }
-        return substring;
-    });
-}
-
+/*
+ * This script must mandatory be run from:
+ * - either from the root of the project using the command:
+ *     > npm run frontend icons
+ * - or from the frontend directory using the command:
+ *     > npm run icons
+ */
 const iconsDirectory = './src/components/Icons';
 const typesFile = './src/libs/types/icons.type.ts';
 
@@ -33,10 +25,7 @@ fs.readdir(iconsDirectory, (error, files) => {
 
     fs.writeFileSync(typesFile, typeDefinition);
 
-    console.log(
-        '\n> Icons types definition generated successfully !' +
-            `\n> ${iconNames.length} icons found in '${iconsDirectory}':`
-    );
+    console.log(`\n> ${iconNames.length} icons found in '${iconsDirectory}':`);
 
     for (const name of iconNames) {
         console.log(`  --> ${name.slice(1, name.length - 1)}`);
