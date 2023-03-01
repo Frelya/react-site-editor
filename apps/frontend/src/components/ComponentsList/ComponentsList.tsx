@@ -1,28 +1,28 @@
+import type { ComponentInfos } from '@react-site-editor/types';
 import ComponentsListStyle from './ComponentsList.module.css';
-import type { PredefinedComponent } from '@react-site-editor/types';
 import Draggable from '@components/Decorators/Draggable';
 import ComponentWrapper from '@components/ComponentWrapper/ComponentWrapper';
 
 interface ComponentsListProps {
-    elements: Record<string, PredefinedComponent>;
-    onClick: (name: string) => void;
+    elements: ComponentInfos[];
+    onElementClick: (comp: ComponentInfos) => void;
 }
 
 const ComponentsList: React.FunctionComponent<ComponentsListProps> = (props) => {
-    const handleClick = (name: string) => {
-        props.onClick(name);
+    const handleClick = (comp: ComponentInfos) => {
+        props.onElementClick(comp);
     };
     return (
         <ul className={ComponentsListStyle.componentsList}>
-            {Object.entries(props.elements).map(([componentName, component], index) => {
+            {Object.values(props.elements).map((component, index) => {
                 return (
                     <li
                         className={ComponentsListStyle.componentsListItem}
                         key={index}
-                        onClick={() => handleClick(componentName)}>
+                        onClick={() => handleClick(component)}>
                         <Draggable type="component">
                             <ComponentWrapper>
-                                {component.caller(component.defaultProps)}
+                                {component.name}
                             </ComponentWrapper>
                         </Draggable>
                     </li>

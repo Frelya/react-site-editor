@@ -30,7 +30,14 @@ const previewTree: PreviewTree = [
     },
     {
         id: 'Button',
-        props: {},
+        props: {
+            fontSize: {
+                type: 'size',
+                value: 2
+            },
+            label: 'ded',
+            hoverClass: ''
+        },
         children: [
             {
                 id: 'Button2',
@@ -63,7 +70,14 @@ const previewTree: PreviewTree = [
     },
     {
         id: 'Button',
-        props: {},
+        props: {
+            fontSize: {
+                type: 'size',
+                value: 3
+            },
+            label: 'ded',
+            hoverClass: ''
+        },
         children: [
             {
                 id: 'Button2',
@@ -88,7 +102,14 @@ const previewTree: PreviewTree = [
     },
     {
         id: 'Button2',
-        props: {},
+        props: {
+            link: 'de',
+            text: {
+                type: 'text',
+                value: 'ded'
+            },
+            hoverClass: ''
+        },
         children: []
     },
     {

@@ -21,7 +21,8 @@
             "@components/*": ["./src/components/*"],
             "@assets/*": ["./src/assets/*"],
             "@views/*": ["./src/views/*"],
-            "@libs/*": ["./src/libs/*"]
+            "@libs/*": ["./src/libs/*"],
+            "@ui/*": ["../../packages/ui/*"],
         }
     },
     "include": ["src"],

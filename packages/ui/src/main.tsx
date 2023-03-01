@@ -1,8 +1,8 @@
 import './main.css';
-import type { ComponentsMap, PredefinedComponent } from '@react-site-editor/types';
+import type { ComponentInfos } from '@react-site-editor/types';
 
-async function getAllComponents(): Promise<ComponentsMap<PredefinedComponent>> {
-    const components: ComponentsMap<PredefinedComponent> = {};
+async function getAllComponents(): Promise<ComponentInfos[]> {
+    const components: ComponentInfos[] = [];
     const files = import.meta.glob(`./components/**/*.tsx`);
 
     for (const filepath in files) {
@@ -10,11 +10,14 @@ async function getAllComponents(): Promise<ComponentsMap<PredefinedComponent>> {
 
         if (filename) {
             const component = await import(filepath /* @vite-ignore */);
-            components[filename] = component.default;
+            components.push({
+                name: filename,
+                defaultProps: component.defaultProps
+            });
         }
     }
 
-    return components as ComponentsMap<PredefinedComponent>;
+    return components;
 }
 
 export const components = await getAllComponents();

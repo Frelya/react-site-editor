@@ -1,5 +1,5 @@
-import { components } from '@react-site-editor/ui';
-import type { ComponentProp } from '@react-site-editor/types';
+import { useEffect, useState } from 'react';
+import type { ComponentProp, ComponentInfos } from '@react-site-editor/types';
 import type { SideBarScale } from '@libs/types/global.type';
 import SideBarRightStyle from './SideBarRight.module.css';
 import SideBar from '@components/SideBar/SideBar';
@@ -11,41 +11,30 @@ import Icon from '@components/Decorators/Icon';
 interface SideBarRightProps {
     visible: boolean;
     scale: SideBarScale;
-    component: string;
+    component: ComponentInfos;
     onClose: () => void;
 }
 
-const notRenderedPropertyTypes: string[] = ['function'];
-
-const PROPERTY_COMPONENTS_MAP: Record<string, React.FunctionComponent<any>> = {
-    TEXT: TextProperty,
-    SIZE: SizeProperty
-};
-
-function isComponentProp(prop: object): prop is ComponentProp {
-    return !notRenderedPropertyTypes.includes(typeof prop);
-}
-
 const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
-    return (
-        <SideBar visible={props.visible} scale={props.scale}>
-            <SideBarHeader>
-                <Icon
-                    name={'cross-mark'}
-                    className={'w-6 h-6 cursor-pointer'}
-                    description={'Close'}
-                    descriptionPlace={'left'}
-                    onClick={props.onClose}
-                />
-                <p className={SideBarRightStyle.componentName}>{props.component}</p>
-            </SideBarHeader>
+    const [displayedComponent, setDisplayedComponent] = useState<React.ReactNode | React.ReactNode[] | null>(null);
 
-            <p className={SideBarRightStyle.componentPropsTitle}>Properties</p>
+    const notRenderedPropertyTypes: string[] = ['function'];
 
-            {props.component
-                ? Object.entries(components[props.component]?.defaultProps).map(
-                      ([propName, prop]) => {
-                          if (isComponentProp(prop)) {
+    const PROPERTY_COMPONENTS_MAP: Record<string, React.FunctionComponent<any>> = {
+        TEXT: TextProperty,
+        SIZE: SizeProperty
+    };
+
+    function isComponentProp(prop: object): prop is ComponentProp {
+        return !notRenderedPropertyTypes.includes(typeof prop);
+    }
+
+    useEffect(() => {
+        setDisplayedComponent(
+            props.component
+                ? Object.entries(props.component.defaultProps).map(
+                    ([propName, prop], index) => {
+                          if (propName !== 'maxChildren' && isComponentProp(prop)) {
                               const Displayed = PROPERTY_COMPONENTS_MAP[prop.type.toUpperCase()];
 
                               return (
@@ -59,9 +48,26 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                           }
 
                           return '';
-                      }
-                  )
-                : ''}
+                    })
+                : '')
+    }, [props.component]);
+
+    return (
+        <SideBar visible={props.visible} scale={props.scale}>
+            <SideBarHeader>
+                <Icon
+                    name={'cross-mark'}
+                    className={'w-6 h-6 cursor-pointer'}
+                    description={'Close'}
+                    descriptionPlace={'left'}
+                    onClick={props.onClose}
+                />
+                <p className={SideBarRightStyle.componentName}>{props.component.name}</p>
+            </SideBarHeader>
+
+            <p className={SideBarRightStyle.componentPropsTitle}>Properties</p>
+
+            {displayedComponent}
         </SideBar>
     );
 };

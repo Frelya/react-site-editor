@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import EditorStyle from './EditorPage.module.css';
 import { components } from '@react-site-editor/ui';
+import type { ComponentInfos } from '@react-site-editor/types';
 import SideBar from '@components/SideBar/SideBar';
 import SideBarHeader from '@components/SideBarHeader/SideBarHeader';
 import SideBarRight from '@components/SideBarRight/SideBarRight';
@@ -10,7 +11,7 @@ import ComponentsList from '@components/ComponentsList/ComponentsList';
 import Icon from '@components/Decorators/Icon';
 
 const EditorPage: React.FunctionComponent = () => {
-    const [selectedComponent, setSelectedComponent] = useState<string>('');
+    const [selectedComponent, setSelectedComponent] = useState<ComponentInfos>({ name: '', defaultProps: {} });
     const [sidebarRightIsVisible, setSidebarRightIsVisible] = useState<boolean>(false);
 
     return (
@@ -28,8 +29,8 @@ const EditorPage: React.FunctionComponent = () => {
                 <p className={EditorStyle.componentsListTitle}>All components</p>
                 <ComponentsList
                     elements={components}
-                    onClick={(name) => {
-                        setSelectedComponent(name);
+                    onElementClick={(comp) => {
+                        setSelectedComponent(comp);
                         setSidebarRightIsVisible(true);
                     }}
                 />

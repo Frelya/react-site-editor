@@ -1,8 +1,6 @@
-import type { PredefinedComponentProps } from '@react-site-editor/types';
-
 export interface PreviewElement {
     id: string;
-    props: PredefinedComponentProps;
+    props: Record<string, any>;
     children: Omit<PreviewElement, 'children'>[];
 }
 

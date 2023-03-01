@@ -1,7 +1,7 @@
 import ComponentWrapperStyle from './ComponentWrapper.module.css';
 
 interface ComponentWrapperProps {
-    // any prop
+    // TODO: Adapt to display component name only
     children?: React.ReactNode | React.ReactNode[];
 }
 

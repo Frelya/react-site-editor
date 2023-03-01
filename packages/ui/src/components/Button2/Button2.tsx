@@ -1,41 +1,34 @@
-import type {
-    PredefinedComponent,
-    PredefinedComponentProps,
-    ComponentProp
-} from '@react-site-editor/types';
-import Button2Style from './Button2.module.css';
+import type { ComponentChildren, ComponentProp, PredefinedComponentProps } from '@react-site-editor/types';
+import { PropsEnum } from '@react-site-editor/types';
+import ButtonStyle from './Button2.module.css';
 
 interface Button2Props {
     text?: ComponentProp;
     fontSize?: ComponentProp;
     onClick?: () => void;
+    children?: ComponentChildren;
 }
 
 const Button2: React.FunctionComponent<Button2Props> = (props) => {
     const handleDragStart = (event: React.DragEvent) => {
-        event.dataTransfer.setData('text/plain', 'Button2');
+        event.dataTransfer.setData('text/plain', 'Button');
     };
     return (
         <button
-            className={`${Button2Style.baseButton} ${
-                Button2Style[`font-${props.fontSize?.value}`]
-            }`}
+            className={`${ButtonStyle.baseButton} ${ButtonStyle[`font-${props.fontSize?.value}`]}`}
             onClick={props?.onClick}
             onDragStart={handleDragStart}>
             {props.text?.value}
+            {props.children}
         </button>
     );
 };
 
-const defaultButton2Props: PredefinedComponentProps & Button2Props = {
-    text: { type: 'text', value: 'Button 2' },
-    fontSize: { type: 'size', value: '3' },
-    onClick: () => console.log('Button 2 clicked')
+export const defaultProps: PredefinedComponentProps<Button2Props> = {
+    text: { type: PropsEnum.TEXT, value: 'Button 2' },
+    fontSize: { type: PropsEnum.SIZE, value: '2' },
+    onClick: () => console.log('Button clicked'),
+    maxChildren: 2
 };
 
-const Button2Component: PredefinedComponent = {
-    caller: Button2,
-    defaultProps: defaultButton2Props
-};
-
-export default Button2Component;
+export default Button2;
