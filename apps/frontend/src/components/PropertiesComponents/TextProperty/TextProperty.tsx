@@ -19,7 +19,7 @@ const TextProperty: React.FunctionComponent<TextPropertyProps> = (props) => {
             <input
                 className={TextPropertyStyle.input}
                 type="text"
-                defaultValue={props.defaultValue}
+                value={props.defaultValue}
                 onChange={handleInput}
             />
         </div>

@@ -20,6 +20,10 @@ export default defineConfig({
                 replacement: resolve(__dirname, 'src/assets')
             },
             {
+                find: '@libs',
+                replacement: resolve(__dirname, 'src/libs')
+            },
+            {
                 find: '@views',
                 replacement: resolve(__dirname, 'src/views')
             },

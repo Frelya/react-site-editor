@@ -12,9 +12,7 @@ interface IconProps {
 }
 
 const Icon: React.FunctionComponent<IconProps> = (props) => {
-    const DynamicIcon = lazy(
-        () => import(`../Icons/${kebabToPascal(props.name)}.tsx`)
-    );
+    const DynamicIcon = lazy(() => import(`../Icons/${kebabToPascal(props.name)}.tsx`));
     return (
         <div
             className={`icon ${props.className}`}

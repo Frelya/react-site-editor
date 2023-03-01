@@ -17,9 +17,7 @@ fs.readdir(iconsDirectory, (error, files) => {
         return;
     }
 
-    const iconNames = files.map(
-        (file) => `'${pascalToKebab(file.split('.')[0])}'`
-    );
+    const iconNames = files.map((file) => `'${pascalToKebab(file.split('.')[0])}'`);
 
     const typeDefinition = `export type IconName = ${iconNames.join(' | ')} ;`;
 

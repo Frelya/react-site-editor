@@ -1,21 +1,23 @@
 import './main.css';
-import type { Component } from '@react-site-editor/types';
+import type { ComponentInfos } from '@react-site-editor/types';
 
-type ComponentsMap = Record<string, Component<any>>;
-
-async function getAllComponents() {
-    const files = import.meta.glob('./components/**/*.tsx');
-    const components: ComponentsMap = {};
+async function getAllComponents(): Promise<ComponentInfos[]> {
+    const components: ComponentInfos[] = [];
+    const files = import.meta.glob(`./components/**/*.tsx`);
 
     for (const filepath in files) {
         const filename = filepath.match(/.*\/(.+)\.tsx$/)?.[1];
 
         if (filename) {
             const component = await import(filepath /* @vite-ignore */);
-            components[filename] = component.default;
+            components.push({
+                name: filename,
+                defaultProps: component.defaultProps
+            });
         }
     }
-    return components as ComponentsMap;
+
+    return components;
 }
 
 export const components = await getAllComponents();

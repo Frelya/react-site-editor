@@ -1,28 +1,59 @@
+import { useEffect, useState } from 'react';
+import type { ComponentProp, ComponentInfos } from '@react-site-editor/types';
+import type { SideBarScale } from '@libs/types/global.type';
 import SideBarRightStyle from './SideBarRight.module.css';
-import { components } from '@react-site-editor/ui';
 import SideBar from '@components/SideBar/SideBar';
 import SideBarHeader from '@components/SideBarHeader/SideBarHeader';
 import TextProperty from '@components/PropertiesComponents/TextProperty/TextProperty';
 import SizeProperty from '@components/PropertiesComponents/SizeProperty/SizeProperty';
 import Icon from '@components/Decorators/Icon';
 
-type SideBarScale = '1' | '2';
-
 interface SideBarRightProps {
     visible: boolean;
     scale: SideBarScale;
-    component: string;
+    component: ComponentInfos;
     onClose: () => void;
 }
 
-const notRenderedPropertyTypes: string[] = ['function'];
-
-const PROPERTY_COMPONENTS_MAP: Record<string, React.FunctionComponent<any>> = {
-    TEXT: TextProperty,
-    SIZE: SizeProperty
-};
-
 const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
+    const [displayedComponent, setDisplayedComponent] = useState<
+        React.ReactNode | React.ReactNode[] | null
+    >(null);
+
+    const notRenderedPropertyTypes: string[] = ['function'];
+
+    const PROPERTY_COMPONENTS_MAP: Record<string, React.FunctionComponent<any>> = {
+        TEXT: TextProperty,
+        SIZE: SizeProperty
+    };
+
+    function isComponentProp(prop: object): prop is ComponentProp {
+        return !notRenderedPropertyTypes.includes(typeof prop);
+    }
+
+    useEffect(() => {
+        setDisplayedComponent(
+            props.component
+                ? Object.entries(props.component.defaultProps).map(([propName, prop], index) => {
+                      if (propName !== 'maxChildren' && isComponentProp(prop)) {
+                          const Displayed = PROPERTY_COMPONENTS_MAP[prop.type.toUpperCase()];
+
+                          return (
+                              <Displayed
+                                  key={propName}
+                                  name={propName}
+                                  defaultValue={prop.value}
+                                  onChange={() => console.log('changed')}
+                              />
+                          );
+                      }
+
+                      return '';
+                  })
+                : ''
+        );
+    }, [props.component]);
+
     return (
         <SideBar visible={props.visible} scale={props.scale}>
             <SideBarHeader>
@@ -33,30 +64,12 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                     descriptionPlace={'left'}
                     onClick={props.onClose}
                 />
-                <p className={SideBarRightStyle.componentName}>
-                    {props.component}
-                </p>
+                <p className={SideBarRightStyle.componentName}>{props.component.name}</p>
             </SideBarHeader>
+
             <p className={SideBarRightStyle.componentPropsTitle}>Properties</p>
-            {props.component
-                ? Object.entries(components[props.component]?.defaultProps).map(
-                      ([propName, prop]) => {
-                          if (notRenderedPropertyTypes.includes(typeof prop)) {
-                              return '';
-                          }
-                          const Displayed =
-                              PROPERTY_COMPONENTS_MAP[prop.type.toUpperCase()];
-                          return (
-                              <Displayed
-                                  key={propName}
-                                  name={propName}
-                                  defaultValue={prop.value}
-                                  onChange={() => console.log('changed')}
-                              />
-                          );
-                      }
-                  )
-                : ''}
+
+            {displayedComponent}
         </SideBar>
     );
 };

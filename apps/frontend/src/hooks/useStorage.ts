@@ -4,9 +4,7 @@ export default function useStorage(type: 'local' | 'session', key: string) {
     const storage = type === 'local' ? localStorage : sessionStorage;
     const previousValue = storage.getItem(key);
 
-    const [value, setValue] = useState(
-        previousValue ? JSON.stringify(previousValue) : null
-    );
+    const [value, setValue] = useState(previousValue ? JSON.stringify(previousValue) : null);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function putValue(val: any) {
