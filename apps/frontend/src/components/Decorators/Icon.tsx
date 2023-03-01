@@ -1,25 +1,27 @@
+import { lazy, Suspense } from 'react';
+import { kebabToPascal } from '@react-site-editor/functions';
+import type { IconName } from '@/libs/types/icons.type';
+import type { TooltipPlace } from '@/libs/types/tooltip.type';
+
 interface IconProps {
-    path: string;
+    name: IconName;
     description: string;
-    width?: string;
-    height?: string;
-    color?: string;
+    className?: string;
+    descriptionPlace?: TooltipPlace;
     onClick?: () => void;
 }
 
 const Icon: React.FunctionComponent<IconProps> = (props) => {
-    const handleClick = () => {
-        if (props.onClick) {
-            props.onClick();
-        }
-    };
-
+    const DynamicIcon = lazy(() => import(`../Icons/${kebabToPascal(props.name)}.tsx`));
     return (
         <div
-            className={`${props.width} ${props.height} text-${props.color} cursor-pointer`}
-            onClick={handleClick}
-            title={props.description}>
-            <img src={props.path} alt="Icon" />
+            className={`icon ${props.className}`}
+            data-tooltip-content={props.description}
+            data-tooltip-place={props.descriptionPlace}
+            onClick={props.onClick}>
+            <Suspense>
+                <DynamicIcon />
+            </Suspense>
         </div>
     );
 };

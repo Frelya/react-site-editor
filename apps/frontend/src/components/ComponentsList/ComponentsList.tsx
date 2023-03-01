@@ -1,39 +1,33 @@
+import type { ComponentInfos } from '@react-site-editor/types';
 import ComponentsListStyle from './ComponentsList.module.css';
-import type { Component } from '@react-site-editor/types';
 import Draggable from '@components/Decorators/Draggable';
 import ComponentWrapper from '@components/ComponentWrapper/ComponentWrapper';
 
 interface ComponentsListProps {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    elements: Record<string, Component<any>>;
-    onClick: (name: string) => void;
+    elements: ComponentInfos[];
+    onElementClick: (comp: ComponentInfos) => void;
 }
 
-const ComponentsList: React.FunctionComponent<ComponentsListProps> = (
-    props
-) => {
-    const handleClick = (name: string) => {
-        props.onClick(name);
+const ComponentsList: React.FunctionComponent<ComponentsListProps> = (props) => {
+    const handleClick = (comp: ComponentInfos) => {
+        props.onElementClick(comp);
     };
     return (
         <ul className={ComponentsListStyle.componentsList}>
-            {Object.entries(props.elements).map(
-                ([componentName, component], index) => {
-                    return (
-                        <li
-                            className={ComponentsListStyle.componentsListItem}
-                            key={index}
-                            onClick={() => handleClick(componentName)}>
-                            <Draggable type="component">
-                                <ComponentWrapper
-                                    key={JSON.stringify(component)}>
-                                    {component.caller(component.defaultProps)}
-                                </ComponentWrapper>
-                            </Draggable>
-                        </li>
-                    );
-                }
-            )}
+            {Object.values(props.elements).map((component, index) => {
+                return (
+                    <li
+                        className={ComponentsListStyle.componentsListItem}
+                        key={index}
+                        onClick={() => handleClick(component)}>
+                        <Draggable type="component">
+                            <ComponentWrapper key={JSON.stringify(component)}>
+                                {component.name}
+                            </ComponentWrapper>
+                        </Draggable>
+                    </li>
+                );
+            })}
         </ul>
     );
 };

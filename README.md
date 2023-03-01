@@ -11,8 +11,8 @@ A React-based page builder that allows you to create custom web pages with ease.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your
-local machine for development and testing purposes.
+These instructions will get you a copy of the project up and running on your local machine for
+development and testing purposes.
 
 ### Prerequisites
 
@@ -48,22 +48,18 @@ The page builder should now be running at `http://localhost:3000`.
 
 ## Deployment
 
-To deploy the page builder to a production environment, run the following
-command:
+To deploy the page builder to a production environment, run the following command:
 
 ```bash
 npm run build
 ```
 
-This will create a production-ready build of the page builder in the `build`
-folder.
+This will create a production-ready build of the page builder in the `build` folder.
 
 ## Built With
 
--   [React](https://reactjs.org/) - A JavaScript library for building user
-    interfaces
--   [React-DnD](https://react-dnd.github.io/react-dnd/) - A drag-and-drop
-    library for React
+-   [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+-   [React-DnD](https://react-dnd.github.io/react-dnd/) - A drag-and-drop library for React
 
 ## Contributing
 
@@ -76,5 +72,4 @@ If you would like to contribute to the project, please follow the steps below:
 
 ## License
 
-This project is licensed under the
-[MIT License](https://opensource.org/licenses/MIT).
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).

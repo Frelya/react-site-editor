@@ -1,18 +1,23 @@
-export interface Component<T> {
-    id: string;
-    caller: React.FunctionComponent<T>;
-    defaultProps: T;
-}
+export type PredefinedComponentProps<T> = {
+    [key in keyof T]: T[key];
+} & {
+    maxChildren?: number;
+};
 
 export interface ComponentProp {
-    type: PropType;
+    type: PropsEnum;
     value: string;
 }
 
-export interface TreeElement {
-    id: string;
-    props?: Record<string, any>;
-    children?: TreeElement[];
+export interface ComponentInfos {
+    name: string;
+    defaultProps: Record<string, any>;
 }
 
-type PropType = 'text' | 'color' | 'size';
+export enum PropsEnum {
+    TEXT = 'text',
+    COLOR = 'color',
+    SIZE = 'size'
+}
+
+export type ComponentChildren = React.ReactNode[];

@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SizePropertyStyle from './SizeProperty.module.css';
 
 interface SizePropertyProps {
     name: string;
-    defaultValue?: string | number;
+    defaultValue: string | number;
     onChange: (e: React.ChangeEvent, p: string) => void;
 }
 
@@ -13,6 +13,10 @@ const SizeProperty: React.FunctionComponent<SizePropertyProps> = (props) => {
     const handleInputChange = (event: React.ChangeEvent) => {
         setSize((event.target as HTMLInputElement).value);
     };
+
+    useEffect(() => {
+        setSize(`${props.defaultValue}`);
+    }, [props]);
 
     return (
         <div className={SizePropertyStyle.container}>

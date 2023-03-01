@@ -11,9 +11,7 @@ interface SideBarProps {
 const SideBar: React.FunctionComponent<SideBarProps> = (props) => {
     return (
         <div
-            className={`${SideBarStyle.container} ${
-                SideBarStyle[`scale${props.scale}`]
-            } ${
+            className={`${SideBarStyle.container} ${SideBarStyle[`scale${props.scale}`]} ${
                 props.visible ? SideBarStyle.visible : SideBarStyle.invisible
             }`}>
             {props.children}

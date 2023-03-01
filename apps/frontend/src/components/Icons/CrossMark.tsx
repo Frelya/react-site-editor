@@ -1,4 +1,4 @@
-const ChevronLeft = () => {
+const CrossMark = () => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -7,13 +7,9 @@ const ChevronLeft = () => {
             strokeWidth="1.5"
             stroke="currentColor"
             className="w-full h-full">
-            <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5L8.25 12l7.5-7.5"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
     );
 };
 
-export default ChevronLeft;
+export default CrossMark;

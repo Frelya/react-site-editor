@@ -1,5 +1,5 @@
 .container {
-    @apply w-full h-screen bg-white p-1;
+    @apply w-full min-h-screen bg-white p-1;
 }
 
 .droppable {
