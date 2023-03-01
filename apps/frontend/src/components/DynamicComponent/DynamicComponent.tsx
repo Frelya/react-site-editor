@@ -14,18 +14,21 @@ const DynamicComponent: React.FunctionComponent<DynamicComponentProps> = (props)
     const [componentProps, setComponentProps] = useState<Record<string, any> | null>(null);
 
     useEffect(() => {
-        import(`../../../../../packages/ui/src/components/${props.componentName}/${props.componentName}.tsx`)
-            .then(({ default: comp, ...props }) => {
-                setComponent({caller: comp});
-                setComponentProps(props.defaultProps);
-            })
-    }, [])
+        import(
+            `../../../../../packages/ui/src/components/${props.componentName}/${props.componentName}.tsx`
+        ).then(({ default: comp, ...exports }) => {
+            setComponent({ caller: comp });
+            setComponentProps(exports.defaultProps);
+        });
+    }, []);
 
     return (
         <div>
-            {component!==null && componentProps!==null && component.caller({...componentProps, ...props.propsCustom})}
+            {component !== null &&
+                componentProps !== null &&
+                component.caller({ ...componentProps, ...props.propsCustom })}
         </div>
-    )
-}
+    );
+};
 
 export default DynamicComponent;

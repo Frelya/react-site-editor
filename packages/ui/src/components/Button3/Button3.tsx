@@ -1,4 +1,8 @@
-import type { ComponentChildren, ComponentProp, PredefinedComponentProps } from '@react-site-editor/types';
+import type {
+    ComponentChildren,
+    ComponentProp,
+    PredefinedComponentProps
+} from '@react-site-editor/types';
 import { PropsEnum } from '@react-site-editor/types';
 import ButtonStyle from './Button3.module.css';
 

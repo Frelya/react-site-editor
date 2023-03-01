@@ -16,7 +16,9 @@ interface SideBarRightProps {
 }
 
 const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
-    const [displayedComponent, setDisplayedComponent] = useState<React.ReactNode | React.ReactNode[] | null>(null);
+    const [displayedComponent, setDisplayedComponent] = useState<
+        React.ReactNode | React.ReactNode[] | null
+    >(null);
 
     const notRenderedPropertyTypes: string[] = ['function'];
 
@@ -32,24 +34,24 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
     useEffect(() => {
         setDisplayedComponent(
             props.component
-                ? Object.entries(props.component.defaultProps).map(
-                    ([propName, prop], index) => {
-                          if (propName !== 'maxChildren' && isComponentProp(prop)) {
-                              const Displayed = PROPERTY_COMPONENTS_MAP[prop.type.toUpperCase()];
+                ? Object.entries(props.component.defaultProps).map(([propName, prop], index) => {
+                      if (propName !== 'maxChildren' && isComponentProp(prop)) {
+                          const Displayed = PROPERTY_COMPONENTS_MAP[prop.type.toUpperCase()];
 
-                              return (
-                                  <Displayed
-                                      key={propName}
-                                      name={propName}
-                                      defaultValue={prop.value}
-                                      onChange={() => console.log('changed')}
-                                  />
-                              );
-                          }
+                          return (
+                              <Displayed
+                                  key={propName}
+                                  name={propName}
+                                  defaultValue={prop.value}
+                                  onChange={() => console.log('changed')}
+                              />
+                          );
+                      }
 
-                          return '';
-                    })
-                : '')
+                      return '';
+                  })
+                : ''
+        );
     }, [props.component]);
 
     return (

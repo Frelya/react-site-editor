@@ -11,7 +11,10 @@ import ComponentsList from '@components/ComponentsList/ComponentsList';
 import Icon from '@components/Decorators/Icon';
 
 const EditorPage: React.FunctionComponent = () => {
-    const [selectedComponent, setSelectedComponent] = useState<ComponentInfos>({ name: '', defaultProps: {} });
+    const [selectedComponent, setSelectedComponent] = useState<ComponentInfos>({
+        name: '',
+        defaultProps: {}
+    });
     const [sidebarRightIsVisible, setSidebarRightIsVisible] = useState<boolean>(false);
 
     return (

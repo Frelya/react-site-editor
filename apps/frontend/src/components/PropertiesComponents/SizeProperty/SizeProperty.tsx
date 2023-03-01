@@ -15,7 +15,7 @@ const SizeProperty: React.FunctionComponent<SizePropertyProps> = (props) => {
     };
 
     useEffect(() => {
-        setSize(`${props.defaultValue}`)
+        setSize(`${props.defaultValue}`);
     }, [props]);
 
     return (

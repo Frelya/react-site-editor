@@ -22,7 +22,7 @@
             "@assets/*": ["./src/assets/*"],
             "@views/*": ["./src/views/*"],
             "@libs/*": ["./src/libs/*"],
-            "@ui/*": ["../../packages/ui/*"],
+            "@ui/*": ["../../packages/ui/*"]
         }
     },
     "include": ["src"],

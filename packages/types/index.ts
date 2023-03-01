@@ -2,7 +2,7 @@ export type PredefinedComponentProps<T> = {
     [key in keyof T]: T[key];
 } & {
     maxChildren?: number;
-}
+};
 
 export interface ComponentProp {
     type: PropsEnum;
