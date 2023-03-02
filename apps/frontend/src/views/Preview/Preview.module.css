@@ -3,6 +3,6 @@
 }
 
 .droppable {
-    @apply text-black border-blue-500 flex justify-center items-center p-4 border-2;
-    @apply transition-[height] delay-[200ms];
+    @apply text-black border-blue-500 flex justify-center items-center border-2;
+    @apply transition-all;
 }

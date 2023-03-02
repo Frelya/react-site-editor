@@ -1,1 +1,1 @@
-export type IconName = 'chevron-left' | 'cross-mark';
+export type IconName = 'add-circle-line' | 'chevron-left' | 'cross-mark';

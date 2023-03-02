@@ -21,7 +21,9 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = (props) => 
                         key={index}
                         onClick={() => handleClick(component)}>
                         <Draggable type="component">
-                            <ComponentWrapper>{component.name}</ComponentWrapper>
+                            <ComponentWrapper key={JSON.stringify(component)}>
+                                {component.name}
+                            </ComponentWrapper>
                         </Draggable>
                     </li>
                 );

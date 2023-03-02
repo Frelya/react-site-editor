@@ -1,0 +1,7 @@
+.style {
+    @apply grid grid-cols-3 h-10 bg-slate-500 bg-opacity-5 gap-2
+}
+
+.boxElement {
+    @apply border border-dashed border-blue-500 rounded flex items-center justify-center bg-blue-200 text-blue-700
+}
