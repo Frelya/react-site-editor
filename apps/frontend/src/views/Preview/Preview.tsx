@@ -1,14 +1,10 @@
 import { useState } from 'react';
-// import { useSelector } from 'react-redux';
-// import { selectPreviewTree } from '@/store/previewTree/previewTreeSlice';
-// import previewTree from './arboresence';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectPreviewTree, addComponent } from '@/store/previewTree/previewTreeSlice';
 import Droppable from '@components/Decorators/Droppable';
 import DynamicComponent from '@components/DynamicComponent/DynamicComponent';
 import PreviewStyle from './Preview.module.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectPreviewTree, addComponent } from '@/store/previewTree/previewTreeSlice';
-import PreviewComponentWrapper from '@/components/PreviewComponentWrapper/PreviewComponentWrapper';
-// import type { PreviewTree } from '@libs/types/tree.type';
+import PreviewComponentWrapper from '@/components/Preview/PreviewComponentWrapper/PreviewComponentWrapper';
 
 const Preview: React.FunctionComponent = () => {
     const previewTree = useSelector(selectPreviewTree);
@@ -17,7 +13,6 @@ const Preview: React.FunctionComponent = () => {
 
     const handleDrop = (event: React.DragEvent) => {
         const component = JSON.parse(event.dataTransfer.getData('component'));
-        console.log(component);
 
         dispatch(
             addComponent({
@@ -25,6 +20,7 @@ const Preview: React.FunctionComponent = () => {
                 props: component.defaultProps
             })
         );
+
         setIsHovered(false);
     };
 
@@ -46,7 +42,7 @@ const Preview: React.FunctionComponent = () => {
                                 <DynamicComponent
                                     key={elementIndex}
                                     componentName={element.id}
-                                    propsCustom={element.props}
+                                    customProps={element.props}
                                 />
                             </PreviewComponentWrapper>
                         </div>

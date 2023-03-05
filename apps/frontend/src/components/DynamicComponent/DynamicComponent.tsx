@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 interface DynamicComponentProps {
     componentName: string;
-    propsCustom: Record<string, any>;
+    customProps: Record<string, any>;
 }
 
 interface Component {
@@ -26,7 +26,7 @@ const DynamicComponent: React.FunctionComponent<DynamicComponentProps> = (props)
         <div>
             {component !== null &&
                 componentProps !== null &&
-                component.caller({ ...componentProps, ...props.propsCustom })}
+                component.caller({ ...componentProps, ...props.customProps })}
         </div>
     );
 };

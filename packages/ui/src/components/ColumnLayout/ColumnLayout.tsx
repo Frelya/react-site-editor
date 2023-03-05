@@ -1,23 +1,24 @@
 import type { PredefinedComponentProps } from '@react-site-editor/types';
-import ColLayoutStyle from './ColLayout.module.css';
+import ColumnLayoutStyle from './ColumnLayout.module.css';
 
-interface ColLayoutProps {
-    layout: ColLayoutOptions;
+interface ColumnLayoutProps {
+    layout: ColumnLayoutOptions;
 }
 
-enum ColLayoutOptions {
+enum ColumnLayoutOptions {
     DEFAULT = 'default'
 }
 
-const ColLayout: React.FunctionComponent<ColLayoutProps> = (props) => {
+const ColumnLayout: React.FunctionComponent<ColumnLayoutProps> = (props) => {
     const map = {
         default: 3
     };
+
     const ListItem = () => {
-        const itemList = [];
-        for (let i = 0; i < map[ColLayoutOptions.DEFAULT]; i++) {
-            itemList.push(
-                <div key={i} className={ColLayoutStyle.boxElement}>
+        const itemsList = [];
+        for (let i = 0; i < map[ColumnLayoutOptions.DEFAULT]; i++) {
+            itemsList.push(
+                <div key={i} className={ColumnLayoutStyle.boxElement}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -33,17 +34,17 @@ const ColLayout: React.FunctionComponent<ColLayoutProps> = (props) => {
             );
         }
 
-        return <>{itemList}</>;
+        return <>{itemsList}</>;
     };
     return (
-        <div className={ColLayoutStyle.style}>
+        <div className={ColumnLayoutStyle.style}>
             <ListItem />
         </div>
     );
 };
 
-export const defaultProps: PredefinedComponentProps<ColLayoutProps> = {
-    layout: ColLayoutOptions.DEFAULT
+export const defaultProps: PredefinedComponentProps<ColumnLayoutProps> = {
+    layout: ColumnLayoutOptions.DEFAULT
 };
 
-export default ColLayout;
+export default ColumnLayout;
