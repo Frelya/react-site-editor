@@ -36,7 +36,7 @@ export interface Emitter<Events extends Record<EventType, unknown>> {
  * @name mitt
  * @returns {Mitt}
  */
-export default function mitt<Events extends Record<EventType, unknown>>(
+export function mitt<Events extends Record<EventType, unknown>>(
     all?: EventHandlerMap<Events>
 ): Emitter<Events> {
     type GenericEventHandler = Handler<Events[keyof Events]> | WildcardHandler<Events>;
@@ -93,10 +93,13 @@ export default function mitt<Events extends Record<EventType, unknown>>(
          */
         emit<Key extends keyof Events>(type: Key, evt?: Events[Key]) {
             let handlers = all?.get(type);
+            console.log(all);
+
             if (handlers) {
                 (handlers as EventHandlerList<Events[keyof Events]>).slice().map((handler) => {
                     handler(evt!);
                 });
+                return;
             }
 
             handlers = all?.get('*');
@@ -104,7 +107,9 @@ export default function mitt<Events extends Record<EventType, unknown>>(
                 (handlers as WildCardEventHandlerList<Events>).slice().map((handler) => {
                     handler(type, evt!);
                 });
+                return;
             }
+            console.warn("'*' event is not defined");
         }
     };
 }

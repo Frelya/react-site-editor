@@ -17,7 +17,7 @@ const ColLayout: React.FunctionComponent<ColLayoutProps> = (props) => {
         const itemList = [];
         for (let i = 0; i < map[ColLayoutOptions.DEFAULT]; i++) {
             itemList.push(
-                <div className={ColLayoutStyle.boxElement}>
+                <div key={i} className={ColLayoutStyle.boxElement}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"

@@ -7,6 +7,7 @@ import DynamicComponent from '@components/DynamicComponent/DynamicComponent';
 import PreviewStyle from './Preview.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectPreviewTree, addComponent } from '@/store/previewTree/previewTreeSlice';
+import PreviewComponentWrapper from '@/components/PreviewComponentWrapper/PreviewComponentWrapper';
 // import type { PreviewTree } from '@libs/types/tree.type';
 
 const Preview: React.FunctionComponent = () => {
@@ -41,20 +42,13 @@ const Preview: React.FunctionComponent = () => {
                 previewTree.map((element, elementIndex) => {
                     return (
                         <div className={'tree-element'} key={`Element${elementIndex}`}>
-                            <Droppable
-                                onDrop={handleDrop}
-                                onDragEnter={handleDragEnter}
-                                onDragLeave={handleDragLeave}
-                                type="component">
-                                <div
-                                    className={`${PreviewStyle.droppable} ${
-                                        isHovered ? 'p-4' : 'p-0'
-                                    }`}></div>
-                            </Droppable>
-                            <DynamicComponent
-                                componentName={element.id}
-                                propsCustom={element.props}
-                            />
+                            <PreviewComponentWrapper index={elementIndex} key={elementIndex}>
+                                <DynamicComponent
+                                    key={elementIndex}
+                                    componentName={element.id}
+                                    propsCustom={element.props}
+                                />
+                            </PreviewComponentWrapper>
                         </div>
                     );
                 })}
