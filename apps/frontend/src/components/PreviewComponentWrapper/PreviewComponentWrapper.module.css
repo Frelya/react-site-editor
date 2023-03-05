@@ -1,0 +1,8 @@
+.container {
+    @apply flex flex-col items-stretch text-center hover:border-blue-500 hover:border p-1 justify-between relative;
+}
+
+.droppable {
+    @apply text-black border-violet-500 flex justify-center items-center border-2 w-full;
+    @apply transition-all;
+}

@@ -17,6 +17,7 @@
         "react-redux": "^8.0.5",
         "react-router-dom": "^6.8.1",
         "react-tooltip": "^5.8.3",
+        "mitt": "^1.2.0",
         "web-vitals": "^2.1.4"
     },
     "devDependencies": {
