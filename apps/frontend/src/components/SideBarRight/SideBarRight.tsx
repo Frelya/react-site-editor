@@ -34,7 +34,7 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
     useEffect(() => {
         setDisplayedComponent(
             props.component
-                ? Object.entries(props.component.defaultProps).map(([propName, prop], index) => {
+                ? Object.entries(props.component.defaultProps).map(([propName, prop]) => {
                       if (propName !== 'maxChildren' && isComponentProp(prop)) {
                           const Displayed = PROPERTY_COMPONENTS_MAP[prop.type.toUpperCase()];
 

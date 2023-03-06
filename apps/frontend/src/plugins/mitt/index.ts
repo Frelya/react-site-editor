@@ -93,8 +93,6 @@ export function mitt<Events extends Record<EventType, unknown>>(
          */
         emit<Key extends keyof Events>(type: Key, evt?: Events[Key]) {
             let handlers = all?.get(type);
-            console.log(all);
-
             if (handlers) {
                 (handlers as EventHandlerList<Events[keyof Events]>).slice().map((handler) => {
                     handler(evt!);
@@ -107,9 +105,9 @@ export function mitt<Events extends Record<EventType, unknown>>(
                 (handlers as WildCardEventHandlerList<Events>).slice().map((handler) => {
                     handler(type, evt!);
                 });
-                return;
+            } else {
+                console.warn("'*' event is not defined");
             }
-            console.warn("'*' event is not defined");
         }
     };
 }

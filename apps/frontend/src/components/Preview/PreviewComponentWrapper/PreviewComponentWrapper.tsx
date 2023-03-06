@@ -6,7 +6,6 @@ import Icon from '@components/Decorators/Icon';
 import PreviewComponentWrapperStyle from './PreviewComponentWrapper.module.css';
 
 interface PreviewComponentWrapperProps {
-    // TODO: Adapt to display component name only
     children?: React.ReactNode | React.ReactNode[];
     index: number;
 }
@@ -17,7 +16,6 @@ const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperPr
 
     const handleDrop = (event: React.DragEvent) => {
         const component = JSON.parse(event.dataTransfer.getData('component'));
-        console.log(component);
 
         dispatch(
             addComponent({

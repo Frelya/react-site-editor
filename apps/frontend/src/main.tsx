@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { Provider as StoreProvider } from 'react-redux';
 import './main.css';
 import 'react-tooltip/dist/react-tooltip.css';
 import reportWebVitals from './reportWebVitals';
@@ -12,9 +12,9 @@ import { MittProvider } from './plugins/mitt/react-mitt';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
         <MittProvider>
-            <Provider store={store}>
+            <StoreProvider store={store}>
                 <RouterProvider router={routes} />
-            </Provider>
+            </StoreProvider>
         </MittProvider>
     </React.StrictMode>
 );
