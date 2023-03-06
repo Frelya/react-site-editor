@@ -1,6 +1,9 @@
 import SideBarStyle from './SideBar.module.css';
 
-type SideBarScale = '1' | '2';
+export enum SideBarScale {
+    NORMAL = '1',
+    NARROW = '2'
+}
 
 interface SideBarProps {
     visible: boolean;

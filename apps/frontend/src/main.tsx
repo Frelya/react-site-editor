@@ -7,15 +7,12 @@ import 'react-tooltip/dist/react-tooltip.css';
 import reportWebVitals from './reportWebVitals';
 import { routes } from '@/routes/routes';
 import { store } from '@/store/store';
-import { MittProvider } from './plugins/mitt/react-mitt';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
-        <MittProvider>
-            <StoreProvider store={store}>
-                <RouterProvider router={routes} />
-            </StoreProvider>
-        </MittProvider>
+        <StoreProvider store={store}>
+            <RouterProvider router={routes} />
+        </StoreProvider>
     </React.StrictMode>
 );
 

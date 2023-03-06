@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { ComponentProp, ComponentInfos } from '@react-site-editor/types';
-import type { SideBarScale } from '@libs/types/global.type';
 import SideBarRightStyle from './SideBarRight.module.css';
-import SideBar from '@components/SideBar/SideBar';
+import SideBar, { SideBarScale } from '@components/SideBar/SideBar';
 import SideBarHeader from '@components/SideBarHeader/SideBarHeader';
 import TextProperty from '@components/PropertiesComponents/TextProperty/TextProperty';
 import SizeProperty from '@components/PropertiesComponents/SizeProperty/SizeProperty';

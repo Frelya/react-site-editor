@@ -1,35 +1,17 @@
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectPreviewTree, addComponent } from '@/store/previewTree/previewTreeSlice';
-import Droppable from '@components/Decorators/Droppable';
+import { useSelector } from 'react-redux';
+import { selectPreviewTree } from '@/store/previewTree/previewTreeSlice';
+import type { PreviewElement } from '@libs/types/tree.type';
+import PreviewDroppable from '@components/Preview/PreviewDroppable/PreviewDroppable';
 import DynamicComponent from '@components/DynamicComponent/DynamicComponent';
-import PreviewStyle from './Preview.module.css';
 import PreviewComponentWrapper from '@/components/Preview/PreviewComponentWrapper/PreviewComponentWrapper';
+import PreviewStyle from './Preview.module.css';
 
 const Preview: React.FunctionComponent = () => {
     const previewTree = useSelector(selectPreviewTree);
-    const dispatch = useDispatch();
-    const [isHovered, setIsHovered] = useState<boolean>(false);
+    const emitter = window.parent.getEmitter();
 
-    const handleDrop = (event: React.DragEvent) => {
-        const component = JSON.parse(event.dataTransfer.getData('component'));
-
-        dispatch(
-            addComponent({
-                id: component.name,
-                props: component.defaultProps
-            })
-        );
-
-        setIsHovered(false);
-    };
-
-    const handleDragEnter = () => {
-        setIsHovered(true);
-    };
-
-    const handleDragLeave = () => {
-        setIsHovered(false);
+    const handleElementClick = (element: PreviewElement) => {
+        emitter.emit(`componentSelected`, element);
     };
 
     return (
@@ -38,7 +20,9 @@ const Preview: React.FunctionComponent = () => {
                 previewTree.map((element, elementIndex) => {
                     return (
                         <div className={'tree-element'} key={`Element${elementIndex}`}>
-                            <PreviewComponentWrapper index={elementIndex} key={elementIndex}>
+                            <PreviewComponentWrapper
+                                onClick={() => handleElementClick(element)}
+                                key={elementIndex}>
                                 <DynamicComponent
                                     key={elementIndex}
                                     componentName={element.id}
@@ -50,16 +34,7 @@ const Preview: React.FunctionComponent = () => {
                 })}
             {previewTree.length == 0 && (
                 <div className={'tree-element'} key={`Element-1}`}>
-                    <Droppable
-                        onDrop={handleDrop}
-                        onDragEnter={handleDragEnter}
-                        onDragLeave={handleDragLeave}
-                        type="component">
-                        <div
-                            className={`${PreviewStyle.droppable} ${
-                                isHovered ? 'p-4' : 'p-1'
-                            }`}></div>
-                    </Droppable>
+                    <PreviewDroppable />
                 </div>
             )}
         </div>
