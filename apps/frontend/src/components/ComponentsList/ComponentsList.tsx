@@ -1,7 +1,7 @@
 import type { ComponentInfos } from '@react-site-editor/types';
 import ComponentsListStyle from './ComponentsList.module.css';
 import Draggable from '@components/Decorators/Draggable';
-import ComponentWrapper from '@components/ComponentWrapper/ComponentWrapper';
+import ComponentsListItem from '@components/ComponentsListItem/ComponentsListItem';
 
 interface ComponentsListProps {
     elements: ComponentInfos[];
@@ -21,9 +21,10 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = (props) => 
                         key={index}
                         onClick={() => handleClick(component)}>
                         <Draggable type="component">
-                            <ComponentWrapper key={JSON.stringify(component)}>
-                                {component.name}
-                            </ComponentWrapper>
+                            <ComponentsListItem
+                                key={JSON.stringify(component)}
+                                text={component.name}
+                            />
                         </Draggable>
                     </li>
                 );

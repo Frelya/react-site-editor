@@ -14,14 +14,10 @@ interface Button3Props {
 }
 
 const Button3: React.FunctionComponent<Button3Props> = (props) => {
-    const handleDragStart = (event: React.DragEvent) => {
-        event.dataTransfer.setData('text/plain', 'Button');
-    };
     return (
         <button
             className={`${ButtonStyle.baseButton} ${ButtonStyle[`font-${props.fontSize?.value}`]}`}
-            onClick={props?.onClick}
-            onDragStart={handleDragStart}>
+            onClick={props?.onClick}>
             {props.text?.value}
             {props.children}
         </button>
