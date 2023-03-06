@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MittContextType, useMitt } from '@/plugins/mitt/react-mitt';
-import type { PreviewElement } from '@libs/types/tree.type';
+import { useDispatch } from 'react-redux';
+import { useMitt } from '@/plugins/mitt/react-mitt';
+import { updateActiveComponent } from '@/store/activeComponent/activeComponentSlice';
 import { components } from '@react-site-editor/ui';
-import type { ComponentInfos } from '@react-site-editor/types';
+import type { MittContextType } from '@/plugins/mitt/react-mitt';
+import type { PreviewElement } from '@libs/types/tree.type';
 import SideBar, { SideBarScale } from '@components/SideBar/SideBar';
 import SideBarHeader from '@components/SideBarHeader/SideBarHeader';
 import SideBarRight from '@components/SideBarRight/SideBarRight';
@@ -13,23 +15,23 @@ import Icon from '@components/Decorators/Icon';
 import EditorStyle from './EditorPage.module.css';
 
 const EditorPage: React.FunctionComponent = () => {
-    const [selectedComponent, setSelectedComponent] = useState<ComponentInfos>({
-        name: '',
-        defaultProps: {}
-    });
     const [sidebarRightIsVisible, setSidebarRightIsVisible] = useState<boolean>(false);
+    const dispatch = useDispatch();
     const emitter = useMitt();
 
     // We need to remove the previous listeners on page reload
     emitter.off('componentSelected');
 
     // Then set a new one
-    emitter.on('componentSelected', (component) => {
+    emitter.on('componentSelected', (element) => {
+        const { id, props } = element as PreviewElement;
+        dispatch(
+            updateActiveComponent({
+                name: id,
+                defaultProps: props
+            })
+        );
         setSidebarRightIsVisible(true);
-        setSelectedComponent({
-            name: (component as PreviewElement).id,
-            defaultProps: (component as PreviewElement).props
-        } as ComponentInfos);
     });
 
     // Expose the emitter to the parent window, so we can use it in the PreviewIframe
@@ -54,7 +56,6 @@ const EditorPage: React.FunctionComponent = () => {
             <SideBarRight
                 visible={sidebarRightIsVisible}
                 scale={SideBarScale.NORMAL}
-                component={selectedComponent}
                 onClose={() => setSidebarRightIsVisible(false)}
             />
         </div>
