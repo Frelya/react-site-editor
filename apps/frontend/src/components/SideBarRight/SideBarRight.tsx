@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react';
-import type { ComponentProp, ComponentInfos } from '@react-site-editor/types';
-import SideBarRightStyle from './SideBarRight.module.css';
+import { useSelector } from 'react-redux';
+import type { ComponentProp } from '@react-site-editor/types';
+import { selectActiveComponent } from '@/store/activeComponent/activeComponentSlice';
 import SideBar, { SideBarScale } from '@components/SideBar/SideBar';
 import SideBarHeader from '@components/SideBarHeader/SideBarHeader';
 import TextProperty from '@components/PropertiesComponents/TextProperty/TextProperty';
 import SizeProperty from '@components/PropertiesComponents/SizeProperty/SizeProperty';
 import Icon from '@components/Decorators/Icon';
+import SideBarRightStyle from './SideBarRight.module.css';
 
 interface SideBarRightProps {
     visible: boolean;
     scale: SideBarScale;
-    component: ComponentInfos;
     onClose: () => void;
 }
 
 const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
+    const activeComponent = useSelector(selectActiveComponent);
     const [displayedComponent, setDisplayedComponent] = useState<
         React.ReactNode | React.ReactNode[] | null
     >(null);
@@ -32,8 +34,8 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
 
     useEffect(() => {
         setDisplayedComponent(
-            props.component
-                ? Object.entries(props.component.defaultProps).map(([propName, prop]) => {
+            activeComponent.defaultProps
+                ? Object.entries(activeComponent.defaultProps).map(([propName, prop]) => {
                       if (propName !== 'maxChildren' && isComponentProp(prop)) {
                           const Displayed = PROPERTY_COMPONENTS_MAP[prop.type.toUpperCase()];
 
@@ -51,7 +53,7 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                   })
                 : ''
         );
-    }, [props.component]);
+    }, [activeComponent]);
 
     return (
         <SideBar visible={props.visible} scale={props.scale}>
@@ -63,7 +65,10 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                     descriptionPlace={'left'}
                     onClick={props.onClose}
                 />
-                <p className={SideBarRightStyle.componentName}>{props.component.name}</p>
+
+                {activeComponent && (
+                    <p className={SideBarRightStyle.componentName}>{activeComponent.name}</p>
+                )}
             </SideBarHeader>
 
             <p className={SideBarRightStyle.componentPropsTitle}>Properties</p>
