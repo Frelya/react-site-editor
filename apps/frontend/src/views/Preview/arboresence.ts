@@ -126,24 +126,6 @@ const previewTree: PreviewTree = [
             }
         ]
     }
-    /*{
-        id: '@/components/Hero1',
-        props: {
-            title: "You're on the best site ever",
-            subtitle: 'ever and ever',
-            color: '#dedede'
-        },
-        children: [
-            {
-                id: '@/components/CTA',
-                props: {
-                    label: 'Click here ❤️',
-                    subtitle: 'ever and ever',
-                    color: '#dedede'
-                }
-            }
-        ]
-    }*/
 ];
 
 export default previewTree;

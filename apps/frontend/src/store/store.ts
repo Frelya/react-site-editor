@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import previewTreeReducer from './previewTree/previewTreeSlice';
+import activeComponentReducer from './activeComponent/activeComponentSlice';
 
 export const store = configureStore({
     reducer: {
-        previewTree: previewTreeReducer
+        previewTree: previewTreeReducer,
+        activeComponent: activeComponentReducer
     }
 });
 
