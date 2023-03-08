@@ -1,15 +1,13 @@
-import { useMitt } from '@/plugins/mitt/react-mitt';
-
 interface DraggableProps {
     children: React.ReactElement;
     type: string;
 }
 
 const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
-    const emitter = useMitt();
+    const emitter = window.getEmitter();
 
     const handleDragStart = (event: React.DragEvent) => {
-        emitter.emit('dragEvent');
+        emitter.emit('dragStartEvent');
 
         // Set cursor to "grab"
         // document.body.style.cursor = 'grabbing';
@@ -21,6 +19,8 @@ const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
     };
 
     const handleDragEnd = () => {
+        emitter.emit('dragEndEvent');
+
         // Set cursor style back to default after the drag movement
         document.body.style.cursor = 'default';
     };

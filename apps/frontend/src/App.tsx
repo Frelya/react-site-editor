@@ -11,12 +11,12 @@ declare global {
 
 function App() {
     return (
-        <div>
-            <MittProvider>
+        <MittProvider>
+            <div>
                 <Outlet />
                 <Tooltip anchorSelect={'.icon'} />
-            </MittProvider>
-        </div>
+            </div>
+        </MittProvider>
     );
 }
 

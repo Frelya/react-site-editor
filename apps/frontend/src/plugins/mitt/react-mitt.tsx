@@ -11,4 +11,6 @@ export const MittProvider: React.FunctionComponent<React.PropsWithChildren> = ({
     return <MittContext.Provider value={emitter}>{children}</MittContext.Provider>;
 };
 
-export const useMitt = (): MittContextType => useContext(MittContext);
+export const useMitt = (): MittContextType => {
+    return useContext(MittContext);
+};

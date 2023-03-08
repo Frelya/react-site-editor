@@ -1,4 +1,4 @@
 .container {
-    @apply text-black border-blue-500 flex justify-center items-center border-2;
+    @apply text-black border-blue-500 justify-center items-center border-2;
     @apply transition-all;
 }
