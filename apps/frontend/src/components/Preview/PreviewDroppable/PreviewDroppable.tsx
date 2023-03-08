@@ -7,14 +7,14 @@ import PreviewDroppableStyle from './PreviewDroppable.module.css';
 const PreviewDroppable: React.FunctionComponent = () => {
     const dispatch = useDispatch();
     const [isHovered, setIsHovered] = useState<boolean>(false);
-    const [isDraggabled, setIsDraggisDraggabled] = useState<boolean>(false);
+    const [isDraggabled, setIsDraggabled] = useState<boolean>(false);
     const emitter = window.parent.getEmitter();
 
     emitter.on('dragStartEvent', () => {
-        setIsDraggisDraggabled(true);
+        setIsDraggabled(true);
     });
     emitter.on('dragEndEvent', () => {
-        setIsDraggisDraggabled(false);
+        setIsDraggabled(false);
     });
     const handleDrop = (event: React.DragEvent) => {
         const component = JSON.parse(event.dataTransfer.getData('component'));
