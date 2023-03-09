@@ -3,7 +3,7 @@ import type { ComponentInfos } from '@react-site-editor/types';
 
 async function getAllComponents(): Promise<ComponentInfos[]> {
     const components: ComponentInfos[] = [];
-    const files = import.meta.glob(`./components/**/*.tsx`);
+    const files = import.meta.glob(`./components/exposed/**/*.tsx`);
 
     for (const filepath in files) {
         const filename = filepath.match(/.*\/(.+)\.tsx$/)?.[1];
