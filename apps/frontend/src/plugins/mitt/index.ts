@@ -111,6 +111,3 @@ export function mitt<Events extends Record<EventType, unknown>>(
         }
     };
 }
-
-const emitter = mitt();
-export default emitter;

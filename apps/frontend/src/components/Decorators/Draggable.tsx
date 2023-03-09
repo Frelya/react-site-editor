@@ -10,7 +10,7 @@ const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
         emitter.emit('dragStartEvent');
 
         // Set cursor to "grab"
-        // document.body.style.cursor = 'grabbing';
+        document.body.style.cursor = 'grabbing';
         if (props.children)
             event.dataTransfer.setData(
                 props.type,
