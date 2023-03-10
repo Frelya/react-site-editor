@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useMitt } from '@/plugins/mitt/react-mitt';
 import { selectPreviewTree } from '@/store/previewTree/previewTreeSlice';
 import type { PreviewElement } from '@libs/types/tree.type';
 import PreviewDroppable from '@components/Preview/PreviewDroppable/PreviewDroppable';
@@ -8,7 +9,7 @@ import PreviewStyle from './Preview.module.css';
 
 const Preview: React.FunctionComponent = () => {
     const previewTree = useSelector(selectPreviewTree);
-    const emitter = window.parent.getEmitter();
+    const emitter = useMitt('preview');
 
     const handleElementClick = (element: PreviewElement) => {
         emitter.emit(`componentSelected`, element);

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { mitt, Emitter, EventType } from '@/plugins/mitt/index';
 
-const emitter: Emitter<Record<EventType, unknown>> = mitt();
-
 export type MittContextType = Emitter<Record<EventType, unknown>>;
+
+const emitter: MittContextType = mitt();
 
 const MittContext = React.createContext<MittContextType>(emitter);
 
@@ -11,4 +11,13 @@ export const MittProvider: React.FunctionComponent<React.PropsWithChildren> = ({
     return <MittContext.Provider value={emitter}>{children}</MittContext.Provider>;
 };
 
-export const useMitt = (): MittContextType => useContext(MittContext);
+type MittOrigin = 'main' | 'preview';
+
+export const useMitt = (from: MittOrigin): MittContextType => {
+    const emitterLocationMap: Record<MittOrigin, () => MittContextType> = {
+        main: () => useContext(MittContext),
+        preview: () => window.parent.getEmitter()
+    };
+
+    return emitterLocationMap[from]();
+};

@@ -1,10 +1,12 @@
+import { useMitt } from '@/plugins/mitt/react-mitt';
+
 interface DraggableProps {
     children: React.ReactElement;
     type: string;
 }
 
 const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
-    const emitter = window.getEmitter();
+    const emitter = useMitt('main');
 
     const handleDragStart = (event: React.DragEvent) => {
         emitter.emit('dragStartEvent');

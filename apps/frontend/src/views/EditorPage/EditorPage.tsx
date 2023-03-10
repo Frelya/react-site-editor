@@ -17,7 +17,7 @@ import EditorStyle from './EditorPage.module.css';
 const EditorPage: React.FunctionComponent = () => {
     const [sidebarRightIsVisible, setSidebarRightIsVisible] = useState<boolean>(false);
     const dispatch = useDispatch();
-    const emitter = useMitt();
+    const emitter = useMitt('main');
 
     // We need to remove the previous listeners on page reload
     emitter.off('componentSelected');
