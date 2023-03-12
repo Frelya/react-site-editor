@@ -6,13 +6,13 @@ interface DraggableProps {
 }
 
 const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
-    const emitter = useMitt();
+    const emitter = useMitt('main');
 
     const handleDragStart = (event: React.DragEvent) => {
-        emitter.emit('dragEvent');
+        emitter.emit('dragStartEvent');
 
         // Set cursor to "grab"
-        // document.body.style.cursor = 'grabbing';
+        document.body.style.cursor = 'grabbing';
         if (props.children)
             event.dataTransfer.setData(
                 props.type,
@@ -21,6 +21,8 @@ const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
     };
 
     const handleDragEnd = () => {
+        emitter.emit('dragEndEvent');
+
         // Set cursor style back to default after the drag movement
         document.body.style.cursor = 'default';
     };

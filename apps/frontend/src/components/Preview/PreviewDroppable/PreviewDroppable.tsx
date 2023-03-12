@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useMitt } from '@/plugins/mitt/react-mitt';
 import { addComponent } from '@/store/previewTree/previewTreeSlice';
 import Droppable from '@components/Decorators/Droppable';
 import PreviewDroppableStyle from './PreviewDroppable.module.css';
@@ -7,7 +8,15 @@ import PreviewDroppableStyle from './PreviewDroppable.module.css';
 const PreviewDroppable: React.FunctionComponent = () => {
     const dispatch = useDispatch();
     const [isHovered, setIsHovered] = useState<boolean>(false);
+    const [isDraggedOver, setIsDraggedOver] = useState<boolean>(false);
+    const emitter = useMitt('preview');
 
+    emitter.on('dragStartEvent', () => {
+        setIsDraggedOver(true);
+    });
+    emitter.on('dragEndEvent', () => {
+        setIsDraggedOver(false);
+    });
     const handleDrop = (event: React.DragEvent) => {
         const component = JSON.parse(event.dataTransfer.getData('component'));
 
@@ -36,7 +45,9 @@ const PreviewDroppable: React.FunctionComponent = () => {
             onDragLeave={handleDragLeave}
             type="component">
             <div
-                className={`${PreviewDroppableStyle.container} ${isHovered ? 'p-4' : 'p-1'}`}></div>
+                className={`${PreviewDroppableStyle.container} ${isHovered ? 'p-4' : 'p-1'} ${
+                    isDraggedOver ? 'flex' : 'hidden'
+                }`}></div>
         </Droppable>
     );
 };
