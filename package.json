@@ -5,13 +5,15 @@
         "node": "^16.19.0",
         "npm": "^8.19.3"
     },
+    "homepage": "https://Frelya.io/react-site-editor",
     "scripts": {
         "dev": "npm run dev --workspace=apps/frontend",
         "frontend": "npm run --workspace=apps/frontend",
         "lint": "npx eslint --ext .js,.ts,.jsx,.tsx,.json .",
         "lint-fix": "npx eslint --ext .js,.ts,.jsx,.tsx,.json . --fix",
         "format": "npx prettier --write ./ '!**/*.{js,ts,jsx,tsx,html,json}'",
-        "push": "npm run lint-fix && npm run format && git commit -am 'lint-fix' && git push"
+        "push": "npm run lint-fix && npm run format && git commit -am 'lint-fix' && git push",
+        "deploy": "npm run build && gh-pages -d build"
     },
     "workspaces": [
         "packages/*",
@@ -25,5 +27,8 @@
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.32.2",
         "prettier": "2.8.3"
+    },
+    "dependencies": {
+        "gh-pages": "^5.0.0"
     }
 }
