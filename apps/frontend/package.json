@@ -2,6 +2,7 @@
     "name": "@react-site-editor/frontend",
     "version": "0.0.0",
     "type": "module",
+    "homepage": "https://frelya.github.io/react-site-editor",
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",

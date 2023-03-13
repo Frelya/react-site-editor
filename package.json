@@ -5,7 +5,7 @@
         "node": "^16.19.0",
         "npm": "^8.19.3"
     },
-    "homepage": "https://Frelya.io/react-site-editor",
+    "homepage": "https://frelya.github.io/react-site-editor",
     "scripts": {
         "dev": "npm run dev --workspace=apps/frontend",
         "frontend": "npm run --workspace=apps/frontend",
