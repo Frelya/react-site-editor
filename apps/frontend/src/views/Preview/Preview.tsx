@@ -19,7 +19,9 @@ const Preview: React.FunctionComponent = () => {
         setShowComponent(false);
         setTimeout(() => setShowComponent(true), 0);
     };
-
+    const handleElementClick = (element: PreviewElementData) => {
+        emitter.emit(`componentSelected`, element);
+    };
     useEffect(() => {
         // TODO Fix this type error
         setRender(
@@ -50,10 +52,6 @@ const Preview: React.FunctionComponent = () => {
         );
         handleValueUpdate();
     }, [previewTree]);
-
-    const handleElementClick = (element: PreviewElementData) => {
-        emitter.emit(`componentSelected`, element);
-    };
 
     return <>{showComponent && render}</>;
 };
