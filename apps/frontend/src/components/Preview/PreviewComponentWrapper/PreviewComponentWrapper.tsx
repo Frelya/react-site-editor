@@ -4,13 +4,14 @@ import PreviewComponentWrapperStyle from './PreviewComponentWrapper.module.css';
 
 interface PreviewComponentWrapperProps {
     children: React.ReactNode | React.ReactNode[];
+    index: number;
     onClick: (e: React.MouseEvent) => void;
 }
 
 const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperProps> = (props) => {
     return (
         <>
-            <PreviewDroppable />
+            <PreviewDroppable index={props.index} />
             <div className={PreviewComponentWrapperStyle.container} onClick={props.onClick}>
                 <div className="absolute right-0 top-3/4 invisible hover:visible">
                     <Icon
