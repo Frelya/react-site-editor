@@ -5,13 +5,15 @@
         "node": "^16.19.0",
         "npm": "^8.19.3"
     },
+    "homepage": "https://frelya.github.io/react-site-editor",
     "scripts": {
         "dev": "npm run dev --workspace=apps/frontend",
         "frontend": "npm run --workspace=apps/frontend",
         "lint": "npx eslint --ext .js,.ts,.jsx,.tsx,.json .",
         "lint-fix": "npx eslint --ext .js,.ts,.jsx,.tsx,.json . --fix",
         "format": "npx prettier --write ./ '!**/*.{js,ts,jsx,tsx,html,json}'",
-        "push": "npm run lint-fix && npm run format && git commit -am 'lint-fix' && git push"
+        "push": "npm run lint-fix && npm run format && git commit -am 'lint-fix' && git push",
+        "deploy": "npm run frontend build && npm run frontend deploy"
     },
     "workspaces": [
         "packages/*",

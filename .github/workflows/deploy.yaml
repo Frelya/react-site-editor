@@ -1,0 +1,22 @@
+name: Deploy
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+        types:
+            - closed
+jobs:
+    deploy:
+        name: Deploy on github page
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Install modules
+              working-directory: .
+              run: npm install
+            - name: Run Deploy
+              working-directory: .
+              run: npm run deploy
