@@ -11,7 +11,7 @@ interface PreviewComponentWrapperProps {
 const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperProps> = (props) => {
     return (
         <>
-            <PreviewDroppable index={props.index} />
+            <PreviewDroppable index={props.index} key={props.index} />
             <div className={PreviewComponentWrapperStyle.container} onClick={props.onClick}>
                 <div className="absolute right-0 top-3/4 invisible hover:visible">
                     <Icon

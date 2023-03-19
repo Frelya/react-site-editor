@@ -5,11 +5,11 @@ import { addComponent } from '@/store/previewTree/previewTreeSlice';
 import Droppable from '@components/Decorators/Droppable';
 import PreviewDroppableStyle from './PreviewDroppable.module.css';
 
-interface PreviewComponentWrapperProps {
+interface PreviewDroppableProps {
     index: number;
 }
 
-const PreviewDroppable: React.FunctionComponent<PreviewComponentWrapperProps> = (props) => {
+const PreviewDroppable: React.FunctionComponent<PreviewDroppableProps> = (props) => {
     const dispatch = useDispatch();
     const [isHovered, setIsHovered] = useState<boolean>(false);
     const [isDraggedOver, setIsDraggedOver] = useState<boolean>(false);
