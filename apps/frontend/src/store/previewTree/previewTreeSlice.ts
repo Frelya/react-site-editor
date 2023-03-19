@@ -12,7 +12,6 @@ export const previewTreeSlice = createSlice({
     initialState,
     reducers: {
         addComponent: (state, actions: PayloadAction<PreviewElement>) => {
-            // state.value.push(actions.payload.data);
             state.value.splice(actions.payload.index, 0, actions.payload.data);
         },
         addChildren: () => {

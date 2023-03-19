@@ -5,7 +5,7 @@ import { useMitt } from '@/plugins/mitt/react-mitt';
 import { updateActiveComponent } from '@/store/activeComponent/activeComponentSlice';
 import { components } from '@react-site-editor/ui';
 import type { MittContextType } from '@/plugins/mitt/react-mitt';
-import type { PreviewElement } from '@libs/types/tree.type';
+import type { PreviewElementData } from '@libs/types/tree.type';
 import SideBar, { SideBarScale } from '@components/SideBar/SideBar';
 import SideBarHeader from '@components/SideBarHeader/SideBarHeader';
 import SideBarRight from '@components/SideBarRight/SideBarRight';
@@ -24,7 +24,7 @@ const EditorPage: React.FunctionComponent = () => {
 
     // Then set a new one
     emitter.on('componentSelected', (element) => {
-        const { id, props } = element as PreviewElement;
+        const { id, props } = element as PreviewElementData;
         dispatch(
             updateActiveComponent({
                 name: id,
