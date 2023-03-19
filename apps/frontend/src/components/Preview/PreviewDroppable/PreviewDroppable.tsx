@@ -22,7 +22,6 @@ const PreviewDroppable: React.FunctionComponent<PreviewDroppableProps> = (props)
         setIsDraggedOver(false);
     });
     const handleDrop = (event: React.DragEvent) => {
-
         const component = JSON.parse(event.dataTransfer.getData('component'));
 
         dispatch(

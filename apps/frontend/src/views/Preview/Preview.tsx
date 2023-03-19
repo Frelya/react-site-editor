@@ -21,28 +21,30 @@ const Preview: React.FunctionComponent = () => {
 
     return (
         <div className={PreviewStyle.container}>
-                {previewTree.length > 0 &&
-                    previewTree.map((element, elementIndex) => {
-                        return (
-                            <div className={'tree-element'} key={elementIndex + JSON.stringify(element)}>
-                                <PreviewComponentWrapper
-                                    index={elementIndex}
-                                    onClick={() => handleElementClick(element)}>
-                                    <Suspense>
-                                        <DynamicComponent
-                                            componentName={element.id}
-                                            customProps={element.props}
-                                        />
-                                    </Suspense>
-                                </PreviewComponentWrapper>
-                            </div>
-                        );
-                    })}
-                {previewTree.length == 0 && (
-                    <div className={'tree-element'} key={`Element-0`}>
-                        <PreviewDroppable index={0} key={0} />
-                    </div>
-                )}
+            {previewTree.length > 0 &&
+                previewTree.map((element, elementIndex) => {
+                    return (
+                        <div
+                            className={'tree-element'}
+                            key={elementIndex + JSON.stringify(element)}>
+                            <PreviewComponentWrapper
+                                index={elementIndex}
+                                onClick={() => handleElementClick(element)}>
+                                <Suspense>
+                                    <DynamicComponent
+                                        componentName={element.id}
+                                        customProps={element.props}
+                                    />
+                                </Suspense>
+                            </PreviewComponentWrapper>
+                        </div>
+                    );
+                })}
+            {previewTree.length == 0 && (
+                <div className={'tree-element'} key={`Element-0`}>
+                    <PreviewDroppable index={0} key={0} />
+                </div>
+            )}
         </div>
     );
 };
