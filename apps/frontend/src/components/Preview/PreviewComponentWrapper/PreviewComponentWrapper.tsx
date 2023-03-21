@@ -43,7 +43,7 @@ const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperPr
                         evt.stopPropagation();
                         handleDeleteElementClick(props.index);
                     }}
-                    className="absolute -right-3 -top-1/4 invisible group-hover:visible">
+                    className="absolute -right-3 -top-1/4 invisible group-hover:visible rotate-45">
                     <Icon
                         name="minus"
                         className=" rounded-full text-white fill-none bg-blue-500"
