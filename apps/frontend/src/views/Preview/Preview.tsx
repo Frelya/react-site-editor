@@ -21,6 +21,11 @@ const Preview: React.FunctionComponent = () => {
 
     return (
         <div className={PreviewStyle.container}>
+            {previewTree.length == 0 && (
+                <div className={'tree-element'} key={'Element-First'}>
+                    <PreviewDroppable index={0} key={0} />
+                </div>
+            )}
             {previewTree.length > 0 &&
                 previewTree.map((element, elementIndex) => {
                     return (
@@ -40,9 +45,9 @@ const Preview: React.FunctionComponent = () => {
                         </div>
                     );
                 })}
-            {previewTree.length == 0 && (
-                <div className={'tree-element'} key={`Element-0`}>
-                    <PreviewDroppable index={0} key={0} />
+            {previewTree.length > 0 && (
+                <div className={'tree-element'} key={'Element-Last'}>
+                    <PreviewDroppable index={previewTree.length} key={previewTree.length} />
                 </div>
             )}
         </div>
