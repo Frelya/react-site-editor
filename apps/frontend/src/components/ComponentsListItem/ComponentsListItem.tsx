@@ -12,10 +12,7 @@ const ComponentsListItem: React.FunctionComponent<ComponentsListItemProps> = (pr
     return (
         <div className={ComponentsListItemStyle.container}>
             <div className={ComponentsListItemStyle.iconBox}>
-                <Icon
-                    className={ComponentsListItemStyle.icon}
-                    name={props.iconName as IconName}
-                />
+                <Icon className={ComponentsListItemStyle.icon} name={props.iconName as IconName} />
             </div>
             <p className={ComponentsListItemStyle.text}>{props.text}</p>
         </div>

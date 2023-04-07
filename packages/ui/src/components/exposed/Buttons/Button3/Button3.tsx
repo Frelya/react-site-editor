@@ -29,7 +29,7 @@ export const defaultProps: PredefinedComponentProps<Button3Props> = {
     fontSize: { type: PropsEnum.SIZE, value: '2' },
     onClick: () => console.log('Button clicked'),
     maxChildren: 2,
-    iconName: 'ui-eject',
+    iconName: 'ui-eject'
 };
 
 export default Button3;

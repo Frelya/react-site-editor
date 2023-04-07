@@ -29,7 +29,7 @@ export const defaultProps: PredefinedComponentProps<Button2Props> = {
     fontSize: { type: PropsEnum.SIZE, value: '2' },
     onClick: () => console.log('Button clicked'),
     maxChildren: 2,
-    iconName: 'ui-toggle-off',
+    iconName: 'ui-toggle-off'
 };
 
 export default Button2;

@@ -29,7 +29,7 @@ export const defaultProps: PredefinedComponentProps<ButtonProps> = {
     fontSize: { type: PropsEnum.SIZE, value: '1' },
     onClick: () => console.log('Button clicked'),
     maxChildren: 2,
-    iconName: 'ui-button-play',
+    iconName: 'ui-button-play'
 };
 
 export default Button;
