@@ -4,16 +4,16 @@ import type {
     PredefinedComponentProps
 } from '@react-site-editor/types';
 import { PropsEnum } from '@react-site-editor/types';
-import ButtonStyle from './Button2.module.css';
+import ButtonStyle from './Button3.module.css';
 
-interface Button2Props {
+interface Button3Props {
     text?: ComponentProp;
     fontSize?: ComponentProp;
     onClick?: () => void;
     children?: ComponentChildren;
 }
 
-const Button2: React.FunctionComponent<Button2Props> = (props) => {
+const Button3: React.FunctionComponent<Button3Props> = (props) => {
     return (
         <button
             className={`${ButtonStyle.baseButton} ${ButtonStyle[`font-${props.fontSize?.value}`]}`}
@@ -24,11 +24,12 @@ const Button2: React.FunctionComponent<Button2Props> = (props) => {
     );
 };
 
-export const defaultProps: PredefinedComponentProps<Button2Props> = {
-    text: { type: PropsEnum.TEXT, value: 'Button 2' },
+export const defaultProps: PredefinedComponentProps<Button3Props> = {
+    text: { type: PropsEnum.TEXT, value: 'Button 3' },
     fontSize: { type: PropsEnum.SIZE, value: '2' },
     onClick: () => console.log('Button clicked'),
-    maxChildren: 2
+    maxChildren: 2,
+    iconName: 'ui-eject',
 };
 
-export default Button2;
+export default Button3;

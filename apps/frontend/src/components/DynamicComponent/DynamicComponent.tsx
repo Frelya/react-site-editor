@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 interface DynamicComponentProps {
     componentName: string;
+    componentGroup: string;
     customProps: Record<string, any>;
 }
 
@@ -15,7 +16,7 @@ const DynamicComponent: React.FunctionComponent<DynamicComponentProps> = (props)
 
     useEffect(() => {
         import(
-            `../../../../../packages/ui/src/components/exposed/${props.componentName}/${props.componentName}.tsx`
+            `../../../../../packages/ui/src/components/exposed/${props.componentGroup}/${props.componentName}/${props.componentName}.tsx`
         ).then(({ default: comp, ...exports }) => {
             setComponent({ caller: comp });
             setComponentProps(exports.defaultProps);

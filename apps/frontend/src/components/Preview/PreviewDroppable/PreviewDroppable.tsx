@@ -29,6 +29,7 @@ const PreviewDroppable: React.FunctionComponent<PreviewDroppableProps> = (props)
                 index: props.index,
                 data: {
                     id: component.name,
+                    group: component.group,
                     props: component.defaultProps
                 }
             })

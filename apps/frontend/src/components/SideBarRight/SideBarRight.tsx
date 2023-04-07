@@ -36,7 +36,10 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
         setDisplayedComponent(
             activeComponent.defaultProps
                 ? Object.entries(activeComponent.defaultProps).map(([propName, prop]) => {
-                      if (propName !== 'maxChildren' && isComponentProp(prop)) {
+                      if (
+                          !['maxChildren', 'iconName'].includes(propName) &&
+                          isComponentProp(prop)
+                      ) {
                           const Displayed = PROPERTY_COMPONENTS_MAP[prop.type.toUpperCase()];
 
                           return (

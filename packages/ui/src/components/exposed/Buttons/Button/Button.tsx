@@ -4,16 +4,16 @@ import type {
     PredefinedComponentProps
 } from '@react-site-editor/types';
 import { PropsEnum } from '@react-site-editor/types';
-import ButtonStyle from './Button3.module.css';
+import ButtonStyle from './Button.module.css';
 
-interface Button3Props {
+interface ButtonProps {
     text?: ComponentProp;
     fontSize?: ComponentProp;
     onClick?: () => void;
     children?: ComponentChildren;
 }
 
-const Button3: React.FunctionComponent<Button3Props> = (props) => {
+const Button: React.FunctionComponent<ButtonProps> = (props) => {
     return (
         <button
             className={`${ButtonStyle.baseButton} ${ButtonStyle[`font-${props.fontSize?.value}`]}`}
@@ -24,11 +24,12 @@ const Button3: React.FunctionComponent<Button3Props> = (props) => {
     );
 };
 
-export const defaultProps: PredefinedComponentProps<Button3Props> = {
-    text: { type: PropsEnum.TEXT, value: 'Button 3' },
-    fontSize: { type: PropsEnum.SIZE, value: '2' },
+export const defaultProps: PredefinedComponentProps<ButtonProps> = {
+    text: { type: PropsEnum.TEXT, value: 'Button' },
+    fontSize: { type: PropsEnum.SIZE, value: '1' },
     onClick: () => console.log('Button clicked'),
-    maxChildren: 2
+    maxChildren: 2,
+    iconName: 'ui-button-play',
 };
 
-export default Button3;
+export default Button;

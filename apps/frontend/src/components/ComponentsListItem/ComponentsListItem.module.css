@@ -1,5 +1,15 @@
 .container {
-    @apply flex justify-center w-full h-fit p-2 border-r-2 hover:scale-105 hover:border transition-all;
-    background: #f0f0f0;
-    box-shadow: 5px 5px 10px #cccccc, -5px -5px 10px #ffffff;
+    @apply flex flex-col justify-evenly items-center gap-2 w-full aspect-square p-2 border border-gray-300 hover:border-blue-300 bg-[#fafafa];
+}
+
+.iconBox {
+    @apply flex justify-center items-center w-1/2 aspect-square text-gray-500;
+}
+
+.icon {
+    @apply w-2/3;
+}
+
+.text {
+    @apply w-full h-fit text-center max-w-full break-words;
 }

@@ -38,6 +38,7 @@ const Preview: React.FunctionComponent = () => {
                                 <Suspense>
                                     <DynamicComponent
                                         componentName={element.id}
+                                        componentGroup={element.group}
                                         customProps={element.props}
                                     />
                                 </Suspense>
