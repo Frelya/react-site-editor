@@ -44,7 +44,8 @@ const ColumnLayout: React.FunctionComponent<ColumnLayoutProps> = (props) => {
 };
 
 export const defaultProps: PredefinedComponentProps<ColumnLayoutProps> = {
-    layout: ColumnLayoutOptions.DEFAULT
+    layout: ColumnLayoutOptions.DEFAULT,
+    iconName: 'ui-table-columns'
 };
 
 export default ColumnLayout;

@@ -4,6 +4,7 @@ export interface PreviewElement {
 }
 export interface PreviewElementData {
     id: string;
+    group: string;
     props: Record<string, any>;
     children?: Omit<PreviewElement, 'children'>[];
 }
