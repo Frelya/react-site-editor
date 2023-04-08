@@ -9,14 +9,14 @@ import GridTemplatePropertyStyle from './GridTemplateProperty.module.css';
 const GridTemplateProperty: React.FunctionComponent<PropertyProps> = (props) => {
     const activeComponent = useSelector(selectActiveComponent);
     const flowCount =
-        activeComponent.props.columnCount?.value as number
-        || activeComponent.props.rowCount?.value as number
-        || 2;
+        (activeComponent.props.columnCount?.value as number) ||
+        (activeComponent.props.rowCount?.value as number) ||
+        2;
 
     const [template, setTemplate] = useState(props.value);
     const [fractions, setFractions] = useState<number>(flowCount);
 
-    const layouts  = findCombinations(flowCount, fractions);
+    const layouts = findCombinations(flowCount, fractions);
 
     const handleFractionsChange = (event: React.ChangeEvent) => {
         setFractions(Number((event.target as HTMLInputElement).value));
@@ -41,15 +41,18 @@ const GridTemplateProperty: React.FunctionComponent<PropertyProps> = (props) => 
                     };
 
                     return (
-                        <li className={`${GridTemplatePropertyStyle.layoutsListItem} ${isCurrent ? GridTemplatePropertyStyle.layoutsListItemCurrent : ''}`} key={index} onClick={handleLayoutClick}>
+                        <li
+                            className={`${GridTemplatePropertyStyle.layoutsListItem} ${
+                                isCurrent ? GridTemplatePropertyStyle.layoutsListItemCurrent : ''
+                            }`}
+                            key={index}
+                            onClick={handleLayoutClick}>
                             {layout.join(' - ')}
                         </li>
                     );
                 })}
                 {layouts.length === 0 && (
-                    <li className={GridTemplatePropertyStyle.layoutsListItem}>
-                        No layouts found
-                    </li>
+                    <li className={GridTemplatePropertyStyle.layoutsListItem}>No layouts found</li>
                 )}
             </ul>
         );
@@ -64,9 +67,7 @@ const GridTemplateProperty: React.FunctionComponent<PropertyProps> = (props) => 
         <PropertyWrapper name={props.name}>
             <div className={GridTemplatePropertyStyle.inputDiv}>
                 <div className={GridTemplatePropertyStyle.fractionsDiv}>
-                    <label className={GridTemplatePropertyStyle.fractionsLabel}>
-                        Fractions:
-                    </label>
+                    <label className={GridTemplatePropertyStyle.fractionsLabel}>Fractions:</label>
                     <input
                         className={GridTemplatePropertyStyle.fractionsInput}
                         type="number"

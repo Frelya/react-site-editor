@@ -15,9 +15,10 @@ const ColumnLayout: React.FunctionComponent<ColumnLayoutProps> = (props) => {
     const columnCount = props.columnCount.value as number;
 
     const layout = {
-        gridTemplateColumns: props.layout.value === ColumnLayoutOptions.DEFAULT
-            ? '1fr '.repeat(columnCount)
-            : props.layout.value
+        gridTemplateColumns:
+            props.layout.value === ColumnLayoutOptions.DEFAULT
+                ? '1fr '.repeat(columnCount)
+                : props.layout.value
     };
 
     const ListItem = () => {

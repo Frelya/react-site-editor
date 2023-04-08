@@ -26,7 +26,7 @@ export enum PropsEnum {
     COLOR = 'color',
     SIZE = 'size',
     NUMBER = 'number',
-    GRID_TEMPLATE = 'grid-template',
+    GRID_TEMPLATE = 'grid-template'
 }
 
 export type ComponentChildren = React.ReactNode[];

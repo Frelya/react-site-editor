@@ -35,9 +35,8 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                           !['maxChildren', 'iconName'].includes(propName) &&
                           isComponentProp(prop)
                       ) {
-                          const Displayed = PROPERTY_COMPONENTS_MAP[
-                              kebabToSnake(prop.type).toUpperCase()
-                          ];
+                          const Displayed =
+                              PROPERTY_COMPONENTS_MAP[kebabToSnake(prop.type).toUpperCase()];
 
                           return (
                               <Displayed
@@ -54,7 +53,6 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                                 which will update component props in store (activeComponent and previewElement)
                                 See Issue #71
                                */
-
                           );
                       }
 
@@ -77,7 +75,9 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
 
                 {activeComponent && (
                     <p className={SideBarRightStyle.componentName}>
-                        {activeComponent.name ? pascalToSpaced(activeComponent.name) : 'No component selected'}
+                        {activeComponent.name
+                            ? pascalToSpaced(activeComponent.name)
+                            : 'No component selected'}
                     </p>
                 )}
             </SideBarHeader>
