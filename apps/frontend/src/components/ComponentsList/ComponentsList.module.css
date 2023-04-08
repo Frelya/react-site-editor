@@ -24,7 +24,7 @@
 }
 
 .groupComponentsList {
-    @apply w-11/12 mx-auto py-5 grid-cols-3 items-center justify-center gap-8 list-none transition-all duration-1000;
+    @apply w-11/12 mx-auto py-5 grid-cols-4 items-center justify-center gap-4 list-none transition-all duration-1000;
 }
 
 .groupComponentsListVisible {

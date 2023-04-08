@@ -1,28 +1,27 @@
 import { useState, useEffect } from 'react';
+import type { PropertyProps } from '@libs/types/property.type';
+import PropertyWrapper from '@components/PropertiesComponents/PropertyWrapper/PropertyWrapper';
 import SizePropertyStyle from './SizeProperty.module.css';
 
-interface SizePropertyProps {
-    name: string;
-    defaultValue: string | number;
-    onChange: (e: React.ChangeEvent, p: string) => void;
-}
-
-const SizeProperty: React.FunctionComponent<SizePropertyProps> = (props) => {
-    const [size, setSize] = useState<string>(`${props.defaultValue}`);
+const SizeProperty: React.FunctionComponent<PropertyProps> = (props) => {
+    const [size, setSize] = useState<number>(props.value as number);
 
     const handleInputChange = (event: React.ChangeEvent) => {
-        setSize((event.target as HTMLInputElement).value);
+        const newValue = Number((event.target as HTMLInputElement).value);
+
+        setSize(newValue);
+
+        if (props.onChange) {
+            props.onChange(event, newValue);
+        }
     };
 
     useEffect(() => {
-        setSize(`${props.defaultValue}`);
+        setSize(props.value as number);
     }, [props]);
 
     return (
-        <div className={SizePropertyStyle.container}>
-            <label className={SizePropertyStyle.label}>
-                {[props.name[0].toUpperCase(), props.name.slice(1)].join('')}
-            </label>
+        <PropertyWrapper name={props.name}>
             <div className={SizePropertyStyle.inputDiv}>
                 <input
                     className={SizePropertyStyle.input}
@@ -35,7 +34,7 @@ const SizeProperty: React.FunctionComponent<SizePropertyProps> = (props) => {
                 />
                 <p className={SizePropertyStyle.sizeValue}>{size}</p>
             </div>
-        </div>
+        </PropertyWrapper>
     );
 };
 

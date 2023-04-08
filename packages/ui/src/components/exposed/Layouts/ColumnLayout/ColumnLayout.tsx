@@ -1,8 +1,10 @@
-import type { PredefinedComponentProps } from '@react-site-editor/types';
+import type { ComponentProp, PredefinedComponentProps } from '@react-site-editor/types';
+import { PropsEnum } from '@react-site-editor/types';
 import ColumnLayoutStyle from './ColumnLayout.module.css';
 
 interface ColumnLayoutProps {
-    layout: ColumnLayoutOptions;
+    columnCount: ComponentProp;
+    layout: ComponentProp;
 }
 
 enum ColumnLayoutOptions {
@@ -10,13 +12,17 @@ enum ColumnLayoutOptions {
 }
 
 const ColumnLayout: React.FunctionComponent<ColumnLayoutProps> = (props) => {
-    const map = {
-        default: 3
+    const columnCount = props.columnCount.value as number;
+
+    const layout = {
+        gridTemplateColumns: props.layout.value === ColumnLayoutOptions.DEFAULT
+            ? '1fr '.repeat(columnCount)
+            : props.layout.value
     };
 
     const ListItem = () => {
         const itemsList = [];
-        for (let i = 0; i < map[ColumnLayoutOptions.DEFAULT]; i++) {
+        for (let i = 0; i < props.columnCount.value; i++) {
             itemsList.push(
                 <div key={i} className={ColumnLayoutStyle.boxElement}>
                     <svg
@@ -36,15 +42,17 @@ const ColumnLayout: React.FunctionComponent<ColumnLayoutProps> = (props) => {
 
         return <>{itemsList}</>;
     };
+
     return (
-        <div className={ColumnLayoutStyle.style}>
+        <div className={`${ColumnLayoutStyle.style} grid-cols-${columnCount}`} style={layout}>
             <ListItem />
         </div>
     );
 };
 
 export const defaultProps: PredefinedComponentProps<ColumnLayoutProps> = {
-    layout: ColumnLayoutOptions.DEFAULT,
+    columnCount: { type: PropsEnum.NUMBER, value: 3, min: 2, max: 12 },
+    layout: { type: PropsEnum.GRID_TEMPLATE, value: ColumnLayoutOptions.DEFAULT },
     iconName: 'ui-table-columns'
 };
 

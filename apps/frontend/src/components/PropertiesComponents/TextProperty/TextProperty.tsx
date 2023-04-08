@@ -1,28 +1,34 @@
+import { useState, useEffect } from 'react';
+import type { PropertyProps } from '@libs/types/property.type';
+import PropertyWrapper from '@components/PropertiesComponents/PropertyWrapper/PropertyWrapper';
 import TextPropertyStyle from './TextProperty.module.css';
 
-interface TextPropertyProps {
-    name: string;
-    defaultValue?: string;
-    onChange: (e: React.ChangeEvent, p: string) => void;
-}
+const TextProperty: React.FunctionComponent<PropertyProps> = (props) => {
+    const [value, setValue] = useState<string>(props.value as string);
 
-const TextProperty: React.FunctionComponent<TextPropertyProps> = (props) => {
-    const handleInput = (event: React.ChangeEvent) => {
-        props.onChange(event, props.name);
+    const handleInputChange = (event: React.ChangeEvent) => {
+        const newValue = (event.target as HTMLInputElement).value;
+
+        setValue(newValue);
+
+        if (props.onChange) {
+            props.onChange(event, newValue);
+        }
     };
 
+    useEffect(() => {
+        setValue(props.value as string);
+    }, [props]);
+
     return (
-        <div className={TextPropertyStyle.container}>
-            <label className={TextPropertyStyle.label}>
-                {[props.name[0].toUpperCase(), props.name.slice(1)].join('')}
-            </label>
+        <PropertyWrapper name={props.name}>
             <input
                 className={TextPropertyStyle.input}
                 type="text"
-                value={props.defaultValue}
-                onChange={handleInput}
+                value={value}
+                onChange={handleInputChange}
             />
-        </div>
+        </PropertyWrapper>
     );
 };
 

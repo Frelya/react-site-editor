@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { kebabToSnake, pascalToSpaced } from '@react-site-editor/functions';
 import type { ComponentProp } from '@react-site-editor/types';
 import { selectActiveComponent } from '@/store/activeComponent/activeComponentSlice';
+import PROPERTY_COMPONENTS_MAP from '@/components/PropertiesComponents/ComponentsMap';
 import SideBar, { SideBarScale } from '@components/SideBar/SideBar';
 import SideBarHeader from '@components/SideBarHeader/SideBarHeader';
-import TextProperty from '@components/PropertiesComponents/TextProperty/TextProperty';
-import SizeProperty from '@components/PropertiesComponents/SizeProperty/SizeProperty';
 import Icon from '@components/Decorators/Icon';
 import SideBarRightStyle from './SideBarRight.module.css';
 
@@ -23,32 +23,38 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
 
     const notRenderedPropertyTypes: string[] = ['function'];
 
-    const PROPERTY_COMPONENTS_MAP: Record<string, React.FunctionComponent<any>> = {
-        TEXT: TextProperty,
-        SIZE: SizeProperty
-    };
-
     function isComponentProp(prop: object): prop is ComponentProp {
         return !notRenderedPropertyTypes.includes(typeof prop);
     }
 
     useEffect(() => {
         setDisplayedComponent(
-            activeComponent.defaultProps
-                ? Object.entries(activeComponent.defaultProps).map(([propName, prop]) => {
+            activeComponent.props
+                ? Object.entries(activeComponent.props).map(([propName, prop]) => {
                       if (
                           !['maxChildren', 'iconName'].includes(propName) &&
                           isComponentProp(prop)
                       ) {
-                          const Displayed = PROPERTY_COMPONENTS_MAP[prop.type.toUpperCase()];
+                          const Displayed = PROPERTY_COMPONENTS_MAP[
+                              kebabToSnake(prop.type).toUpperCase()
+                          ];
 
                           return (
                               <Displayed
                                   key={propName}
                                   name={propName}
-                                  defaultValue={prop.value}
+                                  value={prop.value}
+                                  min={prop.min}
+                                  max={prop.max}
                                   onChange={() => console.log('changed')}
                               />
+
+                              /*
+                               TODO: Add onChange handler,
+                                which will update component props in store (activeComponent and previewElement)
+                                See Issue #71
+                               */
+
                           );
                       }
 
@@ -70,7 +76,9 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                 />
 
                 {activeComponent && (
-                    <p className={SideBarRightStyle.componentName}>{activeComponent.name}</p>
+                    <p className={SideBarRightStyle.componentName}>
+                        {activeComponent.name ? pascalToSpaced(activeComponent.name) : 'No component selected'}
+                    </p>
                 )}
             </SideBarHeader>
 

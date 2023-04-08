@@ -1,7 +1,9 @@
 import type { ComponentInfos } from '@react-site-editor/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type ActiveComponent = Omit<ComponentInfos, 'group'>;
+interface ActiveComponent extends Omit<ComponentInfos, 'group' | 'defaultProps'> {
+    props: ComponentInfos['defaultProps'];
+}
 
 interface ActiveComponentState {
     value: ActiveComponent;
