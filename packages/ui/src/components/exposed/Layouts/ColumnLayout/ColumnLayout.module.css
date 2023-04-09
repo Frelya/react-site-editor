@@ -1,5 +1,5 @@
 .style {
-    @apply grid grid-cols-3 h-10 bg-slate-500 bg-opacity-5 gap-2;
+    @apply grid h-10 bg-slate-500 bg-opacity-5 gap-2;
 }
 
 .boxElement {

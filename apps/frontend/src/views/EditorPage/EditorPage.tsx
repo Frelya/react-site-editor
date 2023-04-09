@@ -24,7 +24,7 @@ const EditorPage: React.FunctionComponent = () => {
         dispatch(
             updateActiveComponent({
                 name: id,
-                defaultProps: props
+                props: props
             })
         );
         setSidebarRightIsVisible(true);

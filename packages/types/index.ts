@@ -10,7 +10,9 @@ export type PredefinedComponentProps<T> = {
 
 export interface ComponentProp {
     type: PropsEnum;
-    value: string;
+    value: string | number;
+    min?: number;
+    max?: number;
 }
 
 export interface ComponentInfos {
@@ -22,7 +24,9 @@ export interface ComponentInfos {
 export enum PropsEnum {
     TEXT = 'text',
     COLOR = 'color',
-    SIZE = 'size'
+    SIZE = 'size',
+    NUMBER = 'number',
+    GRID_TEMPLATE = 'grid-template'
 }
 
 export type ComponentChildren = React.ReactNode[];
