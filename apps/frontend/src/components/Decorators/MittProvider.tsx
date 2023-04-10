@@ -7,7 +7,7 @@ const emitter: MittContextType = mitt();
 
 const MittContext = React.createContext<MittContextType>(emitter);
 
-export const MittProvider: React.FunctionComponent<React.PropsWithChildren> = ({ children }) => {
+const MittProvider: React.FunctionComponent<React.PropsWithChildren> = ({ children }) => {
     return <MittContext.Provider value={emitter}>{children}</MittContext.Provider>;
 };
 
@@ -21,3 +21,5 @@ export const useMitt = (from: MittOrigin): MittContextType => {
 
     return emitterLocationMap[from]();
 };
+
+export default MittProvider;

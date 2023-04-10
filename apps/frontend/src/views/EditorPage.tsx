@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useMitt } from '@/plugins/mitt/react-mitt';
 import { updateActiveComponent } from '@/store/activeComponent/activeComponentSlice';
-import type { MittContextType } from '@/plugins/mitt/react-mitt';
 import type { PreviewElementData } from '@libs/types/tree.type';
+import { useMitt } from '@/components/Decorators/MittProvider';
+import type { MittContextType } from '@/components/Decorators/MittProvider';
 import SideBarRight from '@components/SideBar/SideBarRight';
 import SideBarLeft from '@components/SideBar/SideBarLeft';
 import PreviewIframe from '@components/Preview/PreviewIframe';

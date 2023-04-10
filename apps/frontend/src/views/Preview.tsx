@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { useSelector } from 'react-redux';
-import { useMitt } from '@/plugins/mitt/react-mitt';
+import { useMitt } from '@/components/Decorators/MittProvider';
 import { selectPreviewTree } from '@/store/previewTree/previewTreeSlice';
 import type { PreviewElementData } from '@libs/types/tree.type';
 import PreviewComponentWrapper from '@/components/Preview/PreviewComponentWrapper';

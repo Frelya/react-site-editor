@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useMitt } from '@/plugins/mitt/react-mitt';
+import { useMitt } from '@/components/Decorators/MittProvider';
 import { addComponent } from '@/store/previewTree/previewTreeSlice';
 import Droppable from '@components/Decorators/Droppable';
 

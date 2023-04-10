@@ -1,4 +1,4 @@
-import { useMitt } from '@/plugins/mitt/react-mitt';
+import { useMitt } from '@/components/Decorators/MittProvider';
 
 interface DraggableProps {
     children: React.ReactElement;
