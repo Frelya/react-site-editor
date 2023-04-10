@@ -1,6 +1,6 @@
 import type { ComponentProp, PredefinedComponentProps } from '@react-site-editor/types';
 import { PropsEnum } from '@react-site-editor/types';
-import ColumnLayoutStyle from './ColumnLayout.module.css';
+import styles from './ColumnLayout.module.css';
 
 interface ColumnLayoutProps {
     columnCount: ComponentProp;
@@ -25,7 +25,7 @@ const ColumnLayout: React.FunctionComponent<ColumnLayoutProps> = (props) => {
         const itemsList = [];
         for (let i = 0; i < props.columnCount.value; i++) {
             itemsList.push(
-                <div key={i} className={ColumnLayoutStyle.boxElement}>
+                <div key={i} className={styles.boxElement}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -45,7 +45,7 @@ const ColumnLayout: React.FunctionComponent<ColumnLayoutProps> = (props) => {
     };
 
     return (
-        <div className={`${ColumnLayoutStyle.style} grid-cols-${columnCount}`} style={layout}>
+        <div className={`${styles.container} grid-cols-${columnCount}`} style={layout}>
             <ListItem />
         </div>
     );

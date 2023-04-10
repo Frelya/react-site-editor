@@ -4,20 +4,20 @@ import type {
     PredefinedComponentProps
 } from '@react-site-editor/types';
 import { PropsEnum } from '@react-site-editor/types';
-import ButtonStyle from './Button.module.css';
+import styles from './Button.module.css';
 
 interface ButtonProps {
-    text?: ComponentProp;
-    fontSize?: ComponentProp;
-    onClick?: () => void;
+    text: ComponentProp;
+    fontSize: ComponentProp;
+    onClick: () => void;
     children?: ComponentChildren;
 }
 
 const Button: React.FunctionComponent<ButtonProps> = (props) => {
+    const fontSize = `font${props.fontSize?.value}` as keyof typeof styles;
+
     return (
-        <button
-            className={`${ButtonStyle.baseButton} ${ButtonStyle[`font-${props.fontSize?.value}`]}`}
-            onClick={props?.onClick}>
+        <button className={`${styles.baseButton} ${styles[fontSize]}`} onClick={props?.onClick}>
             {props.text?.value}
             {props.children}
         </button>

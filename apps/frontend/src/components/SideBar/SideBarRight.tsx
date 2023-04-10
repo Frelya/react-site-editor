@@ -3,15 +3,13 @@ import { useSelector } from 'react-redux';
 import { kebabToSnake, pascalToSpaced } from '@react-site-editor/functions';
 import type { ComponentProp } from '@react-site-editor/types';
 import { selectActiveComponent } from '@/store/activeComponent/activeComponentSlice';
-import PROPERTY_COMPONENTS_MAP from '@/components/PropertiesComponents/ComponentsMap';
-import SideBar, { SideBarScale } from '@components/SideBar/SideBar';
-import SideBarHeader from '@components/SideBarHeader/SideBarHeader';
+import PROPERTY_COMPONENTS_MAP from '@/components/PropertyComponents/components-map';
+import BaseSideBar, { SideBarScales } from '@components/SideBar/BaseSideBar';
+import SideBarHeader from '@components/SideBar/SideBarHeader';
 import Icon from '@components/Decorators/Icon';
-import SideBarRightStyle from './SideBarRight.module.css';
 
 interface SideBarRightProps {
     visible: boolean;
-    scale: SideBarScale;
     onClose: () => void;
 }
 
@@ -63,7 +61,7 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
     }, [activeComponent]);
 
     return (
-        <SideBar visible={props.visible} scale={props.scale}>
+        <BaseSideBar visible={props.visible} scale={SideBarScales.NORMAL}>
             <SideBarHeader>
                 <Icon
                     name={'cross-mark'}
@@ -74,7 +72,7 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                 />
 
                 {activeComponent && (
-                    <p className={SideBarRightStyle.componentName}>
+                    <p className={styleClasses.componentName}>
                         {activeComponent.name
                             ? pascalToSpaced(activeComponent.name)
                             : 'No component selected'}
@@ -82,11 +80,16 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                 )}
             </SideBarHeader>
 
-            <p className={SideBarRightStyle.componentPropsTitle}>Properties</p>
+            <p className={styleClasses.componentPropsTitle}>Properties</p>
 
             {displayedComponent}
-        </SideBar>
+        </BaseSideBar>
     );
+};
+
+const styleClasses = {
+    componentName: 'text-xl break-words w-9/12 max-w-[75%] min-h-fit max-h-full',
+    componentPropsTitle: 'w-11/12 mx-auto my-4 px-2'
 };
 
 export default SideBarRight;

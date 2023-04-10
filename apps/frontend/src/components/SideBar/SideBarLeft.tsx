@@ -1,20 +1,13 @@
 import { Link } from 'react-router-dom';
 import { components } from '@react-site-editor/ui';
-import SideBarHeader from '@components/SideBarHeader/SideBarHeader';
-import SideBar, { SideBarScale } from '@components/SideBar/SideBar';
+import SideBarHeader from '@components/SideBar/SideBarHeader';
+import BaseSideBar, { SideBarScales } from '@components/SideBar/BaseSideBar';
 import ComponentsList from '@components/ComponentsList/ComponentsList';
 import Icon from '@components/Decorators/Icon';
-import SideBarLeftStyle from './SideBarLeft.module.css';
 
-interface SideBarLeftProps {
-    visible: boolean;
-    scale: SideBarScale;
-    onClose?: () => void;
-}
-
-const SideBarLeft: React.FunctionComponent<SideBarLeftProps> = () => {
+const SideBarLeft: React.FunctionComponent = () => {
     return (
-        <SideBar visible scale={SideBarScale.NARROW}>
+        <BaseSideBar visible scale={SideBarScales.NARROW}>
             <SideBarHeader>
                 <Link to={'../'}>
                     <Icon
@@ -24,10 +17,14 @@ const SideBarLeft: React.FunctionComponent<SideBarLeftProps> = () => {
                     />
                 </Link>
             </SideBarHeader>
-            <p className={SideBarLeftStyle.componentsListTitle}>All components</p>
+            <p className={styleClasses.componentsListTitle}>All components</p>
             <ComponentsList elements={components} />
-        </SideBar>
+        </BaseSideBar>
     );
+};
+
+const styleClasses = {
+    componentsListTitle: 'w-11/12 mx-auto my-4 px-2'
 };
 
 export default SideBarLeft;

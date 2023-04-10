@@ -1,4 +1,4 @@
-.style {
+.container {
     @apply grid h-10 bg-slate-500 bg-opacity-5 gap-2;
 }
 

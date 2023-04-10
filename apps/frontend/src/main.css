@@ -9,3 +9,9 @@
 .icon {
     cursor: pointer;
 }
+
+@layer utilities {
+    .full-right {
+        @apply absolute top-0 right-0 w-full h-full px-1.5 text-xs cursor-pointer;
+    }
+}

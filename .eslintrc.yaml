@@ -15,14 +15,14 @@ plugins:
     - '@typescript-eslint'
     - 'prettier'
 rules:
-    no-shadow: off
-    no-use-before-define: off
+    no-shadow: 'off'
+    no-use-before-define: 'off'
     'react/prop-types': 'off'
     'react/react-in-jsx-scope': 'off'
     'react/jsx-pascal-case': 'error'
     'react/no-deprecated': 'error'
-    '@typescript-eslint/no-shadow': error
-    '@typescript-eslint/no-use-before-define': error
+    '@typescript-eslint/no-shadow': 'error'
+    '@typescript-eslint/no-use-before-define': 'off'
 settings:
     'react':
         'version': 'detect'

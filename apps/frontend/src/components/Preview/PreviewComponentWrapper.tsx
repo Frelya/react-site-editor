@@ -1,8 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { deleteComponent } from '@/store/previewTree/previewTreeSlice';
-import PreviewDroppable from '@components/Preview/PreviewDroppable/PreviewDroppable';
+import PreviewDroppable from '@components/Preview/PreviewDroppable';
 import Icon from '@components/Decorators/Icon';
-import PreviewComponentWrapperStyle from './PreviewComponentWrapper.module.css';
 
 interface PreviewComponentWrapperProps {
     children: React.ReactNode | React.ReactNode[];
@@ -24,9 +23,7 @@ const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperPr
     return (
         <>
             <PreviewDroppable index={props.index} key={props.index} />
-            <div
-                className={PreviewComponentWrapperStyle.container + ' group'}
-                onClick={props.onClick}>
+            <div className={styleClasses.container + ' group'} onClick={props.onClick}>
                 {/*
                     I have to stop bubble propagation,
                     That's why I don't use the onClick props of `Icon` 
@@ -48,6 +45,11 @@ const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperPr
             </div>
         </>
     );
+};
+
+const styleClasses = {
+    container:
+        'flex flex-col items-stretch text-center hover:border-blue-500 hover:border p-1 justify-between relative'
 };
 
 export default PreviewComponentWrapper;

@@ -4,11 +4,9 @@ import { useMitt } from '@/plugins/mitt/react-mitt';
 import { updateActiveComponent } from '@/store/activeComponent/activeComponentSlice';
 import type { MittContextType } from '@/plugins/mitt/react-mitt';
 import type { PreviewElementData } from '@libs/types/tree.type';
-import { SideBarScale } from '@components/SideBar/SideBar';
-import SideBarRight from '@components/SideBarRight/SideBarRight';
-import PreviewIframe from '@components/Preview/PreviewIframe/PreviewIframe';
-import EditorStyle from './EditorPage.module.css';
-import SideBarLeft from '@components/SideBarLeft/SideBarLeft';
+import SideBarRight from '@components/SideBar/SideBarRight';
+import SideBarLeft from '@components/SideBar/SideBarLeft';
+import PreviewIframe from '@components/Preview/PreviewIframe';
 
 const EditorPage: React.FunctionComponent = () => {
     const [sidebarRightIsVisible, setSidebarRightIsVisible] = useState<boolean>(false);
@@ -34,16 +32,19 @@ const EditorPage: React.FunctionComponent = () => {
     window.getEmitter = (): MittContextType => emitter;
 
     return (
-        <div className={EditorStyle.container}>
-            <SideBarLeft visible={true} scale={SideBarScale.NARROW} />
+        <div className={styleClasses.container}>
+            <SideBarLeft />
             <PreviewIframe />
             <SideBarRight
                 visible={sidebarRightIsVisible}
-                scale={SideBarScale.NORMAL}
                 onClose={() => setSidebarRightIsVisible(false)}
             />
         </div>
     );
+};
+
+const styleClasses = {
+    container: 'flex w-screen h-screen overflow-hidden'
 };
 
 export default EditorPage;

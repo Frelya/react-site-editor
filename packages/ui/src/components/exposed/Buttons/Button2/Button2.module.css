@@ -2,14 +2,14 @@
     @apply bg-red-700 hover:bg-red-400 text-white font-bold py-2 px-4 rounded;
 }
 
-.font-1 {
+.font1 {
     @apply text-xs;
 }
 
-.font-2 {
+.font2 {
     @apply text-sm;
 }
 
-.font-3 {
+.font3 {
     @apply text-base;
 }

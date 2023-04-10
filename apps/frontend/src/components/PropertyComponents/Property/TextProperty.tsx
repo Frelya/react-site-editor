@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { PropertyProps } from '@libs/types/property.type';
-import PropertyWrapper from '@components/PropertiesComponents/PropertyWrapper/PropertyWrapper';
-import TextPropertyStyle from './TextProperty.module.css';
+import PropertyWrapper from '@components/PropertyComponents/PropertyWrapper';
 
 const TextProperty: React.FunctionComponent<PropertyProps> = (props) => {
     const [value, setValue] = useState<string>(props.value as string);
@@ -23,13 +22,17 @@ const TextProperty: React.FunctionComponent<PropertyProps> = (props) => {
     return (
         <PropertyWrapper name={props.name}>
             <input
-                className={TextPropertyStyle.input}
+                className={styleClasses.input}
                 type="text"
                 value={value}
                 onChange={handleInputChange}
             />
         </PropertyWrapper>
     );
+};
+
+const styleClasses = {
+    input: 'w-full h-10 text-sm p-1 focus:outline focus:outline-blue-500'
 };
 
 export default TextProperty;

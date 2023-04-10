@@ -27,7 +27,11 @@ const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
         document.body.style.cursor = 'default';
     };
     return (
-        <div draggable="true" onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+        <div
+            draggable="true"
+            onDragStart={handleDragStart}
+            onDragEnd={handleDragEnd}
+            className="w-full h-full">
             {props.children}
         </div>
     );

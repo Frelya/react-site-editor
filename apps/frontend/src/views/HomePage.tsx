@@ -1,14 +1,17 @@
 import { Link } from 'react-router-dom';
-import HomePageStyle from './HomePage.module.css';
 
 const HomePage: React.FunctionComponent = () => {
     return (
-        <div className={HomePageStyle.container}>
+        <div className={styleClasses.container}>
             <Link to="/editor" reloadDocument>
                 <button>Go to the editor</button>
             </Link>
         </div>
     );
+};
+
+const styleClasses = {
+    container: 'flex justify-center items-center w-screen h-fit min-h-screen'
 };
 
 export default HomePage;

@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { pascalToSpaced } from '@react-site-editor/functions';
 import type { ComponentInfos } from '@react-site-editor/types';
 import Draggable from '@components/Decorators/Draggable';
-import ComponentsListItem from '@components/ComponentsListItem/ComponentsListItem';
-import ComponentsListStyle from './ComponentsList.module.css';
 import Icon from '@components/Decorators/Icon';
+import ComponentsListItem from '@components/ComponentsList/ComponentsListItem';
 
 interface ComponentsListProps {
     elements: ComponentInfos[];
@@ -47,14 +46,14 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = (props) => 
     const Group: React.FunctionComponent<GroupProps> = (groupProps) => {
         return (
             <ul
-                className={`${ComponentsListStyle.groupComponentsList} ${
+                className={`${styleClasses.groupComponentsList} ${
                     groupProps.visible
-                        ? ComponentsListStyle.groupComponentsListVisible
-                        : ComponentsListStyle.groupComponentsListInvisible
+                        ? styleClasses.groupComponentsListVisible
+                        : styleClasses.groupComponentsListInvisible
                 }`}>
                 {elementsByGroup[groupProps.group].map((element, ElementIndex) => {
                     return (
-                        <li className={ComponentsListStyle.componentsListItem} key={ElementIndex}>
+                        <li className={styleClasses.groupComponentsListItem} key={ElementIndex}>
                             <Element element={element} />
                         </li>
                     );
@@ -64,7 +63,7 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = (props) => 
     };
 
     return (
-        <ul className={ComponentsListStyle.groupsList}>
+        <ul className={styleClasses.groupsList}>
             {groups.map((group, groupIndex) => {
                 const [visibility, setVisibility] = useState(false);
 
@@ -73,16 +72,16 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = (props) => 
                 };
 
                 return (
-                    <li className={ComponentsListStyle.groupsListItem} key={groupIndex}>
+                    <li className={styleClasses.groupsListItem} key={groupIndex}>
                         <div
-                            className={ComponentsListStyle.groupsListItemTitle}
+                            className={styleClasses.groupsListItemTitle}
                             onClick={toggleVisibility}>
                             <Icon
                                 name={'chevron-left'}
-                                className={`${ComponentsListStyle.groupsListItemTitleIcon} ${
+                                className={`${styleClasses.groupsListItemTitleIcon} ${
                                     visibility
-                                        ? ComponentsListStyle.groupsListItemTitleIconRight
-                                        : ComponentsListStyle.groupsListItemTitleIconDown
+                                        ? styleClasses.groupsListItemTitleIconRight
+                                        : styleClasses.groupsListItemTitleIconDown
                                 }`}
                                 description={
                                     elementsByGroup[group].length +
@@ -98,6 +97,21 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = (props) => 
             })}
         </ul>
     );
+};
+
+const styleClasses = {
+    groupsList: 'flex flex-col items-center justify-start gap-y-8 w-full list-none',
+    groupsListItem: 'cursor-pointer w-full h-fit',
+    groupsListItemTitle:
+        'relative text-center w-11/12 font-bold border-2 border-gray-300 p-2.5 mx-auto shadow-md',
+    groupsListItemTitleIcon: 'w-6 h-6 absolute left-2 transition-all duration-500',
+    groupsListItemTitleIconDown: '-rotate-90',
+    groupsListItemTitleIconRight: '-rotate-180',
+    groupComponentsList:
+        'w-11/12 mx-auto py-5 items-start justify-start gap-[4%] list-none transition-all duration-1000',
+    groupComponentsListVisible: 'flex',
+    groupComponentsListInvisible: 'hidden',
+    groupComponentsListItem: 'cursor-pointer w-[22%] !aspect-square'
 };
 
 export default ComponentsList;

@@ -1,7 +1,0 @@
-.componentName {
-    @apply text-xl break-words w-9/12 max-w-[75%] min-h-fit max-h-full;
-}
-
-.componentPropsTitle {
-    @apply w-11/12 mx-auto my-4 px-2;
-}

@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { useMitt } from '@/plugins/mitt/react-mitt';
 import { addComponent } from '@/store/previewTree/previewTreeSlice';
 import Droppable from '@components/Decorators/Droppable';
-import PreviewDroppableStyle from './PreviewDroppable.module.css';
 
 interface PreviewDroppableProps {
     index: number;
@@ -18,9 +17,11 @@ const PreviewDroppable: React.FunctionComponent<PreviewDroppableProps> = (props)
     emitter.on('dragStartEvent', () => {
         setIsDraggedOver(true);
     });
+
     emitter.on('dragEndEvent', () => {
         setIsDraggedOver(false);
     });
+
     const handleDrop = (event: React.DragEvent) => {
         const component = JSON.parse(event.dataTransfer.getData('component'));
 
@@ -53,11 +54,15 @@ const PreviewDroppable: React.FunctionComponent<PreviewDroppableProps> = (props)
             onDragLeave={handleDragLeave}
             type="component">
             <div
-                className={`${PreviewDroppableStyle.container} ${isHovered ? 'p-4' : 'p-1'} ${
+                className={`${styleClasses.container} ${isHovered ? 'p-4' : 'p-1'} ${
                     isDraggedOver ? 'flex' : 'hidden'
                 }`}></div>
         </Droppable>
     );
+};
+
+const styleClasses = {
+    container: 'text-black border-blue-500 justify-center items-center border-2 transition-all'
 };
 
 export default PreviewDroppable;

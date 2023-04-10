@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { PropertyProps } from '@libs/types/property.type';
-import PropertyWrapper from '@components/PropertiesComponents/PropertyWrapper/PropertyWrapper';
-import SizePropertyStyle from './SizeProperty.module.css';
+import PropertyWrapper from '@components/PropertyComponents/PropertyWrapper';
 
 const SizeProperty: React.FunctionComponent<PropertyProps> = (props) => {
     const [size, setSize] = useState<number>(props.value as number);
@@ -22,9 +21,9 @@ const SizeProperty: React.FunctionComponent<PropertyProps> = (props) => {
 
     return (
         <PropertyWrapper name={props.name}>
-            <div className={SizePropertyStyle.inputDiv}>
+            <div className={styleClasses.inputDiv}>
                 <input
-                    className={SizePropertyStyle.input}
+                    className={styleClasses.input}
                     type="range"
                     min={1}
                     max={3}
@@ -32,10 +31,16 @@ const SizeProperty: React.FunctionComponent<PropertyProps> = (props) => {
                     value={size}
                     onChange={handleInputChange}
                 />
-                <p className={SizePropertyStyle.sizeValue}>{size}</p>
+                <p className={styleClasses.sizeValue}>{size}</p>
             </div>
         </PropertyWrapper>
     );
+};
+
+const styleClasses = {
+    inputDiv: 'flex justify-evenly w-full p-1',
+    input: 'w-10/12',
+    sizeValue: 'flex-1 text-center'
 };
 
 export default SizeProperty;

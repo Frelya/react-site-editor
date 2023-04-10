@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux';
 import { findCombinations, arrayToGridFlowTemplate } from '@react-site-editor/functions';
 import { selectActiveComponent } from '@/store/activeComponent/activeComponentSlice';
 import type { PropertyProps } from '@libs/types/property.type';
-import PropertyWrapper from '@components/PropertiesComponents/PropertyWrapper/PropertyWrapper';
-import GridTemplatePropertyStyle from './GridTemplateProperty.module.css';
+import PropertyWrapper from '@components/PropertyComponents/PropertyWrapper';
 
 const GridTemplateProperty: React.FunctionComponent<PropertyProps> = (props) => {
     const activeComponent = useSelector(selectActiveComponent);
@@ -24,7 +23,7 @@ const GridTemplateProperty: React.FunctionComponent<PropertyProps> = (props) => 
 
     const LayoutsList: React.FunctionComponent = () => {
         return (
-            <ul className={GridTemplatePropertyStyle.layoutsList}>
+            <ul className={styleClasses.layoutsList}>
                 {layouts.map((layout, index) => {
                     const listItemTemplate = arrayToGridFlowTemplate(layout);
 
@@ -42,8 +41,8 @@ const GridTemplateProperty: React.FunctionComponent<PropertyProps> = (props) => 
 
                     return (
                         <li
-                            className={`${GridTemplatePropertyStyle.layoutsListItem} ${
-                                isCurrent ? GridTemplatePropertyStyle.layoutsListItemCurrent : ''
+                            className={`${styleClasses.layoutsListItem} ${
+                                isCurrent ? styleClasses.layoutsListItemCurrent : ''
                             }`}
                             key={index}
                             onClick={handleLayoutClick}>
@@ -52,7 +51,7 @@ const GridTemplateProperty: React.FunctionComponent<PropertyProps> = (props) => 
                     );
                 })}
                 {layouts.length === 0 && (
-                    <li className={GridTemplatePropertyStyle.layoutsListItem}>No layouts found</li>
+                    <li className={styleClasses.layoutsListItem}>No layouts found</li>
                 )}
             </ul>
         );
@@ -65,22 +64,36 @@ const GridTemplateProperty: React.FunctionComponent<PropertyProps> = (props) => 
 
     return (
         <PropertyWrapper name={props.name}>
-            <div className={GridTemplatePropertyStyle.inputDiv}>
-                <div className={GridTemplatePropertyStyle.fractionsDiv}>
-                    <label className={GridTemplatePropertyStyle.fractionsLabel}>Fractions:</label>
-                    <input
-                        className={GridTemplatePropertyStyle.fractionsInput}
-                        type="number"
-                        min={flowCount}
-                        max={12} // Max for Tailwind CSS (12 columns)
-                        value={fractions}
-                        onChange={handleFractionsChange}
-                    />
-                </div>
-                <LayoutsList />
+            <div className={styleClasses.fractionsDiv}>
+                <label className={styleClasses.fractionsLabel}>Fractions:</label>
+                <input
+                    className={styleClasses.fractionsInput}
+                    type="number"
+                    min={flowCount}
+                    max={12} // Max for Tailwind CSS (12 columns)
+                    value={fractions}
+                    onChange={handleFractionsChange}
+                />
             </div>
+            <LayoutsList />
         </PropertyWrapper>
     );
+};
+
+const styleClasses = {
+    fractionsDiv: 'w-full h-10 mb-4 flex justify-evenly',
+    fractionsLabel: 'w-fit h-full text-lg flex items-center justify-center',
+    fractionsInput:
+        'relative w-1/2 h-full text-lg p-2 ' +
+        'focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-transparent ' +
+        'hover:ring-1 hover:ring-blue-300 ' +
+        'number-spin:full-right',
+    layoutsList:
+        'w-full h-fit max-h-60 py-2 pr-2 grid grid-cols-3 gap-1 list-none border-y-2 overflow-y-scroll overflow-x-hidden',
+    layoutsListItem:
+        'w-full aspect-square p-2 flex justify-center items-center text-center bg- border-2 border-gray-300 rounded-md cursor-pointer ' +
+        'hover:border-blue-300',
+    layoutsListItemCurrent: 'border-blue-300'
 };
 
 export default GridTemplateProperty;

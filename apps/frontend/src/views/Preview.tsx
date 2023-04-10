@@ -1,15 +1,11 @@
 import { Suspense } from 'react';
 import { useSelector } from 'react-redux';
-
 import { useMitt } from '@/plugins/mitt/react-mitt';
 import { selectPreviewTree } from '@/store/previewTree/previewTreeSlice';
 import type { PreviewElementData } from '@libs/types/tree.type';
-
-import PreviewDroppable from '@components/Preview/PreviewDroppable/PreviewDroppable';
-import DynamicComponent from '@components/DynamicComponent/DynamicComponent';
-import PreviewComponentWrapper from '@/components/Preview/PreviewComponentWrapper/PreviewComponentWrapper';
-
-import PreviewStyle from './Preview.module.css';
+import PreviewComponentWrapper from '@/components/Preview/PreviewComponentWrapper';
+import PreviewDroppable from '@components/Preview/PreviewDroppable';
+import DynamicComponent from '@components/Decorators/DynamicComponent';
 
 const Preview: React.FunctionComponent = () => {
     const previewTree = useSelector(selectPreviewTree);
@@ -20,7 +16,7 @@ const Preview: React.FunctionComponent = () => {
     };
 
     return (
-        <div className={PreviewStyle.container}>
+        <div className={styleClasses.container}>
             {previewTree.length == 0 && (
                 <div className={'tree-element'} key={'Element-First'}>
                     <PreviewDroppable index={0} key={0} />
@@ -53,6 +49,10 @@ const Preview: React.FunctionComponent = () => {
             )}
         </div>
     );
+};
+
+const styleClasses = {
+    container: 'w-full min-h-screen bg-white p-4'
 };
 
 export default Preview;
