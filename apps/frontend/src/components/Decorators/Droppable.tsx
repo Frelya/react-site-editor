@@ -24,7 +24,6 @@ const Droppable: React.FunctionComponent<DroppableProps> = (props) => {
     };
 
     const handleDragEnter = (event: React.DragEvent) => {
-        console.log('handleDragEnter');
         if (event.dataTransfer.types.includes(props.type)) {
             props.onDragEnter(event);
         }

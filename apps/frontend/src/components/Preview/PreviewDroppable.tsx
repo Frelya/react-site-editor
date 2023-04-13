@@ -11,7 +11,7 @@ interface PreviewDroppableProps {
 const PreviewDroppable: React.FunctionComponent<PreviewDroppableProps> = (props) => {
     const dispatch = useDispatch();
     const [isHovered, setIsHovered] = useState<boolean>(false);
-    const [isDraggedOver, setIsDraggedOver] = useState<boolean>(true);
+    const [isDraggedOver, setIsDraggedOver] = useState<boolean>(false);
     const emitter = useMitt('preview');
 
     emitter.on('dragStartEvent', () => {
