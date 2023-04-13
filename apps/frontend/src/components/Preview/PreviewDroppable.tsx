@@ -62,7 +62,7 @@ const PreviewDroppable: React.FunctionComponent<PreviewDroppableProps> = (props)
 };
 
 const styleClasses = {
-    container: 'text-black border-blue-500 justify-center items-center border-2 transition-all'
+    container: 'text-black border-blue-500 w-full border-2 transition-all'
 };
 
 export default PreviewDroppable;

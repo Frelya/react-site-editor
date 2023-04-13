@@ -6,7 +6,7 @@ import { useMitt } from '@/components/Decorators/MittProvider';
 import type { MittContextType } from '@/components/Decorators/MittProvider';
 import SideBarRight from '@components/SideBar/SideBarRight';
 import SideBarLeft from '@components/SideBar/SideBarLeft';
-import PreviewIframe from '@components/Preview/PreviewIframe';
+import Preview from '@/components/Preview/Preview';
 
 const EditorPage: React.FunctionComponent = () => {
     const [sidebarRightIsVisible, setSidebarRightIsVisible] = useState<boolean>(false);
@@ -28,13 +28,13 @@ const EditorPage: React.FunctionComponent = () => {
         setSidebarRightIsVisible(true);
     });
 
-    // Expose the emitter to the parent window, so we can use it in the PreviewIframe
+    // Expose the emitter to the parent window, so we can use it in the Preview
     window.getEmitter = (): MittContextType => emitter;
 
     return (
         <div className={styleClasses.container}>
             <SideBarLeft />
-            <PreviewIframe />
+            <Preview />
             <SideBarRight
                 visible={sidebarRightIsVisible}
                 onClose={() => setSidebarRightIsVisible(false)}

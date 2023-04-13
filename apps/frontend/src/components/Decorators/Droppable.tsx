@@ -31,6 +31,7 @@ const Droppable: React.FunctionComponent<DroppableProps> = (props) => {
 
     return (
         <div
+            className="w-full"
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDragEnter={handleDragEnter}
