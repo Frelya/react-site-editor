@@ -9,10 +9,10 @@ import DynamicComponent from '@components/Decorators/DynamicComponent';
 
 const Preview: React.FunctionComponent = () => {
     const previewTree = useSelector(selectPreviewTree);
-    const emitter = useMitt('preview');
+    const emitter = useMitt();
 
     const handleElementClick = (element: PreviewElementData) => {
-        emitter.emit(`componentSelected`, element);
+        emitter.emit('componentSelected', element);
     };
 
     return (
