@@ -6,7 +6,7 @@ interface DraggableProps {
 }
 
 const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
-    const emitter = useMitt('main');
+    const emitter = useMitt();
 
     const handleDragStart = (event: React.DragEvent) => {
         emitter.emit('dragStartEvent');

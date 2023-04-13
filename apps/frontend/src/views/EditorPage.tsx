@@ -11,14 +11,14 @@ import Preview from '@/components/Preview/Preview';
 const EditorPage: React.FunctionComponent = () => {
     const [sidebarRightIsVisible, setSidebarRightIsVisible] = useState<boolean>(false);
     const dispatch = useDispatch();
-    const emitter = useMitt('main');
+    const emitter = useMitt();
 
     // We need to remove the previous listeners on page reload
     emitter.off('componentSelected');
 
     // Then set a new one
     emitter.on('componentSelected', (element) => {
-        const { id, props } = element as PreviewElementData;
+        const { id, props } = element;
         dispatch(
             updateActiveComponent({
                 name: id,
