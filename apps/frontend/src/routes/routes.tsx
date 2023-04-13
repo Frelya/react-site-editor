@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from '@/App';
 import HomePage from '@views/HomePage';
 import EditorPage from '@views/EditorPage';
-import Preview from '@views/Preview';
+// import Preview from '@views/Preview';
 
 const routes = createBrowserRouter([
     {
@@ -18,10 +18,6 @@ const routes = createBrowserRouter([
                 element: <EditorPage />
             }
         ]
-    },
-    {
-        path: '/preview',
-        element: <Preview />
     }
 ]);
 

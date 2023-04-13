@@ -11,7 +11,7 @@ interface PreviewDroppableProps {
 const PreviewDroppable: React.FunctionComponent<PreviewDroppableProps> = (props) => {
     const dispatch = useDispatch();
     const [isHovered, setIsHovered] = useState<boolean>(false);
-    const [isDraggedOver, setIsDraggedOver] = useState<boolean>(false);
+    const [isDraggedOver, setIsDraggedOver] = useState<boolean>(true);
     const emitter = useMitt('preview');
 
     emitter.on('dragStartEvent', () => {
@@ -62,7 +62,7 @@ const PreviewDroppable: React.FunctionComponent<PreviewDroppableProps> = (props)
 };
 
 const styleClasses = {
-    container: 'text-black border-blue-500 justify-center items-center border-2 transition-all'
+    container: 'text-black border-blue-500 w-full border-2 transition-all'
 };
 
 export default PreviewDroppable;
