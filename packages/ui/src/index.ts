@@ -1,5 +1,6 @@
 import './main.css';
 import type { ComponentInfos } from '@react-site-editor/types';
+import * as allComponent from './main';
 
 async function getAllComponents(): Promise<ComponentInfos[]> {
     const components: ComponentInfos[] = [];
@@ -10,11 +11,10 @@ async function getAllComponents(): Promise<ComponentInfos[]> {
         const directory = filepath.match(/\/(\w+)\/\w+\/\w+\.tsx$/)?.[1];
 
         if (filename) {
-            const component = await import(filepath /* @vite-ignore */);
             components.push({
                 name: filename,
                 group: directory || 'none',
-                defaultProps: component.defaultProps
+                defaultProps: (allComponent as Record<string, any>)[`defaultProps${filename}`]
             });
         }
     }
@@ -23,3 +23,4 @@ async function getAllComponents(): Promise<ComponentInfos[]> {
 }
 
 export const components = await getAllComponents();
+export * from './main';

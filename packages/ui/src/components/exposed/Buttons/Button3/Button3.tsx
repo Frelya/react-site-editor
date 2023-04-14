@@ -1,17 +1,6 @@
-import type {
-    ComponentChildren,
-    ComponentProp,
-    PredefinedComponentProps
-} from '@react-site-editor/types';
-import { PropsEnum } from '@react-site-editor/types';
+import { PredefinedComponentProps, PropsEnum } from '@react-site-editor/types';
 import styles from './Button3.module.css';
-
-interface Button3Props {
-    text: ComponentProp;
-    fontSize: ComponentProp;
-    onClick: () => void;
-    children?: ComponentChildren;
-}
+import { Button3Props } from './Button3.types';
 
 const Button3: React.FunctionComponent<Button3Props> = (props) => {
     const fontSize = `font${props.fontSize?.value}` as keyof typeof styles;
