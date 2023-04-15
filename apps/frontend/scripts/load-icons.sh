@@ -9,7 +9,7 @@ fi
 BASE_DIR=.
 
 INTER_FILE=${BASE_DIR}/scripts/output
-OUTPUT_FILE=${BASE_DIR}/src/libs/types/icons.type.ts
+OUTPUT_FILE=${BASE_DIR}/src/types/icons.type.ts
 SCRIPT_FILE=${BASE_DIR}/scripts/modules/loadIcons.ts
 
 REQUIRED_FILE=../../packages/functions/src/stringutils/pascalToKebab.ts

@@ -1,7 +1,7 @@
 import type { PredefinedComponentProps } from '@react-site-editor/types';
 import { PropsEnum } from '@react-site-editor/types';
+import type { ButtonProps } from './Button.types';
 import styles from './Button.module.css';
-import { ButtonProps } from './Button.types';
 
 const Button: React.FunctionComponent<ButtonProps> = (props) => {
     const fontSize = `font${props.fontSize?.value}` as keyof typeof styles;

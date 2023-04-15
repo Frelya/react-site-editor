@@ -1,4 +1,4 @@
-import { PreviewElement, PreviewTree, UpdateElementData } from '@/libs/types/tree.type';
+import type { PreviewElement, PreviewTree, UpdateElementData } from '@/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface PreviewTreeState {

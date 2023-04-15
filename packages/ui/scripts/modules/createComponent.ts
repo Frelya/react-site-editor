@@ -7,8 +7,8 @@ function generateComponentFileContent(name: string) {
     return prettier(`
 import type { PredefinedComponentProps } from '@react-site-editor/types';
 import { PropsEnum } from '@react-site-editor/types';
+import type { ${name}Props } from './${name}.types';
 import styles from './${name}.module.css';
-import { ${name}Props } from './${name}.types';
 
 const ${name}: React.FunctionComponent<${name}Props> = (props) => {
   // The component definitions
@@ -45,7 +45,7 @@ export interface ${name}Props {
 function generateIndexFileContent(name: string) {
     return prettier(`
 export { default } from './${name}';
-export { defaultProps as defaultProps${name} } from './${name}';
+export { defaultProps as ${name[0].toLowerCase() + name.substring(1)}DefaultProps } from './${name}';
 export * from './${name}.types';
     `);
 }
