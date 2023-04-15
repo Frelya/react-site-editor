@@ -1,15 +1,7 @@
-import type { ComponentProp, PredefinedComponentProps } from '@react-site-editor/types';
+import type { PredefinedComponentProps } from '@react-site-editor/types';
 import { PropsEnum } from '@react-site-editor/types';
 import styles from './ColumnLayout.module.css';
-
-interface ColumnLayoutProps {
-    columnCount: ComponentProp;
-    layout: ComponentProp;
-}
-
-enum ColumnLayoutOptions {
-    DEFAULT = 'default'
-}
+import { ColumnLayoutOptions, ColumnLayoutProps } from './ColumnLayout.types';
 
 const ColumnLayout: React.FunctionComponent<ColumnLayoutProps> = (props) => {
     const columnCount = props.columnCount.value as number;
@@ -23,7 +15,7 @@ const ColumnLayout: React.FunctionComponent<ColumnLayoutProps> = (props) => {
 
     const ListItem = () => {
         const itemsList = [];
-        for (let i = 0; i < props.columnCount.value; i++) {
+        for (let i = 0; i < columnCount; i++) {
             itemsList.push(
                 <div key={i} className={styles.boxElement}>
                     <svg

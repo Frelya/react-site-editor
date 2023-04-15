@@ -13,6 +13,7 @@ const EditorPage: React.FunctionComponent = () => {
     const dispatch = useDispatch();
     const emitter = useMitt();
 
+    // Events
     // We need to remove the previous listeners on page reload
     emitter.off('componentSelected');
 
