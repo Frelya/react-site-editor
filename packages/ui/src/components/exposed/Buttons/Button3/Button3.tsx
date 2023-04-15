@@ -20,6 +20,7 @@ export const defaultProps: PredefinedComponentProps<Button3Props> = {
     maxChildren: 2,
     iconName: 'ui-eject'
 };
+Button3.defaultProps = defaultProps;
 
 Button3.defaultProps = defaultProps;
 

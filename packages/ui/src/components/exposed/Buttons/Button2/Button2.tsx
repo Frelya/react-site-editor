@@ -21,6 +21,7 @@ export const defaultProps: PredefinedComponentProps<Button2Props> = {
     maxChildren: 2,
     iconName: 'ui-toggle-off'
 };
+Button2.defaultProps = defaultProps;
 
 Button2.defaultProps = defaultProps;
 

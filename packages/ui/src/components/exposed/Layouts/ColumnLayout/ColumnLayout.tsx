@@ -48,6 +48,7 @@ export const defaultProps: PredefinedComponentProps<ColumnLayoutProps> = {
     layout: { type: PropsEnum.GRID_TEMPLATE, value: ColumnLayoutOptions.DEFAULT },
     iconName: 'ui-table-columns'
 };
+ColumnLayout.defaultProps = defaultProps;
 
 ColumnLayout.defaultProps = defaultProps;
 
