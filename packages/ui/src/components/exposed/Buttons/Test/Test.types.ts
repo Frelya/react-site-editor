@@ -1,6 +1,7 @@
 import type { ComponentChildren, ComponentProp } from '@react-site-editor/types';
 
-export interface Button5Props {
+export interface TestProps {
+    a: string;
     onClick: () => void;
     children?: ComponentChildren;
 }
