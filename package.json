@@ -8,6 +8,7 @@
     "scripts": {
         "dev": "npm run dev --workspace=apps/frontend",
         "frontend": "npm run --workspace=apps/frontend",
+        "ui": "npm run --workspace=packages/ui",
         "lint": "npx eslint --ext .js,.ts,.jsx,.tsx,.json .",
         "lint-fix": "npx eslint --ext .js,.ts,.jsx,.tsx,.json . --fix",
         "format": "npx prettier --write ./ '!**/*.{js,ts,jsx,tsx,html,json}'",

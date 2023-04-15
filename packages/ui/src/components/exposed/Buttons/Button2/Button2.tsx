@@ -23,4 +23,6 @@ export const defaultProps: PredefinedComponentProps<Button2Props> = {
 };
 Button2.defaultProps = defaultProps;
 
+Button2.defaultProps = defaultProps;
+
 export default Button2;

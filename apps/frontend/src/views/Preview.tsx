@@ -32,11 +32,7 @@ const Preview: React.FunctionComponent = () => {
                                 index={elementIndex}
                                 onClick={() => handleElementClick(element)}>
                                 <Suspense>
-                                    <DynamicComponent
-                                        componentName={element.id}
-                                        componentGroup={element.group}
-                                        customProps={element.props}
-                                    />
+                                    <DynamicComponent componentName={element.id} />
                                 </Suspense>
                             </PreviewComponentWrapper>
                         </div>

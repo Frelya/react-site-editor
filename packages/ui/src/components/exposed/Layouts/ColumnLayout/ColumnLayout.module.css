@@ -1,7 +1,7 @@
 .container {
-    @apply grid h-10 bg-slate-500 bg-opacity-5 gap-2;
+    @apply grid w-full h-fit bg-slate-500 bg-opacity-5 gap-2;
 }
 
 .boxElement {
-    @apply border border-dashed border-blue-500 rounded flex items-center justify-center bg-blue-200 text-blue-700;
+    @apply p-2 border border-dashed border-blue-500 rounded flex items-center justify-center bg-blue-200 text-blue-700;
 }
