@@ -22,4 +22,6 @@ export const defaultProps: PredefinedComponentProps<ButtonProps> = {
     iconName: 'ui-button-play'
 };
 
+Button.defaultProps = defaultProps;
+
 export default Button;

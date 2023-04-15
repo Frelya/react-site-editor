@@ -9,7 +9,7 @@
         "build": "tsc && vite build",
         "preview": "vite preview",
         "start": "tsc ./scripts/index.ts && cp ./scripts/index.js ./scripts/index.cjs && rm ./scripts/index.js && node ./scripts/index.cjs && rm ./scripts/index.cjs",
-        "create:component": "chmod +x ./scripts/createComponent.sh && ./scripts/createComponent.sh "
+        "create:component": "chmod +x ./scripts/createComponent.sh && ./scripts/createComponent.sh && npm run start"
     },
     "dependencies": {
         "react": "^18.2.0",

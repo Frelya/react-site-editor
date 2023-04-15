@@ -6,6 +6,8 @@ then
   exit 1
 fi
 
+  echo -e "Wait a minute"
+
 # Récupération du nom du composant
 componentName=$1
 

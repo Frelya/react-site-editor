@@ -23,6 +23,9 @@ export const defaultProps: PredefinedComponentProps<${name}Props> = {
   iconName: 'ui-default'
 };
 
+${name}.defaultProps=defaultProps;
+
+
 export default ${name};
 `
     );
@@ -135,7 +138,7 @@ fs.writeFileSync(styleFile, styleContent);
 //
 
 // Chemin du nouveau fichier de index
-const indexFile = path.join(componentsDir, 'indexs.ts');
+const indexFile = path.join(componentsDir, 'index.ts');
 
 // Contenu du nouveau fichier de index
 const indexContent = generateIndexFile(componentName);
