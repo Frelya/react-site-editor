@@ -1,7 +1,0 @@
-.componentsList {
-    @apply grid grid-cols-2 items-center justify-center gap-y-8 w-full list-none;
-}
-
-.componentsListItem {
-    @apply cursor-pointer w-11/12 mx-auto;
-}

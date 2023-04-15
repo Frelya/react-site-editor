@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
-import { MittProvider } from '@/plugins/mitt/react-mitt';
-import type { MittContextType } from '@/plugins/mitt/react-mitt';
+import MittProvider from '@/components/Decorators/MittProvider';
+import type { MittContextType } from '@/components/Decorators/MittProvider';
 
 declare global {
     interface Window {

@@ -1,4 +1,4 @@
-import { useMitt } from '@/plugins/mitt/react-mitt';
+import { useMitt } from '@/components/Decorators/MittProvider';
 
 interface DraggableProps {
     children: React.ReactElement;
@@ -6,7 +6,7 @@ interface DraggableProps {
 }
 
 const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
-    const emitter = useMitt('main');
+    const emitter = useMitt();
 
     const handleDragStart = (event: React.DragEvent) => {
         emitter.emit('dragStartEvent');
@@ -27,7 +27,11 @@ const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
         document.body.style.cursor = 'default';
     };
     return (
-        <div draggable="true" onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+        <div
+            draggable="true"
+            onDragStart={handleDragStart}
+            onDragEnd={handleDragEnd}
+            className="w-full h-full">
             {props.children}
         </div>
     );

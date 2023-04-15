@@ -5,14 +5,24 @@ import type { TooltipPlace } from '@/libs/types/tooltip.type';
 
 interface IconProps {
     name: IconName;
-    description: string;
+    description?: string;
     className?: string;
     descriptionPlace?: TooltipPlace;
     onClick?: () => void;
 }
 
 const Icon: React.FunctionComponent<IconProps> = (props) => {
-    const DynamicIcon = lazy(() => import(`../Icons/${kebabToPascal(props.name)}.tsx`));
+    const DynamicIcon = props.name.startsWith('ui')
+        ? lazy(
+              () =>
+                  import(
+                      `../../../../../packages/ui/src/components/icons/${kebabToPascal(
+                          props.name
+                      )}.tsx`
+                  )
+          )
+        : lazy(() => import(`../Icons/${kebabToPascal(props.name)}.tsx`));
+
     return (
         <div
             className={`icon ${props.className}`}

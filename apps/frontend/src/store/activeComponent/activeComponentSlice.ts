@@ -1,30 +1,34 @@
 import type { ComponentInfos } from '@react-site-editor/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+interface ActiveComponent extends Omit<ComponentInfos, 'group' | 'defaultProps'> {
+    props: ComponentInfos['defaultProps'];
+}
+
 interface ActiveComponentState {
-    value: ComponentInfos;
+    value: ActiveComponent;
 }
 
 const initialState: ActiveComponentState = {
-    value: {} as ComponentInfos
+    value: {} as ActiveComponent
 };
 
 export const activeComponentSlice = createSlice({
     name: 'activeComponent',
     initialState,
     reducers: {
-        updateActiveComponent: (state, actions: PayloadAction<ComponentInfos>) => {
+        updateActiveComponent: (state, actions: PayloadAction<ActiveComponent>) => {
             state.value = actions.payload;
         },
         resetActiveComponent: (state) => {
-            state.value = {} as ComponentInfos;
+            state.value = {} as ActiveComponent;
         }
     }
 });
 
 export const { updateActiveComponent, resetActiveComponent } = activeComponentSlice.actions;
 
-export const selectActiveComponent = (state: { activeComponent: { value: ComponentInfos } }) =>
+export const selectActiveComponent = (state: { activeComponent: { value: ActiveComponent } }) =>
     state.activeComponent.value;
 
 export default activeComponentSlice.reducer;

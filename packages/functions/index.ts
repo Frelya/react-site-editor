@@ -1,9 +1,24 @@
 import { pascalToSnake } from './pascalToSnake';
 import { kebabToPascal } from './kebabToPascal';
+import { kebabToSnake } from './kebabToSnake';
+import { findCombinations } from './findCombinations';
+import { arrayToGridFlowTemplate } from './arrayToGridFlowTemplate';
 import { pascalToKebab } from './pascalToKebab';
+import { pascalToSpaced } from './pascalToSpaced';
 import { innerContentOfHtmlDiv } from './innerContentOfHtmlDiv';
 
-export { pascalToSnake, innerContentOfHtmlDiv, kebabToPascal, pascalToKebab };
+export {
+    arrayToGridFlowTemplate,
+    findCombinations,
+    innerContentOfHtmlDiv,
+    kebabToPascal,
+    kebabToSnake,
+    pascalToSnake,
+    pascalToSpaced,
+    pascalToKebab
+};
+
+// TODO: move definitions below into dedicated files if possible
 
 export const config = {
     prefix: '__reb'

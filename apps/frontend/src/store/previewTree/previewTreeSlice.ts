@@ -12,7 +12,7 @@ export const previewTreeSlice = createSlice({
     initialState,
     reducers: {
         addComponent: (state, actions: PayloadAction<PreviewElement>) => {
-            state.value.push(actions.payload);
+            state.value.splice(actions.payload.index, 0, actions.payload.data);
         },
         addChildren: () => {
             return;
@@ -20,8 +20,8 @@ export const previewTreeSlice = createSlice({
         arrange: () => {
             return;
         },
-        deleteComponent: () => {
-            return;
+        deleteComponent: (state, actions: PayloadAction<{ index: number }>) => {
+            state.value.splice(actions.payload.index, 1);
         },
         deleteChildren: () => {
             return;

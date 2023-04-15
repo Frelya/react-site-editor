@@ -1,0 +1,15 @@
+.baseButton {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+}
+
+.font1 {
+    @apply text-xs;
+}
+
+.font2 {
+    @apply text-sm;
+}
+
+.font3 {
+    @apply text-base;
+}
