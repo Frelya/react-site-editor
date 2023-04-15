@@ -55,8 +55,8 @@ fs.writeFileSync(
     componentNames
         .map((name) => prettier(`export * from './components/exposed/${name}';`))
         .join('\n') +
-    '\n' +
-    prettier(`export * from './components';`)
+        '\n' +
+        prettier(`export * from './components';`)
 );
 
 console.log(`Exported ${componentNames.length} categories of components to ${indexFile}`);

@@ -3,7 +3,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as process from 'process';
 
-
 function generateComponentFileContent(name: string) {
     return prettier(`
 import type { PredefinedComponentProps } from '@react-site-editor/types';
@@ -31,7 +30,6 @@ export default ${name};
     `);
 }
 
-
 function generateTypeFileContent(name: string) {
     return prettier(`
 import type { ComponentChildren, ComponentProp } from '@react-site-editor/types';
@@ -43,7 +41,6 @@ export interface ${name}Props {
 }
     `);
 }
-
 
 function generateIndexFileContent(name: string) {
     return prettier(`
@@ -72,17 +69,10 @@ if (!componentName || !categoryName) {
     process.exit(1);
 }
 
-const categoryDir = path.join(
-    __dirname,
-    '..',
-    'src',
-    'components',
-    'exposed',
-    categoryName
-);
+const categoryDir = path.join(__dirname, '..', 'src', 'components', 'exposed', categoryName);
 
 if (!fs.existsSync(categoryDir)) {
-    console.log(`Creating the ${categoryName} category\'s directory...`)
+    console.log(`Creating the ${categoryName} category's directory...`);
     fs.mkdirSync(categoryDir);
 }
 
@@ -97,35 +87,39 @@ const componentFiles = [
     // The index file
     {
         fileName: path.join(componentDir, 'index.ts'),
-        fileContent: generateIndexFileContent(componentName),
+        fileContent: generateIndexFileContent(componentName)
     },
     // The component file
     {
         fileName: path.join(componentDir, `${componentName}.tsx`),
-        fileContent: generateComponentFileContent(componentName),
+        fileContent: generateComponentFileContent(componentName)
     },
     // The types file
     {
         fileName: path.join(componentDir, `${componentName}.types.ts`),
-        fileContent: generateTypeFileContent(componentName),
+        fileContent: generateTypeFileContent(componentName)
     },
     // The style file
     {
         fileName: path.join(componentDir, `${componentName}.module.css`),
-        fileContent: generateStyleFileContent(),
-    },
+        fileContent: generateStyleFileContent()
+    }
 ];
 
 let progress = '##';
 
 // Creation of the component's directory
-process.stdout.write(`[${progress}${' '.repeat(10 - progress.length)}] Creating the component\'s directory...\n`);
+process.stdout.write(
+    `[${progress}${' '.repeat(10 - progress.length)}] Creating the component's directory...\n`
+);
 fs.mkdirSync(componentDir);
 
 // Creation of the component's files
 componentFiles.forEach(({ fileName, fileContent }, index) => {
     progress += '##';
-    process.stdout.write(`\r[${progress}${' '.repeat(10 - progress.length)}] Creating the component\'s files...`);
+    process.stdout.write(
+        `\r[${progress}${' '.repeat(10 - progress.length)}] Creating the component's files...`
+    );
     fs.writeFileSync(fileName, fileContent);
 });
 

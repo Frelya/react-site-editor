@@ -18,7 +18,7 @@ export default defineConfig({
             {
                 find: '@libs',
                 replacement: resolve(__dirname, 'libs')
-            },
+            }
         ]
     }
 });
