@@ -38,7 +38,9 @@ for (const componentDir of categoriesDir) {
             `${componentDirPath}/${component}/index.ts`,
             prettier(
                 `export { default } from './${component}';
-                export { defaultProps as defaultProps${component} } from './${component}';
+                export { defaultProps as ${
+                    component.charAt(0).toLowerCase() + component.slice(1)
+                }DefaultProps } from './${component}';
                 export * from './${component}.types';`
             )
         );
@@ -48,13 +50,15 @@ for (const componentDir of categoriesDir) {
 
 const componentNames = componentFiles.map((file) => path.basename(file, '.tsx'));
 
-const indexFile = path.join(__dirname, '../src/main.ts');
+const indexFile = path.join(__dirname, '../src/index.ts');
 
 fs.writeFileSync(
     indexFile,
     componentNames
         .map((name) => prettier(`export * from './components/exposed/${name}';`))
-        .join('\n')
+        .join('\n') +
+        '\n' +
+        prettier(`export * from './components';`)
 );
 
-console.log(`Exported ${componentNames.length} components to ${indexFile}`);
+console.log(`Exported ${componentNames.length} categories of components to ${indexFile}`);

@@ -13,7 +13,7 @@ import { ${name}Props } from './${name}.types';
 
 const ${name}: React.FC<${name}Props> = (props) => {
   // Contenu du composant
-  return <></>;
+  return <><div className={styles.container}>${name}</div></>;
 };
 export const defaultProps: PredefinedComponentProps<${name}Props> = {
   //Contenu des props par défaut
@@ -48,6 +48,18 @@ export { defaultProps as defaultProps${name} } from './${name}';
 export * from './${name}.types';
 
   `);
+}
+
+function generateStyleFile() {
+    return prettier(
+        `
+.container {
+    @apply uppercase;
+}
+
+  `,
+        { parser: 'css' }
+    );
 }
 
 // Récupération du nom du composant en paramètre
@@ -113,7 +125,7 @@ fs.writeFileSync(typeFile, typeContent);
 const styleFile = path.join(componentsDir, `${componentName}.module.css`);
 
 // Contenu du nouveau fichier de style
-const styleContent = '';
+const styleContent = generateStyleFile();
 
 // Création du nouveau fichier de style
 fs.writeFileSync(styleFile, styleContent);
