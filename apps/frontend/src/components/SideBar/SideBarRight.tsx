@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { kebabToSnake, pascalToSpaced } from '@react-site-editor/functions';
 import type { ComponentProp } from '@react-site-editor/types';
 import { selectActiveComponent } from '@/store/activeComponent/activeComponentSlice';
@@ -7,6 +7,7 @@ import PROPERTY_COMPONENTS_MAP from '@/components/PropertyComponents/components-
 import BaseSideBar, { SideBarScales } from '@components/SideBar/BaseSideBar';
 import SideBarHeader from '@components/SideBar/SideBarHeader';
 import Icon from '@components/Decorators/Icon';
+import { updateComponent } from '@/store/previewTree/previewTreeSlice';
 
 interface SideBarRightProps {
     visible: boolean;
@@ -21,10 +22,15 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
 
     const notRenderedPropertyTypes: string[] = ['function'];
 
-    function isComponentProp(prop: object): prop is ComponentProp {
+    const isComponentProp = (prop: object): prop is ComponentProp => {
         return !notRenderedPropertyTypes.includes(typeof prop);
-    }
+    };
+    const dispatch = useDispatch();
 
+    const handleChangeProperty = (id: number, newVal: string, propName: string) => {
+        // emitter.emit('componentPropertyChanged', { id: 's', propName, value: newVal });
+        dispatch(updateComponent({ id, propName, value: newVal }));
+    };
     useEffect(() => {
         setDisplayedComponent(
             activeComponent.props
@@ -43,7 +49,9 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                                   value={prop.value}
                                   min={prop.min}
                                   max={prop.max}
-                                  onChange={() => console.log('changed')}
+                                  onChange={(newVal: string) =>
+                                      handleChangeProperty(activeComponent.index, newVal, propName)
+                                  }
                               />
 
                               /*

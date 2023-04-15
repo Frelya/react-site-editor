@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateActiveComponent } from '@/store/activeComponent/activeComponentSlice';
-import type { PreviewElementData } from '@libs/types/tree.type';
+// import type { PreviewElementData } from '@libs/types/tree.type';
 import { useMitt } from '@/components/Decorators/MittProvider';
 import type { MittContextType } from '@/components/Decorators/MittProvider';
 import SideBarRight from '@components/SideBar/SideBarRight';
 import SideBarLeft from '@components/SideBar/SideBarLeft';
 import Preview from '@/components/Preview/Preview';
+import { updateComponent } from '@/store/previewTree/previewTreeSlice';
 
 const EditorPage: React.FunctionComponent = () => {
     const [sidebarRightIsVisible, setSidebarRightIsVisible] = useState<boolean>(false);
@@ -19,15 +20,14 @@ const EditorPage: React.FunctionComponent = () => {
 
     // Then set a new one
     emitter.on('componentSelected', (element) => {
-        const { id, props } = element;
-        dispatch(
-            updateActiveComponent({
-                name: id,
-                props: props
-            })
-        );
+        dispatch(updateActiveComponent(element));
         setSidebarRightIsVisible(true);
     });
+
+    // emitter.on('componentPropertyChanged', (element) => {
+    //     dispatch(updateComponent(element));
+    //     setSidebarRightIsVisible(true);
+    // });
 
     // Expose the emitter to the parent window, so we can use it in the Preview
     window.getEmitter = (): MittContextType => emitter;

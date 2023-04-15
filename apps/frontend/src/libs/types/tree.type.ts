@@ -3,10 +3,15 @@ export interface PreviewElement {
     data: PreviewElementData;
 }
 export interface PreviewElementData {
-    id: string;
+    name: string;
     group: string;
     props: Record<string, any>;
     children?: Omit<PreviewElement, 'children'>[];
+}
+export interface UpdateElementData {
+    id: number;
+    propName: string;
+    value: string;
 }
 
 export type PreviewTree = PreviewElementData[];

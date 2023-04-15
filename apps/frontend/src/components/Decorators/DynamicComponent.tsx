@@ -1,6 +1,7 @@
 import * as allComponent from '@react-site-editor/ui';
 interface DynamicComponentProps {
     componentName: string;
+    customProps: Record<string, any>;
 }
 
 const DynamicComponent: React.FunctionComponent<DynamicComponentProps> = (props) => {
@@ -8,7 +9,7 @@ const DynamicComponent: React.FunctionComponent<DynamicComponentProps> = (props)
 
     return (
         <div>
-            <Component />
+            <Component {...props.customProps} />
         </div>
     );
 };

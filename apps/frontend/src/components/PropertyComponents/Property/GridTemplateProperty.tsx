@@ -25,6 +25,7 @@ const GridTemplateProperty: React.FunctionComponent<PropertyProps> = (props) => 
         return (
             <ul className={styleClasses.layoutsList}>
                 {layouts.map((layout, index) => {
+                    //On récupère la valeur modifiée
                     const listItemTemplate = arrayToGridFlowTemplate(layout);
 
                     const [isCurrent, setIsCurrent] = useState(false);
@@ -34,8 +35,9 @@ const GridTemplateProperty: React.FunctionComponent<PropertyProps> = (props) => 
                         setTemplate(listItemTemplate);
                         setIsCurrent(template === listItemTemplate);
 
+                        //On l'envoi au composant parent
                         if (props.onChange) {
-                            props.onChange(event, listItemTemplate);
+                            props.onChange(listItemTemplate);
                         }
                     };
 

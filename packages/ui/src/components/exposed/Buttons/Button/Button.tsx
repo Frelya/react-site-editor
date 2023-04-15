@@ -8,6 +8,7 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
 
     return (
         <button className={`${styles.baseButton} ${styles[fontSize]}`} onClick={props?.onClick}>
+            {JSON.stringify(props)}
             {props.text?.value}
             {props.children}
         </button>

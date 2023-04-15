@@ -11,7 +11,7 @@ const TextProperty: React.FunctionComponent<PropertyProps> = (props) => {
         setValue(newValue);
 
         if (props.onChange) {
-            props.onChange(event, newValue);
+            props.onChange(newValue);
         }
     };
 
