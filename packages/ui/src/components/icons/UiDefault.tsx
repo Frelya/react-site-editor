@@ -1,5 +1,5 @@
 const UiDefault = () => {
-    return <>cd</>;
+    return <></>;
 };
 
 export default UiDefault;

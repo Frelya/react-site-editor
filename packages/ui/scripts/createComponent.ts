@@ -22,7 +22,9 @@ export const defaultProps: PredefinedComponentProps<${name}Props> = {
   },
   iconName: 'ui-default'
 };
+
 ${name}.defaultProps=defaultProps;
+
 
 export default ${name};
 `
