@@ -50,4 +50,6 @@ export const defaultProps: PredefinedComponentProps<ColumnLayoutProps> = {
 };
 ColumnLayout.defaultProps = defaultProps;
 
+ColumnLayout.defaultProps = defaultProps;
+
 export default ColumnLayout;

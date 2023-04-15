@@ -80,8 +80,8 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = (props) => 
                                 name={'chevron-left'}
                                 className={`${styleClasses.groupsListItemTitleIcon} ${
                                     visibility
-                                        ? styleClasses.groupsListItemTitleIconRight
-                                        : styleClasses.groupsListItemTitleIconDown
+                                        ? styleClasses.groupsListItemTitleIconDown
+                                        : styleClasses.groupsListItemTitleIconRight
                                 }`}
                                 description={
                                     elementsByGroup[group].length +
@@ -104,7 +104,7 @@ const styleClasses = {
     groupsListItem: 'cursor-pointer w-full h-fit',
     groupsListItemTitle:
         'relative text-center w-11/12 font-bold border-2 border-gray-300 p-2.5 mx-auto shadow-md',
-    groupsListItemTitleIcon: 'w-6 h-6 absolute left-2 transition-all duration-500',
+    groupsListItemTitleIcon: 'w-6 h-6 absolute left-2 transition-all duration-300',
     groupsListItemTitleIconDown: '-rotate-90',
     groupsListItemTitleIconRight: '-rotate-180',
     groupComponentsList:
