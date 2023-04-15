@@ -21,4 +21,6 @@ export const defaultProps: PredefinedComponentProps<Button3Props> = {
     iconName: 'ui-eject'
 };
 
+Button3.defaultProps = defaultProps;
+
 export default Button3;

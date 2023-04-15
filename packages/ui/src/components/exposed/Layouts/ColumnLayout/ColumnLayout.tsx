@@ -49,4 +49,6 @@ export const defaultProps: PredefinedComponentProps<ColumnLayoutProps> = {
     iconName: 'ui-table-columns'
 };
 
+ColumnLayout.defaultProps = defaultProps;
+
 export default ColumnLayout;

@@ -1,29 +1,25 @@
+import { prettier } from '../../libs';
 import * as fs from 'fs';
 import * as path from 'path';
-import { format } from 'prettier';
 
-// Récupère les sous-dossiers d'un dossier
+// Get all subdirectories of a directory
 function getSubdirectories(dirPath: string): string[] {
     return fs
         .readdirSync(dirPath)
         .filter((file) => fs.statSync(path.join(dirPath, file)).isDirectory());
 }
 
-function prettier(str: string) {
-    return format(str, prettierOptions);
-}
-
 const baseDir = 'src/components/exposed';
-const prettierOptions = { parser: 'typescript', singleQuote: true };
 const componentFiles: string[] = [];
 
 const categoriesDir = getSubdirectories(path.resolve(baseDir));
 
 for (const componentDir of categoriesDir) {
-    const componentDirPath = path.join(baseDir, componentDir);
-    const componentsDir = getSubdirectories(componentDirPath);
+    const categoryDirPath = path.join(baseDir, componentDir);
+    const componentsDir = getSubdirectories(categoryDirPath);
+
     fs.writeFileSync(
-        componentDirPath + '/index.ts',
+        path.join(categoryDirPath, 'index.ts'),
         componentsDir
             .map((name) =>
                 prettier(
@@ -33,9 +29,10 @@ for (const componentDir of categoriesDir) {
             )
             .join('\n')
     );
+
     for (const component of componentsDir) {
         fs.writeFileSync(
-            `${componentDirPath}/${component}/index.ts`,
+            `${categoryDirPath}/${component}/index.ts`,
             prettier(
                 `export { default } from './${component}';
                 export { defaultProps as ${
@@ -45,6 +42,7 @@ for (const componentDir of categoriesDir) {
             )
         );
     }
+
     componentFiles.push(componentDir + '/' + componentDir);
 }
 
@@ -57,8 +55,8 @@ fs.writeFileSync(
     componentNames
         .map((name) => prettier(`export * from './components/exposed/${name}';`))
         .join('\n') +
-        '\n' +
-        prettier(`export * from './components';`)
+    '\n' +
+    prettier(`export * from './components';`)
 );
 
 console.log(`Exported ${componentNames.length} categories of components to ${indexFile}`);

@@ -33,11 +33,7 @@ const Preview: React.FunctionComponent = () => {
                                     index={elementIndex}
                                     onClick={() => handleElementClick(element)}>
                                     <Suspense>
-                                        <DynamicComponent
-                                            componentName={element.id}
-                                            componentGroup={element.group}
-                                            customProps={element.props}
-                                        />
+                                        <DynamicComponent componentName={element.id} />
                                     </Suspense>
                                 </PreviewComponentWrapper>
                             </div>
@@ -54,8 +50,8 @@ const Preview: React.FunctionComponent = () => {
 };
 
 const styleClasses = {
-    container: 'flex flex-1 w-3/4 justify-center h-screen bg-slate-500',
-    iframe: ' bg-white flex-1 p-4 flex flex-col justify-start items-start'
+    container: 'flex justify-center items-center w-full h-full bg-slate-500',
+    iframe: 'w-[95%] p-4 flex flex-col aspect-video justify-start items-start bg-white'
 };
 
 export default Preview;

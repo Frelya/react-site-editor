@@ -49,7 +49,7 @@ const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperPr
 
 const styleClasses = {
     container:
-        'flex flex-col items-stretch text-center hover:border-blue-500 hover:border p-1 justify-between relative'
+        'flex flex-col items-center justify-center hover:border-blue-500 hover:border p-1 relative'
 };
 
 export default PreviewComponentWrapper;
