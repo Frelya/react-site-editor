@@ -23,11 +23,7 @@ const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
                 props.children.key ? props.children.key.toString() : ''
             );
 
-            event.dataTransfer.setDragImage(
-                dragImage,
-                32,
-                16
-            );
+            event.dataTransfer.setDragImage(dragImage, 32, 16);
         }
     };
 

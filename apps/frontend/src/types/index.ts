@@ -4,6 +4,8 @@ export * from './events.type';
 
 export * from './icons.type';
 
+export * from './preview.type';
+
 export * from './property.type';
 
 export * from './tooltip.type';

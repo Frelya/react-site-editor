@@ -9,9 +9,7 @@ interface PropertyWrapperProps {
 const PropertyWrapper: React.FunctionComponent<PropertyWrapperProps> = (props) => {
     return (
         <div className={styleClasses.container}>
-            <label className={styleClasses.label}>
-                {pascalToSpaced(capitalize(props.name))}
-            </label>
+            <label className={styleClasses.label}>{pascalToSpaced(capitalize(props.name))}</label>
             {props.children}
         </div>
     );

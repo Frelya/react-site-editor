@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { kebabToSnake, pascalToSpaced } from '@react-site-editor/functions';
 import type { ComponentProp } from '@react-site-editor/types';
-import { selectActiveComponent, updateActiveComponentProps } from '@/store/activeComponent/activeComponentSlice';
+import {
+    selectActiveComponent,
+    updateActiveComponentProps
+} from '@/store/activeComponent/activeComponentSlice';
 import { updateComponent } from '@/store/previewTree/previewTreeSlice';
 import PROPERTY_COMPONENTS_MAP from '@/components/PropertyComponents/components-map';
 import BaseSideBar, { SideBarScales } from '@components/SideBar/BaseSideBar';
@@ -30,13 +33,15 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
 
     const handleChangeProperty = (id: number, newValue: string, propName: string) => {
         dispatch(updateComponent({ id, propName, value: newValue }));
-        dispatch(updateActiveComponentProps({
-            ...activeComponent.props,
-            [propName]: {
-                ...activeComponent.props[propName],
-                value: newValue
-            }
-        }));
+        dispatch(
+            updateActiveComponentProps({
+                ...activeComponent.props,
+                [propName]: {
+                    ...activeComponent.props[propName],
+                    value: newValue
+                }
+            })
+        );
     };
 
     useEffect(() => {
@@ -58,7 +63,11 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                                   min={prop.min}
                                   max={prop.max}
                                   onChange={(newValue: string) =>
-                                      handleChangeProperty(activeComponent.index, newValue, propName)
+                                      handleChangeProperty(
+                                          activeComponent.index,
+                                          newValue,
+                                          propName
+                                      )
                                   }
                               />
                           );

@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { findCombinations, arrayToGridFlowTemplate, gridFlowTemplateToArray } from '@react-site-editor/functions';
+import {
+    findCombinations,
+    arrayToGridFlowTemplate,
+    gridFlowTemplateToArray
+} from '@react-site-editor/functions';
 import { selectActiveComponent } from '@/store/activeComponent/activeComponentSlice';
 import type { PropertyProps } from '@/types';
 import PropertyWrapper from '@components/PropertyComponents/PropertyWrapper';
@@ -44,7 +48,9 @@ const GridTemplateProperty: React.FunctionComponent<PropertyProps> = (props) => 
                     return (
                         <li
                             className={`${styleClasses.layoutsListItem} ${
-                                isCurrent ? styleClasses.layoutsListItemCurrent : styleClasses.layoutsListItemNotCurrent
+                                isCurrent
+                                    ? styleClasses.layoutsListItemCurrent
+                                    : styleClasses.layoutsListItemNotCurrent
                             }`}
                             key={index}
                             onClick={handleLayoutClick}>

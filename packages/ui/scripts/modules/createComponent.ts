@@ -45,7 +45,9 @@ export interface ${name}Props {
 function generateIndexFileContent(name: string) {
     return prettier(`
 export { default } from './${name}';
-export { defaultProps as ${name[0].toLowerCase() + name.substring(1)}DefaultProps } from './${name}';
+export { defaultProps as ${
+        name[0].toLowerCase() + name.substring(1)
+    }DefaultProps } from './${name}';
 export * from './${name}.types';
     `);
 }

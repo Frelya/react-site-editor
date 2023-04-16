@@ -34,8 +34,8 @@ export const previewTreeSlice = createSlice({
         deleteChildren: () => {
             return;
         },
-        resetTree: () => {
-            return;
+        resetTree: (state) => {
+            state.value = [];
         }
     }
 });
