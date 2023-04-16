@@ -117,7 +117,7 @@ process.stdout.write(
 fs.mkdirSync(componentDir);
 
 // Creation of the component's files
-componentFiles.forEach(({ fileName, fileContent }, index) => {
+componentFiles.forEach(({ fileName, fileContent }) => {
     progress += '##';
     process.stdout.write(
         `\r[${progress}${' '.repeat(10 - progress.length)}] Creating the component's files...`

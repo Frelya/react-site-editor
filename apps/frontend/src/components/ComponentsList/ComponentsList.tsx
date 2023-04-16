@@ -28,22 +28,20 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = (props) => 
                 <Icon name={'search'} className={'text-gray-600'} />
             </div>
             <p className={styleClasses.componentsListTitle}>
-                {
-                    searchQuery.length > 0
-                        ? `Search results for "${searchQuery}"`
-                        : 'Available components'
-                }
+                {searchQuery.length > 0
+                    ? `Search results for "${searchQuery}"`
+                    : 'Available components'}
             </p>
-            <ComponentsListGroups elements={props.elements} filter={searchQuery}/>
+            <ComponentsListGroups elements={props.elements} filter={searchQuery} />
         </>
     );
 };
 
 const styleClasses = {
-    searchBar: 'flex items-center justify-start gap-2 w-11/12 h-12 mx-auto my-4 p-2 bg-white rounded-md',
-    searchBarInput: 'w-full h-full px-2 ' +
-        'focus:outline-none active:outline-none',
-    componentsListTitle: 'w-11/12 mx-auto my-4 px-2',
+    searchBar:
+        'flex items-center justify-start gap-2 w-11/12 h-12 mx-auto my-4 p-2 bg-white rounded-md',
+    searchBarInput: 'w-full h-full px-2 ' + 'focus:outline-none active:outline-none',
+    componentsListTitle: 'w-11/12 mx-auto my-4 px-2'
 };
 
 export default ComponentsList;

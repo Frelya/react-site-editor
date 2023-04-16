@@ -22,15 +22,18 @@ const SideBarLeft: React.FunctionComponent = () => {
         const [screen, setScreen] = useState<PreviewScreen>(PreviewScreen.DESKTOP);
 
         const toggleScreen = () => {
-            const newScreen = screen === PreviewScreen.DESKTOP ? PreviewScreen.MOBILE : PreviewScreen.DESKTOP;
+            const newScreen =
+                screen === PreviewScreen.DESKTOP ? PreviewScreen.MOBILE : PreviewScreen.DESKTOP;
             emitter.emit('previewScreenChange', newScreen);
             setScreen(newScreen);
         };
 
-        return screen === PreviewScreen.DESKTOP
-            ? <Icon name={'mobile-screen'} onClick={toggleScreen}/>
-            : <Icon name={'desktop-screen'} onClick={toggleScreen}/>
-    }
+        return screen === PreviewScreen.DESKTOP ? (
+            <Icon name={'mobile-screen'} onClick={toggleScreen} />
+        ) : (
+            <Icon name={'desktop-screen'} onClick={toggleScreen} />
+        );
+    };
 
     return (
         <BaseSideBar visible scale={SideBarScales.NARROW}>

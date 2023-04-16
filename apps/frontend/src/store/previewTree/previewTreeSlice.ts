@@ -39,10 +39,12 @@ export const previewTreeSlice = createSlice({
                 return;
             }
 
-            if (confirm(
-                'Are you sure you want to discard all changes ?\n' +
-                'This action cannot be undone.'
-            )) {
+            if (
+                confirm(
+                    'Are you sure you want to discard all changes ?\n' +
+                        'This action cannot be undone.'
+                )
+            ) {
                 state.value = [];
             }
         }

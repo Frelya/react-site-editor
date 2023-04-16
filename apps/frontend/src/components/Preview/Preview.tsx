@@ -8,7 +8,6 @@ import PreviewComponentWrapper from '@/components/Preview/PreviewComponentWrappe
 import PreviewDroppable from '@components/Preview/PreviewDroppable';
 import DynamicComponent from '@components/Decorators/DynamicComponent';
 
-
 const Preview: React.FunctionComponent = () => {
     const previewTree = useSelector(selectPreviewTree);
     const emitter = useMitt();
@@ -24,7 +23,12 @@ const Preview: React.FunctionComponent = () => {
 
     return (
         <div className={styleClasses.container}>
-            <div className={`${styleClasses.iframe} ${screen === PreviewScreen.DESKTOP ? styleClasses.iframeDesktop : styleClasses.iframeMobile }`}>
+            <div
+                className={`${styleClasses.iframe} ${
+                    screen === PreviewScreen.DESKTOP
+                        ? styleClasses.iframeDesktop
+                        : styleClasses.iframeMobile
+                }`}>
                 {previewTree.length == 0 && (
                     <div className={'tree-element w-full'} key={'Element-First'}>
                         <PreviewDroppable index={0} key={0} />

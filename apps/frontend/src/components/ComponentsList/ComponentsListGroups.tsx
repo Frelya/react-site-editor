@@ -12,8 +12,10 @@ interface ComponentsListGroupsProps {
 
 const ComponentsListGroups: React.FunctionComponent<ComponentsListGroupsProps> = (props) => {
     const filteredComponents = props.elements.filter((component) => {
-        return component.name.toLowerCase().includes(props.filter.toLowerCase()) ||
-            component.group.toLowerCase().includes(props.filter.toLowerCase());
+        return (
+            component.name.toLowerCase().includes(props.filter.toLowerCase()) ||
+            component.group.toLowerCase().includes(props.filter.toLowerCase())
+        );
     });
 
     const groups = [...new Set(filteredComponents.map((element) => element.group))];
@@ -28,7 +30,7 @@ const ComponentsListGroups: React.FunctionComponent<ComponentsListGroupsProps> =
         elementsByGroup[element.group].push(element);
     });
 
-    const Group: React.FunctionComponent<{ group: string }> = (props) => {
+    const Group: React.FunctionComponent<{ group: string }> = (groupProps) => {
         const [visibility, setVisibility] = useState(false);
 
         const toggleVisibility = () => {
@@ -37,9 +39,7 @@ const ComponentsListGroups: React.FunctionComponent<ComponentsListGroupsProps> =
 
         return (
             <li className={styleClasses.groupsListItem}>
-                <div
-                    className={styleClasses.groupsListItemTitle}
-                    onClick={toggleVisibility}>
+                <div className={styleClasses.groupsListItemTitle} onClick={toggleVisibility}>
                     <Icon
                         name={'chevron-left'}
                         className={`${styleClasses.groupsListItemTitleIcon} ${
@@ -48,12 +48,12 @@ const ComponentsListGroups: React.FunctionComponent<ComponentsListGroupsProps> =
                                 : styleClasses.groupsListItemTitleIconRight
                         }`}
                         description={
-                            elementsByGroup[props.group].length +
+                            elementsByGroup[groupProps.group].length +
                             ' component' +
-                            (elementsByGroup[props.group].length > 1 ? 's' : '')
+                            (elementsByGroup[groupProps.group].length > 1 ? 's' : '')
                         }
                     />
-                    <h3>{props.group}</h3>
+                    <h3>{groupProps.group}</h3>
                 </div>
                 <ul
                     className={`${styleClasses.groupComponentsList} ${
@@ -61,7 +61,7 @@ const ComponentsListGroups: React.FunctionComponent<ComponentsListGroupsProps> =
                             ? styleClasses.groupComponentsListVisible
                             : styleClasses.groupComponentsListInvisible
                     }`}>
-                    {elementsByGroup[props.group].map((element, elementIndex) => {
+                    {elementsByGroup[groupProps.group].map((element, elementIndex) => {
                         return (
                             <li className={styleClasses.groupComponentsListItem} key={elementIndex}>
                                 <Draggable type="component">
