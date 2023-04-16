@@ -8,4 +8,5 @@ export type Events = {
     componentPropertyChanged: UpdateElementData;
     dragEndEvent: undefined;
     previewScreenChange: PreviewScreen;
+    previewRefresh: undefined;
 };

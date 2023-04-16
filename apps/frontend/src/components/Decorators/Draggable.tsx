@@ -15,6 +15,7 @@ const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
     const handleDragStart = (event: React.DragEvent) => {
         emitter.emit('dragStartEvent');
 
+        // Set cursor style to "grabbing" while dragging
         document.body.style.cursor = 'grabbing';
 
         if (props.children) {

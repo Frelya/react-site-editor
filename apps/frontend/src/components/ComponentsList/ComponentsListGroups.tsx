@@ -31,10 +31,10 @@ const ComponentsListGroups: React.FunctionComponent<ComponentsListGroupsProps> =
     });
 
     const Group: React.FunctionComponent<{ group: string }> = (groupProps) => {
-        const [visibility, setVisibility] = useState(false);
+        const [isVisible, setIsVisible] = useState(false);
 
         const toggleVisibility = () => {
-            setVisibility(!visibility);
+            setIsVisible(!isVisible);
         };
 
         return (
@@ -43,7 +43,7 @@ const ComponentsListGroups: React.FunctionComponent<ComponentsListGroupsProps> =
                     <Icon
                         name={'chevron-left'}
                         className={`${styleClasses.groupsListItemTitleIcon} ${
-                            visibility
+                            isVisible
                                 ? styleClasses.groupsListItemTitleIconDown
                                 : styleClasses.groupsListItemTitleIconRight
                         }`}
@@ -57,7 +57,7 @@ const ComponentsListGroups: React.FunctionComponent<ComponentsListGroupsProps> =
                 </div>
                 <ul
                     className={`${styleClasses.groupComponentsList} ${
-                        visibility
+                        isVisible
                             ? styleClasses.groupComponentsListVisible
                             : styleClasses.groupComponentsListInvisible
                     }`}>

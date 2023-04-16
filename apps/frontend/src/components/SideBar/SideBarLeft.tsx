@@ -16,6 +16,7 @@ const SideBarLeft: React.FunctionComponent = () => {
 
     const handleRefreshClick = () => {
         dispatch(resetTree());
+        emitter.emit('previewRefresh');
     };
 
     const ScreenChangeIcon = () => {
