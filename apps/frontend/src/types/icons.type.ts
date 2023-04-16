@@ -6,6 +6,7 @@ export type IconName =
     | 'minus'
     | 'mobile-screen'
     | 'refresh-arrows'
+    | 'search'
     | 'ui-button-play'
     | 'ui-default'
     | 'ui-eject'

@@ -35,7 +35,16 @@ export const previewTreeSlice = createSlice({
             return;
         },
         resetTree: (state) => {
-            state.value = [];
+            if (state.value.length === 0) {
+                return;
+            }
+
+            if (confirm(
+                'Are you sure you want to discard all changes ?\n' +
+                'This action cannot be undone.'
+            )) {
+                state.value = [];
+            }
         }
     }
 });

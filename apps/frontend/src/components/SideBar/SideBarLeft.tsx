@@ -15,12 +15,7 @@ const SideBarLeft: React.FunctionComponent = () => {
     const emitter = useMitt();
 
     const handleRefreshClick = () => {
-        if (confirm(
-            'Are you sure you want to discard all changes ?\n' +
-            'This action cannot be undone.'
-        )) {
-            dispatch(resetTree());
-        }
+        dispatch(resetTree());
     };
 
     const ScreenChangeIcon = () => {
@@ -51,20 +46,17 @@ const SideBarLeft: React.FunctionComponent = () => {
                     <ScreenChangeIcon />
                     <Icon
                         name={'refresh-arrows'}
-                        className={''}
                         description={'Discard All'}
                         onClick={handleRefreshClick}
                     />
                 </div>
             </SideBarHeader>
-            <p className={styleClasses.componentsListTitle}>All components</p>
             <ComponentsList elements={components} />
         </BaseSideBar>
     );
 };
 
 const styleClasses = {
-    componentsListTitle: 'w-11/12 mx-auto my-4 px-2',
     header: 'w-11/12 h-full flex justify-between items-center'
 };
 
