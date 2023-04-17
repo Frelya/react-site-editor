@@ -1,17 +1,15 @@
 import { useState, useEffect } from 'react';
-import type { PropertyProps } from '@libs/types/property.type';
+import type { PropertyProps } from '@/types';
 import PropertyWrapper from '@components/PropertyComponents/PropertyWrapper';
 
 const SizeProperty: React.FunctionComponent<PropertyProps> = (props) => {
     const [size, setSize] = useState<number>(props.value as number);
 
     const handleInputChange = (event: React.ChangeEvent) => {
-        //On récupère la valeur modifiée
         const newValue = Number((event.target as HTMLInputElement).value);
 
         setSize(newValue);
 
-        //On l'envoi au composant parent
         if (props.onChange) {
             props.onChange(newValue);
         }

@@ -1,7 +1,7 @@
 import type { PredefinedComponentProps } from '@react-site-editor/types';
 import { PropsEnum } from '@react-site-editor/types';
+import type { Button2Props } from './Button2.types';
 import styles from './Button2.module.css';
-import { Button2Props } from './Button2.types';
 
 const Button2: React.FunctionComponent<Button2Props> = (props) => {
     const fontSize = `font${props.fontSize?.value}` as keyof typeof styles;
@@ -21,7 +21,6 @@ export const defaultProps: PredefinedComponentProps<Button2Props> = {
     maxChildren: 2,
     iconName: 'ui-toggle-off'
 };
-Button2.defaultProps = defaultProps;
 
 Button2.defaultProps = defaultProps;
 

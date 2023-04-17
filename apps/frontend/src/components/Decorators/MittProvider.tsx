@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { mitt, Emitter } from '@/plugins/mitt/index';
-import { Events } from '@/types';
+import { mitt, Emitter } from '@/plugins/mitt';
+import type { Events } from '@/types';
 export type MittContextType = Emitter<Events>;
 
 const emitter: MittContextType = mitt<Events>();

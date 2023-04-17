@@ -1,5 +1,5 @@
-import { pascalToSpaced } from '@react-site-editor/functions';
-import type { PropertyProps } from '@libs/types/property.type';
+import { pascalToSpaced, capitalize } from '@react-site-editor/functions';
+import type { PropertyProps } from '@/types';
 
 interface PropertyWrapperProps {
     name: PropertyProps['name'];
@@ -9,9 +9,7 @@ interface PropertyWrapperProps {
 const PropertyWrapper: React.FunctionComponent<PropertyWrapperProps> = (props) => {
     return (
         <div className={styleClasses.container}>
-            <label className={styleClasses.label}>
-                {pascalToSpaced([props.name[0].toUpperCase(), props.name.slice(1)].join(''))}
-            </label>
+            <label className={styleClasses.label}>{pascalToSpaced(capitalize(props.name))}</label>
             {props.children}
         </div>
     );

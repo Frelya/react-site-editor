@@ -1,5 +1,5 @@
 .container {
-    @apply grid w-full h-fit bg-slate-500 bg-opacity-5 gap-2;
+    @apply grid grid-rows-1 w-full h-fit bg-slate-500 bg-opacity-5 gap-2;
 }
 
 .boxElement {

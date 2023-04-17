@@ -9,7 +9,7 @@ import * as fs from 'fs';
  *     > npm run icons
  */
 const iconsDirectories = ['./src/components/Icons', './../../packages/ui/src/components/icons'];
-const typesFile = './src/libs/types/icons.type.ts';
+const typesFile = './src/types/icons.type.ts';
 
 const iconNames: string[] = [];
 

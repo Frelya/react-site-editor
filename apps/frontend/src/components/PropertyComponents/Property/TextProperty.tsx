@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { PropertyProps } from '@libs/types/property.type';
+import type { PropertyProps } from '@/types';
 import PropertyWrapper from '@components/PropertyComponents/PropertyWrapper';
 
 const TextProperty: React.FunctionComponent<PropertyProps> = (props) => {

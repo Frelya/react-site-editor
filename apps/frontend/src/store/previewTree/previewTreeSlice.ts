@@ -1,4 +1,4 @@
-import { PreviewElement, PreviewTree, UpdateElementData } from '@/libs/types/tree.type';
+import type { PreviewElement, PreviewTree, UpdateElementData } from '@/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface PreviewTreeState {
@@ -34,8 +34,19 @@ export const previewTreeSlice = createSlice({
         deleteChildren: () => {
             return;
         },
-        resetTree: () => {
-            return;
+        resetTree: (state) => {
+            if (state.value.length === 0) {
+                return;
+            }
+
+            if (
+                confirm(
+                    'Are you sure you want to discard all changes ?\n' +
+                        'This action cannot be undone.'
+                )
+            ) {
+                state.value = [];
+            }
         }
     }
 });

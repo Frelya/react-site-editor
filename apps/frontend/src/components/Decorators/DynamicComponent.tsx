@@ -8,11 +8,7 @@ interface DynamicComponentProps {
 const DynamicComponent: React.FunctionComponent<DynamicComponentProps> = (props) => {
     const Component = (allComponent as Record<string, any>)[props.componentName];
 
-    return (
-        <div>
-            <Component {...props.customProps} />
-        </div>
-    );
+    return <Component {...props.customProps} />;
 };
 
 export default DynamicComponent;

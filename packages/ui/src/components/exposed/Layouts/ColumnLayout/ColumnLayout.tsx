@@ -1,7 +1,8 @@
 import type { PredefinedComponentProps } from '@react-site-editor/types';
 import { PropsEnum } from '@react-site-editor/types';
 import styles from './ColumnLayout.module.css';
-import { ColumnLayoutOptions, ColumnLayoutProps } from './ColumnLayout.types';
+import type { ColumnLayoutProps } from './ColumnLayout.types';
+import { ColumnLayoutOptions } from './ColumnLayout.types';
 
 const ColumnLayout: React.FunctionComponent<ColumnLayoutProps> = (props) => {
     const columnCount = props.columnCount.value as number;
@@ -48,7 +49,6 @@ export const defaultProps: PredefinedComponentProps<ColumnLayoutProps> = {
     layout: { type: PropsEnum.GRID_TEMPLATE, value: ColumnLayoutOptions.DEFAULT },
     iconName: 'ui-table-columns'
 };
-ColumnLayout.defaultProps = defaultProps;
 
 ColumnLayout.defaultProps = defaultProps;
 
