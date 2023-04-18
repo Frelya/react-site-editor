@@ -25,8 +25,7 @@ const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperPr
             <PreviewDroppable index={props.index} key={props.index} />
             <div className={styleClasses.container + ' group'} onClick={props.onClick}>
                 {/*
-                    I have to stop bubble propagation,
-                    That's why I don't use the onClick props of `Icon` 
+                    The bubble propagation have to be stopped.
                 */}
                 <div
                     onClickCapture={(evt) => {
@@ -49,7 +48,7 @@ const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperPr
 
 const styleClasses = {
     container:
-        'flex flex-col items-stretch text-center hover:border-blue-500 hover:border p-1 justify-between relative'
+        'flex flex-col items-center justify-center hover:border-blue-500 hover:border p-1 relative'
 };
 
 export default PreviewComponentWrapper;

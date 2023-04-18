@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { kebabToSnake, pascalToSpaced } from '@react-site-editor/functions';
 import type { ComponentProp } from '@react-site-editor/types';
-import { selectActiveComponent } from '@/store/activeComponent/activeComponentSlice';
+import {
+    selectActiveComponent,
+    updateActiveComponentProps
+} from '@/store/activeComponent/activeComponentSlice';
+import { updateComponent } from '@/store/previewTree/previewTreeSlice';
 import PROPERTY_COMPONENTS_MAP from '@/components/PropertyComponents/components-map';
 import BaseSideBar, { SideBarScales } from '@components/SideBar/BaseSideBar';
 import SideBarHeader from '@components/SideBar/SideBarHeader';
@@ -21,9 +25,24 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
 
     const notRenderedPropertyTypes: string[] = ['function'];
 
-    function isComponentProp(prop: object): prop is ComponentProp {
+    const isComponentProp = (prop: object): prop is ComponentProp => {
         return !notRenderedPropertyTypes.includes(typeof prop);
-    }
+    };
+
+    const dispatch = useDispatch();
+
+    const handleChangeProperty = (id: number, newValue: string, propName: string) => {
+        dispatch(updateComponent({ id, propName, value: newValue }));
+        dispatch(
+            updateActiveComponentProps({
+                ...activeComponent.props,
+                [propName]: {
+                    ...activeComponent.props[propName],
+                    value: newValue
+                }
+            })
+        );
+    };
 
     useEffect(() => {
         setDisplayedComponent(
@@ -43,14 +62,14 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                                   value={prop.value}
                                   min={prop.min}
                                   max={prop.max}
-                                  onChange={() => console.log('changed')}
+                                  onChange={(newValue: string) =>
+                                      handleChangeProperty(
+                                          activeComponent.index,
+                                          newValue,
+                                          propName
+                                      )
+                                  }
                               />
-
-                              /*
-                               TODO: Add onChange handler,
-                                which will update component props in store (activeComponent and previewElement)
-                                See Issue #71
-                               */
                           );
                       }
 

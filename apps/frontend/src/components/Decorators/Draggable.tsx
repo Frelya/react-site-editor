@@ -1,3 +1,4 @@
+import boxImage from '@/assets/icons/box.png';
 import { useMitt } from '@/components/Decorators/MittProvider';
 
 interface DraggableProps {
@@ -8,16 +9,23 @@ interface DraggableProps {
 const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
     const emitter = useMitt();
 
+    const dragImage = new Image();
+    dragImage.src = boxImage;
+
     const handleDragStart = (event: React.DragEvent) => {
         emitter.emit('dragStartEvent');
 
-        // Set cursor to "grab"
+        // Set cursor style to "grabbing" while dragging
         document.body.style.cursor = 'grabbing';
-        if (props.children)
+
+        if (props.children) {
             event.dataTransfer.setData(
                 props.type,
                 props.children.key ? props.children.key.toString() : ''
             );
+
+            event.dataTransfer.setDragImage(dragImage, 32, 16);
+        }
     };
 
     const handleDragEnd = () => {

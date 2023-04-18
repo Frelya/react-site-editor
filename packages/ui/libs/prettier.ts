@@ -1,4 +1,5 @@
 import { Options, format } from 'prettier';
+
 const prettierOptions: Options = {
     bracketSameLine: true,
     printWidth: 100,

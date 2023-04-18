@@ -1,8 +1,9 @@
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useMitt } from '@/components/Decorators/MittProvider';
 import { selectPreviewTree } from '@/store/previewTree/previewTreeSlice';
-import type { PreviewElementData } from '@libs/types/tree.type';
+import type { ActiveComponent } from '@/types';
+import { PreviewScreen } from '@/types';
+import { useMitt } from '@/components/Decorators/MittProvider';
 import PreviewComponentWrapper from '@/components/Preview/PreviewComponentWrapper';
 import PreviewDroppable from '@components/Preview/PreviewDroppable';
 import DynamicComponent from '@components/Decorators/DynamicComponent';
@@ -10,14 +11,24 @@ import DynamicComponent from '@components/Decorators/DynamicComponent';
 const Preview: React.FunctionComponent = () => {
     const previewTree = useSelector(selectPreviewTree);
     const emitter = useMitt();
+    const [screen, setScreen] = useState<PreviewScreen>(PreviewScreen.DESKTOP);
 
-    const handleElementClick = (element: PreviewElementData) => {
+    const handleElementClick = (element: ActiveComponent) => {
         emitter.emit('componentSelected', element);
     };
 
+    emitter.on('previewScreenChange', (newScreen) => {
+        setScreen(newScreen);
+    });
+
     return (
         <div className={styleClasses.container}>
-            <div className={styleClasses.iframe}>
+            <div
+                className={`${styleClasses.iframe} ${
+                    screen === PreviewScreen.DESKTOP
+                        ? styleClasses.iframeDesktop
+                        : styleClasses.iframeMobile
+                }`}>
                 {previewTree.length == 0 && (
                     <div className={'tree-element w-full'} key={'Element-First'}>
                         <PreviewDroppable index={0} key={0} />
@@ -31,9 +42,14 @@ const Preview: React.FunctionComponent = () => {
                                 key={elementIndex + JSON.stringify(element)}>
                                 <PreviewComponentWrapper
                                     index={elementIndex}
-                                    onClick={() => handleElementClick(element)}>
+                                    onClick={() =>
+                                        handleElementClick({ index: elementIndex, ...element })
+                                    }>
                                     <Suspense>
-                                        <DynamicComponent componentName={element.id} />
+                                        <DynamicComponent
+                                            componentName={element.name}
+                                            customProps={element.props}
+                                        />
                                     </Suspense>
                                 </PreviewComponentWrapper>
                             </div>
@@ -50,8 +66,10 @@ const Preview: React.FunctionComponent = () => {
 };
 
 const styleClasses = {
-    container: 'flex flex-1 w-3/4 justify-center h-screen bg-slate-500',
-    iframe: ' bg-white flex-1 p-4 flex flex-col justify-start items-start'
+    container: 'flex justify-center items-center w-full h-full bg-slate-500',
+    iframe: 'p-4 flex flex-col justify-start items-start bg-white',
+    iframeDesktop: 'w-[95%] aspect-video',
+    iframeMobile: 'h-[95%] aspect-[9/16] rounded-3xl'
 };
 
 export default Preview;

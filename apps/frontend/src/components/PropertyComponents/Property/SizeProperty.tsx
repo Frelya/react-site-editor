@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { PropertyProps } from '@libs/types/property.type';
+import type { PropertyProps } from '@/types';
 import PropertyWrapper from '@components/PropertyComponents/PropertyWrapper';
 
 const SizeProperty: React.FunctionComponent<PropertyProps> = (props) => {
@@ -11,7 +11,7 @@ const SizeProperty: React.FunctionComponent<PropertyProps> = (props) => {
         setSize(newValue);
 
         if (props.onChange) {
-            props.onChange(event, newValue);
+            props.onChange(newValue);
         }
     };
 

@@ -1,7 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { kebabToPascal } from '@react-site-editor/functions';
-import type { IconName } from '@/libs/types/icons.type';
-import type { TooltipPlace } from '@/libs/types/tooltip.type';
+import type { IconName, TooltipPlace } from '@/types';
 
 interface IconProps {
     name: IconName;

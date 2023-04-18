@@ -28,10 +28,6 @@ export default defineConfig({
                 replacement: resolve(__dirname, 'src/views')
             },
             {
-                find: '@hooks',
-                replacement: resolve(__dirname, 'src/hooks')
-            },
-            {
                 find: '@ui',
                 replacement: '@react-site-editor/ui'
             }

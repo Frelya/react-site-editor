@@ -1,6 +1,7 @@
-import { PredefinedComponentProps, PropsEnum } from '@react-site-editor/types';
+import type { PredefinedComponentProps } from '@react-site-editor/types';
+import { PropsEnum } from '@react-site-editor/types';
+import type { Button3Props } from './Button3.types';
 import styles from './Button3.module.css';
-import { Button3Props } from './Button3.types';
 
 const Button3: React.FunctionComponent<Button3Props> = (props) => {
     const fontSize = `font${props.fontSize?.value}` as keyof typeof styles;
@@ -20,6 +21,7 @@ export const defaultProps: PredefinedComponentProps<Button3Props> = {
     maxChildren: 2,
     iconName: 'ui-eject'
 };
+
 Button3.defaultProps = defaultProps;
 
 export default Button3;

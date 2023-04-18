@@ -6,13 +6,13 @@ then
   exit 1
 fi
 
-BASE_DIR=./src/libs
+BASE_DIR=.
 
-INTER_FILE=${BASE_DIR}/output
-OUTPUT_FILE=${BASE_DIR}/types/icons.type.ts
-SCRIPT_FILE=${BASE_DIR}/getAvailableIcons.ts
+INTER_FILE=${BASE_DIR}/scripts/output
+OUTPUT_FILE=${BASE_DIR}/src/types/icons.type.ts
+SCRIPT_FILE=${BASE_DIR}/scripts/modules/loadIcons.ts
 
-REQUIRED_FILE=../../packages/functions/pascalToKebab.ts
+REQUIRED_FILE=../../packages/functions/src/stringutils/pascalToKebab.ts
 
 # Generate a single typescript file containing the pascalToKebab function
 
@@ -22,7 +22,7 @@ cat $REQUIRED_FILE > ${INTER_FILE}.ts
 # Step2: add a blank line
 echo >> ${INTER_FILE}.ts
 
-# Step3: add the getAvailableIcons script, by removing the import of
+# Step3: add the loadIcons script, by removing the import of
 # pascalToKebab at the top of the file
 tail -n +2 $SCRIPT_FILE >> ${INTER_FILE}.ts
 

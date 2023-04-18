@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { useSelector } from 'react-redux';
-import { useMitt } from '@/components/Decorators/MittProvider';
 import { selectPreviewTree } from '@/store/previewTree/previewTreeSlice';
-import type { PreviewElementData } from '@libs/types/tree.type';
+import type { ActiveComponent } from '@/types';
+import { useMitt } from '@/components/Decorators/MittProvider';
 import PreviewComponentWrapper from '@/components/Preview/PreviewComponentWrapper';
 import PreviewDroppable from '@components/Preview/PreviewDroppable';
 import DynamicComponent from '@components/Decorators/DynamicComponent';
@@ -11,7 +11,7 @@ const Preview: React.FunctionComponent = () => {
     const previewTree = useSelector(selectPreviewTree);
     const emitter = useMitt();
 
-    const handleElementClick = (element: PreviewElementData) => {
+    const handleElementClick = (element: ActiveComponent) => {
         emitter.emit('componentSelected', element);
     };
 
@@ -30,11 +30,12 @@ const Preview: React.FunctionComponent = () => {
                             key={elementIndex + JSON.stringify(element)}>
                             <PreviewComponentWrapper
                                 index={elementIndex}
-                                onClick={() => handleElementClick(element)}>
+                                onClick={() =>
+                                    handleElementClick({ index: elementIndex, ...element })
+                                }>
                                 <Suspense>
                                     <DynamicComponent
-                                        componentName={element.id}
-                                        componentGroup={element.group}
+                                        componentName={element.name}
                                         customProps={element.props}
                                     />
                                 </Suspense>
