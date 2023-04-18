@@ -12,9 +12,9 @@ input="./${SRC}/index.ts"
 # Find executables
 esbuild=$(npx esbuild)
 tsc=$(npx tsc)
-resolver="${SCRIPT_DIR}/resolve-files.js"
-rewriteImports="${SCRIPT_DIR}/rewrite-imports.js"
-rewriteStyles="${SCRIPT_DIR}/rewrite-styles.cjs"
+resolver="${SCRIPT_DIR}/modules/resolve-files.js"
+rewriteImports="${SCRIPT_DIR}/modules/rewrite-imports.js"
+rewriteStyles="${SCRIPT_DIR}/modules/rewrite-styles.cjs"
 
 # Setup shared options for esbuild
 echo Setup shared options for esbuild...
@@ -45,7 +45,7 @@ NODE_ENV=development npx esbuild $input --format=cjs --outfile=$DST/$name.dev.cj
 echo Generate types...
 
 # Generate types
-tsc --emitDeclarationOnly -d true -p ./tsconfig.json --outDir $DST &
+tsc -d true -p ./tsconfig.json --outDir $DST &
 
 # Copy build files over
 cp -rf ./build/ $DST
