@@ -16,7 +16,7 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = (props) => 
     };
 
     return (
-        <>
+        <div className={styleClasses.container}>
             <div className={styleClasses.searchBar}>
                 <input
                     className={styleClasses.searchBarInput}
@@ -33,11 +33,12 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = (props) => 
                     : 'Available components'}
             </p>
             <ComponentsListGroups elements={props.elements} filter={searchQuery} />
-        </>
+        </div>
     );
 };
 
 const styleClasses = {
+    container: 'h-full flex flex-col items-center justify-start',
     searchBar:
         'flex items-center justify-start gap-2 w-11/12 h-12 mx-auto my-4 p-2 bg-white rounded-md',
     searchBarInput: 'w-full h-full px-2 ' + 'focus:outline-none active:outline-none',

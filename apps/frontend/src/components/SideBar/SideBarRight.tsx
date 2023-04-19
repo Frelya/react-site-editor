@@ -8,9 +8,10 @@ import {
 } from '@/store/activeComponent/activeComponentSlice';
 import { updateComponent } from '@/store/previewTree/previewTreeSlice';
 import PROPERTY_COMPONENTS_MAP from '@/components/PropertyComponents/components-map';
-import BaseSideBar, { SideBarScales } from '@components/SideBar/BaseSideBar';
-import SideBarHeader from '@components/SideBar/SideBarHeader';
 import Icon from '@components/Decorators/Icon';
+import BaseSideBar, { SideBarScales } from '@components/SideBar/BaseSideBar';
+import SideBarSection from '@components/SideBar/SideBarSection';
+import EditorButton from '@components/Common/EditorButton';
 
 interface SideBarRightProps {
     visible: boolean;
@@ -42,6 +43,20 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                 }
             })
         );
+    };
+
+    const resetToDefault = () => {
+        /*
+        Something like this:
+        
+        if (activeComponent.props) {
+            Object.entries(activeComponent.props).forEach(([propName, prop]) => {
+                if (prop.value !== prop.defaultValue) {
+                    handleChangeProperty(activeComponent.index, prop.defaultValue, propName);
+                }
+            });
+        }
+         */
     };
 
     useEffect(() => {
@@ -81,7 +96,7 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
 
     return (
         <BaseSideBar visible={props.visible} scale={SideBarScales.NORMAL}>
-            <SideBarHeader>
+            <SideBarSection position={'top'}>
                 <Icon
                     name={'cross-mark'}
                     className={'w-6 h-6 cursor-pointer'}
@@ -97,18 +112,40 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                             : 'No component selected'}
                     </p>
                 )}
-            </SideBarHeader>
+            </SideBarSection>
 
-            <p className={styleClasses.componentPropsTitle}>Properties</p>
+            <div className={styleClasses.main}>
+                <p className={styleClasses.componentPropsTitle}>Properties</p>
 
-            {displayedComponent}
+                {displayedComponent}
+            </div>
+
+            <SideBarSection position={'bottom'}>
+                <div className={styleClasses.footer}>
+                    <span></span>
+                    <EditorButton onClick={resetToDefault}>
+                        <div className={styleClasses.footerButton}>
+                            <Icon name={'refresh-arrows'} className={'w-6 h-6'} />
+                            Reset to default
+                        </div>
+                    </EditorButton>
+                    <Icon
+                        name={'information-circle'}
+                        description={'About'}
+                        className={'text-gray-500'}
+                    />
+                </div>
+            </SideBarSection>
         </BaseSideBar>
     );
 };
 
 const styleClasses = {
+    main: 'w-11/12 h-full flex flex-col justify-start items-center',
     componentName: 'text-xl break-words w-9/12 max-w-[75%] min-h-fit max-h-full',
-    componentPropsTitle: 'w-11/12 mx-auto my-4 px-2'
+    componentPropsTitle: 'w-11/12 mx-auto my-4 px-2',
+    footer: 'w-11/12 h-full flex justify-between items-center',
+    footerButton: 'w-full h-full gap-2 py-2 px-4 flex justify-center items-center'
 };
 
 export default SideBarRight;
