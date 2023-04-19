@@ -3,11 +3,11 @@ import * as allComponent from '../index';
 
 async function getAllComponents(): Promise<ComponentInfos[]> {
     const components: ComponentInfos[] = [];
-    const files = import.meta.glob(`./exposed/**/*.tsx`);
+    const files = import.meta.glob(`./exposed/**/*.component.*`);
 
     for (const filepath in files) {
-        const filename = filepath.match(/.*\/(.+)\.tsx$/)?.[1];
-        const directory = filepath.match(/\/(\w+)\/\w+\/\w+\.tsx$/)?.[1];
+        const filename = filepath.match(/.*\/(.+)\.component\..+$/)?.[1];
+        const directory = filepath.match(/\/(\w+)\/\w+\/\w+\.component\..+$/)?.[1];
 
         if (filename) {
             components.push({
