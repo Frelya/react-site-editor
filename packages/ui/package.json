@@ -3,7 +3,7 @@
     "private": true,
     "version": "1.0.0",
     "type": "module",
-    "main": "./dist/rse.esm.js",
+    "main": "./src/index.ts",
     "scripts": {
         "dev": "vite",
         "pre-build": "chmod +x ./scripts/build.sh && ./scripts/build.sh --external:react --external:react-dom",
@@ -20,7 +20,6 @@
     },
     "devDependencies": {
         "@types/glob": "^8.1.0",
-        "@types/postcss-js": "^4.0.0",
         "@types/react": "^18.0.27",
         "@types/react-dom": "^18.0.10",
         "@vitejs/plugin-react": "^3.1.0",

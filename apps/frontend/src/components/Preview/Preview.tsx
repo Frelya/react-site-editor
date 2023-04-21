@@ -1,8 +1,8 @@
 import { Suspense, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectPreviewTree } from '@/store/previewTree/previewTreeSlice';
-import type { ActiveComponent } from '@/types';
 import { PreviewScreen } from '@/types';
+import type { ActiveComponent } from '@/types';
 import { useMitt } from '@/components/Decorators/MittProvider';
 import PreviewComponentWrapper from '@/components/Preview/PreviewComponentWrapper';
 import PreviewDroppable from '@components/Preview/PreviewDroppable';
@@ -41,6 +41,7 @@ const Preview: React.FunctionComponent = () => {
                                 className={'tree-element w-full'}
                                 key={elementIndex + JSON.stringify(element)}>
                                 <PreviewComponentWrapper
+                                    editable={true}
                                     index={elementIndex}
                                     onClick={() =>
                                         handleElementClick({ index: elementIndex, ...element })
@@ -68,7 +69,7 @@ const Preview: React.FunctionComponent = () => {
 const styleClasses = {
     container: 'flex justify-center items-center w-full h-full bg-slate-500',
     iframe: 'p-4 flex flex-col justify-start items-start bg-white',
-    iframeDesktop: 'w-[95%] aspect-video',
+    iframeDesktop: 'w-[95%] aspect-video overflow-x-hidden overflow-y-auto',
     iframeMobile: 'h-[95%] aspect-[9/16] rounded-3xl'
 };
 
