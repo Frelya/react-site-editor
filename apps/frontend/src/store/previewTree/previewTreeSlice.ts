@@ -1,4 +1,4 @@
-import type { PreviewElement, PreviewTree, UpdateElementData } from '@/types';
+import type { PreviewElement, PreviewTree, UpdateElementData, MoveElementData } from '@/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface PreviewTreeState {
@@ -25,8 +25,15 @@ export const previewTreeSlice = createSlice({
         addChildren: () => {
             return;
         },
-        arrange: () => {
-            return;
+        moveComponent: (state, actions: PayloadAction<MoveElementData>) => {
+            const { currentIndex, newIndex } = actions.payload;
+
+            if (currentIndex === newIndex || newIndex < 0 || newIndex >= state.value.length) {
+                return;
+            }
+
+            const [removed] = state.value.splice(currentIndex, 1);
+            state.value.splice(newIndex, 0, removed);
         },
         deleteComponent: (state, actions: PayloadAction<{ index: number }>) => {
             state.value.splice(actions.payload.index, 1);
@@ -55,7 +62,7 @@ export const {
     addComponent,
     updateComponent,
     addChildren,
-    arrange,
+    moveComponent,
     deleteComponent,
     deleteChildren,
     resetTree

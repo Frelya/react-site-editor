@@ -1,5 +1,7 @@
 export type IconName =
     | 'add-circle-line'
+    | 'arrow-small-down'
+    | 'arrow-small-up'
     | 'chevron-left'
     | 'cross-mark'
     | 'desktop-screen'

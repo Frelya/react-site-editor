@@ -7,7 +7,7 @@ interface IconProps {
     description?: string;
     className?: string;
     descriptionPlace?: TooltipPlace;
-    onClick?: () => void;
+    onClick?: (e?: React.MouseEvent) => void;
 }
 
 const Icon: React.FunctionComponent<IconProps> = (props) => {
@@ -22,12 +22,19 @@ const Icon: React.FunctionComponent<IconProps> = (props) => {
           )
         : lazy(() => import(`../Icons/${kebabToPascal(props.name)}.tsx`));
 
+    const handleIconClickCapture = (event: React.MouseEvent) => {
+        event.stopPropagation();
+        if (props.onClick) {
+            props.onClick(event);
+        }
+    };
+
     return (
         <div
             className={`icon ${props.className}`}
             data-tooltip-content={props.description}
             data-tooltip-place={props.descriptionPlace}
-            onClick={props.onClick}>
+            onClickCapture={handleIconClickCapture}>
             <Suspense>
                 <DynamicIcon />
             </Suspense>
