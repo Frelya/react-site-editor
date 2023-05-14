@@ -6,7 +6,7 @@ import { resolve } from 'path';
 export default defineConfig({
     plugins: [react()],
     build: {
-        target: 'esnext',
+        target: 'esnext'
     },
     resolve: {
         alias: [

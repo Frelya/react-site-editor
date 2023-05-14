@@ -7,7 +7,7 @@
     "scripts": {
         "dev": "vite",
         "pre-build": "chmod +x ./scripts/build.sh && ./scripts/build.sh --external:react --external:react-dom",
-        "build": "tsc && vite build",
+        "build": "vite build",
         "preview": "vite preview",
         "start": "npm run build && vite",
         "scripts:init": "find ./scripts/ -type f -iname \"*.sh\" -exec chmod +x {} \\;",
