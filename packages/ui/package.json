@@ -10,9 +10,9 @@
         "build": "tsc && vite build",
         "preview": "vite preview",
         "start": "npm run build && vite",
-        "init:scripts": "find ./scripts/ -type f -iname \"*.sh\" -exec chmod +x {} \\;",
-        "components:expose": "npm run init:scripts && ./scripts/expose-components.sh",
-        "components:create": "npm run init:scripts && ./scripts/create-component.sh"
+        "scripts:init": "find ./scripts/ -type f -iname \"*.sh\" -exec chmod +x {} \\;",
+        "components:expose": "npm run scripts:init && ./scripts/expose-components.sh",
+        "components:create": "npm run scripts:init && ./scripts/create-component.sh"
     },
     "dependencies": {
         "react": "^18.2.0",

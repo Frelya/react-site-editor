@@ -1,9 +1,8 @@
 {
     "name": "@react-site-editor/functions",
     "version": "1.0.0",
-    "description": "",
+    "description": "Utility functions for react-site-editor",
     "main": "index.ts",
-    "devDependencies": {},
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },

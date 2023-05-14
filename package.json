@@ -1,14 +1,25 @@
 {
     "name": "react-site-editor",
+    "version": "1.0.0",
     "private": true,
     "engines": {
         "node": "^16.19.0",
         "npm": "^8.19.3"
     },
     "scripts": {
-        "dev": "npm run dev --workspace=apps/frontend",
-        "frontend": "npm run --workspace=apps/frontend",
-        "ui": "npm run --workspace=packages/ui",
+        "dev": "turbo run dev",
+        "build": "turbo run build --no-cache --force",
+        "frontend:icons": "npm run icons --workspace=apps/frontend",
+        "frontend:build": "npm run build --workspace=apps/frontend",
+        "frontend:dev": "npm run dev --workspace=apps/frontend",
+        "frontend:preview": "npm run preview --workspace=apps/frontend",
+        "ui:build": "npm run build --workspace=packages/ui",
+        "ui:components:create": "npm run components:create --workspace=packages/ui",
+        "ui:components:expose": "npm run components:expose --workspace=packages/ui",
+        "ui:dev": "npm run dev --workspace=packages/ui",
+        "ui:preview": "npm run preview --workspace=packages/ui",
+        "ui:scripts:init": "npm run scripts:init --workspace=packages/ui",
+        "ui:start": "npm run start --workspace=packages/ui",
         "lint": "npx eslint --ext .js,.ts,.jsx,.tsx,.json .",
         "lint-fix": "npx eslint --ext .js,.ts,.jsx,.tsx,.json . --fix",
         "format": "npx prettier --write ./ '!**/*.{js,ts,jsx,tsx,html,json}'",
@@ -26,6 +37,7 @@
         "eslint-config-prettier": "^8.6.0",
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.32.2",
-        "prettier": "2.8.3"
+        "prettier": "2.8.3",
+        "turbo": "^1.9.4"
     }
 }

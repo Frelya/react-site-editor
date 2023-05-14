@@ -5,6 +5,9 @@ import { resolve } from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [react()],
+    build: {
+        target: 'esnext',
+    },
     resolve: {
         alias: [
             {
@@ -26,10 +29,6 @@ export default defineConfig({
             {
                 find: '@views',
                 replacement: resolve(__dirname, 'src/views')
-            },
-            {
-                find: '@ui',
-                replacement: '@react-site-editor/ui'
             }
         ]
     }
