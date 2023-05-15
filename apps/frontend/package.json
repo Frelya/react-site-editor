@@ -2,8 +2,8 @@
     "name": "@react-site-editor/frontend",
     "version": "1.0.0",
     "private": true,
-    "description": "React Site Editor website frontend",
     "type": "module",
+    "description": "React Site Editor website frontend",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
@@ -36,7 +36,5 @@
         "typescript": "^4.9.3",
         "vite": "^4.1.0"
     },
-    "homepage": "https://frelya.github.io/",
-    "author": "Frelya",
-    "license": "MIT"
+    "homepage": "https://react-site-editor.netlify.app/"
 }

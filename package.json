@@ -2,6 +2,8 @@
     "name": "react-site-editor",
     "version": "1.0.0",
     "private": true,
+    "author": "Frelya",
+    "license": "MIT",
     "engines": {
         "node": "^16.19.0",
         "npm": "^8.19.3"
