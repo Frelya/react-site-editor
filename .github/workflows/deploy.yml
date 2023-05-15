@@ -22,6 +22,7 @@ jobs:
                 with:
                     branch: production
                     force: true
+                    github_token: ${{ secrets.GITHUB_TOKEN }}
 
             -   name: Checkout production branch
                 uses: actions/checkout@v3
