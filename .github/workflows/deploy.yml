@@ -1,8 +1,5 @@
 name: Deploy
-on:
-    push:
-        branches:
-            - main
+on: pull_request
 permissions:
     contents: write
 jobs:
@@ -20,5 +17,4 @@ jobs:
                 with:
                     branch: production
                     folder: .
-                clean-exclude: pr-preview/
                 force: false
