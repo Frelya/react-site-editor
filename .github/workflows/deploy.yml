@@ -30,6 +30,7 @@ jobs:
                 run: npm run build
 
             -   name: Add & Commit
+                message: Deploy to production
                 uses: EndBug/add-and-commit@v9.1.3
 
             -   name: Deploy to GitHub Pages
