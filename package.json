@@ -10,7 +10,7 @@
         "dev": "npm run frontend:dev",
         "build": "turbo run build --no-cache --force",
         "start": "npm run frontend:start",
-        "deploy": "gh-pages -b production -d dist",
+        "deploy": "gh-pages -b production -d .",
         "frontend:build": "npm run build --workspace=apps/frontend",
         "frontend:dev": "npm run dev --workspace=apps/frontend",
         "frontend:icons": "npm run icons --workspace=apps/frontend",
