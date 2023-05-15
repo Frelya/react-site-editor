@@ -10,6 +10,7 @@
         "dev": "npm run frontend:dev",
         "build": "turbo run build --no-cache --force",
         "start": "npm run frontend:start",
+        "deploy": "gh-pages -b production -d dist",
         "frontend:build": "npm run build --workspace=apps/frontend",
         "frontend:dev": "npm run dev --workspace=apps/frontend",
         "frontend:icons": "npm run icons --workspace=apps/frontend",
@@ -39,6 +40,7 @@
         "eslint-config-prettier": "^8.6.0",
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.32.2",
+        "gh-pages": "^5.0.0",
         "prettier": "2.8.3",
         "turbo": "^1.9.4"
     }
