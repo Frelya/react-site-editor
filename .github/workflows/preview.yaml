@@ -13,8 +13,8 @@ jobs:
                 run: npm install
             -   name: Build project
                 run: npm run build
-            -   name: Deploy preview of branch ${{ github.ref }}
+            -   name: Deploy preview of branch ${{ github.head_ref }}
                 uses: rossjrw/pr-preview-action@v1.4.1
                 with:
                     source-dir: ./dist/
-                    preview-branch: ${{ github.ref }}
+                    preview-branch: ${{ github.head_ref }}
