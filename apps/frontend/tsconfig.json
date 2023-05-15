@@ -5,10 +5,12 @@
         "baseUrl": ".",
         "paths": {
             "@/*": ["./src/*"],
-            "@components/*": ["./src/components/*"],
             "@assets/*": ["./src/assets/*"],
-            "@views/*": ["./src/views/*"],
-            "@libs/*": ["./src/libs/*"]
+            "@components/*": ["./src/components/*"],
+            "@plugins/*": ["./src/plugins/*"],
+            "@router/*": ["./src/router/*"],
+            "@store/*": ["./src/store/*"],
+            "@views/*": ["./src/views/*"]
         }
     },
     "include": ["src"]

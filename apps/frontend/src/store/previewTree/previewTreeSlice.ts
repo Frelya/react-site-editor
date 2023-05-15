@@ -1,12 +1,14 @@
-import type { PreviewElement, PreviewTree, UpdateElementData, MoveElementData } from '@/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { PreviewElement, PreviewTree, UpdateElementData, MoveElementData } from '@/types';
 
-interface PreviewTreeState {
+export interface PreviewTreeState {
     value: PreviewTree;
 }
+
 const initialState: PreviewTreeState = {
     value: []
 };
+
 export const previewTreeSlice = createSlice({
     name: 'previewTree',
     initialState,
@@ -68,6 +70,9 @@ export const {
     resetTree
 } = previewTreeSlice.actions;
 
-export default previewTreeSlice.reducer;
 export const selectPreviewTree = (state: { previewTree: { value: PreviewTree } }) =>
     state.previewTree.value;
+
+const previewTreeReducer = previewTreeSlice.reducer;
+
+export default previewTreeReducer;

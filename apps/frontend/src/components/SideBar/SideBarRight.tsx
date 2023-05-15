@@ -5,9 +5,9 @@ import type { ComponentProp } from '@react-site-editor/types';
 import {
     selectActiveComponent,
     updateActiveComponentProps
-} from '@/store/activeComponent/activeComponentSlice';
-import { updateComponent } from '@/store/previewTree/previewTreeSlice';
-import PROPERTY_COMPONENTS_MAP from '@/components/PropertyComponents/components-map';
+} from '@store/activeComponent/activeComponentSlice';
+import { updateComponent } from '@store/previewTree/previewTreeSlice';
+import PROPERTY_COMPONENTS_MAP from '@components/PropertyComponents/components-map';
 import Icon from '@components/Decorators/Icon';
 import BaseSideBar, { SideBarScales } from '@components/SideBar/BaseSideBar';
 import SideBarSection from '@components/SideBar/SideBarSection';

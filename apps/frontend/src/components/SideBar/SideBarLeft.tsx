@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { resetTree } from '@/store/previewTree/previewTreeSlice';
+import { resetTree } from '@store/previewTree/previewTreeSlice';
 import { components } from '@react-site-editor/ui';
 import { PreviewScreen } from '@/types';
 import { useMitt } from '@components/Decorators/MittProvider';

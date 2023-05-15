@@ -12,24 +12,34 @@ export default defineConfig({
         alias: [
             {
                 find: '@',
-                replacement: resolve(__dirname, 'src')
-            },
-            {
-                find: '@components',
-                replacement: resolve(__dirname, 'src/components')
+                replacement: resolve(__dirname, '/src')
             },
             {
                 find: '@assets',
-                replacement: resolve(__dirname, 'src/assets')
+                replacement: resolve(__dirname, '/src/assets')
             },
             {
-                find: '@libs',
-                replacement: resolve(__dirname, 'src/libs')
+                find: '@components',
+                replacement: resolve(__dirname, '/src/components')
+            },
+            {
+                find: '@plugins',
+                replacement: resolve(__dirname, '/src/plugins')
+            },
+            {
+                find: '@router',
+                replacement: resolve(__dirname, '/src/router')
+            },
+            {
+                find: '@store',
+                replacement: resolve(__dirname, '/src/store')
             },
             {
                 find: '@views',
-                replacement: resolve(__dirname, 'src/views')
+                replacement: resolve(__dirname, '/src/views')
             }
         ]
     }
 });
+
+console.log(resolve(__dirname, '/src'));
