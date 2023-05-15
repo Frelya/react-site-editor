@@ -25,11 +25,8 @@ export const activeComponentSlice = createSlice({
     }
 });
 
-export const {
-    updateActiveComponent,
-    updateActiveComponentProps,
-    resetActiveComponent
-} = activeComponentSlice.actions;
+export const { updateActiveComponent, updateActiveComponentProps, resetActiveComponent } =
+    activeComponentSlice.actions;
 
 export const selectActiveComponent = (state: { activeComponent: { value: ActiveComponent } }) =>
     state.activeComponent.value;
