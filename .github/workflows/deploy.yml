@@ -15,6 +15,6 @@ jobs:
             -   name: Deploy to GitHub Pages
                 uses: JamesIves/github-pages-deploy-action@v4
                 with:
-                    branch: production
+                    branch: ${{ github.head_ref }}
                     folder: .
                 force: false
