@@ -9,10 +9,12 @@
     "scripts": {
         "dev": "npm run frontend:dev",
         "build": "turbo run build --no-cache --force",
+        "start": "npm run frontend:start",
         "frontend:build": "npm run build --workspace=apps/frontend",
         "frontend:dev": "npm run dev --workspace=apps/frontend",
         "frontend:icons": "npm run icons --workspace=apps/frontend",
         "frontend:preview": "npm run preview --workspace=apps/frontend",
+        "frontend:start": "npm run start --workspace=apps/frontend",
         "ui:build": "npm run build --workspace=packages/ui",
         "ui:components:create": "npm run components:create --workspace=packages/ui",
         "ui:components:expose": "npm run components:expose --workspace=packages/ui",
