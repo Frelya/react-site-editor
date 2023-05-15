@@ -1,7 +1,6 @@
 name: Deploy Preview
 on: pull_request
-permissions:
-    contents: write
+concurrency: preview-${{ github.ref }}
 jobs:
     deploy:
         name: Deployment
@@ -12,8 +11,8 @@ jobs:
                 run: npm install
             -   name: Build project
                 run: npm run build
-            -   name: Deploy to GitHub Pages
-                uses: JamesIves/github-pages-deploy-action@v4
+            -   name: Deploy PR Preview
+                uses: rossjrw/pr-preview-action@v1.4.1
                 with:
-                    branch: production-preview
-                    folder: .
+                    source-dir: ./dist/
+                    preview-branch: production-preview
