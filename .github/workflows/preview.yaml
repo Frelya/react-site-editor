@@ -1,5 +1,8 @@
 name: Deploy Preview
-on: pull_request
+on:
+    push:
+        branches:
+            -   main
 concurrency: preview-${{ github.ref }}
 permissions:
     contents: write
