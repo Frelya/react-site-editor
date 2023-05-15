@@ -6,7 +6,8 @@ import { resolve } from 'path';
 export default defineConfig({
     plugins: [react()],
     build: {
-        target: 'esnext'
+        target: 'esnext',
+        outDir: '../../dist',
     },
     resolve: {
         alias: [
@@ -41,5 +42,3 @@ export default defineConfig({
         ]
     }
 });
-
-console.log(resolve(__dirname, '/src'));
