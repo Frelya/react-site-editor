@@ -16,5 +16,5 @@ jobs:
             -   name: Deploy preview of branch ${{ github.head_ref }}
                 uses: rossjrw/pr-preview-action@v1.4.1
                 with:
-                    source-dir: .
+                    source-dir: ./dist/
                     preview-branch: production-preview
