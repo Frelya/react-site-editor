@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateActiveComponent } from '@store/activeComponent/activeComponentSlice';
 import { useMitt } from '@components/Decorators/MittProvider';
@@ -14,17 +14,6 @@ const Editor: React.FunctionComponent = () => {
     const hideSidebarRight = () => {
         setSidebarRightIsVisible(false);
     };
-
-    useEffect(() => {
-        const unloadCallback = (event: BeforeUnloadEvent) => {
-            event.preventDefault();
-            event.returnValue = '';
-            return '';
-        };
-
-        window.addEventListener('beforeunload', unloadCallback);
-        return () => window.removeEventListener('beforeunload', unloadCallback);
-    }, []);
 
     // We need to remove the previous listeners on page reload
     emitter.off('componentSelected');
