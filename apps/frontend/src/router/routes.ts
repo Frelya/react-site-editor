@@ -1,7 +1,8 @@
 import App from '@/App';
-import HomePage from '@views/HomePage';
-import EditorPage from '@views/EditorPage';
-import Preview from '@views/Preview';
+import HomePage from '@views/home/HomePage';
+import EditorPage from '@views/editor/EditorPage';
+import Editor from '@views/editor/Editor';
+import Preview from '@views/editor/Preview';
 
 const routes = [
     {
@@ -14,11 +15,17 @@ const routes = [
             },
             {
                 path: 'editor',
-                Component: EditorPage
-            },
-            {
-                path: 'preview',
-                Component: Preview
+                Component: EditorPage,
+                children: [
+                    {
+                        index: true,
+                        Component: Editor
+                    },
+                    {
+                        path: 'preview',
+                        Component: Preview
+                    }
+                ]
             }
         ]
     }

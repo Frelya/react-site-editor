@@ -66,7 +66,7 @@ const SideBarLeft: React.FunctionComponent = () => {
                             className={'text-gray-500'}
                         />
                         <EditorButton>
-                            <Link to={'/preview'}>
+                            <Link to={'./preview'}>
                                 <div className={styleClasses.footerButton}>
                                     <Icon name={'save'} className={'w-6 h-6'} />
                                     Save
