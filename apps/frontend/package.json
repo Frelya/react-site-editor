@@ -1,6 +1,6 @@
 {
     "name": "@react-site-editor/frontend",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "private": true,
     "type": "module",
     "description": "React Site Editor website frontend",
