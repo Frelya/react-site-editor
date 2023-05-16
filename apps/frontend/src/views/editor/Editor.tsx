@@ -1,7 +1,7 @@
-import {useEffect, useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {updateActiveComponent} from '@store/activeComponent/activeComponentSlice';
-import {useMitt} from '@components/Decorators/MittProvider';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateActiveComponent } from '@store/activeComponent/activeComponentSlice';
+import { useMitt } from '@components/Decorators/MittProvider';
 import SideBarRight from '@components/SideBar/SideBarRight';
 import SideBarLeft from '@components/SideBar/SideBarLeft';
 import Preview from '@components/Preview/Preview';
@@ -42,9 +42,9 @@ const Editor: React.FunctionComponent = () => {
 
     return (
         <div className={styleClasses.container}>
-            <SideBarLeft/>
-            <Preview/>
-            <SideBarRight visible={sidebarRightIsVisible} onClose={hideSidebarRight}/>
+            <SideBarLeft />
+            <Preview />
+            <SideBarRight visible={sidebarRightIsVisible} onClose={hideSidebarRight} />
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
 const EditorPage: React.FunctionComponent = () => {
-    return <Outlet />
-}
+    return <Outlet />;
+};
 
 export default EditorPage;
