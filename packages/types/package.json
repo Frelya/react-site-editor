@@ -1,9 +1,8 @@
 {
     "name": "@react-site-editor/types",
-    "version": "1.0.0",
-    "description": "",
+    "version": "0.0.1",
+    "description": "Types for react-site-editor packages",
     "main": "index.ts",
-    "devDependencies": {},
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },

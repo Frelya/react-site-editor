@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateActiveComponent } from '@/store/activeComponent/activeComponentSlice';
-import { useMitt } from '@/components/Decorators/MittProvider';
+import { updateActiveComponent } from '@store/activeComponent/activeComponentSlice';
+import { useMitt } from '@components/Decorators/MittProvider';
 import SideBarRight from '@components/SideBar/SideBarRight';
 import SideBarLeft from '@components/SideBar/SideBarLeft';
-import Preview from '@/components/Preview/Preview';
+import Preview from '@components/Preview/Preview';
 
-const EditorPage: React.FunctionComponent = () => {
+const Editor: React.FunctionComponent = () => {
     const [sidebarRightIsVisible, setSidebarRightIsVisible] = useState<boolean>(false);
     const dispatch = useDispatch();
     const emitter = useMitt();
@@ -14,17 +14,6 @@ const EditorPage: React.FunctionComponent = () => {
     const hideSidebarRight = () => {
         setSidebarRightIsVisible(false);
     };
-
-    useEffect(() => {
-        const unloadCallback = (event: BeforeUnloadEvent) => {
-            event.preventDefault();
-            event.returnValue = '';
-            return '';
-        };
-
-        window.addEventListener('beforeunload', unloadCallback);
-        return () => window.removeEventListener('beforeunload', unloadCallback);
-    }, []);
 
     // We need to remove the previous listeners on page reload
     emitter.off('componentSelected');
@@ -53,4 +42,4 @@ const styleClasses = {
     container: 'flex w-screen h-screen overflow-hidden'
 };
 
-export default EditorPage;
+export default Editor;

@@ -1,7 +1,7 @@
 import type { ActiveComponent } from '@/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface ActiveComponentState {
+export interface ActiveComponentState {
     value: ActiveComponent;
 }
 
@@ -31,4 +31,6 @@ export const { updateActiveComponent, updateActiveComponentProps, resetActiveCom
 export const selectActiveComponent = (state: { activeComponent: { value: ActiveComponent } }) =>
     state.activeComponent.value;
 
-export default activeComponentSlice.reducer;
+const activeComponentReducer = activeComponentSlice.reducer;
+
+export default activeComponentReducer;

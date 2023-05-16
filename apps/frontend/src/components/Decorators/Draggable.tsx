@@ -1,5 +1,5 @@
-import boxImage from '@/assets/icons/box.png';
-import { useMitt } from '@/components/Decorators/MittProvider';
+import boxImage from '@assets/icons/box.png';
+import { useMitt } from '@components/Decorators/MittProvider';
 
 interface DraggableProps {
     children: React.ReactElement;

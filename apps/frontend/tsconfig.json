@@ -1,30 +1,17 @@
 {
+    "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "target": "ESNext",
-        "useDefineForClassFields": true,
-        "lib": ["DOM", "DOM.Iterable", "ESNext"],
         "allowJs": false,
-        "skipLibCheck": true,
-        "esModuleInterop": false,
-        "allowSyntheticDefaultImports": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "module": "ESNext",
-        "moduleResolution": "Node",
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "noEmit": true,
-        "jsx": "react-jsx",
         "baseUrl": ".",
         "paths": {
             "@/*": ["./src/*"],
-            "@components/*": ["./src/components/*"],
             "@assets/*": ["./src/assets/*"],
-            "@views/*": ["./src/views/*"],
-            "@libs/*": ["./src/libs/*"],
-            "@ui/*": ["../../packages/ui/*"]
+            "@components/*": ["./src/components/*"],
+            "@plugins/*": ["./src/plugins/*"],
+            "@router/*": ["./src/router/*"],
+            "@store/*": ["./src/store/*"],
+            "@views/*": ["./src/views/*"]
         }
     },
-    "include": ["src"],
-    "references": [{ "path": "./tsconfig.node.json" }]
+    "include": ["src"]
 }

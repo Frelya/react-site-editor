@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { deleteComponent, moveComponent } from '@/store/previewTree/previewTreeSlice';
+import { deleteComponent, moveComponent } from '@store/previewTree/previewTreeSlice';
 import PreviewDroppable from '@components/Preview/PreviewDroppable';
 import Icon from '@components/Decorators/Icon';
 

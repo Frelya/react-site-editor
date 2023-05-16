@@ -5,7 +5,7 @@ import {
     arrayToGridFlowTemplate,
     gridFlowTemplateToArray
 } from '@react-site-editor/functions';
-import { selectActiveComponent } from '@/store/activeComponent/activeComponentSlice';
+import { selectActiveComponent } from '@store/activeComponent/activeComponentSlice';
 import type { PropertyProps } from '@/types';
 import PropertyWrapper from '@components/PropertyComponents/PropertyWrapper';
 
