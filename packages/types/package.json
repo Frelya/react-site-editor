@@ -4,7 +4,7 @@
     "description": "Types for react-site-editor packages",
     "main": "index.ts",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\""
     },
     "author": "Frelya",
     "license": "MIT"

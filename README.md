@@ -1,4 +1,4 @@
-# React Page Builder
+# React Page Editor
 
 A React-based page builder that allows you to create custom web pages with ease.
 
@@ -16,32 +16,32 @@ development and testing purposes.
 
 ### Prerequisites
 
-You will need to have Node.js and npm installed on your system.
+You will need to have `Node.js` and `pnpm` installed on your system.
 
 ### Installing
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Frelya/react-site-editor/react-page-builder.git
+git clone https://github.com/Frelya/react-site-editor.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd react-site-builder
+cd react-site-editor
 ```
 
 3. Install the dependencies:
 
 ```bash
-npm i
+pnpm i
 ```
 
 4. Start the development server:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 The page builder should now be running at `http://localhost:3000`.
@@ -51,7 +51,7 @@ The page builder should now be running at `http://localhost:3000`.
 To deploy the page builder to a production environment, run the following command:
 
 ```bash
-npm run build
+pnpm build
 ```
 
 This will create a production-ready build of the page builder in the `build` folder.
@@ -59,7 +59,12 @@ This will create a production-ready build of the page builder in the `build` fol
 ## Built With
 
 -   [React](https://reactjs.org/) - A JavaScript library for building user interfaces
--   [React-DnD](https://react-dnd.github.io/react-dnd/) - A drag-and-drop library for React
+-   [Redux](https://redux.js.org/) - A predictable state container for JavaScript apps
+-   [Vite](https://vitejs.dev/) - A fast build tool for modern web apps
+-   [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs
+-   [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript that compiles to plain JavaScript
+-   [Turborepo](https://turbo.build/) - A tool for managing multiple interdependent JavaScript projects
+-   [pnpm](https://pnpm.io/) - A fast, disk space efficient package manager
 
 ## Contributing
 

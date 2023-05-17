@@ -1,0 +1,52 @@
+name: CI
+on: pull_request
+jobs:
+    ci:
+        name: Run CI checks
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16]
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Install pnpm
+              uses: pnpm/action-setup@v2
+              id: pnpm-install
+              with:
+                  run_install: false
+
+            - name: Get pnpm store directory
+              id: pnpm-cache
+              shell: bash
+              run: |
+                  echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+            - name: Setup pnpm cache
+              uses: actions/cache@v3
+              with:
+                  path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+                  key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+                  restore-keys: |
+                      ${{ runner.os }}-pnpm-store-
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'pnpm'
+
+            - name: Install dependencies
+              run: pnpm install
+
+            - name: Run ESLint
+              run: pnpm lint
+
+            - name: Run Prettier
+              run: pnpm format
+
+            - name: Run Jest
+              run: pnpm test
+
+            - name: Check build
+              run: pnpm build

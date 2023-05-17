@@ -4,9 +4,9 @@ import * as fs from 'fs';
 /*
  * This script must mandatory be run from:
  * - either from the root of the project using the command:
- *     > npm run frontend icons
+ *     > pnpm frontend:icons
  * - or from the frontend directory using the command:
- *     > npm run icons
+ *     > pnpm icons
  */
 const iconsDirectories = ['./src/components/Icons', './../../packages/ui/src/components/icons'];
 const typesFile = './src/types/icons.type.ts';
@@ -14,7 +14,7 @@ const typesFile = './src/types/icons.type.ts';
 const iconNames: string[] = [];
 
 iconsDirectories.forEach((iconsDirectory) => {
-    const files = fs.readdirSync(iconsDirectory);
+    const files: string[] = fs.readdirSync(iconsDirectory);
 
     files.forEach((file) => {
         iconNames.push(`'${pascalToKebab(file.split('.')[0])}'`);

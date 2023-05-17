@@ -5,35 +5,37 @@
     "author": "Frelya",
     "license": "MIT",
     "engines": {
-        "node": "^16.19.0",
-        "npm": "^8.19.3"
+        "node": ">=16.19.0",
+        "pnpm": ">=8.5.1"
     },
     "scripts": {
-        "dev": "npm run frontend:dev",
-        "build": "turbo run build --no-cache --force",
-        "start": "npm run frontend:start",
-        "frontend:build": "npm run build --workspace=apps/frontend",
-        "frontend:dev": "npm run dev --workspace=apps/frontend",
-        "frontend:icons": "npm run icons --workspace=apps/frontend",
-        "frontend:preview": "npm run preview --workspace=apps/frontend",
-        "frontend:start": "npm run start --workspace=apps/frontend",
-        "ui:build": "npm run build --workspace=packages/ui",
-        "ui:components:create": "npm run components:create --workspace=packages/ui",
-        "ui:components:expose": "npm run components:expose --workspace=packages/ui",
-        "ui:dev": "npm run dev --workspace=packages/ui",
-        "ui:preview": "npm run preview --workspace=packages/ui",
-        "ui:scripts:init": "npm run scripts:init --workspace=packages/ui",
-        "ui:start": "npm run start --workspace=packages/ui",
-        "lint": "npx eslint --ext .js,.ts,.jsx,.tsx,.json .",
-        "lint-fix": "npx eslint --ext .js,.ts,.jsx,.tsx,.json . --fix",
-        "format": "npx prettier --write ./ '!**/*.{js,ts,jsx,tsx,html,json}'",
-        "push": "npm run lint-fix && npm run format && git commit -am 'lint-fix' && git push"
+        "preinstall": "npx only-allow pnpm",
+        "dev": "pnpm frontend:dev",
+        "start": "pnpm frontend:start",
+        "build": "turbo run build",
+        "test": "turbo run test",
+        "frontend:build": "pnpm --filter frontend build",
+        "frontend:dev": "pnpm --filter frontend dev",
+        "frontend:icons": "pnpm --filter frontend icons",
+        "frontend:preview": "pnpm --filter frontend preview",
+        "frontend:scripts:init": "pnpm --filter frontend scripts:init",
+        "frontend:start": "pnpm --filter frontend start",
+        "ui:build": "pnpm --filter ui build",
+        "ui:components:create": "pnpm --filter ui components:create",
+        "ui:components:expose": "pnpm --filter ui components:expose",
+        "ui:dev": "pnpm --filter ui dev",
+        "ui:preview": "pnpm --filter ui preview",
+        "ui:scripts:init": "pnpm --filter ui scripts:init",
+        "ui:start": "pnpm --filter ui start",
+        "lint": "npx eslint --cache --ext .js,.ts,.jsx,.tsx,.json .",
+        "lint:fix": "pnpm lint --fix",
+        "format": "npx prettier --cache --write ./ '!**/*.{js,ts,jsx,tsx,html,json}'",
+        "ci:style": "pnpm lint:fix && pnpm format",
+        "ci:all": "pnpm ci:style && pnpm test",
+        "push": "pnpm ci:all && git commit -am 'ci: lint and format' && git push"
     },
-    "workspaces": [
-        "packages/*",
-        "apps/frontend"
-    ],
     "devDependencies": {
+        "@types/node": "^18.13.0",
         "@types/prettier": "^2.7.2",
         "@typescript-eslint/eslint-plugin": "^5.50.0",
         "@typescript-eslint/parser": "^5.50.0",
@@ -42,6 +44,7 @@
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.32.2",
         "prettier": "2.8.3",
-        "turbo": "^1.9.4"
-    }
+        "turbo": "^1.9.6"
+    },
+    "packageManager": "pnpm@8.5.1"
 }

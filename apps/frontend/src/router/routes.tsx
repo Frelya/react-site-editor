@@ -8,23 +8,23 @@ import Preview from '@views/editor/Preview';
 const routes: RouteObject[] = [
     {
         path: '/',
-        Component: App,
+        element: <App />,
         children: [
             {
                 index: true,
-                Component: HomePage
+                element: <HomePage />
             },
             {
                 path: 'editor',
-                Component: EditorPage,
+                element: <EditorPage />,
                 children: [
                     {
                         index: true,
-                        Component: Editor
+                        element: <Editor />
                     },
                     {
                         path: 'preview',
-                        Component: Preview
+                        element: <Preview />
                     }
                 ]
             }
