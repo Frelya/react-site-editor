@@ -51,7 +51,7 @@ The page builder should now be running at `http://localhost:3000`.
 To deploy the page builder to a production environment, run the following command:
 
 ```bash
-pnpm run build
+pnpm build
 ```
 
 This will create a production-ready build of the page builder in the `build` folder.
