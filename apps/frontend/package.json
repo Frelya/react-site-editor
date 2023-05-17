@@ -12,9 +12,9 @@
         "icons": "chmod +x ./scripts/load-icons.sh && ./scripts/load-icons.sh"
     },
     "dependencies": {
-        "@react-site-editor/functions": "1.0.0",
-        "@react-site-editor/types": "1.0.0",
-        "@react-site-editor/ui": "1.0.0",
+        "@react-site-editor/functions": "0.0.1",
+        "@react-site-editor/types": "0.0.1",
+        "@react-site-editor/ui": "0.0.1",
         "@reduxjs/toolkit": "^1.9.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
