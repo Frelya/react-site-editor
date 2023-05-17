@@ -6,15 +6,16 @@
     "main": "./src/index.ts",
     "scripts": {
         "dev": "vite",
-        "pre-build": "chmod +x ./scripts/build.sh && ./scripts/build.sh --external:react --external:react-dom",
+        "pre-build": "pnpm scripts:init && ./scripts/build.sh --external:react --external:react-dom",
         "build": "vite build",
         "preview": "vite preview",
-        "start": "npm run build && vite",
+        "start": "pnpm build && vite",
         "scripts:init": "find ./scripts/ -type f -iname \"*.sh\" -exec chmod +x {} \\;",
-        "components:expose": "npm run scripts:init && ./scripts/expose-components.sh",
-        "components:create": "npm run scripts:init && ./scripts/create-component.sh"
+        "components:expose": "pnpm scripts:init && ./scripts/expose-components.sh",
+        "components:create": "pnpm scripts:init && ./scripts/create-component.sh"
     },
     "dependencies": {
+        "@react-site-editor/types": "0.0.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },

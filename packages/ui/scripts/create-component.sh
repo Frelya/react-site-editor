@@ -1,6 +1,6 @@
 #!/bin/bash
 
-usage="Usage: npm run components:create -- [OPTIONS]...
+usage="Usage: pnpm components:create [OPTIONS]...
 Shorthand to create a new component in the project
 
 Options:
