@@ -32,22 +32,22 @@ export default ${name};
 
 function generateTypeFileContent(name: string) {
     return prettier(`
-import type { ComponentChildren, ComponentProp } from '@react-site-editor/types';
+import type { ComponentProp } from '@react-site-editor/types';
 
 export interface ${name}Props {
     myProp?: ComponentProp;
     onClick: () => void;
-    children?: ComponentChildren;
+    children?: React.ReactNode[];
 }
     `);
 }
 
 function generateIndexFileContent(name: string) {
     return prettier(`
-export { default } from './${name}';
+export { default } from './${name}.component';
 export { defaultProps as ${
         name[0].toLowerCase() + name.substring(1)
-    }DefaultProps } from './${name}';
+    }DefaultProps } from './${name}.component';
 export * from './${name}.types';
     `);
 }
@@ -61,6 +61,27 @@ function generateStyleFileContent() {
   `,
         { parser: 'css' }
     );
+}
+
+function generateStoryFileContent(name: string) {
+    return prettier(`
+import type { Meta, StoryObj } from '@storybook/react';
+import ${name}, { defaultProps } from './${name}.component';
+
+const meta = {
+    title: '${name}',
+    component: ${name},
+} satisfies Meta<typeof ${name}>;
+
+
+type ${name}Story = StoryObj<typeof ${name}>;
+
+export const Default: ${name}Story = { 
+    args: defaultProps
+};
+
+export default meta;
+    `);
 }
 
 const componentName = process.argv[2] || '';
@@ -93,7 +114,7 @@ const componentFiles = [
     },
     // The component file
     {
-        fileName: path.join(componentDir, `${componentName}.tsx`),
+        fileName: path.join(componentDir, `${componentName}.component.tsx`),
         fileContent: generateComponentFileContent(componentName)
     },
     // The types file
@@ -105,10 +126,15 @@ const componentFiles = [
     {
         fileName: path.join(componentDir, `${componentName}.module.css`),
         fileContent: generateStyleFileContent()
+    },
+    // The story file
+    {
+        fileName: path.join(componentDir, `${componentName}.stories.tsx`),
+        fileContent: generateStoryFileContent(componentName)
     }
 ];
 
-let progress = '##';
+let progress = '';
 
 // Creation of the component's directory
 process.stdout.write(
