@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import Button, { defaultProps } from './Button.component';
 
 const meta = {
-    title: 'Button',
+    title: 'Buttons/Button',
     component: Button
 } satisfies Meta<typeof Button>;
 

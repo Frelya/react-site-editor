@@ -63,13 +63,13 @@ function generateStyleFileContent() {
     );
 }
 
-function generateStoryFileContent(name: string) {
+function generateStoryFileContent(name: string, group: string) {
     return prettier(`
 import type { Meta, StoryObj } from '@storybook/react';
 import ${name}, { defaultProps } from './${name}.component';
 
 const meta = {
-    title: '${name}',
+    title: '${group}/${name}',
     component: ${name},
 } satisfies Meta<typeof ${name}>;
 
@@ -130,7 +130,7 @@ const componentFiles = [
     // The story file
     {
         fileName: path.join(componentDir, `${componentName}.stories.tsx`),
-        fileContent: generateStoryFileContent(componentName)
+        fileContent: generateStoryFileContent(componentName, categoryName)
     }
 ];
 
