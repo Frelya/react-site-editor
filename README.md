@@ -1,5 +1,11 @@
 # React Page Editor
 
+<hr/>
+
+[![Deployment](https://api.netlify.com/api/v1/badges/9e747f8d-ff28-425b-b50b-52e68e3dede9/deploy-status?branch=main)](https://app.netlify.com/sites/react-site-editor/deploys)
+
+<hr/>
+
 A React-based page builder that allows you to create custom web pages with ease.
 
 ## Features
