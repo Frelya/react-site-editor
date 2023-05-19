@@ -76,9 +76,9 @@ const meta = {
 
 type ${name}Story = StoryObj<typeof ${name}>;
 
-export const Default: ${name}Story = { 
+export const Default = { 
     args: defaultProps
-};
+} satisfies ${name}Story;
 
 export default meta;
     `);

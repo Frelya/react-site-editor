@@ -4,6 +4,12 @@ import type { Preview } from '@storybook/react';
 const preview: Preview = {
     parameters: {
         actions: { argTypesRegex: '^on[A-Z].*' },
+        options: {
+            storySort: {
+                method: 'alphabetical',
+                locales: 'en-US'
+            }
+        },
         layout: 'centered',
         docs: {
             source: {
@@ -11,8 +17,9 @@ const preview: Preview = {
                 dark: true
             }
         },
-        controls: {
-        }
+        loaders: [
+            // TODO: Add loaders to help waiting
+        ]
     }
 };
 
