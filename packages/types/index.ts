@@ -28,5 +28,3 @@ export enum PropsEnum {
     NUMBER = 'number',
     GRID_TEMPLATE = 'grid-template'
 }
-
-export type ComponentChildren = React.ReactNode[];

@@ -1,4 +1,4 @@
-import type { ComponentChildren, ComponentProp } from '@react-site-editor/types';
+import type { ComponentProp } from '@react-site-editor/types';
 
 export interface ButtonProps {
     text: ComponentProp;
@@ -6,5 +6,5 @@ export interface ButtonProps {
     fontSize: ComponentProp;
     backgroundColor: ComponentProp;
     onClick: () => void;
-    children?: ComponentChildren;
+    children?: React.ReactNode[];
 }

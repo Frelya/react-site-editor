@@ -12,7 +12,12 @@
         "start": "pnpm build && vite",
         "scripts:init": "find ./scripts/ -type f -iname \"*.sh\" -exec chmod +x {} \\;",
         "components:expose": "pnpm scripts:init && ./scripts/expose-components.sh",
-        "components:create": "pnpm scripts:init && ./scripts/create-component.sh"
+        "components:create": "pnpm scripts:init && ./scripts/create-component.sh",
+        "storybook:dev": "storybook dev -p 6006",
+        "storybook:dev:docs": "pnpm storybook:dev --docs",
+        "storybook:dev:comp": "pnpm storybook:dev -- --component",
+        "storybook:dev:docs:comp": "pnpm storybook:dev:docs -- --component",
+        "storybook:build": "storybook build"
     },
     "dependencies": {
         "@react-site-editor/types": "0.0.1",
@@ -20,6 +25,15 @@
         "react-dom": "^18.2.0"
     },
     "devDependencies": {
+        "@storybook/addon-essentials": "^7.0.12",
+        "@storybook/addon-interactions": "^7.0.12",
+        "@storybook/addon-links": "^7.0.12",
+        "@storybook/blocks": "^7.0.12",
+        "@storybook/builder-vite": "^7.0.12",
+        "@storybook/manager-api": "^7.0.12",
+        "@storybook/react": "^7.0.12",
+        "@storybook/react-vite": "^7.0.12",
+        "@storybook/types": "^7.0.12",
         "@types/glob": "^8.1.0",
         "@types/react": "^18.0.27",
         "@types/react-dom": "^18.0.10",
@@ -29,6 +43,8 @@
         "fast-glob": "^3.2.11",
         "postcss": "^8.4.21",
         "prettier": "2.8.7",
+        "prop-types": "^15.8.1",
+        "storybook": "^7.0.12",
         "tailwindcss": "^3.2.6",
         "typescript": "^4.9.3",
         "vite": "^4.1.0"
