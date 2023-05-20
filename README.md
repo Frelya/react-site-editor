@@ -1,19 +1,25 @@
-# React Page Editor
+# React Site Editor
 
 <hr/>
 
-[![Deployment](https://api.netlify.com/api/v1/badges/9e747f8d-ff28-425b-b50b-52e68e3dede9/deploy-status?branch=main)](https://app.netlify.com/sites/react-site-editor/deploys)
+| **Deployment Status**                                                                                                                                                          |                                                                                                          **URL**                                                                                                          |
+|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| [![Deployment](https://api.netlify.com/api/v1/badges/9e747f8d-ff28-425b-b50b-52e68e3dede9/deploy-status?branch=main)](https://app.netlify.com/sites/react-site-editor/deploys) | <br/> <img src="https://github.com/Frelya/react-site-editor/assets/64146788/78e0dd02-a00c-4a83-80a9-7c4f3582acf6" alt="rse_frelya_com_url_qr" width="25%"/> <br/><br/> [Or click here](https://rse.frelya.com) <br/><br/> |
 
 <hr/>
 
-A React-based page builder that allows you to create custom web pages with ease.
+<br/>
+
+**A React-based page builder that allows you to create custom web pages with ease.**
+
+<br/>
 
 ## Features
 
--   Drag-and-drop interface for adding and arranging elements on the page
--   Customizable components and styles to create unique pages
--   Undo/Redo functionality to easily revert changes
--   Preview mode to see your changes in real-time
+- Drag-and-drop interface for adding and arranging elements on the page
+- Customizable components and styles to create unique pages
+- Undo/Redo functionality to easily revert changes
+- Preview mode to see your changes in real-time
 
 ## Getting Started
 
@@ -64,13 +70,13 @@ This will create a production-ready build of the page builder in the `build` fol
 
 ## Built With
 
--   [React](https://reactjs.org/) - A JavaScript library for building user interfaces
--   [Redux](https://redux.js.org/) - A predictable state container for JavaScript apps
--   [Vite](https://vitejs.dev/) - A fast build tool for modern web apps
--   [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs
--   [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript that compiles to plain JavaScript
--   [Turborepo](https://turbo.build/) - A tool for managing multiple interdependent JavaScript projects
--   [pnpm](https://pnpm.io/) - A fast, disk space efficient package manager
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [Redux](https://redux.js.org/) - A predictable state container for JavaScript apps
+- [Vite](https://vitejs.dev/) - A fast build tool for modern web apps
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs
+- [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript that compiles to plain JavaScript
+- [Turborepo](https://turbo.build/) - A tool for managing multiple interdependent JavaScript projects
+- [pnpm](https://pnpm.io/) - A fast, disk space efficient package manager
 
 ## Contributing
 
