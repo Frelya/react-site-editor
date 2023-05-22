@@ -11,7 +11,11 @@ const store = configureStore({
 
 export type AppDispatch = typeof store.dispatch;
 
+// F**king typescript (╯°□°）╯︵ ┻━┻
+// @ts-ignore
 export type RootState = ReturnType<typeof store.getState>;
+
+export default store;
 
 export type AppThunk<ReturnType = void> = ThunkAction<
     ReturnType,
@@ -19,5 +23,3 @@ export type AppThunk<ReturnType = void> = ThunkAction<
     unknown,
     Actions<string>
 >;
-
-export default store;

@@ -15,10 +15,6 @@ const Editor: React.FunctionComponent = () => {
         setSidebarRightIsVisible(false);
     };
 
-    // We need to remove the previous listeners on page reload
-    emitter.off('componentSelected');
-    emitter.off('previewRefresh');
-
     // Then set a new one
     emitter.on('componentSelected', (element) => {
         dispatch(updateActiveComponent(element));

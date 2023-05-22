@@ -50,7 +50,7 @@ export interface ${name}Props {
 function generateIndexFileContent(name: string) {
     return prettier(`
 export { default } from './${name}.component';
-export { defaultProps as ${
+export { propsSpecs as ${
         name[0].toLowerCase() + name.substring(1)
     }PropsSpecs } from './${name}.component';
 export * from './${name}.types';

@@ -8,8 +8,7 @@ const meta = {
     title: 'Buttons/Button',
     // Get the controls from the specs
     argTypes: argTypesControlsParser<ButtonProps>(propsSpecs),
-    component: Button,
-    parameters: { actions: { argTypesRegex: '^on.*' } }
+    component: Button
 } satisfies Meta<typeof Button>;
 
 type ButtonStory = StoryObj<typeof Button>;
