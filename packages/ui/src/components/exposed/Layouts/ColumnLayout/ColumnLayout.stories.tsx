@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ColumnLayout, { defaultProps } from './ColumnLayout.component';
+import { specsValuesParser } from '@react-site-editor/functions';
+import { argTypesControlsParser } from '@/utils';
+import ColumnLayout, { propsSpecs } from './ColumnLayout.component';
+import type { ColumnLayoutProps } from './ColumnLayout.types';
 
 const meta = {
     title: 'Layouts/Column Layout',
     component: ColumnLayout,
-    // TODO: Set argTypes to enable controls in the Storybook UI (needs a project refactoring)
-    // argTypes: argTypes as Partial<ArgTypes<PredefinedComponentProps<ColumnLayoutProps>>>,
+    argTypes: argTypesControlsParser<ColumnLayoutProps>(propsSpecs),
     decorators: [
         // In order to get a stretched layout, we need to wrap the component in a div
         (StoryFn, storyContext) => (
@@ -25,7 +27,7 @@ const meta = {
 type ColumnLayoutStory = StoryObj<typeof ColumnLayout>;
 
 export const Default = {
-    args: defaultProps
+    args: specsValuesParser<ColumnLayoutProps>(propsSpecs)
 } satisfies ColumnLayoutStory;
 
 export default meta;

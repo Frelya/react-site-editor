@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
+import type { SelectControl } from '@react-site-editor/types';
 import type { PropertyProps } from '@/types';
 import PropertyWrapper from '@components/PropertyComponents/PropertyWrapper';
 
-const SizeProperty: React.FunctionComponent<PropertyProps> = (props) => {
-    const [size, setSize] = useState<number>(props.value as number);
+const RangeProperty: React.FunctionComponent<PropertyProps<number, SelectControl<number>>> = (
+    props
+) => {
+    const [size, setSize] = useState<number>(props.value);
 
     const handleInputChange = (event: React.ChangeEvent) => {
         const newValue = Number((event.target as HTMLInputElement).value);
@@ -43,4 +46,4 @@ const styleClasses = {
     sizeValue: 'flex-1 text-center'
 };
 
-export default SizeProperty;
+export default RangeProperty;

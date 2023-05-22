@@ -16,8 +16,8 @@ export const activeComponentSlice = createSlice({
         updateActiveComponent: (state, actions: PayloadAction<ActiveComponent>) => {
             state.value = actions.payload;
         },
-        updateActiveComponentProps: (state, actions: PayloadAction<ActiveComponent['props']>) => {
-            state.value.props = actions.payload;
+        updateActiveComponentSpecs: (state, actions: PayloadAction<ActiveComponent['specs']>) => {
+            state.value.specs = actions.payload;
         },
         resetActiveComponent: (state) => {
             state.value = {} as ActiveComponent;
@@ -25,7 +25,7 @@ export const activeComponentSlice = createSlice({
     }
 });
 
-export const { updateActiveComponent, updateActiveComponentProps, resetActiveComponent } =
+export const { updateActiveComponent, updateActiveComponentSpecs, resetActiveComponent } =
     activeComponentSlice.actions;
 
 export const selectActiveComponent = (state: { activeComponent: { value: ActiveComponent } }) =>

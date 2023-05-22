@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import type { PropertyProps } from '@/types';
 import PropertyWrapper from '@components/PropertyComponents/PropertyWrapper';
 
-const ColorProperty: React.FunctionComponent<PropertyProps> = (props) => {
-    const [color, setColor] = useState<string>(props.value as string);
+const ColorProperty: React.FunctionComponent<PropertyProps<string>> = (props) => {
+    const [color, setColor] = useState<string>(props.value);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const validHexPattern = /^#([0-9a-f]{3}){1,2}$/i;

@@ -1,19 +1,18 @@
+import type { ComponentInfos } from '@react-site-editor/types';
+
 export interface PreviewElement {
     index: number;
     data: PreviewElementData;
 }
 
-export interface PreviewElementData {
-    name: string;
-    group: string;
-    props: Record<string, any>;
+export interface PreviewElementData extends ComponentInfos {
     children?: Omit<PreviewElement, 'children'>[];
 }
 
 export interface UpdateElementData {
     id: number;
     propName: string;
-    value: string;
+    value: unknown;
 }
 
 export interface MoveElementData {

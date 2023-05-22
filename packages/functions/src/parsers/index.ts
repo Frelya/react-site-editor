@@ -1,0 +1,1 @@
+export { specsValuesParser } from './specsValuesParser';

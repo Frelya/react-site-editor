@@ -1,19 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { argTypesParser } from '@libs/argTypesParser';
-import { argsParser } from '@libs/argsParser';
-import Button, { defaultProps } from './Button.component';
+import { specsValuesParser } from '@react-site-editor/functions';
+import { argTypesControlsParser } from '@/utils';
+import Button, { propsSpecs } from './Button.component';
 import type { ButtonProps } from './Button.types';
 
 const meta = {
     title: 'Buttons/Button',
-    argTypes: argTypesParser(defaultProps),
-    component: Button
+    // Get the controls from the specs
+    argTypes: argTypesControlsParser<ButtonProps>(propsSpecs),
+    component: Button,
+    parameters: { actions: { argTypesRegex: '^on.*' } }
 } satisfies Meta<typeof Button>;
 
 type ButtonStory = StoryObj<typeof Button>;
 
 export const Default = {
-    args: argsParser<ButtonProps>(defaultProps)
+    // Get the default props from the specs
+    args: specsValuesParser<ButtonProps>(propsSpecs)
 } satisfies ButtonStory;
 
 export default meta;

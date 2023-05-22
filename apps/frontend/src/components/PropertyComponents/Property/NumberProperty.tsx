@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react';
+import type { NumberControl } from '@react-site-editor/types';
 import type { PropertyProps } from '@/types';
 import PropertyWrapper from '@components/PropertyComponents/PropertyWrapper';
 
-const NumberProperty: React.FunctionComponent<PropertyProps> = (props) => {
-    const [value, setValue] = useState<number>(Number(props.value));
+const NumberProperty: React.FunctionComponent<PropertyProps<number, NumberControl>> = (props) => {
+    const [value, setValue] = useState<number>(props.value);
 
     const handleInputChange = (event: React.ChangeEvent) => {
         const newValue = Number((event.target as HTMLInputElement).value);
 
-        if (props.min && newValue < props.min) {
-            setValue(props.min);
+        if (props.spec.min && newValue < props.spec.min) {
+            setValue(props.spec.min);
             return;
         }
 
-        if (props.max && newValue > props.max) {
-            setValue(props.max);
+        if (props.spec.max && newValue > props.spec.max) {
+            setValue(props.spec.max);
             return;
         }
 
@@ -32,16 +33,16 @@ const NumberProperty: React.FunctionComponent<PropertyProps> = (props) => {
     return (
         <PropertyWrapper name={props.name}>
             <div className={styleClasses.inputDiv}>
-                <span className={styleClasses.span}>min: {props.min}</span>
+                <span className={styleClasses.span}>min: {props.spec.min}</span>
                 <input
                     className={styleClasses.input}
                     type="number"
-                    min={props.min || 0}
-                    max={props.max || 100}
+                    min={props.spec.min || 0}
+                    max={props.spec.max || 100}
                     value={value}
                     onChange={handleInputChange}
                 />
-                <span className={styleClasses.span}>max: {props.max}</span>
+                <span className={styleClasses.span}>max: {props.spec.max}</span>
             </div>
         </PropertyWrapper>
     );

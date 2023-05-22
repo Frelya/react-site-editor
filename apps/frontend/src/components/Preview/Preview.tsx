@@ -1,5 +1,6 @@
 import { Suspense, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { specsValuesParser } from '@react-site-editor/functions';
 import { selectPreviewTree } from '@store/previewTree/previewTreeSlice';
 import { PreviewScreen } from '@/types';
 import type { ActiveComponent } from '@/types';
@@ -44,12 +45,16 @@ const Preview: React.FunctionComponent = () => {
                                     editable={true}
                                     index={elementIndex}
                                     onClick={() =>
-                                        handleElementClick({ index: elementIndex, ...element })
+                                        handleElementClick({
+                                            index: elementIndex,
+                                            name: element.name,
+                                            specs: element.specs
+                                        })
                                     }>
                                     <Suspense>
                                         <DynamicComponent
                                             componentName={element.name}
-                                            customProps={element.props}
+                                            componentProps={specsValuesParser(element.specs)}
                                         />
                                     </Suspense>
                                 </PreviewComponentWrapper>

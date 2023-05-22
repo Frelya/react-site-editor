@@ -1,17 +1,15 @@
-import type { PredefinedComponentProps } from '@react-site-editor/types';
-import { PropsEnum } from '@react-site-editor/types';
+import { specsValuesParser } from '@react-site-editor/functions';
+import type { ComponentPropsSpecs } from '@react-site-editor/types';
 import styles from './ColumnLayout.module.css';
 import type { ColumnLayoutProps } from './ColumnLayout.types';
 import { ColumnLayoutOptions } from './ColumnLayout.types';
 
 const ColumnLayout: React.FunctionComponent<ColumnLayoutProps> = (props) => {
-    const columnCount = props.columnCount.value as number;
+    const columnCount = props.columnCount;
 
     const layout = {
         gridTemplateColumns:
-            props.layout.value === ColumnLayoutOptions.DEFAULT
-                ? '1fr '.repeat(columnCount)
-                : props.layout.value
+            props.layout === ColumnLayoutOptions.DEFAULT ? '1fr '.repeat(columnCount) : props.layout
     };
 
     const ListItem = () => {
@@ -44,12 +42,25 @@ const ColumnLayout: React.FunctionComponent<ColumnLayoutProps> = (props) => {
     );
 };
 
-export const defaultProps: PredefinedComponentProps<ColumnLayoutProps> = {
-    columnCount: { type: PropsEnum.NUMBER, value: 3, min: 2, max: 12 },
-    layout: { type: PropsEnum.GRID_TEMPLATE, value: ColumnLayoutOptions.DEFAULT },
+export const propsSpecs: ComponentPropsSpecs<ColumnLayoutProps> = {
+    columnCount: {
+        value: 3,
+        control: {
+            type: 'number',
+            min: 2,
+            max: 12 // Max for Tailwind CSS (12 columns)
+        }
+    },
+    layout: {
+        value: ColumnLayoutOptions.DEFAULT,
+        control: {
+            type: 'grid-template',
+            flowCountPropName: 'columnCount'
+        }
+    },
     iconName: 'ui-table-columns'
 };
 
-ColumnLayout.defaultProps = defaultProps;
+ColumnLayout.defaultProps = specsValuesParser<ColumnLayoutProps>(propsSpecs);
 
 export default ColumnLayout;

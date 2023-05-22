@@ -6,6 +6,9 @@
     "scripts": {
         "test": "echo \"Error: no test specified\""
     },
+    "dependencies": {
+        "@react-site-editor/types": "^0.0.1"
+    },
     "author": "Frelya",
     "license": "MIT"
 }

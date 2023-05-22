@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, Actions } from '@reduxjs/toolkit';
 import previewTreeReducer from './previewTree/previewTreeSlice';
 import activeComponentReducer from './activeComponent/activeComponentSlice';
 
@@ -17,7 +17,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<
     ReturnType,
     RootState,
     unknown,
-    Action<string>
+    Actions<string>
 >;
 
 export default store;

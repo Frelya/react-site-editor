@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import type { PropertyProps } from '@/types';
 import PropertyWrapper from '@components/PropertyComponents/PropertyWrapper';
 
-const TextProperty: React.FunctionComponent<PropertyProps> = (props) => {
-    const [value, setValue] = useState<string>(props.value as string);
+const TextProperty: React.FunctionComponent<PropertyProps<string>> = (props) => {
+    const [value, setValue] = useState<string>(props.value);
 
     const handleInputChange = (event: React.ChangeEvent) => {
         const newValue = (event.target as HTMLInputElement).value;
