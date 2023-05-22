@@ -12,6 +12,7 @@ const store = configureStore({
 export type AppDispatch = typeof store.dispatch;
 
 // F**king typescript (╯°□°）╯︵ ┻━┻
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 export type RootState = ReturnType<typeof store.getState>;
 

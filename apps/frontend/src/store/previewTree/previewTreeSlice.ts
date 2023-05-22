@@ -19,6 +19,7 @@ export const previewTreeSlice = createSlice({
         updateComponent: (state, actions: PayloadAction<UpdateElementData>) => {
             const { id, propName, value } = actions.payload;
             // Hum (VSCode <<<<<<<<< Webstorm)
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             const shallow = state.value.find((element, index: number) => index == id);
             if (shallow) {

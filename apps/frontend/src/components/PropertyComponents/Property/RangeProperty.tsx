@@ -3,9 +3,7 @@ import type { RangeControl } from '@react-site-editor/types';
 import type { PropertyProps } from '@/types';
 import PropertyWrapper from '@components/PropertyComponents/PropertyWrapper';
 
-const RangeProperty: React.FunctionComponent<PropertyProps<number, RangeControl>> = (
-    props
-) => {
+const RangeProperty: React.FunctionComponent<PropertyProps<number, RangeControl>> = (props) => {
     const [size, setSize] = useState<number>(props.value);
 
     const handleInputChange = (event: React.ChangeEvent) => {
