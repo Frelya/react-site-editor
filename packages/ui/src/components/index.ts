@@ -1,4 +1,4 @@
-import type { ComponentInfos } from '@react-site-editor/types';
+import type { ComponentInfos, ExposedComponentsMap } from '@react-site-editor/types';
 import * as allComponent from '../index';
 
 async function getAllComponents(): Promise<ComponentInfos[]> {
@@ -13,8 +13,8 @@ async function getAllComponents(): Promise<ComponentInfos[]> {
             components.push({
                 name: filename,
                 group: directory || 'none',
-                defaultProps: (allComponent as Record<string, any>)[
-                    `${filename.charAt(0).toLowerCase() + filename.slice(1)}DefaultProps`
+                specs: (allComponent as ExposedComponentsMap)[
+                    `${filename.charAt(0).toLowerCase() + filename.slice(1)}PropsSpecs`
                 ]
             });
         }

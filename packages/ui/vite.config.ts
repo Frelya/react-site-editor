@@ -19,6 +19,10 @@ export default defineConfig({
                 replacement: resolve(__dirname, 'src/components')
             },
             {
+                find: '@utils',
+                replacement: resolve(__dirname, 'src/utils')
+            },
+            {
                 find: '@libs',
                 replacement: resolve(__dirname, 'libs')
             }

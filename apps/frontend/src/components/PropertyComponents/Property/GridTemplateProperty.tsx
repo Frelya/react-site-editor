@@ -5,21 +5,22 @@ import {
     arrayToGridFlowTemplate,
     gridFlowTemplateToArray
 } from '@react-site-editor/functions';
+import type { GridTemplateControl, NumberControl } from '@react-site-editor/types';
 import { selectActiveComponent } from '@store/activeComponent/activeComponentSlice';
 import type { PropertyProps } from '@/types';
 import PropertyWrapper from '@components/PropertyComponents/PropertyWrapper';
 
-const GridTemplateProperty: React.FunctionComponent<PropertyProps> = (props) => {
+const GridTemplateProperty: React.FunctionComponent<PropertyProps<string, GridTemplateControl>> = (
+    props
+) => {
     const activeComponent = useSelector(selectActiveComponent);
-    const flowCount =
-        (activeComponent.props.columnCount?.value as number) ||
-        (activeComponent.props.rowCount?.value as number) ||
-        2;
+    const flowProp =
+        activeComponent.specs[props.spec.flowCountPropName as keyof typeof activeComponent.specs];
 
-    const currentLayout = gridFlowTemplateToArray(props.value as string);
-    const [fractions, setFractions] = useState<number>(flowCount);
+    const currentLayout = gridFlowTemplateToArray(props.value);
+    const [fractions, setFractions] = useState<number>(flowProp.value);
 
-    const layouts = findCombinations(flowCount, fractions);
+    const layouts = findCombinations(flowProp.value, fractions);
 
     if (currentLayout.length > 0 && !layouts.includes(currentLayout)) {
         layouts.unshift(currentLayout);
@@ -66,7 +67,7 @@ const GridTemplateProperty: React.FunctionComponent<PropertyProps> = (props) => 
     };
 
     useEffect(() => {
-        setFractions(flowCount);
+        setFractions(flowProp.value);
     }, [props]);
 
     return (
@@ -76,8 +77,8 @@ const GridTemplateProperty: React.FunctionComponent<PropertyProps> = (props) => 
                 <input
                     className={styleClasses.fractionsInput}
                     type="number"
-                    min={flowCount}
-                    max={12} // Max for Tailwind CSS (12 columns)
+                    min={(flowProp.control as NumberControl).min}
+                    max={(flowProp.control as NumberControl).max}
                     value={fractions}
                     onChange={handleFractionsChange}
                 />

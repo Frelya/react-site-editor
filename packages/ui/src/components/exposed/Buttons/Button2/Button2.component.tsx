@@ -1,27 +1,41 @@
-import type { PredefinedComponentProps } from '@react-site-editor/types';
-import { PropsEnum } from '@react-site-editor/types';
+import { specsValuesParser } from '@react-site-editor/functions';
+import type { ComponentPropsSpecs } from '@react-site-editor/types';
 import type { Button2Props } from './Button2.types';
 import styles from './Button2.module.css';
 
 const Button2: React.FunctionComponent<Button2Props> = (props) => {
-    const fontSize = `font${props.fontSize?.value}` as keyof typeof styles;
+    const fontSize = `font${props.fontSize}` as keyof typeof styles;
 
     return (
         <button className={`${styles.baseButton} ${styles[fontSize]}`} onClick={props?.onClick}>
-            {props.text?.value}
-            {props.children}
+            {props.text}
         </button>
     );
 };
 
-export const defaultProps: PredefinedComponentProps<Button2Props> = {
-    text: { type: PropsEnum.TEXT, value: 'Button 2' },
-    fontSize: { type: PropsEnum.SIZE, value: '2' },
-    onClick: () => console.log('Button clicked'),
-    maxChildren: 2,
+export const propsSpecs: ComponentPropsSpecs<Button2Props> = {
+    text: {
+        value: 'Button2',
+        control: {
+            type: 'text'
+        }
+    },
+    fontSize: {
+        value: 1,
+        control: {
+            type: 'select',
+            options: [1, 2, 3]
+        }
+    },
+    onClick: {
+        value: () => console.log('Button2 clicked'),
+        control: {
+            type: 'callback'
+        }
+    },
     iconName: 'ui-toggle-off'
 };
 
-Button2.defaultProps = defaultProps;
+Button2.defaultProps = specsValuesParser<Button2Props>(propsSpecs);
 
 export default Button2;

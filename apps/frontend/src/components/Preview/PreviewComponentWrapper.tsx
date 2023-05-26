@@ -25,7 +25,6 @@ const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperPr
 
     const handleMoveElementClick = (index: number | string, direction: 'up' | 'down') => {
         return () => {
-            console.log(window.screenX);
             dispatch(
                 moveComponent({
                     currentIndex: +index,

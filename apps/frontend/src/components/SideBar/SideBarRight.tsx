@@ -1,17 +1,18 @@
-import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { kebabToSnake, pascalToSpaced } from '@react-site-editor/functions';
 import type { ComponentProp } from '@react-site-editor/types';
 import {
     selectActiveComponent,
-    updateActiveComponentProps
+    updateActiveComponentSpecs
 } from '@store/activeComponent/activeComponentSlice';
 import { updateComponent } from '@store/previewTree/previewTreeSlice';
 import PROPERTY_COMPONENTS_MAP from '@components/PropertyComponents/components-map';
+import type { UpdateElementData } from '@/types';
 import Icon from '@components/Decorators/Icon';
 import BaseSideBar, { SideBarScales } from '@components/SideBar/BaseSideBar';
 import SideBarSection from '@components/SideBar/SideBarSection';
 import EditorButton from '@components/Common/EditorButton';
+import React from 'react';
 
 interface SideBarRightProps {
     visible: boolean;
@@ -20,25 +21,23 @@ interface SideBarRightProps {
 
 const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
     const activeComponent = useSelector(selectActiveComponent);
-    const [displayedComponent, setDisplayedComponent] = useState<
-        React.ReactNode | React.ReactNode[] | null
-    >(null);
 
-    const notRenderedPropertyTypes: string[] = ['function'];
-
-    const isComponentProp = (prop: object): prop is ComponentProp => {
-        return !notRenderedPropertyTypes.includes(typeof prop);
+    const isComponentProp = (propName: string, prop: unknown): prop is ComponentProp<unknown> => {
+        return (
+            !['maxChildren', 'iconName'].includes(propName) &&
+            Object.prototype.hasOwnProperty.call(prop, 'value')
+        );
     };
 
     const dispatch = useDispatch();
 
-    const handleChangeProperty = (id: number, newValue: string, propName: string) => {
+    const handleChangeProperty = ({ id, value: newValue, propName }: UpdateElementData) => {
         dispatch(updateComponent({ id, propName, value: newValue }));
         dispatch(
-            updateActiveComponentProps({
-                ...activeComponent.props,
+            updateActiveComponentSpecs({
+                ...activeComponent.specs,
                 [propName]: {
-                    ...activeComponent.props[propName],
+                    ...activeComponent.specs[propName],
                     value: newValue
                 }
             })
@@ -59,40 +58,43 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
          */
     };
 
-    useEffect(() => {
-        setDisplayedComponent(
-            activeComponent.props
-                ? Object.entries(activeComponent.props).map(([propName, prop]) => {
-                      if (
-                          !['maxChildren', 'iconName'].includes(propName) &&
-                          isComponentProp(prop)
-                      ) {
-                          const Displayed =
-                              PROPERTY_COMPONENTS_MAP[kebabToSnake(prop.type).toUpperCase()];
+    const DisplayedProperties: React.FunctionComponent = () => {
+        return (
+            <>
+                {props.visible && activeComponent.specs
+                    ? Object.entries(activeComponent.specs).map(([propName, prop]) => {
+                          if (
+                              isComponentProp(propName, prop) &&
+                              PROPERTY_COMPONENTS_MAP[kebabToSnake(prop.control.type).toUpperCase()]
+                          ) {
+                              const Displayed =
+                                  PROPERTY_COMPONENTS_MAP[
+                                      kebabToSnake(prop.control.type).toUpperCase()
+                                  ];
 
-                          return (
-                              <Displayed
-                                  key={propName}
-                                  name={propName}
-                                  value={prop.value}
-                                  min={prop.min}
-                                  max={prop.max}
-                                  onChange={(newValue: string) =>
-                                      handleChangeProperty(
-                                          activeComponent.index,
-                                          newValue,
-                                          propName
-                                      )
-                                  }
-                              />
-                          );
-                      }
+                              return (
+                                  <Displayed
+                                      key={propName}
+                                      name={propName}
+                                      value={prop.value}
+                                      spec={prop.control}
+                                      onChange={(newValue: UpdateElementData['value']) =>
+                                          handleChangeProperty({
+                                              id: activeComponent.index,
+                                              value: newValue,
+                                              propName: propName
+                                          })
+                                      }
+                                  />
+                              );
+                          }
 
-                      return '';
-                  })
-                : ''
+                          return '';
+                      })
+                    : ''}
+            </>
         );
-    }, [activeComponent]);
+    };
 
     return (
         <BaseSideBar visible={props.visible} scale={SideBarScales.NORMAL}>
@@ -117,7 +119,7 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
             <div className={styleClasses.main}>
                 <p className={styleClasses.componentPropsTitle}>Properties</p>
 
-                {displayedComponent}
+                <DisplayedProperties />
             </div>
 
             <SideBarSection position={'bottom'}>

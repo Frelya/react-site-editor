@@ -5,26 +5,34 @@ import * as process from 'process';
 
 function generateComponentFileContent(name: string) {
     return prettier(`
-import type { PredefinedComponentProps } from '@react-site-editor/types';
-import { PropsEnum } from '@react-site-editor/types';
+import { specsValuesParser } from '@react-site-editor/functions';
+import type { ComponentPropsSpecs } from '@react-site-editor/types';
 import type { ${name}Props } from './${name}.types';
 import styles from './${name}.module.css';
 
 const ${name}: React.FunctionComponent<${name}Props> = (props) => {
-  // The component definitions
-  return <><div className={styles.container}>${name}</div></>;
+    // The component definitions
+    return <><div className={styles.container} onClick={props.onClick}>{props.myProp}</div></>;
 };
 
-export const defaultProps: PredefinedComponentProps<${name}Props> = {
-  // The default props of the component
-  myProp: { type: PropsEnum.TEXT, value: 'My text prop' },
-  onClick: () => {
-      return;
-  },
-  iconName: 'ui-default'
+export const propsSpecs: ComponentPropsSpecs<${name}Props> = {
+    // The default props of the component
+    myProp: {
+        value: 'default value',
+        control: {
+            type: 'text'
+        }
+    },
+    onClick: {
+        value: () => alert('Hello world!'),
+        control: {
+            type: 'callback'
+        }
+    },
+    iconName: 'ui-default'
 };
 
-${name}.defaultProps=defaultProps;
+${name}.defaultProps = specsValuesParser<${name}Props>(propsSpecs);
 
 export default ${name};
     `);
@@ -32,12 +40,9 @@ export default ${name};
 
 function generateTypeFileContent(name: string) {
     return prettier(`
-import type { ComponentProp } from '@react-site-editor/types';
-
 export interface ${name}Props {
-    myProp?: ComponentProp;
-    onClick: () => void;
-    children?: React.ReactNode[];
+    myProp: string;
+    onClick: (event?: React.SyntheticEvent) => void;
 }
     `);
 }
@@ -45,9 +50,9 @@ export interface ${name}Props {
 function generateIndexFileContent(name: string) {
     return prettier(`
 export { default } from './${name}.component';
-export { defaultProps as ${
+export { propsSpecs as ${
         name[0].toLowerCase() + name.substring(1)
-    }DefaultProps } from './${name}.component';
+    }PropsSpecs } from './${name}.component';
 export * from './${name}.types';
     `);
 }
@@ -66,10 +71,14 @@ function generateStyleFileContent() {
 function generateStoryFileContent(name: string, group: string) {
     return prettier(`
 import type { Meta, StoryObj } from '@storybook/react';
-import ${name}, { defaultProps } from './${name}.component';
+import { specsValuesParser } from '@react-site-editor/functions';
+import { argTypesControlsParser } from '@/utils';
+import ${name}, { propsSpecs } from './${name}.component';
+import type { ${name}Props } from './${name}.types';
 
 const meta = {
     title: '${group}/${name}',
+    argTypes: argTypesControlsParser<${name}Props>(propsSpecs),
     component: ${name},
 } satisfies Meta<typeof ${name}>;
 
@@ -77,7 +86,7 @@ const meta = {
 type ${name}Story = StoryObj<typeof ${name}>;
 
 export const Default = { 
-    args: defaultProps
+    args: specsValuesParser<${name}Props>(propsSpecs)
 } satisfies ${name}Story;
 
 export default meta;

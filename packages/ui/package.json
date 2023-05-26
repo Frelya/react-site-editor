@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "@react-site-editor/types": "0.0.1",
+        "@react-site-editor/functions": "0.0.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },

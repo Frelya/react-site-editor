@@ -64,11 +64,11 @@ const ComponentsListGroups: React.FunctionComponent<ComponentsListGroupsProps> =
                     {elementsByGroup[groupProps.group].map((element, elementIndex) => {
                         return (
                             <li className={styleClasses.groupComponentsListItem} key={elementIndex}>
-                                <Draggable type="component">
+                                <Draggable type="component" target={element.name}>
                                     <ComponentsListItem
-                                        key={JSON.stringify(element)}
+                                        key={element.name}
                                         text={pascalToSpaced(element.name)}
-                                        iconName={element.defaultProps.iconName}
+                                        iconName={element.specs.iconName}
                                     />
                                 </Draggable>
                             </li>

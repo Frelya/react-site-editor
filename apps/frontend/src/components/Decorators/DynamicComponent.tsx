@@ -1,14 +1,15 @@
 import * as allComponent from '@react-site-editor/ui';
+import type { InferredProps, ExposedComponentsMap } from '@react-site-editor/types';
 
 interface DynamicComponentProps {
     componentName: string;
-    customProps: Record<string, any>;
+    componentProps: InferredProps<unknown>;
 }
 
 const DynamicComponent: React.FunctionComponent<DynamicComponentProps> = (props) => {
-    const Component = (allComponent as Record<string, any>)[props.componentName];
+    const Component = (allComponent as ExposedComponentsMap)[props.componentName];
 
-    return <Component {...props.customProps} />;
+    return <Component {...props.componentProps} />;
 };
 
 export default DynamicComponent;

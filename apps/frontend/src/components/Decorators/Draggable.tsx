@@ -1,9 +1,11 @@
+import type { ComponentInfos } from '@react-site-editor/types';
 import boxImage from '@assets/icons/box.png';
 import { useMitt } from '@components/Decorators/MittProvider';
 
 interface DraggableProps {
     children: React.ReactElement;
     type: string;
+    target: ComponentInfos['name'];
 }
 
 const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
@@ -19,10 +21,7 @@ const Draggable: React.FunctionComponent<DraggableProps> = (props) => {
         document.body.style.cursor = 'grabbing';
 
         if (props.children) {
-            event.dataTransfer.setData(
-                props.type,
-                props.children.key ? props.children.key.toString() : ''
-            );
+            event.dataTransfer.setData(props.type, props.target);
 
             event.dataTransfer.setDragImage(dragImage, 32, 16);
         }

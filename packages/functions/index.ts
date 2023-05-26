@@ -2,6 +2,8 @@ export * from './src/stringutils';
 
 export * from './src/others';
 
+export * from './src/parsers';
+
 // TODO: move definitions below into dedicated files if possible
 
 export const config = {

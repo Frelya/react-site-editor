@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { components } from '@react-site-editor/ui';
+import type { ComponentInfos } from '@react-site-editor/types';
 import { useMitt } from '@components/Decorators/MittProvider';
 import { addComponent } from '@store/previewTree/previewTreeSlice';
 import Droppable from '@components/Decorators/Droppable';
@@ -14,6 +16,16 @@ const PreviewDroppable: React.FunctionComponent<PreviewDroppableProps> = (props)
     const [isDraggedOver, setIsDraggedOver] = useState<boolean>(false);
     const emitter = useMitt();
 
+    const findComponent = (name: string): ComponentInfos => {
+        for (const component of components) {
+            if (component.name === name) {
+                return component;
+            }
+        }
+
+        throw new Error(`Component ${name} not found`);
+    };
+
     emitter.on('dragStartEvent', () => {
         setIsDraggedOver(true);
     });
@@ -23,7 +35,8 @@ const PreviewDroppable: React.FunctionComponent<PreviewDroppableProps> = (props)
     });
 
     const handleDrop = (event: React.DragEvent) => {
-        const component = JSON.parse(event.dataTransfer.getData('component'));
+        const componentName = event.dataTransfer.getData('component');
+        const component = findComponent(componentName);
 
         dispatch(
             addComponent({
@@ -31,7 +44,7 @@ const PreviewDroppable: React.FunctionComponent<PreviewDroppableProps> = (props)
                 data: {
                     name: component.name,
                     group: component.group,
-                    props: component.defaultProps
+                    specs: component.specs
                 }
             })
         );

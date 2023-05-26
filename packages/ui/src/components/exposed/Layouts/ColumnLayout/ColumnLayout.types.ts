@@ -1,8 +1,6 @@
-import { ComponentProp } from '@react-site-editor/types';
-
 export interface ColumnLayoutProps {
-    columnCount: ComponentProp;
-    layout: ComponentProp;
+    columnCount: number;
+    layout: string;
 }
 
 export enum ColumnLayoutOptions {

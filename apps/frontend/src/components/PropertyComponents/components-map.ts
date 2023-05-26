@@ -1,14 +1,14 @@
 import ColorProperty from './Property/ColorProperty';
 import GridTemplateProperty from './Property/GridTemplateProperty';
 import NumberProperty from './Property/NumberProperty';
-import SizeProperty from './Property/SizeProperty';
+import RangeProperty from './Property/RangeProperty';
 import TextProperty from './Property/TextProperty';
 
 const PROPERTY_COMPONENTS_MAP: Record<string, React.FunctionComponent<any>> = {
     COLOR: ColorProperty,
     GRID_TEMPLATE: GridTemplateProperty,
     NUMBER: NumberProperty,
-    SIZE: SizeProperty,
+    RANGE: RangeProperty,
     TEXT: TextProperty
 };
 

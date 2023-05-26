@@ -2,7 +2,7 @@ import { pascalToSpaced, capitalize } from '@react-site-editor/functions';
 import type { PropertyProps } from '@/types';
 
 interface PropertyWrapperProps {
-    name: PropertyProps['name'];
+    name: PropertyProps<unknown>['name'];
     children: React.ReactNode;
 }
 
