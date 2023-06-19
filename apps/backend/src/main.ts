@@ -1,29 +1,27 @@
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import type { NestExpressApplication } from '@nestjs/platform-express';
-import morgan from 'morgan';
+import { Logger } from 'nestjs-pino';
 
-import { AppModule } from '@app/app.module';
+import { AppModule } from '@modules/app/app.module';
+import appOptions from '@config/app.config';
 import environment from '@config/env.config';
 
 async function bootstrap() {
-    const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-        cors: true,
-        bodyParser: true
-    });
+    const app = await NestFactory.create<NestExpressApplication>(AppModule, appOptions);
+
+    app.useLogger(app.get(Logger));
 
     const configService = app.get(ConfigService);
     const port = environment(configService).port;
 
-    app.use(morgan('dev'));
-
     await app.listen(port, () => {
-        console.log(`Listening on port ${port}`);
+        if (environment(configService).nodeEnv === 'development') {
+            console.log(`Server listening at http://localhost:${port} \n`);
+        }
     });
 
     return app;
 }
 
-bootstrap().then(() => {
-    console.log('Application started');
-});
+bootstrap().then(() => {});

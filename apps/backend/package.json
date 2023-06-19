@@ -12,6 +12,7 @@
         "db:push": "prisma db push"
     },
     "dependencies": {
+        "@nest-middlewares/morgan": "^7.0.1",
         "@nestjs/common": "^10.0.0",
         "@nestjs/config": "^3.0.0",
         "@nestjs/core": "^10.0.0",
@@ -19,7 +20,9 @@
         "@nestjs/platform-express": "^10.0.0",
         "@prisma/client": "^4.15.0",
         "bcrypt": "^5.1.0",
-        "morgan": "^1.10.0",
+        "nestjs-pino": "^3.3.0",
+        "pino-http": "^8.3.3",
+        "pino-pretty": "^10.0.0",
         "reflect-metadata": "^0.1.13",
         "rxjs": "^7.8.1"
     },
