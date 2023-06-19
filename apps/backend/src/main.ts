@@ -16,7 +16,7 @@ async function bootstrap() {
 
     await app.listen(port, () => {
         if (environment(configService).nodeEnv === 'development') {
-            logger.log(`Server listening at http://localhost:${port}/ \n`);
+            logger.log(`Server listening at http://localhost:${port}/`);
         }
     });
 
@@ -28,5 +28,5 @@ bootstrap().then((app) => {
     const configService = app.get(ConfigService);
     const databaseName = environment(configService).database.name;
 
-    logger.log(`Connected to the database "${databaseName}" \n`);
+    logger.log(`Connected to the database "${databaseName}"`);
 });
