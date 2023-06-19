@@ -1,16 +1,23 @@
-import type { Params } from 'nestjs-pino';
+import type { WinstonModuleOptions } from 'nest-winston';
+import winston from 'winston';
 
-const loggerModuleOptions: Params = {
-    pinoHttp: {
-        transport: {
-            target: 'pino-pretty',
-            options: {
-                hideObject: true,
-                customColors: 'error=re;success=green;info=white;debug=yellow;trace=cyan;warn=magenta',
-                ignore: 'pid,hostname,context'
-            }
-        }
-    }
+type LogInfo = { [key: string]: string };
+
+const formattedInfo = (info: LogInfo) => {
+    return { ...info, level: info.level.toUpperCase() };
 };
 
-export default loggerModuleOptions;
+const loggerOptions: WinstonModuleOptions = {
+    transports: [new winston.transports.Console()],
+    format: winston.format.combine(
+        winston.format(formattedInfo)(),
+        winston.format.colorize({ colors: { info: 'blue' } }),
+        winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+        winston.format.printf(({ level, message, timestamp }: LogInfo) => {
+            return `[${timestamp}] ${level}: ${message}`;
+        })
+    ),
+    exitOnError: false
+};
+
+export default loggerOptions;
