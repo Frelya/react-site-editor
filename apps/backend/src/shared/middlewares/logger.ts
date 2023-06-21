@@ -1,4 +1,5 @@
 import { Injectable, Logger, NestMiddleware } from '@nestjs/common';
+import type { Request, Response, NextFunction } from 'express';
 
 import { colorMethod, colorStatusCode, colorNotImportant } from '@utils/colored-http-logs';
 
@@ -6,9 +7,7 @@ import { colorMethod, colorStatusCode, colorNotImportant } from '@utils/colored-
 export class LoggerMiddleware implements NestMiddleware {
     private readonly logger: Logger = new Logger(Logger.name);
 
-    // Got errors when using the Request, Response and NextFunction types
-    // TODO: Fix the types if possible
-    use(request: any, response: any, next: any): void {
+    use(request: Request, response: Response, next: NextFunction): void {
         response.on('finish', () => {
             const { method, originalUrl, httpVersion } = request;
             const { statusCode } = response;

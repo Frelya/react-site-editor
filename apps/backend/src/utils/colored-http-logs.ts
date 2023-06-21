@@ -5,16 +5,23 @@ enum MethodsColorsMap {
     DELETE = '\x1b[31m',
     PATCH = '\x1b[35m',
     OPTIONS = '\x1b[34m',
-    HEAD = '\x1b[37m'
+    HEAD = '\x1b[37m',
+    UNKNOWN = '\x1b[0m'
 }
 
-type HttpMethod = keyof typeof MethodsColorsMap;
-
-const getMethodColor = (method: HttpMethod) => {
-    return MethodsColorsMap[method] || '\x1b[0m';
+const isHttpMethod = (str: string): str is keyof typeof MethodsColorsMap => {
+    return str in MethodsColorsMap;
 };
 
-const getStatusCodeColor = (statusCode: number) => {
+const getMethodColor = (method: string): string => {
+    if (isHttpMethod(method)) {
+        return MethodsColorsMap[method];
+    }
+
+    return MethodsColorsMap.UNKNOWN;
+};
+
+const getStatusCodeColor = (statusCode: number): string => {
     if (statusCode >= 500) {
         return '\x1b[33m';
     }
@@ -34,14 +41,14 @@ const getStatusCodeColor = (statusCode: number) => {
     return '\x1b[0m';
 };
 
-export function colorMethod(method: HttpMethod) {
+export function colorMethod(method: string): string {
     return `${getMethodColor(method)}${method}\x1b[0m`;
 }
 
-export function colorStatusCode(statusCode: number) {
+export function colorStatusCode(statusCode: number): string {
     return `${getStatusCodeColor(statusCode)}${statusCode}\x1b[0m`;
 }
 
-export function colorNotImportant(text: string) {
+export function colorNotImportant(text: string): string {
     return `\x1b[2m${text}\x1b[0m`;
 }

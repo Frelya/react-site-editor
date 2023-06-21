@@ -1,7 +1,11 @@
 {
-  "name": ".prisma/client",
-  "main": "index.js",
-  "types": "index.d.ts",
-  "browser": "index-browser.js",
-  "sideEffects": false
+    "name": "prisma-client",
+    "version": "0.0.1",
+    "description": "A plugin to have generated Prisma Client's types internally with pnpm",
+    "type": "module",
+    "main": "src/index.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Frelya"
 }

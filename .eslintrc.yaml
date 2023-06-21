@@ -27,7 +27,6 @@ ignorePatterns:
     - '**/*/node_modules'
     - '**/*/dist'
     - '**/*/build'
-    - 'apps/backend/src/plugins/prisma-client'
 settings:
     'react':
         'version': 'detect'

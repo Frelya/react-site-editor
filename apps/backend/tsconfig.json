@@ -17,6 +17,7 @@
         "incremental": true,
         "isolatedModules": false,
         "paths": {
+            "*": ["./node_modules/*"],
             "@src/*": ["./src/*"],
             "@config/*": ["./src/config/*"],
             "@decorators/*": ["./src/decorators/*"],
