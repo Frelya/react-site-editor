@@ -10,6 +10,7 @@ import { LoggerMiddleware } from '@shared/middlewares';
 import { UserModule } from '@modules/user/user.module';
 
 import { AppHostGuard } from './app.guards';
+import { AppController } from './app.controller';
 
 @Module({
     imports: [ConfigModule.forRoot(nestConfigOptions), UserModule],
@@ -19,7 +20,8 @@ import { AppHostGuard } from './app.guards';
             provide: APP_GUARD,
             useClass: AppHostGuard
         }
-    ]
+    ],
+    controllers: [AppController]
 })
 export class AppModule implements NestModule {
     configure(consumer: MiddlewareConsumer): void {
