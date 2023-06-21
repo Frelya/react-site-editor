@@ -4,7 +4,7 @@ import { colorMethod, colorStatusCode, colorNotImportant } from '@utils/colored-
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
-    private readonly logger: Logger = new Logger(LoggerMiddleware.name);
+    private readonly logger: Logger = new Logger(Logger.name);
 
     // Got errors when using the Request, Response and NextFunction types
     // TODO: Fix the types if possible
@@ -14,7 +14,7 @@ export class LoggerMiddleware implements NestMiddleware {
             const { statusCode } = response;
             const responseTime = response.get('X-Response-Time');
 
-            this.logger.debug(
+            this.logger.log(
                 `${colorMethod(method)} ` +
                     `${originalUrl} ` +
                     `${colorStatusCode(statusCode)} ` +

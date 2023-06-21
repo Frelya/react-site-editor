@@ -1,7 +1,7 @@
-enum NodeEnv {
-    Development = 'development',
-    Production = 'production',
-    Test = 'test',
+enum NodeEnvs {
+    DEVELOPMENT = 'development',
+    PRODUCTION = 'production',
+    TEST = 'test'
 }
 
-export default NodeEnv;
+export default NodeEnvs;

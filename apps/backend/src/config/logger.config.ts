@@ -2,9 +2,11 @@ import type { WinstonModuleOptions } from 'nest-winston';
 import winston from 'winston';
 import * as process from 'process';
 
-type LogInfo = { [key: string]: string };
+import { NodeEnvs } from '@shared/constants';
 
-const formattedInfoLevel = (info: LogInfo) => {
+type LogInfo = winston.Logform.TransformableInfo;
+
+const formattedInfoLevel = (info: LogInfo): LogInfo => {
     const maxLevelLength = 5;
 
     return {
@@ -16,7 +18,7 @@ const formattedInfoLevel = (info: LogInfo) => {
 const loggerOptions: WinstonModuleOptions = {
     // The env config module is not loaded yet,
     // so we need to use the process.env.NODE_ENV variable
-    level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
+    level: process.env.NODE_ENV === NodeEnvs.PRODUCTION ? 'info' : 'debug',
 
     transports: [new winston.transports.Console()],
 

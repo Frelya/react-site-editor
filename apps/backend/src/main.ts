@@ -3,9 +3,16 @@ import { ConfigService } from '@nestjs/config';
 import { Logger } from '@nestjs/common';
 import type { NestExpressApplication } from '@nestjs/platform-express';
 
-import { AppModule } from '@modules/app/app.module';
 import appOptions from '@config/app.config';
-import environment from '@config/env.config';
+import { environment } from '@config/env.config';
+import { AppModule } from '@modules/app/app.module';
+import { User } from '@plugins/prisma-client';
+
+declare module 'express' {
+    interface Request {
+        user: User;
+    }
+}
 
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule, appOptions);

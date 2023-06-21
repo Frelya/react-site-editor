@@ -9,16 +9,20 @@
         "noFallthroughCasesInSwitch": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
+        "preserveSymlinks": false,
         "declaration": true,
         "outDir": "dist",
         "baseUrl": ".",
         "noEmit": false,
         "incremental": true,
+        "isolatedModules": false,
         "paths": {
             "@src/*": ["./src/*"],
             "@config/*": ["./src/config/*"],
-            "@middlewares/*": ["./src/middlewares/*"],
+            "@decorators/*": ["./src/decorators/*"],
             "@modules/*": ["./src/modules/*"],
+            "@plugins/*": ["./src/plugins/*"],
+            "@shared/*": ["./src/shared/*"],
             "@utils/*": ["./src/utils/*"]
         }
     },
