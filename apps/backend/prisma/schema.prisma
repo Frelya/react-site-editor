@@ -15,21 +15,23 @@ generator docs {
 
 /// Possible roles for a user
 enum Role {
-    user
-    admin
+    User
+    Admin
 }
 
 /// Possible memberships for a user
 enum Membership {
-    free
-    premium
+    Free
+    Premium
 }
 
 /// Possible types of a media
 enum MediaType {
-    audio
-    image
-    video
+    Image
+    Video
+    Audio
+    Document
+    Other
 }
 
 /// A media is a file used in a website or a template
@@ -43,13 +45,13 @@ type Media {
 /// A user of the application
 model User {
     id         String     @id @default(auto()) @map("_id") @database.ObjectId
-    role       Role       @default(user)
+    role       Role       @default(User)
     username   String     @unique(sort: Asc)
     email      String     @unique(sort: Asc)
     password   String
     firstName  String?
     lastName   String?
-    membership Membership @default(free)
+    membership Membership @default(Free)
     lastLogin  DateTime?
     createdAt  DateTime   @default(now())
 

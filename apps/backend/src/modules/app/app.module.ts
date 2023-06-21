@@ -7,10 +7,12 @@ import responseTime from 'response-time';
 import nestConfigOptions from '@config/nest.config';
 import { LoggerMiddleware } from '@shared/middlewares';
 
+import { UserModule } from '@modules/user/user.module';
+
 import { AppHostGuard } from './app.guards';
 
 @Module({
-    imports: [ConfigModule.forRoot(nestConfigOptions)],
+    imports: [ConfigModule.forRoot(nestConfigOptions), UserModule],
     providers: [
         Logger,
         {

@@ -15,7 +15,6 @@
         "baseUrl": ".",
         "noEmit": false,
         "incremental": true,
-        "isolatedModules": false,
         "paths": {
             "*": ["./node_modules/*"],
             "@src/*": ["./src/*"],
