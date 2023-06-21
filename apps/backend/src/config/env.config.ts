@@ -1,6 +1,6 @@
 import type { ConfigService } from '@nestjs/config';
 
-interface EnvironmentVariables {
+export interface EnvironmentVariables {
     nodeEnv: 'development' | 'production' | 'test';
     port: number;
     database: {
@@ -44,4 +44,4 @@ const environment = (configService: ConfigService): EnvironmentVariables => {
     return variables;
 };
 
-export default environment;
+export { environment };

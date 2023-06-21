@@ -3,15 +3,23 @@ import { ConfigService } from '@nestjs/config';
 import { Logger } from '@nestjs/common';
 import type { NestExpressApplication } from '@nestjs/platform-express';
 
-import { AppModule } from '@modules/app/app.module';
 import appOptions from '@config/app.config';
-import environment from '@config/env.config';
+import { environment } from '@config/env.config';
+import { AppModule } from '@modules/app/app.module';
+import { User } from '@shared/database';
+
+declare module 'express' {
+    interface Request {
+        user: User;
+    }
+}
 
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule, appOptions);
 
     const logger = app.get(Logger);
     const configService = app.get(ConfigService);
+
     const port = environment(configService).port;
 
     await app.listen(port, () => {
@@ -20,12 +28,10 @@ async function bootstrap() {
         }
     });
 
-    return app;
+    return { logger, configService };
 }
 
-bootstrap().then((app) => {
-    const logger = app.get(Logger);
-    const configService = app.get(ConfigService);
+bootstrap().then(({ logger, configService }) => {
     const databaseName = environment(configService).database.name;
 
     logger.log(`Connected to the database "${databaseName}"`);
