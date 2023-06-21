@@ -4,7 +4,7 @@
     "private": true,
     "description": "React Site Editor website backend",
     "scripts": {
-        "build": "nest build",
+        "build": "db:generate && nest build",
         "start": "nest start",
         "dev": "nest start --watch",
         "db:generate": "prisma generate",
