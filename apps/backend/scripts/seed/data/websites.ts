@@ -1,6 +1,5 @@
 import { Prisma, MediaType } from '.prisma/client';
 
-
 const websitesData: Prisma.XOR<Prisma.WebsiteCreateInput, Prisma.WebsiteUncheckedCreateInput>[] = [
     {
         url: 'https://mywebsite.com',
@@ -13,9 +12,9 @@ const websitesData: Prisma.XOR<Prisma.WebsiteCreateInput, Prisma.WebsiteUnchecke
                 name: 'Sample Image',
                 type: MediaType.Image,
                 uri: '/path/to/image.jpg',
-                createdAt: new Date(),
-            },
-        ],
+                createdAt: new Date()
+            }
+        ]
     },
     {
         title: 'My Website',
@@ -24,8 +23,8 @@ const websitesData: Prisma.XOR<Prisma.WebsiteCreateInput, Prisma.WebsiteUnchecke
         createdAt: new Date(),
         authorId: '<user_id>',
         templateId: '<template_id>',
-        medias: [],
-    },
+        medias: []
+    }
 ];
 
 export default websitesData;

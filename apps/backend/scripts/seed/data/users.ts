@@ -10,7 +10,7 @@ const usersData: Prisma.XOR<Prisma.UserCreateInput, Prisma.UserUncheckedCreateIn
         lastName: 'Doe',
         membership: Membership.Premium,
         lastLogin: null,
-        createdAt: new Date(),
+        createdAt: new Date()
     },
     {
         role: Role.User,
@@ -21,8 +21,8 @@ const usersData: Prisma.XOR<Prisma.UserCreateInput, Prisma.UserUncheckedCreateIn
         lastName: 'Doe',
         membership: Membership.Free,
         lastLogin: new Date(),
-        createdAt: new Date(),
-    },
+        createdAt: new Date()
+    }
 ];
 
 export default usersData;
