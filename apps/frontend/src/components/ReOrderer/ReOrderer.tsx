@@ -36,11 +36,14 @@ const ReOrderer: React.FunctionComponent = () => {
 
     useEffect(() => {
         return () => {
+            console.log('previewTree========>', previewTree);
+
             setMockPreviewTree(
                 previewTree.map((el, index) => {
                     return { id: `${el.name}-${index}` };
                 })
             );
+            console.log('mockPreviewTree========>', mockPreviewTree);
         };
     }, [previewTree]);
     return (
