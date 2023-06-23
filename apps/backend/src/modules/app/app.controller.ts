@@ -1,9 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Redirect } from '@nestjs/common';
+
+import { APP_HOST } from '@shared/constants';
 
 @Controller()
 export class AppController {
     @Get()
-    getHello(): string {
-        return 'Hello World!';
+    @Redirect('/docs')
+    getApp(): string {
+        return APP_HOST;
     }
 }
