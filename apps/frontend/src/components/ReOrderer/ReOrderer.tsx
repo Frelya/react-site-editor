@@ -17,9 +17,10 @@ const ReOrderer: React.FunctionComponent = () => {
         setSearchQuery(query);
     };
     const handleSort = (newOrder: ItemInterface[]) => {
+        console.log(newOrder);
+
         // newOrder contains only name of component
         // so let's map it with previewTree
-
         const updatedPreviewTree = newOrder.map((el) => {
             const [name, id] = String(el.id).split('-');
             console.log('onSort', name, id);
@@ -35,13 +36,14 @@ const ReOrderer: React.FunctionComponent = () => {
     };
 
     useEffect(() => {
-        return () => {
-            setMockPreviewTree(
-                previewTree.map((el, index) => {
-                    return { id: `${el.name}-${index}` };
-                })
-            );
-        };
+        // console.log('previewTree========>', previewTree);
+
+        setMockPreviewTree(
+            previewTree.map((el, index) => {
+                return { id: `${el.name}-${index}` };
+            })
+        );
+        // console.log('mockPreviewTree========>', mockPreviewTree);
     }, [previewTree]);
     return (
         <div className={styleClasses.container}>
