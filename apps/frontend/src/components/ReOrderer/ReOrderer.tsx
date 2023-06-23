@@ -10,16 +10,17 @@ const ReOrderer: React.FunctionComponent = () => {
     const dispatch = useDispatch();
     const previewTree = useSelector(selectPreviewTree);
     const [searchQuery, setSearchQuery] = useState<string>('');
-    const [mockPreviewTree, setMockPreviewTree] = useState<ItemInterface[]>([]);
+    const [mockPreviewTree, setMockPreviewTree] = useState<ItemInterface[]>();
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const query = event.target.value;
         setSearchQuery(query);
     };
     const handleSort = (newOrder: ItemInterface[]) => {
+        console.log(newOrder);
+
         // newOrder contains only name of component
         // so let's map it with previewTree
-
         const updatedPreviewTree = newOrder.map((el) => {
             const [name, id] = String(el.id).split('-');
             console.log('onSort', name, id);
@@ -35,16 +36,14 @@ const ReOrderer: React.FunctionComponent = () => {
     };
 
     useEffect(() => {
-        return () => {
-            console.log('previewTree========>', previewTree);
+        // console.log('previewTree========>', previewTree);
 
-            setMockPreviewTree(
-                previewTree.map((el, index) => {
-                    return { id: `${el.name}-${index}` };
-                })
-            );
-            console.log('mockPreviewTree========>', mockPreviewTree);
-        };
+        setMockPreviewTree(
+            previewTree.map((el, index) => {
+                return { id: `${el.name}-${index}` };
+            })
+        );
+        // console.log('mockPreviewTree========>', mockPreviewTree);
     }, [previewTree]);
     return (
         <div className={styleClasses.container}>
