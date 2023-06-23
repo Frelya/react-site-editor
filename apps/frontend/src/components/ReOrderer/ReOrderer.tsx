@@ -10,7 +10,7 @@ const ReOrderer: React.FunctionComponent = () => {
     const dispatch = useDispatch();
     const previewTree = useSelector(selectPreviewTree);
     const [searchQuery, setSearchQuery] = useState<string>('');
-    const [mockPreviewTree, setMockPreviewTree] = useState<ItemInterface[]>();
+    const [mockPreviewTree, setMockPreviewTree] = useState<ItemInterface[]>([]);
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const query = event.target.value;
