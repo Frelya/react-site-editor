@@ -48,7 +48,7 @@ const SideBarLeft: React.FunctionComponent = () => {
         } else if (state == Tabs.REORDER) {
             return <ReOrderer />;
         }
-        return <p>Yo</p>;
+        return <p>Something went wrong</p>;
     };
 
     return (
@@ -72,20 +72,20 @@ const SideBarLeft: React.FunctionComponent = () => {
                     </div>
                 </SideBarSection>
                 <SideBarSection position={'top'}>
-                    <div className={styleClasses.header}>
+                    <div className={styleClasses.section}>
                         <div
                             onClick={() => setActiveTab(Tabs.COMPONENT)}
-                            className={
-                                'flex-1 h-full flex cursor-pointer justify-center items-center border-r border-slate-500'
-                            }>
-                            Component
+                            className={`flex-1 h-full flex cursor-pointer justify-center items-center border-0 border-blue-500 ${
+                                activeTab == Tabs.COMPONENT ? 'border-b-4' : ''
+                            }`}>
+                            <Icon name="plus" />
                         </div>
                         <div
                             onClick={() => setActiveTab(Tabs.REORDER)}
-                            className={
-                                'flex-1  h-full cursor-pointer flex justify-center items-center '
-                            }>
-                            Re-order
+                            className={`flex-1 h-full flex cursor-pointer justify-center items-center border-0 border-blue-500 ${
+                                activeTab == Tabs.REORDER ? 'border-b-4' : ''
+                            }`}>
+                            <Icon name="stack" />
                         </div>
                     </div>
                 </SideBarSection>
@@ -117,7 +117,8 @@ const styleClasses = {
     container: 'w-full h-full flex flex-col justify-between',
     header: 'w-11/12 h-full flex justify-between items-center',
     footer: 'w-11/12 h-full flex justify-between items-center',
-    footerButton: 'w-full h-full gap-2 py-2 px-4 flex justify-center items-center'
+    footerButton: 'w-full h-full gap-2 py-2 px-4 flex justify-center items-center',
+    section: 'w-full h-full flex justify-between items-center'
 };
 
 export default SideBarLeft;
