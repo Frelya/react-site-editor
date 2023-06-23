@@ -21,7 +21,7 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = (props) => 
                 <input
                     className={styleClasses.searchBarInput}
                     type={'text'}
-                    placeholder={'Search...'}
+                    placeholder={'Search components'}
                     value={searchQuery}
                     onChange={handleSearchChange}
                 />
