@@ -78,14 +78,14 @@ const SideBarLeft: React.FunctionComponent = () => {
                             className={`flex-1 h-full flex cursor-pointer justify-center items-center border-0 border-blue-500 ${
                                 activeTab == Tabs.COMPONENT ? 'border-b-4' : ''
                             }`}>
-                            <Icon name="plus" />
+                            <Icon name="plus" className="pointer-events-none" />
                         </div>
                         <div
                             onClick={() => setActiveTab(Tabs.REORDER)}
                             className={`flex-1 h-full flex cursor-pointer justify-center items-center border-0 border-blue-500 ${
                                 activeTab == Tabs.REORDER ? 'border-b-4' : ''
                             }`}>
-                            <Icon name="stack" />
+                            <Icon name="stack" className="pointer-events-none" />
                         </div>
                     </div>
                 </SideBarSection>
