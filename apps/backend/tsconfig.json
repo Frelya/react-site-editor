@@ -1,0 +1,30 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "esnext",
+        "sourceMap": true,
+        "strictNullChecks": false,
+        "strictBindCallApply": false,
+        "noFallthroughCasesInSwitch": false,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "preserveSymlinks": false,
+        "declaration": true,
+        "outDir": "dist",
+        "baseUrl": ".",
+        "noEmit": false,
+        "incremental": true,
+        "paths": {
+            "*": ["./node_modules/*"],
+            "@src/*": ["./src/*"],
+            "@config/*": ["./src/config/*"],
+            "@decorators/*": ["./src/decorators/*"],
+            "@modules/*": ["./src/modules/*"],
+            "@plugins/*": ["./src/plugins/*"],
+            "@shared/*": ["./src/shared/*"],
+            "@utils/*": ["./src/utils/*"]
+        }
+    },
+    "include": ["./**/*"]
+}
