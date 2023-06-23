@@ -46,6 +46,9 @@ export const previewTreeSlice = createSlice({
         deleteChildren: () => {
             return;
         },
+        updateTree: (state, actions: PayloadAction<PreviewTree>) => {
+            state.value = actions.payload;
+        },
         resetTree: (state) => {
             if (state.value.length === 0) {
                 return;
@@ -70,6 +73,7 @@ export const {
     moveComponent,
     deleteComponent,
     deleteChildren,
+    updateTree,
     resetTree
 } = previewTreeSlice.actions;
 
