@@ -8,11 +8,34 @@ import { useMitt } from '@components/Decorators/MittProvider';
 import PreviewComponentWrapper from '@components/Preview/PreviewComponentWrapper';
 import PreviewDroppable from '@components/Preview/PreviewDroppable';
 import DynamicComponent from '@components/Decorators/DynamicComponent';
+import Contextable from '../Decorators/Contexable';
+import { ContextMenuAction } from '@/types/contextMenu';
 
 const Preview: React.FunctionComponent = () => {
     const previewTree = useSelector(selectPreviewTree);
     const emitter = useMitt();
     const [screen, setScreen] = useState<PreviewScreen>(PreviewScreen.DESKTOP);
+
+    const actions: ContextMenuAction[] = [
+        {
+            label: 'Action A',
+            action: () => {
+                console.log('Action A');
+            }
+        },
+        {
+            label: 'Action B',
+            action: () => {
+                console.log('Action B');
+            }
+        },
+        {
+            label: 'Action C',
+            action: () => {
+                console.log('Action C');
+            }
+        }
+    ];
 
     const handleElementClick = (element: ActiveComponent) => {
         emitter.emit('componentSelected', element);
@@ -24,49 +47,52 @@ const Preview: React.FunctionComponent = () => {
 
     return (
         <div className={styleClasses.container}>
-            <div
+            <Contextable
+                actions={actions}
                 className={`${styleClasses.iframe} ${
                     screen === PreviewScreen.DESKTOP
                         ? styleClasses.iframeDesktop
                         : styleClasses.iframeMobile
                 }`}>
-                {previewTree.length == 0 && (
-                    <div className={'tree-element w-full'} key={'Element-First'}>
-                        <PreviewDroppable index={0} key={0} />
-                    </div>
-                )}
-                {previewTree.length > 0 &&
-                    previewTree.map((element, elementIndex) => {
-                        return (
-                            <div
-                                className={'tree-element w-full'}
-                                key={elementIndex + JSON.stringify(element)}>
-                                <PreviewComponentWrapper
-                                    editable={true}
-                                    index={elementIndex}
-                                    onClick={() =>
-                                        handleElementClick({
-                                            index: elementIndex,
-                                            name: element.name,
-                                            specs: element.specs
-                                        })
-                                    }>
-                                    <Suspense>
-                                        <DynamicComponent
-                                            componentName={element.name}
-                                            componentProps={specsValuesParser(element.specs)}
-                                        />
-                                    </Suspense>
-                                </PreviewComponentWrapper>
-                            </div>
-                        );
-                    })}
-                {previewTree.length > 0 && (
-                    <div className={'tree-element w-full'} key={'Element-Last'}>
-                        <PreviewDroppable index={previewTree.length} key={previewTree.length} />
-                    </div>
-                )}
-            </div>
+                <>
+                    {previewTree.length == 0 && (
+                        <div className={'tree-element w-full'} key={'Element-First'}>
+                            <PreviewDroppable index={0} key={0} />
+                        </div>
+                    )}
+                    {previewTree.length > 0 &&
+                        previewTree.map((element, elementIndex) => {
+                            return (
+                                <div
+                                    className={'tree-element w-full'}
+                                    key={elementIndex + JSON.stringify(element)}>
+                                    <PreviewComponentWrapper
+                                        editable={true}
+                                        index={elementIndex}
+                                        onClick={() =>
+                                            handleElementClick({
+                                                index: elementIndex,
+                                                name: element.name,
+                                                specs: element.specs
+                                            })
+                                        }>
+                                        <Suspense>
+                                            <DynamicComponent
+                                                componentName={element.name}
+                                                componentProps={specsValuesParser(element.specs)}
+                                            />
+                                        </Suspense>
+                                    </PreviewComponentWrapper>
+                                </div>
+                            );
+                        })}
+                    {previewTree.length > 0 && (
+                        <div className={'tree-element w-full'} key={'Element-Last'}>
+                            <PreviewDroppable index={previewTree.length} key={previewTree.length} />
+                        </div>
+                    )}
+                </>
+            </Contextable>
         </div>
     );
 };
