@@ -42,7 +42,7 @@ const ComponentsListGroups: React.FunctionComponent<ComponentsListGroupsProps> =
                 <div className={styleClasses.groupsListItemTitle} onClick={toggleVisibility}>
                     <Icon
                         name={'chevron-left'}
-                        className={`${styleClasses.groupsListItemTitleIcon} ${
+                        className={`pointer-events-none ${styleClasses.groupsListItemTitleIcon} ${
                             isVisible
                                 ? styleClasses.groupsListItemTitleIconDown
                                 : styleClasses.groupsListItemTitleIconRight

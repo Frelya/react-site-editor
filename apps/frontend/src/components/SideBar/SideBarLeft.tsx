@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { resetTree } from '@store/previewTree/previewTreeSlice';
@@ -10,13 +10,16 @@ import EditorButton from '@components/Common/EditorButton';
 import SideBarSection from '@components/SideBar/SideBarSection';
 import BaseSideBar, { SideBarScales } from '@components/SideBar/BaseSideBar';
 import ComponentsList from '@components/ComponentsList/ComponentsList';
-import ReOrderer from '../ReOrderer/ReOrderer';
+import ReOrganizer from '@components/ReOrganizer/ReOrganizer';
+
+const TabsViewsMap = {
+    [Tabs.COMPONENTS]: <ComponentsList elements={components} />,
+    [Tabs.REORGANIZE]: <ReOrganizer />
+};
 
 const SideBarLeft: React.FunctionComponent = () => {
     const dispatch = useDispatch();
     const emitter = useMitt();
-
-    const [activeTab, setActiveTab] = useState<Tabs>(Tabs.COMPONENT);
 
     const handleRefreshClick = () => {
         dispatch(resetTree());
@@ -40,15 +43,59 @@ const SideBarLeft: React.FunctionComponent = () => {
         );
     };
 
-    //TODO Add transition here
-    // https://react.dev/reference/react/useTransition
-    const ActiveTabs = ({ state }: { state: Tabs }) => {
-        if (state == Tabs.COMPONENT) {
-            return <ComponentsList elements={components} />;
-        } else if (state == Tabs.REORDER) {
-            return <ReOrderer />;
-        }
-        return <p>Something went wrong</p>;
+    const TabChooser = ({
+        onClick,
+        children
+    }: {
+        onClick: () => void;
+        children: React.ReactNode;
+    }) => {
+        return (
+            <div onClick={onClick} className={styleClasses.tabChooser}>
+                {children}
+            </div>
+        );
+    };
+
+    const ActiveTab = () => {
+        const [activeTab, setActiveTab] = useState<Tabs>(Tabs.COMPONENTS);
+        const [indicatorMarginLeft, setIndicatorMarginLeft] = useState<number>(0);
+        const [TabIndicator, setTabIndicator] = useState<React.FunctionComponent>(() => () => null);
+
+        const tabIndicatorLength = Math.floor(100 / Object.keys(TabsViewsMap).length);
+
+        const chooseTab = (index: number, tab: Tabs) => {
+            setIndicatorMarginLeft(tabIndicatorLength * index);
+            setActiveTab(tab);
+        };
+
+        useEffect(() => {
+            setTabIndicator(() => {
+                return () => (
+                    <div
+                        className={styleClasses.tabChooserBack}
+                        style={{ width: `${tabIndicatorLength}%`, marginLeft: `${indicatorMarginLeft}%` }}
+                    />
+                );
+            });
+        }, [activeTab]);
+
+        return (
+            <>
+                <SideBarSection position={'top'}>
+                    <div className={styleClasses.tabChoices}>
+                        <TabIndicator />
+                        <TabChooser onClick={() => chooseTab(0, Tabs.COMPONENTS)}>
+                            <Icon name={'cubes'} className={'pointer-events-none text-gray-600'} />
+                        </TabChooser>
+                        <TabChooser onClick={() => chooseTab(1, Tabs.REORGANIZE)}>
+                            <Icon name={'stack'} className={'pointer-events-none'} />
+                        </TabChooser>
+                    </div>
+                </SideBarSection>
+                {TabsViewsMap[activeTab] || <p>Something went wrong</p>}
+            </>
+        );
     };
 
     return (
@@ -71,25 +118,7 @@ const SideBarLeft: React.FunctionComponent = () => {
                         />
                     </div>
                 </SideBarSection>
-                <SideBarSection position={'top'}>
-                    <div className={styleClasses.section}>
-                        <div
-                            onClick={() => setActiveTab(Tabs.COMPONENT)}
-                            className={`flex-1 h-full flex cursor-pointer justify-center items-center border-0 border-blue-500 ${
-                                activeTab == Tabs.COMPONENT ? 'border-b-4' : ''
-                            }`}>
-                            <Icon name="plus" className="pointer-events-none" />
-                        </div>
-                        <div
-                            onClick={() => setActiveTab(Tabs.REORDER)}
-                            className={`flex-1 h-full flex cursor-pointer justify-center items-center border-0 border-blue-500 ${
-                                activeTab == Tabs.REORDER ? 'border-b-4' : ''
-                            }`}>
-                            <Icon name="stack" className="pointer-events-none" />
-                        </div>
-                    </div>
-                </SideBarSection>
-                <ActiveTabs state={activeTab} />
+                <ActiveTab />
                 <SideBarSection position={'bottom'}>
                     <div className={styleClasses.footer}>
                         <Icon
@@ -118,7 +147,11 @@ const styleClasses = {
     header: 'w-11/12 h-full flex justify-between items-center',
     footer: 'w-11/12 h-full flex justify-between items-center',
     footerButton: 'w-full h-full gap-2 py-2 px-4 flex justify-center items-center',
-    section: 'w-full h-full flex justify-between items-center'
+    tabChoices: 'relative w-full h-full flex justify-between items-center',
+    tabChooserBack:
+        'absolute bottom-0 h-full border-b-4 z-[-1] border-slate-400 bg-slate-400 bg-opacity-20 transition-all duration-100 ease-in-out',
+    tabChooser:
+        'flex-1 h-full flex cursor-pointer justify-center items-center border-0 border-blue-500'
 };
 
 export default SideBarLeft;

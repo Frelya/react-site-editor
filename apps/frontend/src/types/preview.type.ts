@@ -4,6 +4,6 @@ export enum PreviewScreen {
 }
 
 export enum Tabs {
-    COMPONENT,
-    REORDER
+    COMPONENTS,
+    REORGANIZE
 }
