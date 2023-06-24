@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { resetTree } from '@store/previewTree/previewTreeSlice';
@@ -11,11 +11,6 @@ import SideBarSection from '@components/SideBar/SideBarSection';
 import BaseSideBar, { SideBarScales } from '@components/SideBar/BaseSideBar';
 import ComponentsList from '@components/ComponentsList/ComponentsList';
 import ReOrganizer from '@components/ReOrganizer/ReOrganizer';
-
-const TabsViewsMap = {
-    [Tabs.COMPONENTS]: <ComponentsList elements={components} />,
-    [Tabs.REORGANIZE]: <ReOrganizer />
-};
 
 const SideBarLeft: React.FunctionComponent = () => {
     const dispatch = useDispatch();
@@ -60,7 +55,11 @@ const SideBarLeft: React.FunctionComponent = () => {
     const ActiveTab = () => {
         const [activeTab, setActiveTab] = useState<Tabs>(Tabs.COMPONENTS);
         const [indicatorMarginLeft, setIndicatorMarginLeft] = useState<number>(0);
-        const [TabIndicator, setTabIndicator] = useState<React.FunctionComponent>(() => () => null);
+
+        const TabsViewsMap = {
+            [Tabs.COMPONENTS]: <ComponentsList elements={components} />,
+            [Tabs.REORGANIZE]: <ReOrganizer />
+        };
 
         const tabIndicatorLength = Math.floor(100 / Object.keys(TabsViewsMap).length);
 
@@ -69,22 +68,17 @@ const SideBarLeft: React.FunctionComponent = () => {
             setActiveTab(tab);
         };
 
-        useEffect(() => {
-            setTabIndicator(() => {
-                return () => (
-                    <div
-                        className={styleClasses.tabChooserBack}
-                        style={{ width: `${tabIndicatorLength}%`, marginLeft: `${indicatorMarginLeft}%` }}
-                    />
-                );
-            });
-        }, [activeTab]);
-
         return (
             <>
                 <SideBarSection position={'top'}>
                     <div className={styleClasses.tabChoices}>
-                        <TabIndicator />
+                        <div
+                            className={styleClasses.tabChooserBack}
+                            style={{
+                                width: `${tabIndicatorLength}%`,
+                                marginLeft: `${indicatorMarginLeft}%`
+                            }}
+                        />
                         <TabChooser onClick={() => chooseTab(0, Tabs.COMPONENTS)}>
                             <Icon name={'cubes'} className={'pointer-events-none text-gray-600'} />
                         </TabChooser>
