@@ -6,7 +6,7 @@ export type IconName =
     | 'cross-mark'
     | 'cubes'
     | 'desktop-screen'
-    | 'grip-lines'
+    | 'grip-vertical'
     | 'information-circle'
     | 'minus'
     | 'mobile-screen'
