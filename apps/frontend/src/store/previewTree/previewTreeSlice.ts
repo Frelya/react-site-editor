@@ -1,5 +1,13 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { PreviewElement, PreviewTree, UpdateElementData, MoveElementData } from '@/types';
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import type { ItemInterface } from 'react-sortablejs';
+import type {
+    PreviewElement,
+    PreviewTree,
+    PreviewElementData,
+    UpdateElementData,
+    MoveElementData
+} from '@/types';
 
 export interface PreviewTreeState {
     value: PreviewTree;
@@ -18,10 +26,10 @@ export const previewTreeSlice = createSlice({
         },
         updateComponent: (state, actions: PayloadAction<UpdateElementData>) => {
             const { id, propName, value } = actions.payload;
-            // Hum (VSCode <<<<<<<<< Webstorm)
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            const shallow = state.value.find((element, index: number) => index == id);
+            const shallow = state.value.find(
+                (element: PreviewElementData, index: number) => index == id
+            );
+
             if (shallow) {
                 shallow.specs[propName].value = value;
                 state.value[id] = { ...shallow };
@@ -46,8 +54,15 @@ export const previewTreeSlice = createSlice({
         deleteChildren: () => {
             return;
         },
-        updateTree: (state, actions: PayloadAction<PreviewTree>) => {
-            state.value = actions.payload;
+        updateTree: (state, actions: PayloadAction<ItemInterface[]>) => {
+            // The payload contains only the name of each element (index suffixed)
+            state.value = actions.payload.map((element) => {
+                const elementId = String(element.id).split('-')[1];
+                // Prefers filter to avoid finding undefined value
+                return state.value.filter(
+                    (item: PreviewElementData, index: number) => String(index) == elementId
+                )[0];
+            });
         },
         resetTree: (state) => {
             if (state.value.length === 0) {

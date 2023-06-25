@@ -38,7 +38,7 @@ const Preview: React.FunctionComponent = () => {
                                     <Suspense>
                                         <DynamicComponent
                                             componentName={element.name}
-                                            customProps={element.props}
+                                            componentProps={element.specs}
                                         />
                                     </Suspense>
                                 </PreviewComponentWrapper>
