@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useMitt } from '@components/Decorators/MittProvider';
 import { deleteComponent, moveComponent } from '@store/previewTree/previewTreeSlice';
 import PreviewDroppable from '@components/Preview/PreviewDroppable';
 import Icon from '@components/Decorators/Icon';
@@ -12,6 +14,13 @@ interface PreviewComponentWrapperProps {
 
 const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperProps> = (props) => {
     const dispatch = useDispatch();
+    const emitter = useMitt();
+
+    const [isSelected, setIsSelected] = useState(false);
+
+    emitter.on('itemInterfaceClicked', (index) => {
+        setIsSelected(index === props.index ? !isSelected : false);
+    });
 
     const handleDeleteElementClick = (index: number | string) => {
         return () => {
@@ -31,6 +40,7 @@ const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperPr
                     newIndex: direction === 'up' ? +index - 1 : +index + 1
                 })
             );
+            emitter.emit('itemInterfaceClicked', null);
         };
     };
 
@@ -46,7 +56,7 @@ const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperPr
             <div
                 className={`${styleClasses.container} ${
                     props.editable ? styleClasses.containerEditable : ''
-                }`}
+                } ${isSelected ? styleClasses.containerSelected : ''}`}
                 onClick={handleContainerClick}>
                 {props.editable && (
                     <div className={styleClasses.actionIcons}>
@@ -78,8 +88,9 @@ const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperPr
 };
 
 const styleClasses = {
-    container: 'flex flex-col items-center justify-center group',
-    containerEditable: 'hover:border-blue-500 hover:border p-1 relative',
+    container: 'flex flex-col items-center justify-center p-1 group',
+    containerEditable: 'hover:outline hover:outline-blue-500 hover:outline-2 relative',
+    containerSelected: 'outline outline-blue-500 outline-2 relative',
     actionIcons:
         'flex items-center justify-center gap-2 absolute -right-3 -top-1/4 invisible group-hover:visible'
 };

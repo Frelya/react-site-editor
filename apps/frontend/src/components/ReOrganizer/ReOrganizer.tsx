@@ -2,19 +2,26 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactSortable } from 'react-sortablejs';
 import type { ItemInterface, SortableOptions } from 'react-sortablejs';
+import { useMitt } from '@components/Decorators/MittProvider';
 import { selectPreviewTree, updateTree } from '@store/previewTree/previewTreeSlice';
 import SideBarSearchBar from '@components/SideBar/SideBarSearchBar';
 import SideBarTabTitle from '@components/SideBar/SideBarTabTitle';
 import ReOrganizerItem from './ReOrganizerItem';
 
 const ReOrganizer: React.FunctionComponent = () => {
+    const emitter = useMitt();
     const dispatch = useDispatch();
     const previewTree = useSelector(selectPreviewTree);
+
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [mockPreviewTree, setMockPreviewTree] = useState<ItemInterface[]>();
 
     const handleReorganize = (newOrder: ItemInterface[]) => {
         dispatch(updateTree(newOrder));
+    };
+
+    const handleUpdate = () => {
+        emitter.emit('itemInterfaceClicked', null);
     };
 
     useEffect(() => {
@@ -39,9 +46,10 @@ const ReOrganizer: React.FunctionComponent = () => {
                 <ReactSortable
                     list={mockPreviewTree}
                     setList={handleReorganize}
+                    onUpdate={handleUpdate}
                     {...sortableOptions}>
                     {previewTree.map((element, index) => {
-                        return <ReOrganizerItem key={index} name={element.name} />;
+                        return <ReOrganizerItem key={index} index={index} name={element.name} />;
                     })}
                 </ReactSortable>
             )}
