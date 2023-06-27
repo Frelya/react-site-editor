@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { ComponentInfos } from '@react-site-editor/types';
-import Icon from '@components/Decorators/Icon';
+import SideBarSearchBar from '@components/SideBar/SideBarSearchBar';
+import SideBarTabTitle from '@components/SideBar/SideBarTabTitle';
 import ComponentsListGroups from '@components/ComponentsList/ComponentsListGroups';
 import Contextable from '../Decorators/Contexable';
 import { ContextMenuAction } from '@/types/contextMenu';
@@ -63,9 +64,6 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = (props) => 
 
 const styleClasses = {
     container: 'h-full flex flex-col items-center justify-start',
-    searchBar:
-        'flex items-center justify-start gap-2 w-11/12 h-12 mx-auto my-4 p-2 bg-white rounded-md',
-    searchBarInput: 'w-full h-full px-2 ' + 'focus:outline-none active:outline-none',
     componentsListTitle: 'w-11/12 mx-auto my-4 px-2'
 };
 

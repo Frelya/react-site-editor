@@ -1,5 +1,5 @@
 import type { ActiveComponent } from './activeComponent.type';
-import { PreviewScreen } from './preview.type';
+import type { PreviewScreen } from './preview.type';
 import type { UpdateElementData, MoveElementData } from './tree.type';
 
 export type Events = {
@@ -7,6 +7,7 @@ export type Events = {
     componentSelected: ActiveComponent;
     componentPropertyChanged: UpdateElementData;
     componentMoved: MoveElementData;
+    itemInterfaceClicked: number | null;
     dragEndEvent: undefined;
     previewScreenChange: PreviewScreen;
     previewRefresh: undefined;
