@@ -63,9 +63,7 @@ const ReOrganizer: React.FunctionComponent = () => {
                 setQuery={setSearchQuery}
             />
             <SideBarTabTitle
-                title={
-                    searchQuery.length > 0 ? `Search results for "${searchQuery}"` : 'Layers'
-                }
+                title={searchQuery.length > 0 ? `Search results for "${searchQuery}"` : 'Layers'}
             />
             {mockPreviewTree && (
                 <ReactSortable
@@ -74,9 +72,7 @@ const ReOrganizer: React.FunctionComponent = () => {
                     onUpdate={handleUpdate}
                     {...sortableOptions}>
                     {previewTree.map((element, index) => {
-                        return (
-                            <ReOrganizerItem key={index} index={index} name={element.name} />
-                        );
+                        return <ReOrganizerItem key={index} index={index} name={element.name} />;
                     })}
                 </ReactSortable>
             )}
