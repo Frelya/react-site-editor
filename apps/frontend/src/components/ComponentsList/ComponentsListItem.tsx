@@ -1,6 +1,6 @@
 import type { UiIconName } from '@react-site-editor/types';
 import type { IconName } from '@/types';
-import Icon from '@components/Decorators/Icon';
+import { Icon } from '@components/Decorators';
 
 interface ComponentsListItemProps {
     text: string;

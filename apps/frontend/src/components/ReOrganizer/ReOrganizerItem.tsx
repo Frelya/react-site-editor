@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { pascalToSpaced } from '@react-site-editor/functions';
-import { useMitt } from '@components/Decorators/MittProvider';
-import Icon from '@components/Decorators/Icon';
+import { useMitt, Icon } from '@components/Decorators';
 
 interface ReOrganizerItemProps {
     index: number;

@@ -2,9 +2,8 @@ import { Suspense, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectPreviewTree } from '@store/previewTree/previewTreeSlice';
 import { PreviewScreen } from '@/types';
-import { useMitt } from '@components/Decorators/MittProvider';
+import { useMitt, DynamicComponent } from '@components/Decorators';
 import PreviewComponentWrapper from '@components/Preview/PreviewComponentWrapper';
-import DynamicComponent from '@components/Decorators/DynamicComponent';
 
 const Preview: React.FunctionComponent = () => {
     const previewTree = useSelector(selectPreviewTree);

@@ -1,4 +1,4 @@
-import Icon from '@components/Decorators/Icon';
+import { Icon } from '@components/Decorators';
 
 interface SideBarSearchBarProps {
     placeholder?: string;

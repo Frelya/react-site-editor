@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
-import MittProvider from '@components/Decorators/MittProvider';
+import { MittProvider } from '@components/Decorators';
 
 function App() {
     return (

@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { pascalToSpaced } from '@react-site-editor/functions';
 import type { ComponentInfos } from '@react-site-editor/types';
-import Icon from '@components/Decorators/Icon';
-import Draggable from '@components/Decorators/Draggable';
-import ComponentsListItem from '@components/ComponentsList/ComponentsListItem';
+import { Icon, Draggable } from '@components/Decorators';
+import ComponentsListItem from './ComponentsListItem';
 
 interface ComponentsListGroupsProps {
     elements: ComponentInfos[];

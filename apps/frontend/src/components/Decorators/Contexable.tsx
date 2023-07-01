@@ -1,6 +1,6 @@
 import { useContextMenu } from '@hooks/useContextMenu';
 import type { ContextMenuAction } from '@/types';
-import ContextMenu from '@components/ContextMenu/ContextMenu';
+import ContextMenu from '@components/Common/ContextMenu/ContextMenu';
 
 // TODO Renames the component
 interface ContextMenuProps {

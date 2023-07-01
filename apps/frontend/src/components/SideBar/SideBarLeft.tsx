@@ -4,13 +4,12 @@ import { useDispatch } from 'react-redux';
 import { resetTree } from '@store/previewTree/previewTreeSlice';
 import { components } from '@react-site-editor/ui';
 import { PreviewScreen, Tabs } from '@/types';
-import { useMitt } from '@components/Decorators/MittProvider';
-import Icon from '@components/Decorators/Icon';
-import EditorButton from '@components/Common/EditorButton';
-import SideBarSection from '@components/SideBar/SideBarSection';
-import BaseSideBar, { SideBarScales } from '@components/SideBar/BaseSideBar';
-import ComponentsList from '@components/ComponentsList/ComponentsList';
-import ReOrganizer from '@components/ReOrganizer/ReOrganizer';
+import { useMitt, Icon } from '@components/Decorators';
+import { EditorButton } from '@components/Common';
+import { ReOrganizer } from '@components/ReOrganizer';
+import { ComponentsList } from '@components/ComponentsList';
+import BaseSideBar, { SideBarScales } from './BaseSideBar';
+import SideBarSection from './SideBarSection';
 
 const SideBarLeft: React.FunctionComponent = () => {
     const dispatch = useDispatch();

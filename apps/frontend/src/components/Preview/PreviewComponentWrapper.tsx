@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useMitt } from '@components/Decorators/MittProvider';
 import { deleteComponent, moveComponent } from '@store/previewTree/previewTreeSlice';
-import PreviewDroppable from '@components/Preview/PreviewDroppable';
-import Icon from '@components/Decorators/Icon';
+import { useMitt, Icon } from '@components/Decorators';
+import PreviewDroppable from './PreviewDroppable';
 
 interface PreviewComponentWrapperProps {
     children: React.ReactNode | React.ReactNode[];

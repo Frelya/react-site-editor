@@ -4,11 +4,9 @@ import { specsValuesParser } from '@react-site-editor/functions';
 import { selectPreviewTree } from '@store/previewTree/previewTreeSlice';
 import { PreviewScreen } from '@/types';
 import type { ActiveComponent, ContextMenuAction } from '@/types';
-import { useMitt } from '@components/Decorators/MittProvider';
-import Contextable from '@components/Decorators/Contexable';
-import DynamicComponent from '@components/Decorators/DynamicComponent';
-import PreviewComponentWrapper from '@components/Preview/PreviewComponentWrapper';
-import PreviewDroppable from '@components/Preview/PreviewDroppable';
+import { useMitt, Contextable, DynamicComponent } from '@components/Decorators';
+import PreviewComponentWrapper from './PreviewComponentWrapper';
+import PreviewDroppable from './PreviewDroppable';
 
 const Preview: React.FunctionComponent = () => {
     const previewTree = useSelector(selectPreviewTree);

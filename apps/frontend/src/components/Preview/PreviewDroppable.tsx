@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { components } from '@react-site-editor/ui';
 import type { ComponentInfos } from '@react-site-editor/types';
-import { useMitt } from '@components/Decorators/MittProvider';
 import { addComponent } from '@store/previewTree/previewTreeSlice';
-import Droppable from '@components/Decorators/Droppable';
+import { useMitt, Droppable } from '@components/Decorators';
 
 interface PreviewDroppableProps {
     index: number;

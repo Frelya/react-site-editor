@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateActiveComponent } from '@store/activeComponent/activeComponentSlice';
-import { useMitt } from '@components/Decorators/MittProvider';
-import SideBarRight from '@components/SideBar/SideBarRight';
-import SideBarLeft from '@components/SideBar/SideBarLeft';
-import Preview from '@components/Preview/Preview';
+import { useMitt } from '@components/Decorators';
+import { SideBarLeft, SideBarRight } from '@components/SideBar';
+import { Preview } from '@components/Preview';
 
 const Editor: React.FunctionComponent = () => {
     const [sidebarRightIsVisible, setSidebarRightIsVisible] = useState<boolean>(false);

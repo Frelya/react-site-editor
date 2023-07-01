@@ -1,4 +1,4 @@
-import { IconName } from './icons.type';
+import type { IconName } from './icons.type';
 
 export type ContextMenuAction = {
     icon?: IconName;

@@ -6,12 +6,12 @@ import {
     updateActiveComponentSpecs
 } from '@store/activeComponent/activeComponentSlice';
 import { updateComponent } from '@store/previewTree/previewTreeSlice';
-import PROPERTY_COMPONENTS_MAP from '@components/PropertyComponents/components-map';
 import type { UpdateElementData } from '@/types';
-import Icon from '@components/Decorators/Icon';
-import BaseSideBar, { SideBarScales } from '@components/SideBar/BaseSideBar';
-import SideBarSection from '@components/SideBar/SideBarSection';
-import EditorButton from '@components/Common/EditorButton';
+import { Icon } from '@components/Decorators';
+import { EditorButton } from '@components/Common';
+import { PROPERTY_COMPONENTS_MAP } from '@components/PropertyComponents';
+import BaseSideBar, { SideBarScales } from './BaseSideBar';
+import SideBarSection from './SideBarSection';
 
 interface SideBarRightProps {
     visible: boolean;

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { ComponentInfos } from '@react-site-editor/types';
 import SideBarSearchBar from '@components/SideBar/SideBarSearchBar';
 import SideBarTabTitle from '@components/SideBar/SideBarTabTitle';
-import ComponentsListGroups from '@components/ComponentsList/ComponentsListGroups';
+import ComponentsListGroups from './ComponentsListGroups';
 
 interface ComponentsListProps {
     elements: ComponentInfos[];
