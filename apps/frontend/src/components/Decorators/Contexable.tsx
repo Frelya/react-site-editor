@@ -4,7 +4,7 @@ import ContextMenu from '@components/ContextMenu/ContextMenu';
 
 // TODO Renames the component
 interface ContextMenuProps {
-    children: React.ReactElement;
+    children: React.ReactNode | React.ReactNode[];
     actions: ContextMenuAction[];
     className: string;
 }

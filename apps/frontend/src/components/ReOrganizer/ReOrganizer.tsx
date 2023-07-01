@@ -57,31 +57,29 @@ const ReOrganizer: React.FunctionComponent = () => {
 
     return (
         <Contextable actions={actions} className={styleClasses.container}>
-            <>
-                <SideBarSearchBar
-                    placeholder={'Search layers'}
-                    query={searchQuery}
-                    setQuery={setSearchQuery}
-                />
-                <SideBarTabTitle
-                    title={
-                        searchQuery.length > 0 ? `Search results for "${searchQuery}"` : 'Layers'
-                    }
-                />
-                {mockPreviewTree && (
-                    <ReactSortable
-                        list={mockPreviewTree}
-                        setList={handleReorganize}
-                        onUpdate={handleUpdate}
-                        {...sortableOptions}>
-                        {previewTree.map((element, index) => {
-                            return (
-                                <ReOrganizerItem key={index} index={index} name={element.name} />
-                            );
-                        })}
-                    </ReactSortable>
-                )}
-            </>
+            <SideBarSearchBar
+                placeholder={'Search layers'}
+                query={searchQuery}
+                setQuery={setSearchQuery}
+            />
+            <SideBarTabTitle
+                title={
+                    searchQuery.length > 0 ? `Search results for "${searchQuery}"` : 'Layers'
+                }
+            />
+            {mockPreviewTree && (
+                <ReactSortable
+                    list={mockPreviewTree}
+                    setList={handleReorganize}
+                    onUpdate={handleUpdate}
+                    {...sortableOptions}>
+                    {previewTree.map((element, index) => {
+                        return (
+                            <ReOrganizerItem key={index} index={index} name={element.name} />
+                        );
+                    })}
+                </ReactSortable>
+            )}
         </Contextable>
     );
 };
