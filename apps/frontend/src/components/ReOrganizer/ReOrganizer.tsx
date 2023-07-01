@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactSortable } from 'react-sortablejs';
 import type { ItemInterface, SortableOptions } from 'react-sortablejs';
-import { useMitt } from '@components/Decorators/MittProvider';
 import { selectPreviewTree, updateTree } from '@store/previewTree/previewTreeSlice';
+import type { ContextMenuAction } from '@/types';
+import { useMitt } from '@components/Decorators/MittProvider';
+import Contextable from '@components/Decorators/Contexable';
 import SideBarSearchBar from '@components/SideBar/SideBarSearchBar';
 import SideBarTabTitle from '@components/SideBar/SideBarTabTitle';
 import ReOrganizerItem from './ReOrganizerItem';
@@ -15,6 +17,27 @@ const ReOrganizer: React.FunctionComponent = () => {
 
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [mockPreviewTree, setMockPreviewTree] = useState<ItemInterface[]>();
+
+    const actions: ContextMenuAction[] = [
+        {
+            label: 'Action D',
+            handler: () => {
+                console.log('Action D');
+            }
+        },
+        {
+            label: 'Action E',
+            handler: () => {
+                console.log('Action E');
+            }
+        },
+        {
+            label: 'Action F',
+            handler: () => {
+                console.log('Action F');
+            }
+        }
+    ];
 
     const handleReorganize = (newOrder: ItemInterface[]) => {
         dispatch(updateTree(newOrder));
@@ -33,7 +56,7 @@ const ReOrganizer: React.FunctionComponent = () => {
     }, [previewTree]);
 
     return (
-        <div className={styleClasses.container}>
+        <Contextable actions={actions} className={styleClasses.container}>
             <SideBarSearchBar
                 placeholder={'Search layers'}
                 query={searchQuery}
@@ -53,7 +76,7 @@ const ReOrganizer: React.FunctionComponent = () => {
                     })}
                 </ReactSortable>
             )}
-        </div>
+        </Contextable>
     );
 };
 

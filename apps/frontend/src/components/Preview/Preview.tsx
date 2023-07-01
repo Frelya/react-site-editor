@@ -3,16 +3,38 @@ import { useSelector } from 'react-redux';
 import { specsValuesParser } from '@react-site-editor/functions';
 import { selectPreviewTree } from '@store/previewTree/previewTreeSlice';
 import { PreviewScreen } from '@/types';
-import type { ActiveComponent } from '@/types';
+import type { ActiveComponent, ContextMenuAction } from '@/types';
 import { useMitt } from '@components/Decorators/MittProvider';
+import Contextable from '@components/Decorators/Contexable';
+import DynamicComponent from '@components/Decorators/DynamicComponent';
 import PreviewComponentWrapper from '@components/Preview/PreviewComponentWrapper';
 import PreviewDroppable from '@components/Preview/PreviewDroppable';
-import DynamicComponent from '@components/Decorators/DynamicComponent';
 
 const Preview: React.FunctionComponent = () => {
     const previewTree = useSelector(selectPreviewTree);
     const emitter = useMitt();
     const [screen, setScreen] = useState<PreviewScreen>(PreviewScreen.DESKTOP);
+
+    const actions: ContextMenuAction[] = [
+        {
+            label: 'Action A',
+            handler: () => {
+                console.log('Action A');
+            }
+        },
+        {
+            label: 'Action B',
+            handler: () => {
+                console.log('Action B');
+            }
+        },
+        {
+            label: 'Action C',
+            handler: () => {
+                console.log('Action C');
+            }
+        }
+    ];
 
     const handleElementClick = (element: ActiveComponent) => {
         emitter.emit('componentSelected', element);
@@ -24,7 +46,8 @@ const Preview: React.FunctionComponent = () => {
 
     return (
         <div className={styleClasses.container}>
-            <div
+            <Contextable
+                actions={actions}
                 className={`${styleClasses.iframe} ${
                     screen === PreviewScreen.DESKTOP
                         ? styleClasses.iframeDesktop
@@ -66,7 +89,7 @@ const Preview: React.FunctionComponent = () => {
                         <PreviewDroppable index={previewTree.length} key={previewTree.length} />
                     </div>
                 )}
-            </div>
+            </Contextable>
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useMemo } from 'react';
 import { kebabToPascal } from '@react-site-editor/functions';
 import type { IconName, TooltipPlace } from '@/types';
 
@@ -11,16 +11,20 @@ interface IconProps {
 }
 
 const Icon: React.FunctionComponent<IconProps> = (props) => {
-    const DynamicIcon = props.name.startsWith('ui')
-        ? lazy(
-              () =>
-                  import(
-                      `../../../../../packages/ui/src/components/icons/${kebabToPascal(
-                          props.name
-                      )}.tsx`
+    const DynamicIcon = useMemo(
+        () =>
+            props.name.startsWith('ui')
+                ? lazy(
+                      () =>
+                          import(
+                              `../../../../../packages/ui/src/components/icons/${kebabToPascal(
+                                  props.name
+                              )}.tsx`
+                          )
                   )
-          )
-        : lazy(() => import(`../Icons/${kebabToPascal(props.name)}.tsx`));
+                : lazy(() => import(`../Icons/${kebabToPascal(props.name)}.tsx`)),
+        [props.name]
+    );
 
     const handleIconClickCapture = (event: React.MouseEvent) => {
         event.stopPropagation();

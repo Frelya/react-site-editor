@@ -1,5 +1,7 @@
 export * from './activeComponent.type';
 
+export * from './contextMenu.type';
+
 export * from './events.type';
 
 export * from './icons.type';

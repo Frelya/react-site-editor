@@ -41,6 +41,7 @@ export const previewTreeSlice = createSlice({
         moveComponent: (state, actions: PayloadAction<MoveElementData>) => {
             const { currentIndex, newIndex } = actions.payload;
 
+            // Check if can be moved
             if (currentIndex === newIndex || newIndex < 0 || newIndex >= state.value.length) {
                 return;
             }
