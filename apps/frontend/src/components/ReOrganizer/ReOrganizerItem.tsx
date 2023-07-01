@@ -17,7 +17,7 @@ const ReOrganizerItem: React.FunctionComponent<ReOrganizerItemProps> = (props) =
         setIsSelected(!isSelected);
     };
 
-    emitter.on('itemInterfaceClicked', (index: number) => {
+    emitter.on('itemInterfaceClicked', (index) => {
         setIsSelected(index === props.index ? !isSelected : false);
     });
 

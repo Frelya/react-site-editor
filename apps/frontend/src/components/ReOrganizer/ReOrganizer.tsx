@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactSortable } from 'react-sortablejs';
 import type { ItemInterface, SortableOptions } from 'react-sortablejs';
-import { useMitt } from '@components/Decorators/MittProvider';
 import { selectPreviewTree, updateTree } from '@store/previewTree/previewTreeSlice';
+import type { ContextMenuAction } from '@/types';
+import { useMitt } from '@components/Decorators/MittProvider';
+import Contextable from '@components/Decorators/Contexable';
 import SideBarSearchBar from '@components/SideBar/SideBarSearchBar';
 import SideBarTabTitle from '@components/SideBar/SideBarTabTitle';
 import ReOrganizerItem from './ReOrganizerItem';
-import Contextable from '../Decorators/Contexable';
-import { ContextMenuAction } from '@/types/contextMenu';
 
 const ReOrganizer: React.FunctionComponent = () => {
     const emitter = useMitt();
@@ -21,19 +21,19 @@ const ReOrganizer: React.FunctionComponent = () => {
     const actions: ContextMenuAction[] = [
         {
             label: 'Action D',
-            action: () => {
+            handler: () => {
                 console.log('Action D');
             }
         },
         {
             label: 'Action E',
-            action: () => {
+            handler: () => {
                 console.log('Action E');
             }
         },
         {
             label: 'Action F',
-            action: () => {
+            handler: () => {
                 console.log('Action F');
             }
         }

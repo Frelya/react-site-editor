@@ -1,4 +1,4 @@
-import { ContextMenuAction } from '@/types/contextMenu';
+import type { ContextMenuAction } from '@/types';
 import ContextMenuItem from './ContextMenuItem';
 
 interface ContextMenuProps {
@@ -6,18 +6,17 @@ interface ContextMenuProps {
     left: number;
     actions: ContextMenuAction[];
 }
+
 const ContextMenu: React.FunctionComponent<ContextMenuProps> = (props) => {
     return (
         <div
             className={styleClasses.container}
             style={{
-                // top: `${props.top} px`,
-                // left: `${props.top} px`
                 top: props.top + 'px',
                 left: props.left + 'px'
             }}>
-            {props.actions.map((action, i) => {
-                return <ContextMenuItem action={action} key={i} />;
+            {props.actions.map((action, index) => {
+                return <ContextMenuItem action={action} key={index} />;
             })}
         </div>
     );

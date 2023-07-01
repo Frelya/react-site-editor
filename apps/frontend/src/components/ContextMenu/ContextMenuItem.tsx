@@ -1,13 +1,15 @@
-import { ContextMenuAction } from '@/types/contextMenu';
-import Icon from '../Decorators/Icon';
+import type { ContextMenuAction } from '@/types';
+import Icon from '@components/Decorators/Icon';
 
 interface ContextMenuItemProps {
     action: ContextMenuAction;
 }
+
 const ContextMenuItem: React.FunctionComponent<ContextMenuItemProps> = (props) => {
-    const handleClick = () => {
-        props.action.action();
+    const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        props.action.handler(event);
     };
+
     return (
         <div onClick={handleClick} className={styleClasses.container}>
             {props.action.icon && <Icon name={props.action.icon} />} {props.action.label}

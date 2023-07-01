@@ -12,7 +12,6 @@ import Icon from '@components/Decorators/Icon';
 import BaseSideBar, { SideBarScales } from '@components/SideBar/BaseSideBar';
 import SideBarSection from '@components/SideBar/SideBarSection';
 import EditorButton from '@components/Common/EditorButton';
-import React from 'react';
 
 interface SideBarRightProps {
     visible: boolean;
