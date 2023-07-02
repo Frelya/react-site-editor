@@ -19,21 +19,21 @@ const envVariablesSchema = z.object({
     DATABASE_USER_PASSWORD: z.string(),
     DATABASE_NAME: z.enum(['rse_dev', 'rse_prod', 'rse_test']).default('rse_dev'),
     DATABASE_URL: z.string(),
-    JWT_SECRET: z.string(),
+    JWT_SECRET: z.string()
 });
 
-const variables = envVariablesSchema.parse(process.env);
+const envVariables = envVariablesSchema.parse(process.env);
 
 function isDevelopment(): boolean {
-    return variables.NODE_ENV === 'development';
+    return envVariables.NODE_ENV === 'development';
 }
 
 function isProduction(): boolean {
-    return variables.NODE_ENV === 'production';
+    return envVariables.NODE_ENV === 'production';
 }
 
 function isTest(): boolean {
-    return variables.NODE_ENV === 'test';
+    return envVariables.NODE_ENV === 'test';
 }
 
 function checkUnsetVariables(variables: AnyObject): void {
@@ -45,8 +45,8 @@ function checkUnsetVariables(variables: AnyObject): void {
 }
 
 const environment = () => {
-    checkUnsetVariables(variables as unknown as AnyObject);
-    return variables;
+    checkUnsetVariables(envVariables as unknown as AnyObject);
+    return envVariables;
 };
 
 const envConfigOptions: ConfigModuleOptions = {
@@ -55,10 +55,4 @@ const envConfigOptions: ConfigModuleOptions = {
     load: [environment]
 };
 
-export {
-    isDevelopment,
-    isProduction,
-    isTest,
-    environment,
-    envConfigOptions
-};
+export { isDevelopment, isProduction, isTest, environment, envConfigOptions };
