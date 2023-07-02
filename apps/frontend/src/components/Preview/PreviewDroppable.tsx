@@ -3,7 +3,9 @@ import { useDispatch } from 'react-redux';
 import { components } from '@react-site-editor/ui';
 import type { ComponentInfos } from '@react-site-editor/types';
 import { addComponent } from '@store/previewTree/previewTreeSlice';
-import { useMitt, Droppable } from '@components/Decorators';
+import { useMitt } from '@/hooks';
+import { removeNonSerializable } from '@/utils';
+import { Droppable } from '@components/Decorators';
 
 interface PreviewDroppableProps {
     index: number;
@@ -43,7 +45,7 @@ const PreviewDroppable: React.FunctionComponent<PreviewDroppableProps> = (props)
                 data: {
                     name: component.name,
                     group: component.group,
-                    specs: component.specs
+                    specs: removeNonSerializable(component.specs)
                 }
             })
         );

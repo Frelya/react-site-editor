@@ -5,10 +5,8 @@ import { MittProvider } from '@components/Decorators';
 function App() {
     return (
         <MittProvider>
-            <div>
-                <Outlet />
-                <Tooltip anchorSelect={'.icon'} />
-            </div>
+            <Outlet />
+            <Tooltip anchorSelect={'.icon'} />
         </MittProvider>
     );
 }

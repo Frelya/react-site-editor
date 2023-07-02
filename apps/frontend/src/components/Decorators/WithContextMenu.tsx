@@ -1,25 +1,25 @@
-import { useContextMenu } from '@hooks/useContextMenu';
 import type { ContextMenuAction } from '@/types';
-import ContextMenu from '@components/Common/ContextMenu/ContextMenu';
+import { useContextMenu } from '@/hooks';
+import { ContextMenu } from '@components/Common';
 
 // TODO Renames the component
-interface ContextMenuProps {
+interface WithContextMenuProps {
     children: React.ReactNode | React.ReactNode[];
     actions: ContextMenuAction[];
     className: string;
 }
 
-const Contextable: React.FunctionComponent<ContextMenuProps> = (props) => {
+const WithContextMenu: React.FunctionComponent<WithContextMenuProps> = (props) => {
     // destructure our state and set state functions from our custom hook
     const [clicked, setClicked, coords, setCoords] = useContextMenu();
 
-    function handleContextMenu(event: React.MouseEvent<HTMLDivElement>) {
+    const handleContextMenu = (event: React.MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
         // set our click state to true when a user right clicks
         setClicked(true);
         // set the x and y coordinates of our users right click
         setCoords({ x: event.pageX, y: event.pageY });
-    }
+    };
 
     return (
         <div className={props.className} onContextMenu={handleContextMenu}>
@@ -29,4 +29,4 @@ const Contextable: React.FunctionComponent<ContextMenuProps> = (props) => {
     );
 };
 
-export default Contextable;
+export default WithContextMenu;

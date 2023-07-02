@@ -1,6 +1,6 @@
 import type { ComponentInfos } from '@react-site-editor/types';
 import boxImage from '@assets/icons/box.png';
-import { useMitt } from '@components/Decorators';
+import { useMitt } from '@/hooks';
 
 interface DraggableProps {
     children: React.ReactElement;

@@ -7,7 +7,7 @@
             "@/*": ["./src/*"],
             "@assets/*": ["./src/assets/*"],
             "@components/*": ["./src/components/*"],
-            "@hooks/*": ["./src/hooks/*"],
+            "@contexts/*": ["./src/contexts/*"],
             "@plugins/*": ["./src/plugins/*"],
             "@router/*": ["./src/router/*"],
             "@store/*": ["./src/store/*"],

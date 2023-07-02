@@ -1,46 +1,26 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { kebabToSnake, pascalToSpaced } from '@react-site-editor/functions';
-import type { ComponentProp } from '@react-site-editor/types';
+import { pascalToSpaced } from '@react-site-editor/functions';
 import {
-    selectActiveComponent,
-    updateActiveComponentSpecs
+    updateActiveComponent,
+    selectActiveComponent
 } from '@store/activeComponent/activeComponentSlice';
-import { updateComponent } from '@store/previewTree/previewTreeSlice';
-import type { UpdateElementData } from '@/types';
+import { useMitt } from '@/hooks';
 import { Icon } from '@components/Decorators';
 import { EditorButton } from '@components/Common';
-import { PROPERTY_COMPONENTS_MAP } from '@components/PropertyComponents';
 import BaseSideBar, { SideBarScales } from './BaseSideBar';
 import SideBarSection from './SideBarSection';
+import SideBarBody from './SideBarBody';
+import DisplayedProperties from './DisplayedProperties';
 
-interface SideBarRightProps {
-    visible: boolean;
-    onClose: () => void;
-}
-
-const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
-    const activeComponent = useSelector(selectActiveComponent);
-
-    const isComponentProp = (propName: string, prop: unknown): prop is ComponentProp<unknown> => {
-        return (
-            !['maxChildren', 'iconName'].includes(propName) &&
-            Object.prototype.hasOwnProperty.call(prop, 'value')
-        );
-    };
-
+const SideBarRight: React.FunctionComponent = () => {
     const dispatch = useDispatch();
+    const emitter = useMitt();
+    const activeComponent = useSelector(selectActiveComponent);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
 
-    const handleChangeProperty = ({ id, value: newValue, propName }: UpdateElementData) => {
-        dispatch(updateComponent({ id, propName, value: newValue }));
-        dispatch(
-            updateActiveComponentSpecs({
-                ...activeComponent.specs,
-                [propName]: {
-                    ...activeComponent.specs[propName],
-                    value: newValue
-                }
-            })
-        );
+    const hideSidebarRight = () => {
+        setIsVisible(false);
     };
 
     const resetToDefault = () => {
@@ -57,53 +37,24 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
          */
     };
 
-    const DisplayedProperties: React.FunctionComponent = () => {
-        return (
-            <>
-                {props.visible && activeComponent.specs
-                    ? Object.entries(activeComponent.specs).map(([propName, prop]) => {
-                          if (
-                              isComponentProp(propName, prop) &&
-                              PROPERTY_COMPONENTS_MAP[kebabToSnake(prop.control.type).toUpperCase()]
-                          ) {
-                              const Displayed =
-                                  PROPERTY_COMPONENTS_MAP[
-                                      kebabToSnake(prop.control.type).toUpperCase()
-                                  ];
+    emitter.on('componentSelected', (element) => {
+        dispatch(updateActiveComponent(element));
+        setIsVisible(true);
+    });
 
-                              return (
-                                  <Displayed
-                                      key={propName}
-                                      name={propName}
-                                      value={prop.value}
-                                      spec={prop.control}
-                                      onChange={(newValue: UpdateElementData['value']) =>
-                                          handleChangeProperty({
-                                              id: activeComponent.index,
-                                              value: newValue,
-                                              propName: propName
-                                          })
-                                      }
-                                  />
-                              );
-                          }
-
-                          return '';
-                      })
-                    : ''}
-            </>
-        );
-    };
+    emitter.on('previewRefresh', () => {
+        hideSidebarRight();
+    });
 
     return (
-        <BaseSideBar visible={props.visible} scale={SideBarScales.NORMAL}>
+        <BaseSideBar visible={isVisible} scale={SideBarScales.NORMAL}>
             <SideBarSection position={'top'}>
                 <Icon
                     name={'cross-mark'}
                     className={'w-6 h-6 cursor-pointer'}
                     description={'Close'}
                     descriptionPlace={'left'}
-                    onClick={props.onClose}
+                    onClick={hideSidebarRight}
                 />
 
                 {activeComponent && (
@@ -115,11 +66,11 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
                 )}
             </SideBarSection>
 
-            <div className={styleClasses.main}>
+            <SideBarBody>
                 <p className={styleClasses.componentPropsTitle}>Properties</p>
 
-                <DisplayedProperties />
-            </div>
+                {isVisible && <DisplayedProperties activeComponent={activeComponent} />}
+            </SideBarBody>
 
             <SideBarSection position={'bottom'}>
                 <div className={styleClasses.footer}>
@@ -142,7 +93,6 @@ const SideBarRight: React.FunctionComponent<SideBarRightProps> = (props) => {
 };
 
 const styleClasses = {
-    main: 'w-11/12 h-full flex flex-col justify-start items-center',
     componentName: 'text-xl break-words w-9/12 max-w-[75%] min-h-fit max-h-full',
     componentPropsTitle: 'w-11/12 mx-auto my-4 px-2',
     footer: 'w-11/12 h-full flex justify-between items-center',

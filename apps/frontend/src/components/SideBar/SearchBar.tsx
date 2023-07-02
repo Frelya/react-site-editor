@@ -6,7 +6,7 @@ interface SideBarSearchBarProps {
     setQuery: (query: string) => void;
 }
 
-const SideBarSearchBar: React.FunctionComponent<SideBarSearchBarProps> = (props) => {
+const SearchBar: React.FunctionComponent<SideBarSearchBarProps> = (props) => {
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         props.setQuery(event.target.value);
     };
@@ -31,4 +31,4 @@ const styleClasses = {
     searchBarInput: 'w-full h-full px-2 focus:outline-none active:outline-none'
 };
 
-export default SideBarSearchBar;
+export default SearchBar;

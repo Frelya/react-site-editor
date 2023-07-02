@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { resetActiveComponent } from '@store/activeComponent/activeComponentSlice';
 import { deleteComponent, moveComponent } from '@store/previewTree/previewTreeSlice';
-import { useMitt, Icon } from '@components/Decorators';
+import { useMitt } from '@/hooks';
+import { Icon } from '@components/Decorators';
 import PreviewDroppable from './PreviewDroppable';
 
 interface PreviewComponentWrapperProps {
@@ -39,6 +41,7 @@ const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperPr
                     newIndex: direction === 'up' ? +index - 1 : +index + 1
                 })
             );
+            dispatch(resetActiveComponent());
             emitter.emit('itemInterfaceClicked', null);
         };
     };

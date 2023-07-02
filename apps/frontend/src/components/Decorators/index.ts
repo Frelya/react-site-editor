@@ -1,5 +1,5 @@
-export { default as Contextable } from './Contexable';
-export * from './Contexable';
+export { default as WithContextMenu } from './WithContextMenu';
+export * from './WithContextMenu';
 
 export { default as Draggable } from './Draggable';
 export * from './Draggable';

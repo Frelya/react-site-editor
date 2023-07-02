@@ -1,38 +1,21 @@
-import { useState } from 'react';
 import type { ComponentInfos } from '@react-site-editor/types';
-import SideBarSearchBar from '@components/SideBar/SideBarSearchBar';
-import SideBarTabTitle from '@components/SideBar/SideBarTabTitle';
-import ComponentsListGroups from './ComponentsListGroups';
+import GroupsList from './GroupsList';
 
 interface ComponentsListProps {
     elements: ComponentInfos[];
+    searchQuery: string;
 }
 
 const ComponentsList: React.FunctionComponent<ComponentsListProps> = (props) => {
-    const [searchQuery, setSearchQuery] = useState<string>('');
-
     return (
         <div className={styleClasses.container}>
-            <SideBarSearchBar
-                placeholder={'Search components'}
-                query={searchQuery}
-                setQuery={setSearchQuery}
-            />
-            <SideBarTabTitle
-                title={
-                    searchQuery.length > 0
-                        ? `Search results for "${searchQuery}"`
-                        : 'Available components'
-                }
-            />
-            <ComponentsListGroups elements={props.elements} filter={searchQuery} />
+            <GroupsList elements={props.elements} filter={props.searchQuery} />
         </div>
     );
 };
 
 const styleClasses = {
-    container: 'h-full flex flex-col items-center justify-start',
-    componentsListTitle: 'w-11/12 mx-auto my-4 px-2'
+    container: 'h-full flex flex-col items-center justify-start'
 };
 
 export default ComponentsList;

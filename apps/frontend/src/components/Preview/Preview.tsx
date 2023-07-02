@@ -4,7 +4,8 @@ import { specsValuesParser } from '@react-site-editor/functions';
 import { selectPreviewTree } from '@store/previewTree/previewTreeSlice';
 import { PreviewScreen } from '@/types';
 import type { ActiveComponent, ContextMenuAction } from '@/types';
-import { useMitt, Contextable, DynamicComponent } from '@components/Decorators';
+import { useMitt } from '@/hooks';
+import { WithContextMenu, DynamicComponent } from '@components/Decorators';
 import PreviewComponentWrapper from './PreviewComponentWrapper';
 import PreviewDroppable from './PreviewDroppable';
 
@@ -44,7 +45,7 @@ const Preview: React.FunctionComponent = () => {
 
     return (
         <div className={styleClasses.container}>
-            <Contextable
+            <WithContextMenu
                 actions={actions}
                 className={`${styleClasses.iframe} ${
                     screen === PreviewScreen.DESKTOP
@@ -87,7 +88,7 @@ const Preview: React.FunctionComponent = () => {
                         <PreviewDroppable index={previewTree.length} key={previewTree.length} />
                     </div>
                 )}
-            </Contextable>
+            </WithContextMenu>
         </div>
     );
 };
