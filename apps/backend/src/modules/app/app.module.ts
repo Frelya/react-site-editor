@@ -1,14 +1,13 @@
 import { APP_GUARD } from '@nestjs/core';
-import { ConfigModule } from '@nestjs/config';
 import { Module, Logger, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import helmet from 'helmet';
 import responseTime from 'response-time';
 
-import nestConfigOptions from '@config/nest.config';
-import serveStaticOptions from '@config/static.config';
+import { envConfigOptions } from '@config/env.config';
+import { serveStaticOptions } from '@config/static.config';
 import { LoggerMiddleware } from '@shared/middlewares';
-
+import { EnvModule, EnvService } from '@shared/env';
 import { UserModule } from '@modules/user/user.module';
 
 import { AppHostGuard } from './app.guards';
@@ -16,12 +15,13 @@ import { AppController } from './app.controller';
 
 @Module({
     imports: [
-        ConfigModule.forRoot(nestConfigOptions),
+        EnvModule.forRoot(envConfigOptions),
         ServeStaticModule.forRoot(serveStaticOptions),
         UserModule
     ],
     providers: [
         Logger,
+        EnvService,
         {
             provide: APP_GUARD,
             useClass: AppHostGuard
