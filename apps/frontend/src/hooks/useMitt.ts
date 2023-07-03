@@ -12,4 +12,4 @@ export const useMitt = (): MittContextType => {
     useDebugValue(context);
 
     return context;
-}
+};

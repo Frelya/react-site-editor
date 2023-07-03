@@ -12,9 +12,7 @@ const isSerializableComponentProp = (object: unknown): boolean => {
     return isComponentProp(object) && !nonSerializableControls.includes(object.control.type);
 };
 
-export function removeNonSerializable(
-    specs: Specs
-): [Specs, Specs] {
+export function removeNonSerializable(specs: Specs): [Specs, Specs] {
     const serializable = {} as Specs;
     const nonSerializable = {} as Specs;
 
