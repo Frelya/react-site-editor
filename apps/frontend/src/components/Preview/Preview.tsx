@@ -37,6 +37,7 @@ const Preview: React.FunctionComponent = () => {
 
     const handleElementClick = (element: ActiveComponent) => {
         emitter.emit('componentSelected', element);
+        emitter.emit('itemInterfaceClicked', element.index);
     };
 
     emitter.on('previewScreenChange', (newScreen) => {

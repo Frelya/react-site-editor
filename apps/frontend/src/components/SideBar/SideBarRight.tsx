@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { pascalToSpaced } from '@react-site-editor/functions';
 import {
@@ -36,6 +36,12 @@ const SideBarRight: React.FunctionComponent = () => {
         }
          */
     };
+
+    useEffect(() => {
+        if (Object.keys(activeComponent).length === 0) {
+            hideSidebarRight();
+        }
+    }, [activeComponent]);
 
     emitter.on('componentSelected', (element) => {
         dispatch(updateActiveComponent(element));

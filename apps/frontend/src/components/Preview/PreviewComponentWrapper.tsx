@@ -23,8 +23,13 @@ const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperPr
         setIsSelected(index === props.index ? !isSelected : false);
     });
 
+    emitter.on('componentSelected', (activeComponent) => {
+        setIsSelected(activeComponent.index === props.index);
+    });
+
     const handleDeleteElementClick = (index: number | string) => {
         return () => {
+            dispatch(resetActiveComponent());
             dispatch(
                 deleteComponent({
                     index: +index

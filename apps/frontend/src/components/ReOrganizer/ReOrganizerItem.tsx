@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { pascalToSpaced } from '@react-site-editor/functions';
 import { useMitt } from '@/hooks';
+import { resetActiveComponent } from '@store/activeComponent/activeComponentSlice';
 import { Icon } from '@components/Decorators';
 
 interface ReOrganizerItemProps {
@@ -9,10 +11,12 @@ interface ReOrganizerItemProps {
 }
 
 const ReOrganizerItem: React.FunctionComponent<ReOrganizerItemProps> = (props) => {
+    const dispatch = useDispatch();
     const emitter = useMitt();
     const [isSelected, setIsSelected] = useState<boolean>(false);
 
     const handleClick = () => {
+        dispatch(resetActiveComponent());
         emitter.emit('itemInterfaceClicked', props.index);
         setIsSelected(!isSelected);
     };

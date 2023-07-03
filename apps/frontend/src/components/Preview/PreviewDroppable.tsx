@@ -45,7 +45,7 @@ const PreviewDroppable: React.FunctionComponent<PreviewDroppableProps> = (props)
                 data: {
                     name: component.name,
                     group: component.group,
-                    specs: removeNonSerializable(component.specs)
+                    specs: removeNonSerializable(component.specs)[0]
                 }
             })
         );
