@@ -1,13 +1,12 @@
 import { NestFactory } from '@nestjs/core';
-import { ConfigService } from '@nestjs/config';
 import { Logger } from '@nestjs/common';
 import type { NestExpressApplication } from '@nestjs/platform-express';
 
 import appOptions from '@config/app.config';
-import { environment } from '@config/env.config';
+import { environment, isProduction } from '@config/env.config';
 import { AppModule } from '@modules/app/app.module';
 import { User } from '@shared/database';
-import { APP_HOST, NodeEnvs } from '@shared/constants';
+import { APP_HOST } from '@shared/constants';
 
 declare module 'express' {
     interface Request {
@@ -19,22 +18,19 @@ async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule, appOptions);
 
     const logger = app.get(Logger);
-    const configService = app.get(ConfigService);
 
-    const port = environment(configService).port;
-    const nodeEnv = environment(configService).nodeEnv;
-    const databaseName = environment(configService).database.name;
+    const { PORT, DATABASE_NAME } = environment();
 
-    await app.listen(port, async () => {
+    await app.listen(PORT, async () => {
         const getUrl = () => {
-            if (nodeEnv === NodeEnvs.PRODUCTION) {
-                return `https://${APP_HOST}:${port}`;
+            if (isProduction()) {
+                return `https://${APP_HOST}:${PORT}`;
             }
 
-            return `http://localhost:${port}`;
+            return `http://localhost:${PORT}`;
         };
 
-        logger.log(`Connected to the database "${databaseName}"`);
+        logger.log(`Connected to the database "${DATABASE_NAME}"`);
         logger.log(`Server listening at ${getUrl()}`);
     });
 }

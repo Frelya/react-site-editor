@@ -23,6 +23,8 @@ rules:
     'react/no-deprecated': 'error'
     '@typescript-eslint/no-shadow': 'error'
     '@typescript-eslint/no-use-before-define': 'off'
+    '@typescript-eslint/no-namespace': 'off'
+    '@typescript-eslint/no-empty-interface': 'off'
 ignorePatterns:
     - '**/*/node_modules'
     - '**/*/dist'

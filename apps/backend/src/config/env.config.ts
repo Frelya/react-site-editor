@@ -1,47 +1,58 @@
-import type { ConfigService } from '@nestjs/config';
+import type { ConfigModuleOptions } from '@nestjs/config';
+import { z } from 'zod';
+import dotenv from 'dotenv';
 
-export interface EnvironmentVariables {
-    nodeEnv: 'development' | 'production' | 'test';
-    port: number;
-    database: {
-        user: string;
-        user_password: string;
-        name: 'rse_dev' | 'rse_prod' | 'rse_test';
-        url: string;
-    };
-    jwtSecret: string;
-}
+dotenv.config();
 
 type AnyObject = { [key: string]: unknown };
 
-function checkUnsetVariables(variables: AnyObject): void {
-    for (const key in variables) {
-        if (variables[key] === undefined || variables[key] === '') {
-            throw new Error(`Environment variable "${key.toUpperCase()}" is not set.`);
-        }
-
-        if (typeof variables[key] === 'object') {
-            checkUnsetVariables(variables[key] as AnyObject);
-        }
+declare global {
+    namespace NodeJS {
+        interface ProcessEnv extends z.infer<typeof envVariablesSchema> {}
     }
 }
 
-const environment = (configService: ConfigService): EnvironmentVariables => {
-    const variables: EnvironmentVariables = {
-        nodeEnv: configService.get('NODE_ENV', 'development'),
-        port: configService.get('PORT', 3000),
-        database: {
-            user: configService.get('DATABASE_USER'),
-            user_password: configService.get('DATABASE_USER_PASSWORD'),
-            name: configService.get('DATABASE_NAME'),
-            url: configService.get('DATABASE_URL')
-        },
-        jwtSecret: configService.get('JWT_SECRET')
-    };
+const envVariablesSchema = z.object({
+    NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+    PORT: z.string().default('3000'),
+    DATABASE_USER: z.string(),
+    DATABASE_USER_PASSWORD: z.string(),
+    DATABASE_NAME: z.enum(['rse_dev', 'rse_prod', 'rse_test']).default('rse_dev'),
+    DATABASE_URL: z.string(),
+    JWT_SECRET: z.string()
+});
 
-    checkUnsetVariables(variables as unknown as AnyObject);
+const envVariables = envVariablesSchema.parse(process.env);
 
-    return variables;
+function isDevelopment(): boolean {
+    return envVariables.NODE_ENV === 'development';
+}
+
+function isProduction(): boolean {
+    return envVariables.NODE_ENV === 'production';
+}
+
+function isTest(): boolean {
+    return envVariables.NODE_ENV === 'test';
+}
+
+function checkUnsetVariables(variables: AnyObject): void {
+    Object.entries(variables).forEach(([key, value]) => {
+        if (value === undefined || value === '') {
+            throw new Error(`Environment variable ${key} is not set`);
+        }
+    });
+}
+
+const environment = () => {
+    checkUnsetVariables(envVariables as unknown as AnyObject);
+    return envVariables;
 };
 
-export { environment };
+const envConfigOptions: ConfigModuleOptions = {
+    cache: true,
+    isGlobal: true,
+    load: [environment]
+};
+
+export { isDevelopment, isProduction, isTest, environment, envConfigOptions };

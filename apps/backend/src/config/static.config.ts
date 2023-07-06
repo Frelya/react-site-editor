@@ -6,4 +6,4 @@ const serveStaticOptions: ServeStaticModuleOptions = {
     serveRoot: '/docs'
 };
 
-export default serveStaticOptions;
+export { serveStaticOptions };

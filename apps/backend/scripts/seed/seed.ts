@@ -1,6 +1,6 @@
 import { PrismaClient } from '.prisma/client';
 
-import { NodeEnvs } from '../../src/shared/constants';
+import { isDevelopment } from '@config/env.config';
 
 import { createUsers, createTemplates, createWebsites } from './steps';
 
@@ -10,7 +10,7 @@ async function seed(client: PrismaClient) {
     await createWebsites(client, usersIds, templatesIds);
 }
 
-if (process.env.NODE_ENV === NodeEnvs.DEVELOPMENT) {
+if (isDevelopment()) {
     console.log('\n🌱  Seeding database...');
 
     const prisma = new PrismaClient();
