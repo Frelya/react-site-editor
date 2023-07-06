@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useDebugValue } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import type { ContextMenuCoordinates } from '@/types';
 
@@ -29,6 +29,8 @@ export const useContextMenu = (): ContextMenuHook => {
             document.removeEventListener('click', handleClick);
         };
     }, []);
+
+    useDebugValue(clicked ? `Clicked at (${coords.x}, ${coords.y})` : 'Not clicked');
 
     return [clicked, setClicked, coords, setCoords];
 };

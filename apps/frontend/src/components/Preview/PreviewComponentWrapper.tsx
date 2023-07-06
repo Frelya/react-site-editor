@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useMitt } from '@components/Decorators/MittProvider';
+import { resetActiveComponent } from '@store/activeComponent/activeComponentSlice';
 import { deleteComponent, moveComponent } from '@store/previewTree/previewTreeSlice';
-import PreviewDroppable from '@components/Preview/PreviewDroppable';
-import Icon from '@components/Decorators/Icon';
+import { useMitt } from '@/hooks';
+import { Icon } from '@components/Decorators';
+import PreviewDroppable from './PreviewDroppable';
 
 interface PreviewComponentWrapperProps {
     children: React.ReactNode | React.ReactNode[];
@@ -22,8 +23,13 @@ const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperPr
         setIsSelected(index === props.index ? !isSelected : false);
     });
 
+    emitter.on('componentSelected', (activeComponent) => {
+        setIsSelected(activeComponent.index === props.index);
+    });
+
     const handleDeleteElementClick = (index: number | string) => {
         return () => {
+            dispatch(resetActiveComponent());
             dispatch(
                 deleteComponent({
                     index: +index
@@ -40,6 +46,7 @@ const PreviewComponentWrapper: React.FunctionComponent<PreviewComponentWrapperPr
                     newIndex: direction === 'up' ? +index - 1 : +index + 1
                 })
             );
+            dispatch(resetActiveComponent());
             emitter.emit('itemInterfaceClicked', null);
         };
     };

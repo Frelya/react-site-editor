@@ -1,6 +1,6 @@
-export * from './activeComponent.type';
+export * from './active-component.type';
 
-export * from './contextMenu.type';
+export * from './context-menu.type';
 
 export * from './events.type';
 

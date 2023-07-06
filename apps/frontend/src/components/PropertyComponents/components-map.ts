@@ -1,8 +1,10 @@
-import ColorProperty from './Property/ColorProperty';
-import GridTemplateProperty from './Property/GridTemplateProperty';
-import NumberProperty from './Property/NumberProperty';
-import RangeProperty from './Property/RangeProperty';
-import TextProperty from './Property/TextProperty';
+import {
+    ColorProperty,
+    GridTemplateProperty,
+    NumberProperty,
+    RangeProperty,
+    TextProperty
+} from './Property';
 
 const PROPERTY_COMPONENTS_MAP: Record<string, React.FunctionComponent<any>> = {
     COLOR: ColorProperty,

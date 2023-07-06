@@ -2,20 +2,22 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactSortable } from 'react-sortablejs';
 import type { ItemInterface, SortableOptions } from 'react-sortablejs';
+import { resetActiveComponent } from '@store/activeComponent/activeComponentSlice';
 import { selectPreviewTree, updateTree } from '@store/previewTree/previewTreeSlice';
 import type { ContextMenuAction } from '@/types';
-import { useMitt } from '@components/Decorators/MittProvider';
-import Contextable from '@components/Decorators/Contexable';
-import SideBarSearchBar from '@components/SideBar/SideBarSearchBar';
-import SideBarTabTitle from '@components/SideBar/SideBarTabTitle';
+import { useMitt } from '@/hooks';
+import { WithContextMenu } from '@components/Decorators';
 import ReOrganizerItem from './ReOrganizerItem';
 
-const ReOrganizer: React.FunctionComponent = () => {
+interface ReOrganizerProps {
+    searchQuery: string;
+}
+
+const ReOrganizer: React.FunctionComponent<ReOrganizerProps> = () => {
     const emitter = useMitt();
     const dispatch = useDispatch();
     const previewTree = useSelector(selectPreviewTree);
 
-    const [searchQuery, setSearchQuery] = useState<string>('');
     const [mockPreviewTree, setMockPreviewTree] = useState<ItemInterface[]>();
 
     const actions: ContextMenuAction[] = [
@@ -44,6 +46,7 @@ const ReOrganizer: React.FunctionComponent = () => {
     };
 
     const handleUpdate = () => {
+        dispatch(resetActiveComponent());
         emitter.emit('itemInterfaceClicked', null);
     };
 
@@ -56,35 +59,35 @@ const ReOrganizer: React.FunctionComponent = () => {
     }, [previewTree]);
 
     return (
-        <Contextable actions={actions} className={styleClasses.container}>
-            <SideBarSearchBar
-                placeholder={'Search layers'}
-                query={searchQuery}
-                setQuery={setSearchQuery}
-            />
-            <SideBarTabTitle
-                title={searchQuery.length > 0 ? `Search results for "${searchQuery}"` : 'Layers'}
-            />
+        <WithContextMenu actions={actions} className={styleClasses.container}>
             {mockPreviewTree && (
                 <ReactSortable
                     list={mockPreviewTree}
                     setList={handleReorganize}
                     onUpdate={handleUpdate}
                     {...sortableOptions}>
-                    {previewTree.map((element, index) => {
-                        return <ReOrganizerItem key={index} index={index} name={element.name} />;
-                    })}
+                    {previewTree.length > 0 ? (
+                        previewTree.map((element, index) => {
+                            return (
+                                <ReOrganizerItem
+                                    key={`${element.name}-${index}`}
+                                    index={index}
+                                    name={element.name}
+                                />
+                            );
+                        })
+                    ) : (
+                        <div className={styleClasses.emptyTree}>No layers found</div>
+                    )}
                 </ReactSortable>
             )}
-        </Contextable>
+        </WithContextMenu>
     );
 };
 
 const styleClasses = {
     container: 'h-full flex flex-col justify-start',
-    searchBar:
-        'flex items-center justify-start gap-2 w-11/12 h-12 mx-auto my-4 p-2 bg-white rounded-md',
-    searchBarInput: 'w-full h-full px-2 ' + 'focus:outline-none active:outline-none',
+    emptyTree: 'text-center text-functional-grey my-10',
     chosenClass: 'bg-functional-grey'
 };
 

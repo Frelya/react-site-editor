@@ -1,4 +1,4 @@
-import type { ActiveComponent } from './activeComponent.type';
+import type { ActiveComponent } from './active-component.type';
 import type { PreviewScreen } from './preview.type';
 import type { UpdateElementData, MoveElementData } from './tree.type';
 

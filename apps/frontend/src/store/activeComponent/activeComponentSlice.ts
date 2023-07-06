@@ -1,5 +1,6 @@
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 import type { ActiveComponent } from '@/types';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface ActiveComponentState {
     value: ActiveComponent;

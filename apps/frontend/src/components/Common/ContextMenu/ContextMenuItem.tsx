@@ -1,5 +1,5 @@
 import type { ContextMenuAction } from '@/types';
-import Icon from '@components/Decorators/Icon';
+import { Icon } from '@components/Decorators';
 
 interface ContextMenuItemProps {
     action: ContextMenuAction;
