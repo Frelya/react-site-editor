@@ -8,5 +8,5 @@ export class GetUserByIdDto {
 }
 
 export const GetUserByIdDtoSchema = z.object({
-    id: z.string(),
+    id: z.string()
 });

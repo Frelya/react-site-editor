@@ -4,9 +4,9 @@ const userRoutes: Routes = {
     PREFIX: 'users',
     GET: {
         all: '',
-        byId: ':id',
+        byId: ':id'
     },
     POST: {}
 };
 
-export { userRoutes }
+export { userRoutes };

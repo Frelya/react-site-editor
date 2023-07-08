@@ -2,7 +2,7 @@ type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
 type Paths = {
     [name: string]: string | string[];
-}
+};
 
 type Endpoints = {
     [method in Method]?: Paths;
