@@ -17,10 +17,10 @@
         "incremental": true,
         "paths": {
             "*": ["./node_modules/*"],
-            "@src/*": ["./src/*"],
+            "@/*": ["./src/*"],
             "@config/*": ["./src/config/*"],
             "@decorators/*": ["./src/decorators/*"],
-            "@modules/*": ["./src/modules/*"],
+            "@features/*": ["./src/features/*"],
             "@plugins/*": ["./src/plugins/*"],
             "@shared/*": ["./src/shared/*"],
             "@utils/*": ["./src/utils/*"]

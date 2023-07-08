@@ -1,21 +1,18 @@
 import { NestFactory } from '@nestjs/core';
 import { Logger } from '@nestjs/common';
 import type { NestExpressApplication } from '@nestjs/platform-express';
+import { ValidationPipe } from '@nestjs/common';
 
 import appOptions from '@config/app.config';
 import { environment, isProduction } from '@config/env.config';
-import { AppModule } from '@modules/app/app.module';
-import { User } from '@shared/database';
 import { APP_HOST } from '@shared/constants';
 
-declare module 'express' {
-    interface Request {
-        user: User;
-    }
-}
+import { AppModule } from '@/app';
 
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule, appOptions);
+
+    app.useGlobalPipes(new ValidationPipe());
 
     const logger = app.get(Logger);
 

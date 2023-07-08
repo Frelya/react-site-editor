@@ -8,7 +8,7 @@ import { envConfigOptions } from '@config/env.config';
 import { serveStaticOptions } from '@config/static.config';
 import { LoggerMiddleware } from '@shared/middlewares';
 import { EnvModule, EnvService } from '@shared/env';
-import { UserModule } from '@modules/user/user.module';
+import { UserModule } from '@features/user/user.module';
 
 import { AppHostGuard } from './app.guards';
 import { AppController } from './app.controller';
