@@ -1,12 +1,9 @@
 import { IsNotEmpty, IsString } from 'class-validator';
-import { z } from 'zod';
+
+import { User } from '@shared/database';
 
 export class GetUserByIdDto {
     @IsNotEmpty()
     @IsString()
-    id: string;
+    readonly id: User['id'];
 }
-
-export const GetUserByIdDtoSchema = z.object({
-    id: z.string()
-});

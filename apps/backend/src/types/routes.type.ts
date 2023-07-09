@@ -1,12 +1,8 @@
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
-type Paths = {
-    [name: string]: string | string[];
-};
+type Paths = Record<string, string | string[]>;
 
-type Endpoints = {
-    [method in Method]?: Paths;
-};
+type Endpoints = Partial<Record<Method, Paths>>;
 
 export type Routes = {
     PREFIX: string | string[];

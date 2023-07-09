@@ -2,7 +2,7 @@ import { Controller, Param, Get, UseGuards } from '@nestjs/common';
 
 import { User, Role } from '@shared/database';
 import { RolesGuard } from '@shared/guards';
-import { Authorize } from '@decorators/authorize.decorator';
+import { Authorize } from '@/decorators';
 
 import { userRoutes } from './user.route';
 import { UserService } from './user.service';
@@ -21,6 +21,7 @@ export class UserController {
 
     @Get(userRoutes.GET.byId)
     async getUserById(@Param() getUserByIdDto: GetUserByIdDto): Promise<User> {
+        // await new Promise(res => setTimeout(res, 7000));
         return this.userService.getById(getUserByIdDto);
     }
 }
