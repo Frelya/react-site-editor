@@ -19,7 +19,6 @@
             "*": ["./node_modules/*"],
             "@/*": ["./src/*"],
             "@config/*": ["./src/config/*"],
-            "@decorators/*": ["./src/decorators/*"],
             "@features/*": ["./src/features/*"],
             "@plugins/*": ["./src/plugins/*"],
             "@shared/*": ["./src/shared/*"],
