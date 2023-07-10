@@ -4,22 +4,21 @@ import { User, Role } from '@shared/database';
 import { RolesGuard } from '@shared/guards';
 import { Authorize } from '@/decorators';
 
-import { userRoutes } from './user.route';
 import { UserService } from './user.service';
 import { GetUserByIdDto } from './dtos/get-user-by-id.dto';
 
-@Controller(userRoutes.PREFIX)
+@Controller('users')
 @UseGuards(RolesGuard)
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
-    @Get(userRoutes.GET.all)
+    @Get()
     @Authorize(Role.Admin)
     async getAllUsers(): Promise<User[]> {
         return this.userService.getAll();
     }
 
-    @Get(userRoutes.GET.byId)
+    @Get(':id')
     async getUserById(@Param() getUserByIdDto: GetUserByIdDto): Promise<User> {
         // await new Promise(res => setTimeout(res, 7000));
         return this.userService.getById(getUserByIdDto);
