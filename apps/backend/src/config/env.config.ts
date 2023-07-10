@@ -6,12 +6,6 @@ dotenv.config();
 
 type AnyObject = { [key: string]: unknown };
 
-declare global {
-    namespace NodeJS {
-        interface ProcessEnv extends z.infer<typeof envVariablesSchema> {}
-    }
-}
-
 const envVariablesSchema = z.object({
     NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
     PORT: z.string().default('3000'),
@@ -55,4 +49,4 @@ const envConfigOptions: ConfigModuleOptions = {
     load: [environment]
 };
 
-export { isDevelopment, isProduction, isTest, environment, envConfigOptions };
+export { isDevelopment, isProduction, isTest, environment, envVariablesSchema, envConfigOptions };
