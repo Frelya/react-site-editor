@@ -6,21 +6,25 @@ import responseTime from 'response-time';
 
 import { envConfigOptions } from '@config/env.config';
 import { serveStaticOptions } from '@config/static.config';
-import { LoggerMiddleware } from '@shared/middlewares';
 import { EnvModule, EnvService } from '@shared/env';
-import { UserModule } from '@features/user/user.module';
+import { AuthModule } from '@features/auth';
+import { UserModule } from '@features/user';
+import { TokenModule } from '@features/token';
 import { AllExceptionsFilter } from '@/filters';
 import { ResponseInterceptor } from '@/interceptors';
 import { TimeoutInterceptor } from '@/interceptors';
 import { ValidationPipe } from '@/pipes';
 
-import { AppHostGuard } from './app.guards';
+import { HostGuard, AuthGuard } from './guards';
+import { LoggerMiddleware } from './middlewares';
 import { AppController } from './app.controller';
 
 @Module({
     imports: [
         EnvModule.forRoot(envConfigOptions),
         ServeStaticModule.forRoot(serveStaticOptions),
+        TokenModule,
+        AuthModule,
         UserModule
     ],
     providers: [
@@ -28,7 +32,11 @@ import { AppController } from './app.controller';
         EnvService,
         {
             provide: APP_GUARD,
-            useClass: AppHostGuard
+            useClass: HostGuard
+        },
+        {
+            provide: APP_GUARD,
+            useClass: AuthGuard
         },
         {
             provide: APP_INTERCEPTOR,

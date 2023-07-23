@@ -11,7 +11,7 @@ export class ResponseInterceptor<T> implements NestInterceptor<T, Response<T>> {
             map((value): Response => {
                 return {
                     success: true,
-                    data: !value ? null : value,
+                    data: value ?? null,
                     timestamp: new Date()
                 };
             })
