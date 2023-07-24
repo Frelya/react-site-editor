@@ -67,13 +67,8 @@ export class AuthService {
 
     async signOut(): Promise<null> {
         const token = extractTokenFromHeader(this.request);
-        const requestingUser = this.request.user;
 
         const { id } = await this.tokenService.verifyAccessToken<Auth.RegisteredUser>(token);
-
-        if (id != requestingUser.id) {
-            throw new ForbiddenException(ERRORS.USER_NOT_ALLOWED);
-        }
 
         const existingUser = await this.userService.getById({ id });
 

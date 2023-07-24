@@ -45,7 +45,6 @@ type Media {
 /// A user of the application
 model User {
     id             String     @id @default(auto()) @map("_id") @database.ObjectId
-    isVerified     Boolean    @default(false)
     role           Role       @default(User)
     username       String     @unique(sort: Asc)
     email          String     @unique(sort: Asc)
