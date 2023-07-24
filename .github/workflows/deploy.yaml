@@ -12,5 +12,5 @@ jobs:
                   # URL of gitHub public upstream repo
                   upstream_repo: 'https://github.com/private-frelya-team/react-site-editor.git'
                   upstream_branch: main
-                  downstream_bran: main
+                  downstream_branch: main
                   token: ${{ secrets.GITHUB_TOKEN }}
