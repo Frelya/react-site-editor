@@ -1,4 +1,5 @@
 name: Publish
+on: pull_request
 jobs:
     sync:
         name: Sync with deployment repo
