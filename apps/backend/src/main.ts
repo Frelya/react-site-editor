@@ -17,7 +17,7 @@ async function bootstrap() {
     const logger = app.get(Logger);
 
     const { PORT, DATABASE_NAME } = environment();
-    
+
     const getUrl = () => {
         if (isProduction()) {
             return `https://${APP_HOST}:${PORT}`;
