@@ -11,7 +11,6 @@ jobs:
               with:
                   # URL of gitHub public upstream repo
                   upstream_repo: 'https://github.com/private-frelya-team/react-site-editor.git'
-                  # Branch to merge from upstream (defaults to downstream branch)
                   upstream_branch: main
-                  # GitHub Bot token
+                  downstream_bran: main
                   token: ${{ secrets.GITHUB_TOKEN }}
