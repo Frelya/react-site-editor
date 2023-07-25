@@ -8,6 +8,6 @@ jobs:
             -   uses: actions/checkout@v3
             -   name: Sync and merge upstream repository with your current repository
                 run: |
-                    chmod +x ./deploy/entrypoint.sh
-                    ./deploy/entrypoint.sh
+                    chmod +x ./.deploy/entrypoint.sh
+                    ./.deploy/entrypoint.sh
                 shell: bash
