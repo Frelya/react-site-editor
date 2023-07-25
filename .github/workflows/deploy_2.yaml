@@ -1,0 +1,5 @@
+name: Another Deploy
+on: pull_request
+runs:
+    using: 'docker'
+    image: './deploy/Dockerfile'
