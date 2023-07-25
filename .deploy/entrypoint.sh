@@ -5,7 +5,7 @@ set -x
 UPSTREAM_USER="private-frelya-team"
 UPSTREAM_REPO="https://github.com/$UPSTREAM_USER/react-site-editor-deploy.git"
 UPSTREAM_BRANCH="main"
-DOWNSTREAM_BRANCH="main"
+DOWNSTREAM_BRANCH="yacine/deploy"
 
 echo "UPSTREAM_REPO=$UPSTREAM_REPO"
 
