@@ -7,7 +7,11 @@ jobs:
         steps:
             -   uses: actions/checkout@v3
             -   name: Sync and merge upstream repository with your current repository
+                with:
+                    UPSTREAM_USER: ${{ secrets.UPSTREAM_USER }}
+                    UPSTREAM_REPO_NAME: ${{ secrets.UPSTREAM_REPO_NAME }}
                 run: |
                     chmod +x ./.deploy/entrypoint.sh
                     ./.deploy/entrypoint.sh
                 shell: bash
+                
