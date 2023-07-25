@@ -10,7 +10,7 @@ jobs:
               uses: dabreadman/sync-upstream-repo@v1.0.0.b
               with:
                   # URL of gitHub public upstream repo
-                  upstream_repo: 'https://github.com/YacineSteeve/react-site-editor-deploy.git
+                  upstream_repo: 'https://github.com/YacineSteeve/react-site-editor-deploy.git'
                   upstream_branch: main
                   downstream_branch: main
                   token: ${{ secrets.GITHUB_TOKEN }}
