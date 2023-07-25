@@ -1,13 +1,13 @@
 name: Another Deploy
-description: Any
 on: pull_request
-inputs:
-    who-to-greet: # id of input
-        description: 'Who to greet'
-        required: true
-        default: 'World'
-runs:
-    using: 'docker'
-    image: './deploy/Dockerfile'
-    args:
-        - ${{ inputs.who-to-greet }}
+jobs:
+    sync:
+        name: Sync with deployment repo
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v3
+            -   name: Sync and merge upstream repository with your current repository
+                run: |
+                    chmod +x ./deploy/entrypoint.sh
+                    ./deploy/entrypoint.sh
+                shell: bash
