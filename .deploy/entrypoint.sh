@@ -2,8 +2,8 @@
 
 set -x
 
-UPSTREAM_REPO="https://github.com/YacineSteeve/react-site-editor-deploy.git"
-UPSTREAM_USER="YacineSteeve"
+UPSTREAM_USER="private-frelya-team"
+UPSTREAM_REPO="https://github.com/$UPSTREAM_USER/react-site-editor-deploy.git"
 UPSTREAM_BRANCH="main"
 DOWNSTREAM_BRANCH="main"
 
