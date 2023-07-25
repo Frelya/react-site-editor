@@ -8,12 +8,9 @@ jobs:
         name: Sync with deployment repo
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-            - name: Sync and merge upstream repository with your current repository
-              uses: dabreadman/sync-upstream-repo@v1.0.0.b
-              with:
-                  # URL of gitHub public upstream repo
-                  upstream_repo: 'https://github.com/YacineSteeve/react-site-editor-deploy.git'
-                  upstream_branch: main
-                  downstream_branch: main
-                  token: ${{ secrets.GITHUB_TOKEN }}
+            -   uses: actions/checkout@v3
+            -   name: Sync and merge upstream repository with your current repository
+                run: |
+                    chmod +x ./.deploy/entrypoint.sh
+                    ./.deploy/entrypoint.sh
+                shell: bash
