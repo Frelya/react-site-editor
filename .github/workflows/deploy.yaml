@@ -1,8 +1,5 @@
 name: Publish
-on:
-    push:
-        branches:
-            - main
+on: pull_request
 jobs:
     sync:
         name: Sync with deployment repo
