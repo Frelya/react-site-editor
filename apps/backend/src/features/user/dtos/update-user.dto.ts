@@ -1,6 +1,7 @@
 import {
     IsNotEmpty,
     IsStrongPassword,
+    IsBoolean,
     IsEmail,
     IsString,
     IsDate,
@@ -23,6 +24,9 @@ class UserInfos implements Users.UserUpdateInfos {
         minSymbols: 1
     })
     password: User['password'];
+
+    @IsBoolean()
+    isVerified: User['isVerified'];
 
     @IsEmail()
     email: User['email'];

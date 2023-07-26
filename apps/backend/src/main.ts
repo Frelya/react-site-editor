@@ -18,18 +18,18 @@ async function bootstrap() {
 
     const { PORT, DATABASE_NAME } = environment();
 
-    await app.listen(PORT, async () => {
-        const getUrl = () => {
-            if (isProduction()) {
-                return `https://${APP_HOST}:${PORT}`;
-            }
+    const getUrl = () => {
+        if (isProduction()) {
+            return `https://${APP_HOST}:${PORT}`;
+        }
 
-            return `http://localhost:${PORT}`;
-        };
+        return `http://localhost:${PORT}`;
+    };
 
-        logger.log(`Connected to the database "${DATABASE_NAME}"`);
-        logger.log(`Server listening at ${getUrl()}`);
-    });
+    await app.listen(PORT);
+
+    logger.log(`Connected to the database "${DATABASE_NAME}"`);
+    logger.log(`Server listening at ${getUrl()}`);
 }
 
 bootstrap().then();
