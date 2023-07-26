@@ -21,6 +21,7 @@ git fetch upstream
 git remote -v
 
 git checkout "$DOWNSTREAM_BRANCH"
+git show --summary
 
 MERGE_RESULT=$(git merge "upstream/$UPSTREAM_BRANCH")
 if [[ $MERGE_RESULT != *"Already up to date."* ]]; then
