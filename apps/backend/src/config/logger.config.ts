@@ -15,8 +15,6 @@ const formattedInfoLevel = (info: LogInfo): LogInfo => {
 };
 
 const loggerOptions: WinstonModuleOptions = {
-    // The env config module is not loaded yet,
-    // so we need to use the process.env.NODE_ENV variable
     level: isProduction() ? 'info' : 'debug',
 
     transports: [new winston.transports.Console()],
@@ -33,8 +31,11 @@ const loggerOptions: WinstonModuleOptions = {
 
         winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
 
-        winston.format.printf(({ level, message, timestamp }: LogInfo) => {
-            return `[${timestamp}] ${level}: ${message}`;
+        winston.format.printf((info: LogInfo) => {
+            if (info.stack) {
+                return `[${info.timestamp}] ${info.level}: ${info.message} - ${info.stack}`;
+            }
+            return `[${info.timestamp}] ${info.level}: ${info.message}`;
         })
     ),
 

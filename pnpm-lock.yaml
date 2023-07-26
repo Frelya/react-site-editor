@@ -61,6 +61,9 @@ importers:
       bcrypt:
         specifier: ^5.1.0
         version: 5.1.0
+      bson:
+        specifier: ^5.4.0
+        version: 5.4.0
       class-transformer:
         specifier: ^0.5.1
         version: 0.5.1
@@ -4775,6 +4778,11 @@ packages:
     dependencies:
       node-int64: 0.4.0
     dev: true
+
+  /bson@5.4.0:
+    resolution: {integrity: sha512-WRZ5SQI5GfUuKnPTNmAYPiKIof3ORXAF4IRU5UcgmivNIon01rWQlw5RUH954dpu8yGL8T59YShVddIPaU/gFA==}
+    engines: {node: '>=14.20.1'}
+    dev: false
 
   /buffer-crc32@0.2.13:
     resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}

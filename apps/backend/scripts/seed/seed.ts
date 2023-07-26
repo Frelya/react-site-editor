@@ -1,6 +1,6 @@
 import { PrismaClient } from '.prisma/client';
 
-import { isDevelopment } from '@config/env.config';
+import { isDevelopment } from '../../src/config/env.config';
 
 import { createUsers, createTemplates, createWebsites } from './steps';
 

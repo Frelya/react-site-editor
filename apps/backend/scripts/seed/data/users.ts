@@ -4,8 +4,8 @@ const usersData: Prisma.XOR<Prisma.UserCreateInput, Prisma.UserUncheckedCreateIn
     {
         role: Role.Admin,
         username: 'admin',
-        email: 'admin@example.com',
-        password: 'password123',
+        email: 'admin-password123@example.com',
+        password: '$2b$10$Rge/ieVfL4nv1//3anhHEemd66kn1sA9PxOaLc7DWGGVxoMllBtey',
         firstName: 'John',
         lastName: 'Doe',
         membership: Membership.Premium,
@@ -15,8 +15,8 @@ const usersData: Prisma.XOR<Prisma.UserCreateInput, Prisma.UserUncheckedCreateIn
     {
         role: Role.User,
         username: 'johndoe',
-        email: 'johndoe@example.com',
-        password: 'pwd123',
+        email: 'johndoe-pwd123@example.com',
+        password: '$2b$10$r8LyyLQNOFzjY1jZ/M0Bp.K6tpwNj.CqBDqaIZsJHvFqeb8U7wl32',
         firstName: null,
         lastName: 'Doe',
         membership: Membership.Free,

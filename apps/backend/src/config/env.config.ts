@@ -13,7 +13,9 @@ const envVariablesSchema = z.object({
     DATABASE_USER_PASSWORD: z.string(),
     DATABASE_NAME: z.enum(['rse_dev', 'rse_prod', 'rse_test']).default('rse_dev'),
     DATABASE_URL: z.string(),
-    JWT_SECRET: z.string()
+    JWT_SECRET: z.string(),
+    JWT_EXPIRES_IN: z.string(),
+    CRYPT_SALT_ROUNDS: z.string()
 });
 
 const envVariables = envVariablesSchema.parse(process.env);
