@@ -4,19 +4,6 @@ on:
         -   cron: '1 * * * *'
     workflow_dispatch:  # click the button on GitHub repo!
 jobs:
-    sync:
-        name: Sync with deployment repo
-        runs-on: ubuntu-latest
-        steps:
-            -   uses: actions/checkout@v3
-            -   name: Sync and merge upstream repository with your current repository
-                env:
-                    UPSTREAM_USER: ${{ secrets.UPSTREAM_USER }}
-                    UPSTREAM_REPO_NAME: ${{ secrets.UPSTREAM_REPO_NAME }}
-                run: |
-                    chmod +x ./.deploy/entrypoint.sh
-                    ./.deploy/entrypoint.sh
-                shell: bash
     sync_latest_from_upstream:
         runs-on: ubuntu-latest
         name: Sync latest commits from upstream repo
@@ -27,7 +14,7 @@ jobs:
                 id: sync
                 uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
                 with:
-                    target_sync_branch: my-branch
+                    target_sync_branch: main
                     target_repo_token: ${{ secrets.GITHUB_TOKEN }}
                     upstream_sync_branch: main
                     upstream_sync_repo: ${{ secrets.UPSTREAM_USER }}/${{ secrets.UPSTREAM_REPO_NAME }}
@@ -43,4 +30,3 @@ jobs:
 
             -   name: Show value of 'has_new_commits'
                 run: echo ${{ steps.sync.outputs.has_new_commits }}
-                    
