@@ -1,7 +1,5 @@
 name: Publish
 on:
-    #schedule:
-    #    -   cron: '*/5 * * * *'
     workflow_dispatch:  # click the button on GitHub repo!
 jobs:
     sync_latest_from_upstream:

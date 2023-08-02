@@ -5,7 +5,7 @@
     "description": "React Site Editor website backend",
     "scripts": {
         "build": "pnpm db:generate && nest build",
-        "start": "node dist/main",
+        "start": "node dist/src/main",
         "dev": "nest start --watch",
         "db:generate": "prisma generate",
         "db:push": "prisma db push",
