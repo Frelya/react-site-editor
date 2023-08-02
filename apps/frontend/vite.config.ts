@@ -7,7 +7,7 @@ export default defineConfig({
     plugins: [react()],
     build: {
         target: 'esnext',
-        outDir: './dist',
+        outDir: './dist'
     },
     resolve: {
         alias: [
