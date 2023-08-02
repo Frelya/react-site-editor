@@ -5,8 +5,7 @@
     "author": "Frelya",
     "license": "MIT",
     "engines": {
-        "node": ">=16.19.0",
-        "pnpm": ">=8.5.1"
+        "node": ">=16.19.0"
     },
     "scripts": {
         "preinstall": "npx only-allow pnpm",
@@ -18,6 +17,7 @@
         "backend:build": "pnpm backend build",
         "backend:dev": "pnpm backend dev",
         "backend:start": "pnpm backend start",
+        "backend:docs": "pnpm backend db:generate",
         "frontend": "pnpm --filter frontend",
         "frontend:build": "pnpm frontend build",
         "frontend:dev": "pnpm frontend dev",
