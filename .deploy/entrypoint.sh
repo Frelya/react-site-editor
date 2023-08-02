@@ -17,17 +17,20 @@ git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${G
 
 git remote set-url origin "https://${UPSTREAM_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY_URL}"
 git remote add upstream "$UPSTREAM_REPO"
-git fetch upstream 
 git remote -v
+
+git fetch upstream $UPSTREAM_BRANCH
 
 git checkout "$DOWNSTREAM_BRANCH"
 
-REBASE_RESULT=$(git rebase "upstream/$UPSTREAM_BRANCH")
+REBASE_RESULT=$(git rebase --force "upstream/$UPSTREAM_BRANCH")
 
-if [[ $REBASE_RESULT != *"Already up to date."* ]]; then
-  git commit -m "Rebased upstream"  
-  git push origin "$DOWNSTREAM_BRANCH"
+if [[ $REBASE_RESULT == "Current branch main is up to date, rebase forced." ]]; then
+  git push --force origin "$DOWNSTREAM_BRANCH"
 fi
 
 cd ..
 rm -rf work
+_train = np.array([
+    
+])
