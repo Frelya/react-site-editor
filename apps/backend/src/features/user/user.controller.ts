@@ -6,7 +6,7 @@ import {
     Post,
     HttpCode,
     HttpStatus,
-    UseGuards,
+    UseGuards
 } from '@nestjs/common';
 
 import { Role } from '@shared/database';
@@ -15,11 +15,7 @@ import { Authorize } from '@shared/decorators';
 
 import { UserService } from './user.service';
 import type { Users } from './user.type';
-import type {
-    UpdateUserDto,
-    DeleteUserDto,
-    GetUserByIdDto,
-} from './dtos';
+import type { UpdateUserDto, DeleteUserDto, GetUserByIdDto } from './dtos';
 
 @Controller('users')
 @UseGuards(RolesGuard)

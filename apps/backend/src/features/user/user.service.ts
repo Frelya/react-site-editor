@@ -5,7 +5,7 @@ import {
     ForbiddenException,
     ConflictException,
     Inject,
-    Scope,
+    Scope
 } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
 import { Request } from 'express';
@@ -86,7 +86,10 @@ export class UserService {
         data: Users.UserUpdatePayload,
         sensitivesToInclude?: Users.UserSensitiveData[]
     ): Promise<Users.UniqueUser> {
-        const { identifier: userIdentifier, ...updateData } = await this.validatePayload(data, UpdateUserDto);
+        const { identifier: userIdentifier, ...updateData } = await this.validatePayload(
+            data,
+            UpdateUserDto
+        );
 
         const identifierKey: keyof Database.UserWhereUniqueInput = isMongoId(userIdentifier)
             ? 'id'
@@ -109,9 +112,7 @@ export class UserService {
         }
 
         if (updateData.password) {
-            updateData.password = await this.cryptService.hashPassword(
-                updateData.password
-            );
+            updateData.password = await this.cryptService.hashPassword(updateData.password);
         }
 
         return this.clean(

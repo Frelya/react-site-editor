@@ -6,7 +6,7 @@ import {
     IsDate,
     IsIn,
     IsOptional,
-    ValidateNested,
+    ValidateNested
 } from 'class-validator';
 
 import { Role, Membership } from '@shared/database';

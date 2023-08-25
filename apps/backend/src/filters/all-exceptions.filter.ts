@@ -22,12 +22,9 @@ export class AllExceptionsFilter implements ExceptionFilter {
     constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
 
     catch(exception: unknown, host: ArgumentsHost): void {
-        let [
-            statusCode,
-            message,
-        ]: [ number, string ] = [
+        let [statusCode, message]: [number, string] = [
             HttpStatus.INTERNAL_SERVER_ERROR,
-            ERRORS.INTERNAL_SERVER_ERROR,
+            ERRORS.INTERNAL_SERVER_ERROR
         ];
 
         if (exception instanceof HttpException) {
