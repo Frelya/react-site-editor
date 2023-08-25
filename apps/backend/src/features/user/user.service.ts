@@ -3,8 +3,12 @@ import {
     ArgumentMetadata,
     NotFoundException,
     ForbiddenException,
-    ConflictException
+    ConflictException,
+    Inject,
+    Scope,
 } from '@nestjs/common';
+import { REQUEST } from '@nestjs/core';
+import { Request } from 'express';
 import { isMongoId } from 'class-validator';
 
 import { DatabaseService } from '@shared/database';
@@ -18,9 +22,10 @@ import type { Users } from './user.type';
 import { CreateUserDto, UpdateUserDto, GetUserByIdDto } from './dtos';
 import { removeSensitives, userToProfile } from './helpers';
 
-@Injectable()
+@Injectable({ scope: Scope.REQUEST })
 export class UserService {
     constructor(
+        @Inject(REQUEST) private readonly request: Request,
         private readonly cryptService: CryptService,
         private readonly databaseService: DatabaseService,
         private readonly validationPipe: ValidationPipe
@@ -81,38 +86,38 @@ export class UserService {
         data: Users.UserUpdatePayload,
         sensitivesToInclude?: Users.UserSensitiveData[]
     ): Promise<Users.UniqueUser> {
-        const updateData = await this.validatePayload(data, UpdateUserDto);
+        const { identifier: userIdentifier, ...updateData } = await this.validatePayload(data, UpdateUserDto);
 
-        const identifierKey: keyof Database.UserWhereUniqueInput = isMongoId(updateData.identifier)
+        const identifierKey: keyof Database.UserWhereUniqueInput = isMongoId(userIdentifier)
             ? 'id'
             : 'email';
 
         const user = await this.databaseService.user.findUnique({
-            where: { [identifierKey]: updateData.identifier }
+            where: { [identifierKey]: userIdentifier }
         });
 
         if (!user) {
             throw new NotFoundException(ERRORS.USER_NOT_FOUND);
         }
 
-        if (user[identifierKey] !== updateData.identifier) {
+        if (user[identifierKey] !== userIdentifier) {
             throw new ForbiddenException(ERRORS.USER_NOT_ALLOWED);
         }
 
-        if (Object.keys(updateData.infos).length === 0) {
+        if (Object.keys(updateData).length === 0) {
             return this.clean(user, sensitivesToInclude);
         }
 
-        if (updateData.infos.password) {
-            updateData.infos.password = await this.cryptService.hashPassword(
-                updateData.infos.password
+        if (updateData.password) {
+            updateData.password = await this.cryptService.hashPassword(
+                updateData.password
             );
         }
 
         return this.clean(
             await this.databaseService.user.update({
-                data: updateData.infos,
-                where: { [identifierKey]: updateData.identifier }
+                data: updateData,
+                where: { [identifierKey]: userIdentifier }
             }),
             sensitivesToInclude
         );
@@ -158,12 +163,12 @@ export class UserService {
         );
     }
 
-    async getProfile(data: Users.UserProfilePayload): Promise<Users.UserProfile> {
+    async getProfile(): Promise<Users.UserProfile> {
         let profile: Users.UserProfile;
 
         try {
             profile = userToProfile(
-                await this.databaseService.user.findUnique({ where: { id: data.id } })
+                await this.databaseService.user.findUnique({ where: { id: this.request.user.id } })
             );
         } catch (error) {
             handleWithInternalError(error);

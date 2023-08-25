@@ -12,7 +12,6 @@ import { ERRORS } from '@shared/constants';
 import { CryptService } from '@shared/crypt';
 import { TokenService } from '@features/token';
 import { UserService } from '@features/user';
-import { extractTokenFromHeader } from '@/utils';
 
 import type { Auth } from './auth.type';
 
@@ -30,7 +29,6 @@ export class AuthService {
 
         user = await this.userService.update(
             {
-                infos: {},
                 identifier: data.email
             },
             ['password']
@@ -41,9 +39,7 @@ export class AuthService {
         }
 
         user = await this.userService.update({
-            infos: {
-                lastLogin: new Date()
-            },
+            lastLogin: new Date(),
             identifier: user.id
         });
 
@@ -66,11 +62,7 @@ export class AuthService {
     }
 
     async signOut(): Promise<null> {
-        const token = extractTokenFromHeader(this.request);
-
-        const { id } = await this.tokenService.verifyAccessToken<Auth.RegisteredUser>(token);
-
-        const existingUser = await this.userService.getById({ id });
+        const existingUser = await this.userService.getById({ id: this.request.user.id });
 
         if (!existingUser) {
             throw new ForbiddenException(ERRORS.USER_NOT_FOUND);

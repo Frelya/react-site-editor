@@ -1,4 +1,4 @@
-import { Exception } from './exception.type';
+import { ResponseError } from './response-error.type';
 
 export type Response<T = null> = {
     success: boolean;
@@ -10,6 +10,6 @@ export type Response<T = null> = {
       }
     | {
           success: false;
-          error: Exception;
+          error: ResponseError;
       }
 );

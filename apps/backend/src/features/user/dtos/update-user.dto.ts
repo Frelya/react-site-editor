@@ -1,13 +1,12 @@
 import {
-    IsNotEmpty,
     IsStrongPassword,
     IsBoolean,
     IsEmail,
     IsString,
     IsDate,
     IsIn,
+    IsOptional,
     ValidateNested,
-    IsDefined
 } from 'class-validator';
 
 import { Role, Membership } from '@shared/database';
@@ -15,7 +14,8 @@ import type { User } from '@shared/database';
 
 import type { Users } from '../user.type';
 
-class UserInfos implements Users.UserUpdateInfos {
+export class UpdateUserDto implements Omit<Users.UserUpdatePayload, 'identifier'> {
+    @IsOptional()
     @IsStrongPassword({
         minLength: 8,
         minLowercase: 1,
@@ -25,42 +25,39 @@ class UserInfos implements Users.UserUpdateInfos {
     })
     password: User['password'];
 
+    @IsOptional()
     @IsBoolean()
     isVerified: User['isVerified'];
 
+    @IsOptional()
     @IsEmail()
     email: User['email'];
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     username: User['username'];
 
+    @IsOptional()
     @IsIn([Role.User, Role.Admin])
     role: User['role'];
 
+    @IsOptional()
     @IsDate()
     lastLogin: User['lastLogin'];
 
+    @IsOptional()
     @IsString()
     firstName: User['firstName'];
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     lastName: User['lastName'];
 
+    @IsOptional()
     @IsIn([Membership.Free, Membership.Premium])
     membership: User['membership'];
 
+    @IsOptional()
     @ValidateNested()
     profilePicture: User['profilePicture'];
-}
-
-export class UpdateUserDto implements Users.UserUpdatePayload {
-    @IsString()
-    @IsNotEmpty()
-    @IsDefined()
-    identifier: User['id'] | User['email'];
-
-    @ValidateNested()
-    infos: UserInfos;
 }

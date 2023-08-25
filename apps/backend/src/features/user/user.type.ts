@@ -17,26 +17,20 @@ export declare namespace Users {
 
     type UsersList = UniqueUser[];
 
-    type UserUpdateInfos = Partial<Omit<User, NotToUpdate>>;
-
     interface UserCreatePayload {
         readonly email: User['email'];
         readonly password: User['password'];
     }
 
-    interface UserUpdatePayload {
-        identifier: User['id'] | User['email'];
-        infos: UserUpdateInfos;
-    }
-
-    interface UserDeletePayload {
-        readonly id: User['id'];
-        readonly password: User['password'];
+    interface UserUpdatePayload extends Partial<Omit<User, NotToUpdate>> {
+        readonly identifier: User['id'] | User['email'];
     }
 
     interface UserIdPayload {
         readonly id: User['id'];
     }
 
-    interface UserProfilePayload extends UserIdPayload {}
+    interface UserDeletePayload extends UserIdPayload {
+        readonly password: User['password'];
+    }
 }

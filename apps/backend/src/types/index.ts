@@ -1,3 +1,3 @@
-export * from './exception.type';
+export * from './response.type';
 
-export * from './reponse.type';
+export * from './response-error.type';
