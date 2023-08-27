@@ -51,10 +51,10 @@ const styleClasses = {
     iconDown: '-rotate-90',
     iconRight: '-rotate-180',
     itemsList:
-        'w-11/12 mx-auto py-5 items-start justify-start gap-[4%] list-none transition-all duration-1000',
-    itemsListVisible: 'flex',
+        'w-11/12 mx-auto h-fit py-5 items-start justify-start gap-2 list-none transition-all duration-1000',
+    itemsListVisible: 'flex flex-wrap',
     itemsListInvisible: 'hidden',
-    item: 'cursor-pointer w-[22%] !aspect-square'
+    item: 'cursor-pointer grow max-w-[25%] h-full !aspect-square'
 };
 
 export default Group;

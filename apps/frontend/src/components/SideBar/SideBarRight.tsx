@@ -53,7 +53,7 @@ const SideBarRight: React.FunctionComponent = () => {
     });
 
     return (
-        <BaseSideBar visible={isVisible} scale={SideBarScales.NORMAL}>
+        <BaseSideBar visible={isVisible} side={'right'} scale={SideBarScales.NORMAL}>
             <SideBarSection position={'top'}>
                 <Icon
                     name={'cross-mark'}

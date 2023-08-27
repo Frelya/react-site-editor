@@ -2,6 +2,7 @@ export type IconName =
     | 'add-circle-line'
     | 'arrow-small-down'
     | 'arrow-small-up'
+    | 'bars'
     | 'chevron-left'
     | 'cross-mark'
     | 'cubes'

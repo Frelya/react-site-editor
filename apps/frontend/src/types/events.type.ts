@@ -11,4 +11,5 @@ export type Events = {
     dragEndEvent: undefined;
     previewScreenChange: PreviewScreen;
     previewRefresh: undefined;
+    menuToggled: undefined;
 };
