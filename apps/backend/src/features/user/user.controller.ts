@@ -15,24 +15,12 @@ import { Authorize } from '@shared/decorators';
 
 import { UserService } from './user.service';
 import type { Users } from './user.type';
-import type {
-    CreateUserDto,
-    UpdateUserDto,
-    DeleteUserDto,
-    GetUserByIdDto,
-    GetUserProfileDto
-} from './dtos';
+import type { UpdateUserDto, DeleteUserDto, GetUserByIdDto } from './dtos';
 
 @Controller('users')
 @UseGuards(RolesGuard)
 export class UserController {
     constructor(private readonly userService: UserService) {}
-
-    @HttpCode(HttpStatus.CREATED)
-    @Post()
-    async createUser(@Body() createUserDto: CreateUserDto): Promise<Users.UniqueUser> {
-        return await this.userService.create(createUserDto);
-    }
 
     @Authorize(Role.Admin)
     @Get()
@@ -40,16 +28,9 @@ export class UserController {
         return await this.userService.getAll();
     }
 
-    @Get(':id')
-    async getUserById(@Param() getUserByIdDto: GetUserByIdDto): Promise<Users.UniqueUser> {
-        return await this.userService.getById(getUserByIdDto);
-    }
-
-    @Get(':id/profile')
-    async getUserProfile(
-        @Param() getUserProfileDto: GetUserProfileDto
-    ): Promise<Users.UserProfile> {
-        return await this.userService.getProfile(getUserProfileDto);
+    @Get('me')
+    async getUserProfile(): Promise<Users.UserProfile> {
+        return await this.userService.getProfile();
     }
 
     @HttpCode(HttpStatus.OK)
@@ -58,8 +39,10 @@ export class UserController {
         @Body() updateUserDto: UpdateUserDto,
         @Param('id') userId: GetUserByIdDto['id']
     ): Promise<Users.UniqueUser> {
-        updateUserDto.identifier = userId;
-        return await this.userService.update(updateUserDto);
+        return await this.userService.update({
+            ...updateUserDto,
+            identifier: userId
+        });
     }
 
     @HttpCode(HttpStatus.OK)
@@ -68,7 +51,9 @@ export class UserController {
         @Body() deleteUserDto: DeleteUserDto,
         @Param('id') userId: GetUserByIdDto['id']
     ): Promise<null> {
-        deleteUserDto.id = userId;
-        return await this.userService.delete(deleteUserDto);
+        return await this.userService.delete({
+            ...deleteUserDto,
+            id: userId
+        });
     }
 }

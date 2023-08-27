@@ -1,3 +1,3 @@
-const REQUEST_TIMEOUT = 5000;
+const REQUEST_TIMEOUT = 7000;
 
 export default REQUEST_TIMEOUT;
