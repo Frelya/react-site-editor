@@ -40,10 +40,7 @@ const SideBarLeft: React.FunctionComponent<SideBarLeftProps> = (props) => {
                             />
                         </Link>
                         <ScreenChanger />
-                        <Icon
-                            name={'bars'}
-                            onClick={openMenu}
-                        />
+                        <Icon name={'bars'} onClick={openMenu} />
                     </div>
                 </SideBarSection>
                 <SideBarBody>
@@ -80,7 +77,7 @@ const styleClasses = {
     container: 'w-full h-full flex flex-col justify-between',
     header: 'w-11/12 h-full flex justify-between items-center',
     footer: 'w-11/12 h-full flex justify-between items-center',
-    footerButton: 'w-full h-full gap-2 py-2 px-4 flex justify-center items-center'
+    footerButton: 'w-full h-full gap-2 flex justify-center items-center'
 };
 
 export default SideBarLeft;

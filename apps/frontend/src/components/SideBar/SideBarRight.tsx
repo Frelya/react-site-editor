@@ -102,7 +102,7 @@ const styleClasses = {
     componentName: 'text-xl break-words w-9/12 max-w-[75%] min-h-fit max-h-full',
     componentPropsTitle: 'w-11/12 mx-auto my-4 px-2',
     footer: 'w-11/12 h-full flex justify-between items-center',
-    footerButton: 'w-full h-full gap-2 py-2 px-4 flex justify-center items-center'
+    footerButton: 'w-full h-full gap-2 flex justify-center items-center'
 };
 
 export default SideBarRight;

@@ -1,5 +1,6 @@
-import { useMitt } from '@/hooks';
+import { useMitt, useUser } from '@/hooks';
 import { Icon } from '@components/Decorators';
+import { EditorButton } from '@components/Common';
 import BaseSideBar, { SideBarScales } from './BaseSideBar';
 import SideBarSection from './SideBarSection';
 import SideBarBody from './SideBarBody';
@@ -11,6 +12,8 @@ interface MenuProps {
 const Menu: React.FunctionComponent<MenuProps> = (props) => {
     const emitter = useMitt();
 
+    const { data: user, isLoading: userIsLoading, error: userError } = useUser();
+
     const closeMenu = () => {
         emitter.emit('menuToggled');
     };
@@ -20,23 +23,17 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
             <div className={styleClasses.container}>
                 <SideBarSection position={'top'}>
                     <div className={styleClasses.header}>
-                        <Icon
-                            name={'cross-mark'}
-                            className={'w-8 h-8 cursor-pointer'}
-                            descriptionPlace={'left'}
-                            onClick={closeMenu}
-                        />
-                        <Icon
-                            name={'cross-mark'}
-                            className={'w-8 h-8 cursor-pointer'}
-                            descriptionPlace={'left'}
-                            onClick={closeMenu}
-                        />
+                        <Icon name={'user'} className={'w-6 h-6 text-functional-grey'} />
+                        <Icon name={'cross-mark'} className={'w-8 h-8'} onClick={closeMenu} />
                     </div>
                 </SideBarSection>
                 <SideBarBody>
+                    {userIsLoading && <div>Loading...</div>}
+                    {userError && <div>{'users: ' + userError.message}</div>}
+                    {user && 'users: ' + JSON.stringify(user)}
                 </SideBarBody>
                 <SideBarSection position={'bottom'}>
+                    <EditorButton>Delete</EditorButton>
                 </SideBarSection>
             </div>
         </BaseSideBar>
@@ -44,8 +41,8 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
 };
 
 const styleClasses = {
-    container: 'absolute z-10 w-full h-full',
-    header: 'w-11/12 h-full flex justify-between items-center',
+    container: 'absolute z-10 w-full h-full flex flex-col justify-between',
+    header: 'w-11/12 h-full flex justify-between items-center'
 };
 
 export default Menu;

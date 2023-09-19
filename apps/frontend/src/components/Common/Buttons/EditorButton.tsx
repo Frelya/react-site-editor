@@ -25,7 +25,7 @@ const EditorButton: React.FunctionComponent<EditorButtonProps> = (props) => {
 };
 
 const styleClasses = {
-    button: 'flex items-center justify-evenly bg-blue-500 font-bold rounded cursor-pointer hover:bg-blue-600'
+    button: 'py-2 px-4 flex items-center justify-evenly bg-blue-500 font-bold rounded cursor-pointer hover:bg-blue-600'
 };
 
 export default EditorButton;

@@ -11,6 +11,10 @@ const SearchBar: React.FunctionComponent<SideBarSearchBarProps> = (props) => {
         props.setQuery(event.target.value);
     };
 
+    const clearInput = () => {
+        props.setQuery('');
+    };
+
     return (
         <div className={styleClasses.container}>
             <input
@@ -20,7 +24,15 @@ const SearchBar: React.FunctionComponent<SideBarSearchBarProps> = (props) => {
                 value={props.query}
                 onChange={handleSearchChange}
             />
-            <Icon name={'search'} className={'text-gray-600'} />
+            {props.query.length > 0 ? (
+                <Icon
+                    name={'cross-mark'}
+                    className={'text-gray-600 w-6 h-6'}
+                    onClick={clearInput}
+                />
+            ) : (
+                <Icon name={'search'} className={'text-gray-600 w-6 h-6'} />
+            )}
         </div>
     );
 };

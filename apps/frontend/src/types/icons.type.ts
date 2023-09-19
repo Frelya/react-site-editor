@@ -16,6 +16,7 @@ export type IconName =
     | 'save'
     | 'search'
     | 'stack'
+    | 'user'
     | 'ui-button-play'
     | 'ui-default'
     | 'ui-eject'

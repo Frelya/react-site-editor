@@ -14,15 +14,14 @@ const BaseSideBar: React.FunctionComponent<SideBarProps> = (props) => {
     return (
         <div
             className={`${styleClasses.container} ${styleClasses[`scale${props.scale}`]} ${
-                props.visible 
-                    ? styleClasses.visible 
-                    : styleClasses.invisible + ' ' + (
-                        props.side === 'left'
-                            ? styleClasses.invisibleSlideLeft 
-                            : styleClasses.invisibleSlideRight 
-                    )
-            }`}
-        >
+                props.visible
+                    ? styleClasses.visible
+                    : styleClasses.invisible +
+                      ' ' +
+                      (props.side === 'left'
+                          ? styleClasses.invisibleSlideLeft
+                          : styleClasses.invisibleSlideRight)
+            }`}>
             {props.children}
         </div>
     );
@@ -36,7 +35,7 @@ const styleClasses = {
     invisible: 'hidden',
     invisibleSlideLeft: '-translate-x-full',
     invisibleSlideRight: 'translate-x-full',
-    visible: 'block translate-x-0',
+    visible: 'block translate-x-0'
 };
 
 export default BaseSideBar;
