@@ -10,7 +10,7 @@ import { Reflector } from '@nestjs/core';
 import { TokenService } from '@features/token';
 import { ERRORS } from '@shared/constants';
 import { SKIP_AUTH_KEY } from '@shared/decorators';
-import { extractRequestFromContext, extractTokenFromHeader } from '@/utils';
+import { extractRequestFromContext, extractTokenFromCookies } from '@/utils';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -20,9 +20,6 @@ export class AuthGuard implements CanActivate {
     ) {}
 
     async canActivate(context: ExecutionContext): Promise<boolean> {
-        const request = extractRequestFromContext(context);
-        const token = extractTokenFromHeader(request);
-
         const isSkipAuth = this.reflector.getAllAndOverride<boolean>(SKIP_AUTH_KEY, [
             context.getHandler(),
             context.getClass()
@@ -31,6 +28,9 @@ export class AuthGuard implements CanActivate {
         if (isSkipAuth) {
             return true;
         }
+
+        const request = extractRequestFromContext(context);
+        const token = extractTokenFromCookies(request);
 
         if (!token) {
             throw new UnauthorizedException(ERRORS.TOKEN_REQUIRED);

@@ -28,9 +28,10 @@ const Menu: React.FunctionComponent<MenuProps> = (props) => {
                     </div>
                 </SideBarSection>
                 <SideBarBody>
-                    {userIsLoading && <div>Loading...</div>}
-                    {userError && <div>{'users: ' + userError.message}</div>}
-                    {user && 'users: ' + JSON.stringify(user)}
+                    user:&nbsp;
+                    {userIsLoading && 'loading...'}
+                    {userError && JSON.stringify(userError)}
+                    {user && JSON.stringify(user)}
                 </SideBarBody>
                 <SideBarSection position={'bottom'}>
                     <EditorButton>Delete</EditorButton>

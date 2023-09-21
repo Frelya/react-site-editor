@@ -43,12 +43,7 @@ export class AuthService {
             identifier: user.id
         });
 
-        // TODO: Implement refresh token system
-        // TODO: Implement blacklist/whitelist system
-        //  (store token, add to whitelist, etc.)
-        return {
-            token: await this.tokenService.createAccessToken(user)
-        };
+        return await this.tokenService.createAccessToken(user);
     }
 
     async signUp(data: Auth.SignUpPayload): Promise<Auth.RegisteredUser> {

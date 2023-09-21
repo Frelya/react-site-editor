@@ -78,6 +78,7 @@ const parseResponseError = (error: unknown): Omit<ApiResponse & { success: false
 
 const client: AxiosInstance = axios.create({
     baseURL: import.meta.env.APP_API_URL,
+    withCredentials: true,
     headers: {
         'Content-Type': 'application/json'
     }
