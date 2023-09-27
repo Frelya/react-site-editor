@@ -8,9 +8,9 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
     const fontSize = `font${props.fontSize}` as keyof typeof styles;
     const backgroundColor = props.backgroundColor;
 
-    const clickHandler = (event: React.MouseEvent) => {
+    const handleClick = (event: React.MouseEvent) => {
         event.preventDefault();
-        props.onClick();
+        console.log('Button clicked');
     };
 
     return (
@@ -20,7 +20,7 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
                 backgroundColor: backgroundColor,
                 color: textColor
             }}
-            onClick={clickHandler}>
+            onClick={handleClick}>
             {props.text}
         </button>
     );
@@ -50,12 +50,6 @@ export const propsSpecs: ComponentPropsSpecs<ButtonProps> = {
         value: '#3b82f6',
         control: {
             type: 'color'
-        }
-    },
-    onClick: {
-        value: () => console.log('Button clicked'),
-        control: {
-            type: 'callback'
         }
     },
     iconName: 'ui-button-play'

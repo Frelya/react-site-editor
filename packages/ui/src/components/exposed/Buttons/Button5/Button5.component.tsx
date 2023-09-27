@@ -7,9 +7,7 @@ const Button5: React.FunctionComponent<Button5Props> = (props) => {
     // The component definitions
     return (
         <>
-            <div className={styles.container} onClick={props.onClick}>
-                {props.myProp}
-            </div>
+            <div className={styles.container}>{props.myProp}</div>
         </>
     );
 };
@@ -17,15 +15,9 @@ const Button5: React.FunctionComponent<Button5Props> = (props) => {
 export const propsSpecs: ComponentPropsSpecs<Button5Props> = {
     // The default props of the component
     myProp: {
-        value: 'default value',
+        value: 'Hello World!',
         control: {
             type: 'text'
-        }
-    },
-    onClick: {
-        value: () => alert('Hello world!'),
-        control: {
-            type: 'callback'
         }
     },
     iconName: 'ui-default'

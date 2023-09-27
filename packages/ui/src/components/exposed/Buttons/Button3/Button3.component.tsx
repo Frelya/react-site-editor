@@ -6,8 +6,13 @@ import styles from './Button3.module.css';
 const Button3: React.FunctionComponent<Button3Props> = (props) => {
     const fontSize = `font${props.fontSize}` as keyof typeof styles;
 
+    const handleClick = (event: React.MouseEvent) => {
+        event.preventDefault();
+        console.log('Button 3 clicked');
+    };
+
     return (
-        <button className={`${styles.baseButton} ${styles[fontSize]}`} onClick={props?.onClick}>
+        <button className={`${styles.baseButton} ${styles[fontSize]}`} onClick={handleClick}>
             {props.text}
         </button>
     );
@@ -25,12 +30,6 @@ export const propsSpecs: ComponentPropsSpecs<Button3Props> = {
         control: {
             type: 'select',
             options: [1, 2, 3]
-        }
-    },
-    onClick: {
-        value: () => console.log('Button3 clicked'),
-        control: {
-            type: 'callback'
         }
     },
     iconName: 'ui-eject'

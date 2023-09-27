@@ -71,7 +71,7 @@ model Website {
     title     String   @default("Untitled")
     url       String   @unique
     /// The JSON string representing the structure of the website
-    tree      String
+    tree      Json
     createdAt DateTime @default(now())
 
     /// Medias used in the website
@@ -93,7 +93,7 @@ model Template {
     /// The title used when creating a website from the template
     title     String   @default("Untitled")
     /// The JSON string representing the structure of the template
-    tree      String
+    tree      Json
     createdAt DateTime @default(now())
     /// Number of likes the template has received
     likes     Int      @default(0)
