@@ -7,6 +7,8 @@ export async function createWebsites(
     authorIds: User['id'][],
     templatesIds: Template['id'][]
 ): Promise<Website['id'][]> {
+    await client.website.deleteMany({});
+
     websitesData[0].authorId = authorIds[0];
 
     websitesData[1].authorId = authorIds[1];
