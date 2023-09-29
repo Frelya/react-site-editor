@@ -7,12 +7,20 @@ import { EditorButton } from '@components/Common';
 import BaseSideBar, { SideBarScales } from './BaseSideBar';
 import SideBarSection from './SideBarSection';
 import SideBarBody from './SideBarBody';
-import ScreenChanger from './ScreenChanger';
 import ActiveTab from './ActiveTab';
+import ScreenChanger from './ScreenChanger';
 
-const SideBarLeft: React.FunctionComponent = () => {
+interface SideBarLeftProps {
+    visible: boolean;
+}
+
+const SideBarLeft: React.FunctionComponent<SideBarLeftProps> = (props) => {
     const dispatch = useDispatch();
     const emitter = useMitt();
+
+    const openMenu = () => {
+        emitter.emit('menuToggled');
+    };
 
     const handleRefreshClick = () => {
         dispatch(resetTree());
@@ -20,7 +28,7 @@ const SideBarLeft: React.FunctionComponent = () => {
     };
 
     return (
-        <BaseSideBar visible scale={SideBarScales.NARROW}>
+        <BaseSideBar visible={props.visible} side={'left'} scale={SideBarScales.NARROW}>
             <div className={styleClasses.container}>
                 <SideBarSection position={'top'}>
                     <div className={styleClasses.header}>
@@ -32,11 +40,7 @@ const SideBarLeft: React.FunctionComponent = () => {
                             />
                         </Link>
                         <ScreenChanger />
-                        <Icon
-                            name={'refresh-arrows'}
-                            description={'Discard All'}
-                            onClick={handleRefreshClick}
-                        />
+                        <Icon name={'bars'} onClick={openMenu} />
                     </div>
                 </SideBarSection>
                 <SideBarBody>
@@ -57,7 +61,11 @@ const SideBarLeft: React.FunctionComponent = () => {
                                 </div>
                             </Link>
                         </EditorButton>
-                        <span></span>
+                        <Icon
+                            name={'refresh-arrows'}
+                            description={'Discard All'}
+                            onClick={handleRefreshClick}
+                        />
                     </div>
                 </SideBarSection>
             </div>
@@ -69,7 +77,7 @@ const styleClasses = {
     container: 'w-full h-full flex flex-col justify-between',
     header: 'w-11/12 h-full flex justify-between items-center',
     footer: 'w-11/12 h-full flex justify-between items-center',
-    footerButton: 'w-full h-full gap-2 py-2 px-4 flex justify-center items-center'
+    footerButton: 'w-full h-full gap-2 flex justify-center items-center'
 };
 
 export default SideBarLeft;

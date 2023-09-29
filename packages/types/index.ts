@@ -144,3 +144,24 @@ export type Control<T> =
     | DateControl
     | GridTemplateControl
     | CallbackControl;
+
+export type ApiError = {
+    readonly code: number;
+    readonly message: string;
+    readonly path: string;
+    readonly details: unknown;
+};
+
+export type ApiResponse<T = null> = {
+    success: boolean;
+    timestamp: Date;
+} & (
+    | {
+          success: true;
+          data: T;
+      }
+    | {
+          success: false;
+          error: ApiError;
+      }
+);

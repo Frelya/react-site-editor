@@ -3,7 +3,7 @@ import { HttpAdapterHost } from '@nestjs/core';
 
 import { ERRORS } from '@shared/constants';
 import { isDevelopment } from '@config/env.config';
-import type { Response } from '@/types';
+import type { ApiResponse } from '@react-site-editor/types';
 
 function toSerializableError(value: unknown): unknown {
     if (value instanceof Error) {
@@ -34,7 +34,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
 
         const ctx = host.switchToHttp();
 
-        const responseBody: Response = {
+        const responseBody: ApiResponse = {
             success: false,
             error: {
                 code: statusCode,

@@ -7,6 +7,9 @@ module.exports = {
         extend: {
             colors: {
                 'functional-grey': '#64748b'
+            },
+            gridTemplateColumns: {
+                'auto-fit': 'repeat(auto-fit, minmax(6rem, 1fr))'
             }
         }
     },
