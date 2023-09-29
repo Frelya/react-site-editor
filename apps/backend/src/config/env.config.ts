@@ -8,7 +8,8 @@ type AnyObject = { [key: string]: unknown };
 
 const envVariablesSchema = z.object({
     NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
-    PORT: z.string().default('3000'),
+    PORT: z.string().default('8000'),
+    CLIENT_URL: z.string(),
     DATABASE_USER: z.string(),
     DATABASE_USER_PASSWORD: z.string(),
     DATABASE_NAME: z.enum(['rse_dev', 'rse_prod', 'rse_test']).default('rse_dev'),

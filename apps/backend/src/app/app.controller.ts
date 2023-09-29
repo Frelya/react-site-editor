@@ -1,12 +1,13 @@
 import { Controller, Get, Redirect } from '@nestjs/common';
 
-import { APP_HOST } from '@shared/constants';
+import { SkipAuth } from '@shared/decorators';
 
 @Controller()
 export class AppController {
+    @SkipAuth()
     @Get()
     @Redirect('/docs')
     getApp(): string {
-        return APP_HOST;
+        return 'Redirecting to the API documentation...';
     }
 }

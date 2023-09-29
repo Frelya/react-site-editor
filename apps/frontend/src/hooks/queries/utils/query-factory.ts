@@ -2,7 +2,8 @@ import useSWR from 'swr';
 import type { SWRConfiguration, RevalidatorOptions, SWRResponse } from 'swr';
 
 const ERROR_CODES_WITH_NORMAL_RETRIES: number[] = [500];
-const LOWER_RETRIES_LIMIT: RevalidatorOptions['retryCount'] = 10;
+const RETRIES_TIMEOUT = 2000;
+const LOWER_RETRIES_LIMIT: RevalidatorOptions['retryCount'] = 3;
 
 export type QueryArgs<TBody, TParams> = Partial<{
     body: TBody;
@@ -50,6 +51,10 @@ const swrConfig: SWRConfiguration = {
             retryCount > LOWER_RETRIES_LIMIT
         ) {
             return;
+        }
+
+        if (ERROR_CODES_WITH_NORMAL_RETRIES.includes(error.status)) {
+            setTimeout(() => revalidate({ retryCount }), RETRIES_TIMEOUT);
         }
     }
 };

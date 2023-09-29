@@ -1,6 +1,5 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 
-import { APP_HOST } from '@shared/constants';
 import { EnvService } from '@shared/env';
 import { extractRequestFromContext } from '@/utils';
 
@@ -13,7 +12,7 @@ export class HostGuard implements CanActivate {
         const host = request.get('host');
 
         if (this.envService.isProduction) {
-            return host === APP_HOST;
+            return host === this.envService.get('CLIENT_URL');
         }
 
         return true;

@@ -2,6 +2,7 @@ import { APP_GUARD, APP_INTERCEPTOR, APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { Module, Logger, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import helmet from 'helmet';
+import cookieParser from 'cookie-parser';
 import responseTime from 'response-time';
 
 import { envConfigOptions } from '@config/env.config';
@@ -62,6 +63,7 @@ export class AppModule implements NestModule {
         consumer
             .apply(
                 helmet(),
+                cookieParser(),
                 responseTime({
                     digits: 0
                 }),

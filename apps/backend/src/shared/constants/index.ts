@@ -1,5 +1,5 @@
-export { default as APP_HOST } from './host';
-
 export { default as REQUEST_TIMEOUT } from './timeout';
 
 export { default as ERRORS } from './errors';
+
+export { default as TOKEN_KEY } from './token-key';

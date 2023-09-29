@@ -12,9 +12,7 @@ export declare namespace Auth {
         readonly confirmPassword: User['password'];
     };
 
-    type AccessToken = {
-        readonly token: Token.AccessToken;
-    };
+    type AccessToken = Token.AccessToken;
 
     type RegisteredUser = Users.UniqueUser;
 }

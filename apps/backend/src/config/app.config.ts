@@ -6,7 +6,6 @@ import loggerOptions from '@config/logger.config';
 const customLogger = WinstonModule.createLogger(loggerOptions);
 
 const appOptions: NestApplicationOptions = {
-    cors: true,
     bodyParser: true,
     bufferLogs: true,
     logger: customLogger

@@ -4,6 +4,7 @@ import {
     Body,
     Get,
     Post,
+    Delete,
     HttpCode,
     HttpStatus,
     UseGuards
@@ -46,7 +47,7 @@ export class UserController {
     }
 
     @HttpCode(HttpStatus.OK)
-    @Post(':id/delete')
+    @Delete(':id/delete')
     async deleteUser(
         @Body() deleteUserDto: DeleteUserDto,
         @Param('id') userId: GetUserByIdDto['id']

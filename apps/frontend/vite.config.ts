@@ -13,7 +13,7 @@ export default ({ mode }: UserConfig) => {
     return defineConfig({
         envPrefix: 'APP_',
         server: {
-            port: parseInt(process.env.APP_PORT || '5173')
+            port: parseInt(process.env.APP_PORT ?? '3000')
         },
         plugins: [react()],
         build: {

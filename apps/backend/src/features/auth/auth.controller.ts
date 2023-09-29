@@ -1,6 +1,9 @@
-import { Controller, Post, Body, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, Res, HttpStatus } from '@nestjs/common';
+import type { Response } from 'express';
 
+import { TOKEN_KEY } from '@shared/constants';
 import { SkipAuth } from '@shared/decorators';
+import { EnvService } from '@shared/env';
 
 import { AuthService } from './auth.service';
 import type { Auth } from './auth.type';
@@ -8,13 +11,27 @@ import type { SignInDto, SignUpDto } from './dtos';
 
 @Controller('auth')
 export class AuthController {
-    constructor(private readonly authService: AuthService) {}
+    constructor(
+        private readonly envService: EnvService,
+        private readonly authService: AuthService
+    ) {}
 
     @SkipAuth()
     @HttpCode(HttpStatus.OK)
     @Post('login')
-    async signIn(@Body() signInDto: SignInDto): Promise<Auth.AccessToken> {
-        return await this.authService.signIn(signInDto);
+    async signIn(
+        @Body() signInDto: SignInDto,
+        @Res({ passthrough: true }) response: Response
+    ): Promise<null> {
+        const accessToken = await this.authService.signIn(signInDto);
+
+        response.cookie(TOKEN_KEY, accessToken, {
+            httpOnly: true,
+            sameSite: 'strict',
+            secure: this.envService.isProduction ?? false
+        });
+
+        return null;
     }
 
     @SkipAuth()

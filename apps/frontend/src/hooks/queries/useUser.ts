@@ -1,14 +1,10 @@
 import { makeRequest, queryFactory } from './utils';
 
-type User = {
-    id: number;
-    name: string;
-    email: string;
-};
+type User = Record<string, unknown>;
 
 export const useUser = queryFactory('user', async () => {
     return await makeRequest<User>({
-        url: '/users',
+        url: '/users/me',
         method: 'GET'
     });
 });
