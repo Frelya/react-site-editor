@@ -10,6 +10,7 @@ import { serveStaticOptions } from '@config/static.config';
 import { EnvModule, EnvService } from '@shared/env';
 import { AuthModule } from '@features/auth';
 import { UserModule } from '@features/user';
+import { TemplateModule } from '@features/template';
 import { TokenModule } from '@features/token';
 import { AllExceptionsFilter } from '@/filters';
 import { ResponseInterceptor } from '@/interceptors';
@@ -26,7 +27,8 @@ import { AppController } from './app.controller';
         ServeStaticModule.forRoot(serveStaticOptions),
         TokenModule,
         AuthModule,
-        UserModule
+        UserModule,
+        TemplateModule,
     ],
     providers: [
         Logger,

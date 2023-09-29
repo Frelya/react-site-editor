@@ -5,6 +5,8 @@ export const userSensitiveData = ['password', 'createdAt'] as const;
 export const userPayloadData = ['id', 'email', 'username', 'role'] as const;
 
 export declare namespace Users {
+    type Entity = User;
+    
     type UserSensitiveData = (typeof userSensitiveData)[number];
 
     type UserPayloadData = (typeof userPayloadData)[number];
