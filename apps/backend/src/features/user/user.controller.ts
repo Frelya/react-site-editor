@@ -25,7 +25,7 @@ export class UserController {
 
     @Authorize(Role.Admin)
     @Get()
-    async getAllUsers(): Promise<Users.UsersList> {
+    async getAllUsers(): Promise<Users.CleanedEntity[]> {
         return await this.userService.getAll();
     }
 
@@ -39,7 +39,7 @@ export class UserController {
     async updateUser(
         @Body() updateUserDto: UpdateUserDto,
         @Param('id') userId: GetUserByIdDto['id']
-    ): Promise<Users.UniqueUser> {
+    ): Promise<Users.CleanedEntity> {
         return await this.userService.update({
             ...updateUserDto,
             identifier: userId

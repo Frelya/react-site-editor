@@ -1,18 +1,17 @@
-import type { User } from '@shared/database';
 import type { Users } from '@features/user';
-import type { Token } from '@features/token';
+import { Token } from '@shared/token';
 
 export declare namespace Auth {
     type UserCredentials = {
-        readonly email: User['email'];
-        readonly password: User['password'];
+        readonly email: Users.Entity['email'];
+        readonly password: Users.Entity['password'];
     };
 
     type SignUpPayload = UserCredentials & {
-        readonly confirmPassword: User['password'];
+        readonly confirmPassword: Users.Entity['password'];
     };
 
     type AccessToken = Token.AccessToken;
 
-    type RegisteredUser = Users.UniqueUser;
+    type RegisteredUser = Users.CleanedEntity;
 }

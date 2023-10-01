@@ -12,7 +12,7 @@ import { Request } from 'express';
 import { isMongoId } from 'class-validator';
 
 import { DatabaseService } from '@shared/database';
-import type { User, Database } from '@shared/database';
+import type { Database } from '@shared/database';
 import { CryptService } from '@shared/crypt';
 import { ERRORS } from '@shared/constants';
 import { handleWithInternalError } from '@/utils';
@@ -46,7 +46,7 @@ export class UserService {
         return data;
     }
 
-    private clean<TData extends User | User[]>(
+    private clean<TData extends Users.Entity | Users.Entity[]>(
         data: TData,
         sensitivesToInclude?: Users.UserSensitiveData[]
     ) {
@@ -60,7 +60,7 @@ export class UserService {
     async create(
         data: Users.UserCreatePayload,
         sensitivesToInclude?: Users.UserSensitiveData[]
-    ): Promise<Users.UniqueUser> {
+    ): Promise<Users.CleanedEntity> {
         const { email, password } = await this.validatePayload(data, CreateUserDto);
 
         const existingUser = await this.databaseService.user.findUnique({ where: { email } });
@@ -75,7 +75,6 @@ export class UserService {
                     ...data,
                     username: UserService.usernameFromEmail(email),
                     password: await this.cryptService.hashPassword(password),
-                    createdAt: new Date()
                 }
             }),
             sensitivesToInclude
@@ -85,7 +84,7 @@ export class UserService {
     async update(
         data: Users.UserUpdatePayload,
         sensitivesToInclude?: Users.UserSensitiveData[]
-    ): Promise<Users.UniqueUser> {
+    ): Promise<Users.CleanedEntity> {
         const { identifier: userIdentifier, ...updateData } = await this.validatePayload(
             data,
             UpdateUserDto
@@ -149,14 +148,14 @@ export class UserService {
         }
     }
 
-    async getAll(sensitivesToInclude?: Users.UserSensitiveData[]): Promise<Users.UsersList> {
+    async getAll(sensitivesToInclude?: Users.UserSensitiveData[]): Promise<Users.CleanedEntity[]> {
         return this.clean(await this.databaseService.user.findMany(), sensitivesToInclude);
     }
 
     async getById(
         data: Users.UserIdPayload,
         sensitivesToInclude?: Users.UserSensitiveData[]
-    ): Promise<Users.UniqueUser> {
+    ): Promise<Users.CleanedEntity> {
         const { id } = await this.validatePayload(data, GetUserByIdDto);
         return this.clean(
             await this.databaseService.user.findUnique({ where: { id } }),

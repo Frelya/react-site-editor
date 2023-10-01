@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { CryptModule } from '@shared/crypt';
 import { EnvModule } from '@shared/env';
-import { TokenModule } from '@features/token';
+import { TokenModule } from '@shared/token';
 import { UserModule } from '@features/user';
 
 import { AuthController } from './auth.controller';

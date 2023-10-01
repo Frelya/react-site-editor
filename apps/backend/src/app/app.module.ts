@@ -11,7 +11,7 @@ import { EnvModule, EnvService } from '@shared/env';
 import { AuthModule } from '@features/auth';
 import { UserModule } from '@features/user';
 import { TemplateModule } from '@features/template';
-import { TokenModule } from '@features/token';
+import { TokenModule } from '@shared/token';
 import { AllExceptionsFilter } from '@/filters';
 import { ResponseInterceptor } from '@/interceptors';
 import { TimeoutInterceptor } from '@/interceptors';

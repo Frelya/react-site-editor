@@ -8,7 +8,7 @@ const templatesData: Prisma.XOR<Prisma.TemplateCreateInput, Prisma.TemplateUnche
             createdAt: new Date(),
             likes: 10,
             medias: [],
-            authorId: null
+            authorId: '<user_id>'
         },
         {
             name: 'Sample Template 2',

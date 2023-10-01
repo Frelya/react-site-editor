@@ -1,25 +1,23 @@
-import type { User } from '@shared/database';
-
 import { userPayloadData } from '../user.type';
 import type { Users } from '../user.type';
 
-export type Sanitized<T> = T extends User ? Users.UniqueUser : Users.UniqueUser[];
+export type Sanitized<T> = T extends Users.Entity ? Users.CleanedEntity : Users.CleanedEntity[];
 
 type UniqueUserKey = Users.UserPayloadData | Users.UserSensitiveData;
 
-const isSingle = (data: User | User[]): data is User => !Array.isArray(data);
+const isSingle = (data: Users.Entity | Users.Entity[]): data is Users.Entity => !Array.isArray(data);
 
-const pickFromSingle = (data: User, include: UniqueUserKey[]): Users.UniqueUser => {
+const pickFromSingle = (data: Users.Entity, include: UniqueUserKey[]): Users.CleanedEntity => {
     const user = { ...data };
     Object.keys(user).forEach((key) => {
         if (!include.includes(key as UniqueUserKey)) {
-            delete user[key as keyof User];
+            delete user[key as keyof Users.Entity];
         }
     });
-    return user as Users.UniqueUser;
+    return user as Users.CleanedEntity;
 };
 
-export function removeSensitives<TData extends User | User[]>(
+export function removeSensitives<TData extends Users.Entity | Users.Entity[]>(
     data: TData,
     sensitivesToInclude?: Users.UserSensitiveData[]
 ): Sanitized<TData> {

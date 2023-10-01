@@ -6,7 +6,7 @@ export const userPayloadData = ['id', 'email', 'username', 'role'] as const;
 
 export declare namespace Users {
     type Entity = User;
-    
+
     type UserSensitiveData = (typeof userSensitiveData)[number];
 
     type UserPayloadData = (typeof userPayloadData)[number];
@@ -15,9 +15,7 @@ export declare namespace Users {
 
     type UserProfile = Omit<User, UserSensitiveData>;
 
-    type UniqueUser = Pick<UserProfile, UserPayloadData> & Partial<Pick<User, UserSensitiveData>>;
-
-    type UsersList = UniqueUser[];
+    type CleanedEntity = Pick<UserProfile, UserPayloadData> & Partial<Pick<User, UserSensitiveData>>;
 
     interface UserCreatePayload {
         readonly email: User['email'];

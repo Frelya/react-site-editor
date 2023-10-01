@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 
-import { TokenService } from '@features/token';
+import { TokenService } from '@shared/token';
 import { ERRORS } from '@shared/constants';
 import { SKIP_AUTH_KEY } from '@shared/decorators';
 import { extractRequestFromContext, extractTokenFromCookies } from '@/utils';

@@ -8,6 +8,7 @@ export async function createTemplates(
 ): Promise<Template['id'][]> {
     await client.template.deleteMany({});
 
+    templatesData[0].authorId = authorIds[0];
     templatesData[1].authorId = authorIds[1];
 
     return Promise.all(

@@ -10,7 +10,7 @@ import { Request } from 'express';
 
 import { ERRORS } from '@shared/constants';
 import { CryptService } from '@shared/crypt';
-import { TokenService } from '@features/token';
+import { TokenService } from '@shared/token';
 import { UserService } from '@features/user';
 
 import type { Auth } from './auth.type';
