@@ -5,11 +5,11 @@ export declare namespace Templates {
 
     type GetByIdPayload = {
         id: Template['id'];
-    }
+    };
 
     type CreatePayload = Pick<Template, 'name' | 'tree' | 'isPublic'>;
 
-    type UpdatePayload = Partial<Omit<Template, 'createdAt' | 'authorId' | 'medias'>>
+    type UpdatePayload = Partial<Omit<Template, 'createdAt' | 'authorId' | 'medias'>>;
 
     type DeletePayload = GetByIdPayload;
 }

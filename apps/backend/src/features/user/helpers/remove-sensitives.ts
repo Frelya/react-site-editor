@@ -5,7 +5,8 @@ export type Sanitized<T> = T extends Users.Entity ? Users.CleanedEntity : Users.
 
 type UniqueUserKey = Users.UserPayloadData | Users.UserSensitiveData;
 
-const isSingle = (data: Users.Entity | Users.Entity[]): data is Users.Entity => !Array.isArray(data);
+const isSingle = (data: Users.Entity | Users.Entity[]): data is Users.Entity =>
+    !Array.isArray(data);
 
 const pickFromSingle = (data: Users.Entity, include: UniqueUserKey[]): Users.CleanedEntity => {
     const user = { ...data };

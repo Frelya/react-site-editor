@@ -8,6 +8,6 @@ import { TemplateService } from './template.service';
 @Module({
     controllers: [TemplateController],
     providers: [TemplateService, DatabaseService],
-    exports: [TemplateService],
+    exports: [TemplateService]
 })
 export class TemplateModule {}

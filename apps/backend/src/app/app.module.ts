@@ -28,7 +28,7 @@ import { AppController } from './app.controller';
         TokenModule,
         AuthModule,
         UserModule,
-        TemplateModule,
+        TemplateModule
     ],
     providers: [
         Logger,

@@ -15,7 +15,8 @@ export declare namespace Users {
 
     type UserProfile = Omit<User, UserSensitiveData>;
 
-    type CleanedEntity = Pick<UserProfile, UserPayloadData> & Partial<Pick<User, UserSensitiveData>>;
+    type CleanedEntity = Pick<UserProfile, UserPayloadData> &
+        Partial<Pick<User, UserSensitiveData>>;
 
     interface UserCreatePayload {
         readonly email: User['email'];

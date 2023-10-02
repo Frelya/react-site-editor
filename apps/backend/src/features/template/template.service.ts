@@ -1,4 +1,11 @@
-import { Injectable, Inject, Scope, BadRequestException, NotFoundException, ForbiddenException } from '@nestjs/common';
+import {
+    Injectable,
+    Inject,
+    Scope,
+    BadRequestException,
+    NotFoundException,
+    ForbiddenException
+} from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
 import { Request } from 'express';
 
@@ -12,23 +19,21 @@ import { Templates } from './template.type';
 export class TemplateService {
     constructor(
         @Inject(REQUEST) private readonly request: Request,
-        private readonly databaseService: DatabaseService,
+        private readonly databaseService: DatabaseService
     ) {}
 
     private canModifyTemplate(template: Templates.Entity): boolean {
-        return this.request.user.role === Role.Admin
-            || template.authorId === this.request.user.id;
+        return this.request.user.role === Role.Admin || template.authorId === this.request.user.id;
     }
 
     private canAccessTemplate(template: Templates.Entity): boolean {
-        return this.canModifyTemplate(template)
-            || template.isPublic;
+        return this.canModifyTemplate(template) || template.isPublic;
     }
 
     private isValidTree(tree: Templates.Entity['tree']): boolean {
         return JSON.stringify(JSON.parse(tree)) === tree;
     }
-    
+
     async getAll(): Promise<Templates.Entity[]> {
         let templates: Templates.Entity[];
         try {
@@ -41,13 +46,13 @@ export class TemplateService {
             return this.canAccessTemplate(template);
         });
     }
-    
+
     async getById(data: Templates.GetByIdPayload): Promise<Templates.Entity> {
         let template: Templates.Entity;
 
         try {
             template = await this.databaseService.template.findUnique({
-                where: { id: data.id },
+                where: { id: data.id }
             });
         } catch (error) {
             handleWithInternalError(error);
@@ -79,7 +84,7 @@ export class TemplateService {
                     likes: 0,
                     authorId: this.request.user.id,
                     medias: []
-                },
+                }
             });
         } catch (error) {
             handleWithInternalError(error);
@@ -93,7 +98,7 @@ export class TemplateService {
 
         try {
             template = await this.databaseService.template.findUnique({
-                where: { id: data.id },
+                where: { id: data.id }
             });
         } catch (error) {
             handleWithInternalError(error);
@@ -115,11 +120,11 @@ export class TemplateService {
 
         try {
             template = await this.databaseService.template.update({
-                where: { id: data.id },
+                where: { id },
                 data: {
                     ...toUpdate,
-                    isPublic: String(data.isPublic) === 'true',
-                },
+                    isPublic: String(data.isPublic) === 'true'
+                }
             });
         } catch (error) {
             handleWithInternalError(error);
@@ -133,7 +138,7 @@ export class TemplateService {
 
         try {
             template = await this.databaseService.template.findUnique({
-                where: { id: data.id },
+                where: { id: data.id }
             });
         } catch (error) {
             handleWithInternalError(error);
@@ -145,7 +150,7 @@ export class TemplateService {
 
         try {
             await this.databaseService.template.delete({
-                where: { id: data.id },
+                where: { id: data.id }
             });
         } catch (error) {
             handleWithInternalError(error);

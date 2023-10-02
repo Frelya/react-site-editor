@@ -74,7 +74,7 @@ export class UserService {
                 data: {
                     ...data,
                     username: UserService.usernameFromEmail(email),
-                    password: await this.cryptService.hashPassword(password),
+                    password: await this.cryptService.hashPassword(password)
                 }
             }),
             sensitivesToInclude
