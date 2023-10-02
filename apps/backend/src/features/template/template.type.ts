@@ -1,4 +1,4 @@
-import { Template, Database } from '@shared/database';
+import { Template } from '@shared/database';
 
 export declare namespace Templates {
     type Entity = Template;
@@ -7,7 +7,9 @@ export declare namespace Templates {
         id: Template['id'];
     }
 
-    type CreatePayload = Omit<Template, 'id' | 'createdAt' | 'authorId'>;
+    type CreatePayload = Pick<Template, 'name' | 'tree' | 'isPublic'>;
+
+    type UpdatePayload = Partial<Omit<Template, 'createdAt' | 'authorId' | 'medias'>>
 
     type DeletePayload = GetByIdPayload;
 }

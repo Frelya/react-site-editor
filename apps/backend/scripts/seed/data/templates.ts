@@ -12,7 +12,6 @@ const templatesData: Prisma.XOR<Prisma.TemplateCreateInput, Prisma.TemplateUnche
         },
         {
             name: 'Sample Template 2',
-            title: 'My Template',
             tree: '{"pages":[{"title":"Contact","url":"/contact","content":"Welcome to my second template!"}]}',
             createdAt: new Date(),
             medias: [
