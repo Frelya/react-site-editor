@@ -1,9 +1,9 @@
 import { userPayloadData } from '../user.type';
-import type { Users } from '../user.type';
+import { Users } from '../user.type';
 
 export type Sanitized<T> = T extends Users.Entity ? Users.CleanedEntity : Users.CleanedEntity[];
 
-type UniqueUserKey = Users.UserPayloadData | Users.UserSensitiveData;
+type UniqueUserKey = Users.PayloadData | Users.SensitiveData;
 
 const isSingle = (data: Users.Entity | Users.Entity[]): data is Users.Entity =>
     !Array.isArray(data);
@@ -20,7 +20,7 @@ const pickFromSingle = (data: Users.Entity, include: UniqueUserKey[]): Users.Cle
 
 export function removeSensitives<TData extends Users.Entity | Users.Entity[]>(
     data: TData,
-    sensitivesToInclude?: Users.UserSensitiveData[]
+    sensitivesToInclude?: Users.SensitiveData[]
 ): Sanitized<TData> {
     if (!data) {
         return data as Sanitized<TData>;

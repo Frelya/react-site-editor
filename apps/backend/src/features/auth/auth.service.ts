@@ -63,8 +63,7 @@ export class AuthService {
             throw new ForbiddenException(ERRORS.USER_NOT_FOUND);
         }
 
-        // TODO: Implement blacklist/whitelist system
-        //  (invalidate token, add to blacklist, etc.)
+        this.tokenService.invalidateAccessToken(existingUser.id);
 
         return null;
     }

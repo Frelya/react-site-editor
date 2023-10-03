@@ -7,31 +7,30 @@ export const userPayloadData = ['id', 'email', 'username', 'role'] as const;
 export declare namespace Users {
     type Entity = User;
 
-    type UserSensitiveData = (typeof userSensitiveData)[number];
+    type SensitiveData = (typeof userSensitiveData)[number];
 
-    type UserPayloadData = (typeof userPayloadData)[number];
+    type PayloadData = (typeof userPayloadData)[number];
 
     type NotToUpdate = 'createdAt';
 
-    type UserProfile = Omit<User, UserSensitiveData>;
+    type Profile = Omit<User, SensitiveData>;
 
-    type CleanedEntity = Pick<UserProfile, UserPayloadData> &
-        Partial<Pick<User, UserSensitiveData>>;
+    type CleanedEntity = Pick<Profile, PayloadData> & Partial<Pick<User, SensitiveData>>;
 
-    interface UserCreatePayload {
+    interface CreatePayload {
         readonly email: User['email'];
         readonly password: User['password'];
     }
 
-    interface UserUpdatePayload extends Partial<Omit<User, NotToUpdate>> {
+    interface UpdatePayload extends Partial<Omit<User, NotToUpdate>> {
         readonly identifier: User['id'] | User['email'];
     }
 
-    interface UserIdPayload {
+    interface IdPayload {
         readonly id: User['id'];
     }
 
-    interface UserDeletePayload extends UserIdPayload {
+    interface DeletePayload extends IdPayload {
         readonly password: User['password'];
     }
 }

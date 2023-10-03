@@ -15,7 +15,7 @@ import { RolesGuard } from '@shared/guards';
 import { Authorize } from '@shared/decorators';
 
 import { UserService } from './user.service';
-import type { Users } from './user.type';
+import { Users } from './user.type';
 import type { UpdateUserDto, DeleteUserDto, GetUserByIdDto } from './dtos';
 
 @Controller('users')
@@ -24,37 +24,47 @@ export class UserController {
     constructor(private readonly userService: UserService) {}
 
     @Authorize(Role.Admin)
+    @HttpCode(HttpStatus.OK)
     @Get()
     async getAllUsers(): Promise<Users.CleanedEntity[]> {
         return await this.userService.getAll();
     }
 
+    @HttpCode(HttpStatus.OK)
     @Get('me')
-    async getUserProfile(): Promise<Users.UserProfile> {
+    async getUserProfile(): Promise<Users.Profile> {
         return await this.userService.getProfile();
     }
 
     @HttpCode(HttpStatus.OK)
-    @Post(':id/update')
-    async updateUser(
-        @Body() updateUserDto: UpdateUserDto,
-        @Param('id') userId: GetUserByIdDto['id']
-    ): Promise<Users.CleanedEntity> {
-        return await this.userService.update({
-            ...updateUserDto,
-            identifier: userId
+    @Get(':id')
+    async getUserById(@Param() routeParams: GetUserByIdDto): Promise<Users.CleanedEntity> {
+        return await this.userService.getById({
+            id: routeParams.id
         });
     }
 
     @HttpCode(HttpStatus.OK)
-    @Delete(':id/delete')
+    @Post(':id')
+    async updateUser(
+        @Body() updateDto: UpdateUserDto,
+        @Param() routeParams: GetUserByIdDto
+    ): Promise<Users.CleanedEntity> {
+        return await this.userService.update({
+            ...updateDto,
+            identifier: routeParams.id
+        });
+    }
+
+    @HttpCode(HttpStatus.OK)
+    @Delete(':id')
     async deleteUser(
-        @Body() deleteUserDto: DeleteUserDto,
-        @Param('id') userId: GetUserByIdDto['id']
+        @Body() deleteDto: DeleteUserDto,
+        @Param() routeParams: GetUserByIdDto
     ): Promise<null> {
         return await this.userService.delete({
-            ...deleteUserDto,
-            id: userId
+            ...deleteDto,
+            id: routeParams.id
         });
     }
 }

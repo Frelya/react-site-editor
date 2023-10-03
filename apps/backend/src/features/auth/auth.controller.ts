@@ -43,7 +43,11 @@ export class AuthController {
 
     @HttpCode(HttpStatus.OK)
     @Post('logout')
-    async signOut(): Promise<null> {
-        return await this.authService.signOut();
+    async signOut(@Res({ passthrough: true }) response: Response): Promise<null> {
+        await this.authService.signOut();
+
+        response.clearCookie(TOKEN_KEY);
+
+        return null;
     }
 }

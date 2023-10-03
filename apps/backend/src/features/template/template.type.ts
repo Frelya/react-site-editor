@@ -3,7 +3,7 @@ import { Template } from '@shared/database';
 export declare namespace Templates {
     type Entity = Template;
 
-    type GetByIdPayload = {
+    type IdPayload = {
         id: Template['id'];
     };
 
@@ -11,5 +11,5 @@ export declare namespace Templates {
 
     type UpdatePayload = Partial<Omit<Template, 'createdAt' | 'authorId' | 'medias'>>;
 
-    type DeletePayload = GetByIdPayload;
+    type DeletePayload = IdPayload;
 }

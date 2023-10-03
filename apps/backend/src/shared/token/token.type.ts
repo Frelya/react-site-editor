@@ -1,3 +1,3 @@
-export declare namespace Token {
+export declare namespace Tokens {
     type AccessToken = string;
 }

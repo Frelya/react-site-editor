@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { envVariablesSchema } from '@config/env.config';
-import type { Users } from '@features/user';
+import { Users } from '@features/user';
 
 declare global {
     namespace NodeJS {
@@ -11,6 +11,9 @@ declare global {
 
 declare module 'express' {
     interface Request {
-        user: Users.CleanedEntity;
+        user: {
+            id: Users.Entity['id'];
+            role: Users.Entity['role'];
+        };
     }
 }
