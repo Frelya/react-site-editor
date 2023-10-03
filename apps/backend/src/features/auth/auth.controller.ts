@@ -6,8 +6,8 @@ import { SkipAuth } from '@shared/decorators';
 import { EnvService } from '@shared/env';
 
 import { AuthService } from './auth.service';
-import type { Auth } from './auth.type';
-import type { SignInDto, SignUpDto } from './dtos';
+import { Auth } from './auth.type';
+import { SignInDto, SignUpDto } from './dtos';
 
 @Controller('auth')
 export class AuthController {

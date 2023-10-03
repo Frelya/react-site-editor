@@ -1,5 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { JwtSignOptions, JwtVerifyOptions, JwtService } from '@nestjs/jwt';
+import { JwtService } from '@nestjs/jwt';
 
 import { handleWithInternalError } from '@/utils';
 import { EnvService } from '@shared/env';
@@ -10,9 +10,10 @@ import { Tokens } from './token.type';
 
 @Injectable()
 export class TokenService {
-    private static readonly whiteList = new Map<Users.CleanedEntity['id'], Tokens.AccessToken>();
+    // TODO: Use Redis here instead of a map object
+    private static readonly whiteList: Tokens.WhiteList = new Map();
 
-    private readonly options: JwtSignOptions & JwtVerifyOptions & { expiresIn: string };
+    private readonly options: Tokens.SignOptions;
 
     constructor(private readonly envService: EnvService, private readonly jwtService: JwtService) {
         this.options = {
@@ -21,7 +22,7 @@ export class TokenService {
         };
     }
 
-    invalidateAccessToken(userId: Users.CleanedEntity['id']): void {
+    invalidateAccessToken(userId: Users.Entity['id']): void {
         TokenService.whiteList.delete(userId);
     }
 
@@ -70,7 +71,7 @@ export class TokenService {
             handleWithInternalError(error);
         }
 
-        if (TokenService.whiteList.get(user.id) != token) {
+        if (TokenService.whiteList.get(user.id) !== token) {
             throw new UnauthorizedException(ERRORS.TOKEN_INVALID);
         }
 

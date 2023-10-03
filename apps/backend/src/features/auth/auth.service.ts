@@ -13,7 +13,7 @@ import { CryptService } from '@shared/crypt';
 import { TokenService } from '@shared/token';
 import { UserService } from '@features/user';
 
-import type { Auth } from './auth.type';
+import { Auth } from './auth.type';
 
 @Injectable({ scope: Scope.REQUEST })
 export class AuthService {

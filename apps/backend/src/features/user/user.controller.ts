@@ -16,7 +16,7 @@ import { Authorize } from '@shared/decorators';
 
 import { UserService } from './user.service';
 import { Users } from './user.type';
-import type { UpdateUserDto, DeleteUserDto, GetUserByIdDto } from './dtos';
+import { UpdateUserDto, DeleteUserDto, GetUserByIdDto } from './dtos';
 
 @Controller('users')
 @UseGuards(RolesGuard)

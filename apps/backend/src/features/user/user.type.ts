@@ -17,20 +17,20 @@ export declare namespace Users {
 
     type CleanedEntity = Pick<Profile, PayloadData> & Partial<Pick<User, SensitiveData>>;
 
-    interface CreatePayload {
+    type CreatePayload = {
         readonly email: User['email'];
         readonly password: User['password'];
-    }
+    };
 
-    interface UpdatePayload extends Partial<Omit<User, NotToUpdate>> {
+    type UpdatePayload = Partial<Omit<User, NotToUpdate>> & {
         readonly identifier: User['id'] | User['email'];
-    }
+    };
 
-    interface IdPayload {
+    type IdPayload = {
         readonly id: User['id'];
-    }
+    };
 
-    interface DeletePayload extends IdPayload {
+    type DeletePayload = IdPayload & {
         readonly password: User['password'];
-    }
+    };
 }
