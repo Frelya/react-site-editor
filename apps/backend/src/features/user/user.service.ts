@@ -14,6 +14,7 @@ import { isMongoId } from 'class-validator';
 import { DatabaseService } from '@shared/database';
 import type { Database } from '@shared/database';
 import { CryptService } from '@shared/crypt';
+import { TokenService } from '@shared/token';
 import { ERRORS } from '@shared/constants';
 import { handleWithInternalError } from '@/utils';
 import { ValidationPipe } from '@/pipes';
@@ -28,6 +29,7 @@ export class UserService {
         @Inject(REQUEST) private readonly request: Request,
         private readonly cryptService: CryptService,
         private readonly databaseService: DatabaseService,
+        private readonly tokenService: TokenService,
         private readonly validationPipe: ValidationPipe
     ) {}
 
@@ -142,10 +144,13 @@ export class UserService {
 
         try {
             await this.databaseService.user.delete({ where: { id } });
-            return null;
         } catch (error) {
             handleWithInternalError(error);
         }
+
+        this.tokenService.invalidateAccessToken(id);
+
+        return null;
     }
 
     async getAll(sensitivesToInclude?: Users.SensitiveData[]): Promise<Users.CleanedEntity[]> {
@@ -157,10 +162,17 @@ export class UserService {
         sensitivesToInclude?: Users.SensitiveData[]
     ): Promise<Users.CleanedEntity> {
         const { id } = await this.validatePayload(data, GetUserByIdDto);
-        return this.clean(
+
+        const user = this.clean(
             await this.databaseService.user.findUnique({ where: { id } }),
             sensitivesToInclude
         );
+
+        if (!user) {
+            throw new NotFoundException(ERRORS.USER_NOT_FOUND);
+        }
+
+        return user;
     }
 
     async getProfile(): Promise<Users.Profile> {
