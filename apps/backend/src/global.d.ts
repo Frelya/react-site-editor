@@ -11,6 +11,6 @@ declare global {
 
 declare module 'express' {
     interface Request {
-        user: Users.UniqueUser;
+        user: Users.CleanedEntity;
     }
 }

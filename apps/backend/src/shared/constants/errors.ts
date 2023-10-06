@@ -1,7 +1,6 @@
 const ERRORS: Record<Errors, string> = {
     //400
-    INVALID_EMAIL: 'Invalid email',
-    INVALID_PASSWORD: 'Invalid password',
+    INVALID_TEMPLATE: 'Invalid template',
 
     // 401
     WRONG_CONFIRM_PASSWORD: 'Passwords not match',
@@ -23,6 +22,7 @@ const ERRORS: Record<Errors, string> = {
     // 404
     USER_NOT_FOUND: 'User not found',
     WEBSITE_NOT_FOUND: 'Website not found',
+    TEMPLATE_NOT_FOUND: 'Template not found',
 
     // 409
     USER_EXISTS: 'User already exists',
@@ -40,8 +40,7 @@ const ERRORS: Record<Errors, string> = {
 // For auto-completion
 // Remember to update this type when you add a new custom error
 type Errors =
-    | 'INVALID_EMAIL'
-    | 'INVALID_PASSWORD'
+    | 'INVALID_TEMPLATE'
     | 'WRONG_CONFIRM_PASSWORD'
     | 'TOKEN_REQUIRED'
     | 'TOKEN_INVALID'
@@ -55,6 +54,7 @@ type Errors =
     | 'USER_NOT_ALLOWED'
     | 'USER_NOT_FOUND'
     | 'WEBSITE_NOT_FOUND'
+    | 'TEMPLATE_NOT_FOUND'
     | 'USER_EXISTS'
     | 'EXPECTATION_FAILED'
     | 'VALIDATION_ERROR'

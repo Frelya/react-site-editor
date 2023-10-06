@@ -90,8 +90,7 @@ model Website {
 model Template {
     id        String   @id @default(auto()) @map("_id") @database.ObjectId
     name      String   @unique(sort: Asc)
-    /// The title used when creating a website from the template
-    title     String   @default("Untitled")
+    isPublic  Boolean  @default(false)
     /// The JSON string representing the structure of the template
     tree      String
     createdAt DateTime @default(now())

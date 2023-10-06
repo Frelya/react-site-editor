@@ -10,7 +10,6 @@ import {
 } from 'class-validator';
 
 import { Role, Membership } from '@shared/database';
-import type { User } from '@shared/database';
 
 import type { Users } from '../user.type';
 
@@ -23,41 +22,41 @@ export class UpdateUserDto implements Omit<Users.UserUpdatePayload, 'identifier'
         minNumbers: 1,
         minSymbols: 1
     })
-    password: User['password'];
+    password: Users.Entity['password'];
 
     @IsOptional()
     @IsBoolean()
-    isVerified: User['isVerified'];
+    isVerified: Users.Entity['isVerified'];
 
     @IsOptional()
     @IsEmail()
-    email: User['email'];
+    email: Users.Entity['email'];
 
     @IsOptional()
     @IsString()
-    username: User['username'];
+    username: Users.Entity['username'];
 
     @IsOptional()
     @IsIn([Role.User, Role.Admin])
-    role: User['role'];
+    role: Users.Entity['role'];
 
     @IsOptional()
     @IsDate()
-    lastLogin: User['lastLogin'];
+    lastLogin: Users.Entity['lastLogin'];
 
     @IsOptional()
     @IsString()
-    firstName: User['firstName'];
+    firstName: Users.Entity['firstName'];
 
     @IsOptional()
     @IsString()
-    lastName: User['lastName'];
+    lastName: Users.Entity['lastName'];
 
     @IsOptional()
     @IsIn([Membership.Free, Membership.Premium])
-    membership: User['membership'];
+    membership: Users.Entity['membership'];
 
     @IsOptional()
     @ValidateNested()
-    profilePicture: User['profilePicture'];
+    profilePicture: Users.Entity['profilePicture'];
 }
