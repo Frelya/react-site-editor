@@ -19,12 +19,6 @@ function getArgType<T>(spec: ComponentPropsSpecs<T>[keyof T | keyof ExtendedSpec
         };
     }
 
-    if (['callback'].includes(type)) {
-        return {
-            defaultValue: value
-        };
-    }
-
     return {
         defaultValue: value,
         control: type,

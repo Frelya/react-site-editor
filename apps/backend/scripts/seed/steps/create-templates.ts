@@ -6,6 +6,8 @@ export async function createTemplates(
     client: PrismaClient,
     authorIds: User['id'][]
 ): Promise<Template['id'][]> {
+    await client.template.deleteMany({});
+
     templatesData[1].authorId = authorIds[1];
 
     return Promise.all(

@@ -12,21 +12,15 @@ import styles from './${name}.module.css';
 
 const ${name}: React.FunctionComponent<${name}Props> = (props) => {
     // The component definitions
-    return <><div className={styles.container} onClick={props.onClick}>{props.myProp}</div></>;
+    return <><div className={styles.container}>{props.myProp}</div></>;
 };
 
 export const propsSpecs: ComponentPropsSpecs<${name}Props> = {
     // The default props of the component
     myProp: {
-        value: 'default value',
+        value: 'Hello World!',
         control: {
             type: 'text'
-        }
-    },
-    onClick: {
-        value: () => alert('Hello world!'),
-        control: {
-            type: 'callback'
         }
     },
     iconName: 'ui-default'
@@ -42,7 +36,6 @@ function generateTypeFileContent(name: string) {
     return prettier(`
 export interface ${name}Props {
     myProp: string;
-    onClick: (event?: React.SyntheticEvent) => void;
 }
     `);
 }

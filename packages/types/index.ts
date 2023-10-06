@@ -53,7 +53,7 @@ export type CommonControls =
     | 'color'
     | 'date';
 
-export type CustomControls = 'grid-template' | 'callback';
+export type CustomControls = 'grid-template'; // | 'others';
 
 export type ControlType = CommonControls | CustomControls;
 
@@ -125,10 +125,6 @@ export type GridTemplateControl = BaseControl & {
     flowCountPropName: string;
 };
 
-export type CallbackControl = BaseControl & {
-    type: 'callback';
-};
-
 export type Control<T> =
     | BooleanControl
     | NumberControl
@@ -142,8 +138,7 @@ export type Control<T> =
     | TextControl
     | ColorControl
     | DateControl
-    | GridTemplateControl
-    | CallbackControl;
+    | GridTemplateControl;
 
 export type ApiError = {
     readonly code: number;

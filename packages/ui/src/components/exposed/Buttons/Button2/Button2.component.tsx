@@ -6,8 +6,13 @@ import styles from './Button2.module.css';
 const Button2: React.FunctionComponent<Button2Props> = (props) => {
     const fontSize = `font${props.fontSize}` as keyof typeof styles;
 
+    const handleClick = (event: React.MouseEvent) => {
+        event.preventDefault();
+        console.log('Button 2 clicked');
+    };
+
     return (
-        <button className={`${styles.baseButton} ${styles[fontSize]}`} onClick={props?.onClick}>
+        <button className={`${styles.baseButton} ${styles[fontSize]}`} onClick={handleClick}>
             {props.text}
         </button>
     );
@@ -25,12 +30,6 @@ export const propsSpecs: ComponentPropsSpecs<Button2Props> = {
         control: {
             type: 'select',
             options: [1, 2, 3]
-        }
-    },
-    onClick: {
-        value: () => console.log('Button2 clicked'),
-        control: {
-            type: 'callback'
         }
     },
     iconName: 'ui-toggle-off'
