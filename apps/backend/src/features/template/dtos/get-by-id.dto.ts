@@ -2,7 +2,7 @@ import { IsString } from 'class-validator';
 
 import { Templates } from '../template.type';
 
-export class GetTemplateByIdDto implements Templates.GetByIdPayload {
+export class GetTemplateByIdDto implements Templates.IdPayload {
     @IsString()
-    id: Templates.GetByIdPayload['id'];
+    id: Templates.IdPayload['id'];
 }

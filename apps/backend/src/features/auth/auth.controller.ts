@@ -6,8 +6,8 @@ import { SkipAuth } from '@shared/decorators';
 import { EnvService } from '@shared/env';
 
 import { AuthService } from './auth.service';
-import type { Auth } from './auth.type';
-import type { SignInDto, SignUpDto } from './dtos';
+import { Auth } from './auth.type';
+import { SignInDto, SignUpDto } from './dtos';
 
 @Controller('auth')
 export class AuthController {
@@ -43,7 +43,11 @@ export class AuthController {
 
     @HttpCode(HttpStatus.OK)
     @Post('logout')
-    async signOut(): Promise<null> {
-        return await this.authService.signOut();
+    async signOut(@Res({ passthrough: true }) response: Response): Promise<null> {
+        await this.authService.signOut();
+
+        response.clearCookie(TOKEN_KEY);
+
+        return null;
     }
 }

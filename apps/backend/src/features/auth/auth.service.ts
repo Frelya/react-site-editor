@@ -13,7 +13,7 @@ import { CryptService } from '@shared/crypt';
 import { TokenService } from '@shared/token';
 import { UserService } from '@features/user';
 
-import type { Auth } from './auth.type';
+import { Auth } from './auth.type';
 
 @Injectable({ scope: Scope.REQUEST })
 export class AuthService {
@@ -63,8 +63,7 @@ export class AuthService {
             throw new ForbiddenException(ERRORS.USER_NOT_FOUND);
         }
 
-        // TODO: Implement blacklist/whitelist system
-        //  (invalidate token, add to blacklist, etc.)
+        this.tokenService.invalidateAccessToken(existingUser.id);
 
         return null;
     }

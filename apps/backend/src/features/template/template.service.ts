@@ -47,7 +47,7 @@ export class TemplateService {
         });
     }
 
-    async getById(data: Templates.GetByIdPayload): Promise<Templates.Entity> {
+    async getById(data: Templates.IdPayload): Promise<Templates.Entity> {
         let template: Templates.Entity;
 
         try {

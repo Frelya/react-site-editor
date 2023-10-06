@@ -1,5 +1,5 @@
-import type { Users } from '@features/user';
-import { Token } from '@shared/token';
+import { Users } from '@features/user';
+import { Tokens } from '@shared/token';
 
 export declare namespace Auth {
     type UserCredentials = {
@@ -11,7 +11,7 @@ export declare namespace Auth {
         readonly confirmPassword: Users.Entity['password'];
     };
 
-    type AccessToken = Token.AccessToken;
+    type AccessToken = Tokens.AccessToken;
 
     type RegisteredUser = Users.CleanedEntity;
 }

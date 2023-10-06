@@ -1,8 +1,8 @@
 import { IsString, IsDefined } from 'class-validator';
 
-import type { Users } from '../user.type';
+import { Users } from '../user.type';
 
-export class DeleteUserDto implements Omit<Users.UserDeletePayload, 'id'> {
+export class DeleteUserDto implements Omit<Users.DeletePayload, 'id'> {
     @IsString()
     @IsDefined()
     readonly password: Users.Entity['password'];

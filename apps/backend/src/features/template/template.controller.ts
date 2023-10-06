@@ -14,28 +14,28 @@ export class TemplateController {
     }
 
     @Post()
-    async createTemplate(@Body() body: CreateTemplateDto): Promise<Templates.Entity> {
-        return this.templateService.create(body);
+    async createTemplate(@Body() createDto: CreateTemplateDto): Promise<Templates.Entity> {
+        return this.templateService.create(createDto);
     }
 
     @Get(':id')
-    async getTemplateById(@Param() params: GetTemplateByIdDto): Promise<Templates.Entity> {
-        return this.templateService.getById(params);
+    async getTemplateById(@Param() routeParams: GetTemplateByIdDto): Promise<Templates.Entity> {
+        return this.templateService.getById(routeParams);
     }
 
     @Post(':id')
     async updateTemplate(
-        @Param() params: GetTemplateByIdDto,
-        @Body() body: UpdateTemplateDto
+        @Param() routeParams: GetTemplateByIdDto,
+        @Body() updateDto: UpdateTemplateDto
     ): Promise<Templates.Entity> {
         return this.templateService.update({
-            id: params.id,
-            ...body
+            ...updateDto,
+            id: routeParams.id
         });
     }
 
     @Delete(':id')
-    async deleteTemplate(@Param() params: GetTemplateByIdDto): Promise<null> {
-        return this.templateService.delete(params);
+    async deleteTemplate(@Param() routeParams: GetTemplateByIdDto): Promise<null> {
+        return this.templateService.delete(routeParams);
     }
 }

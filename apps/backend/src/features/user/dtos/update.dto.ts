@@ -11,9 +11,9 @@ import {
 
 import { Role, Membership } from '@shared/database';
 
-import type { Users } from '../user.type';
+import { Users } from '../user.type';
 
-export class UpdateUserDto implements Omit<Users.UserUpdatePayload, 'identifier'> {
+export class UpdateUserDto implements Omit<Users.UpdatePayload, 'identifier'> {
     @IsOptional()
     @IsStrongPassword({
         minLength: 8,

@@ -1,8 +1,8 @@
 import { IsEmail, IsString, IsStrongPassword } from 'class-validator';
 
-import type { Users } from '../user.type';
+import { Users } from '../user.type';
 
-export class CreateUserDto implements Users.UserCreatePayload {
+export class CreateUserDto implements Users.CreatePayload {
     @IsEmail()
     readonly email: Users.Entity['email'];
 

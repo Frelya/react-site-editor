@@ -1,7 +1,7 @@
-export * from './create-user.dto';
+export * from './create.dto';
 
-export * from './update-user.dto';
+export * from './update.dto';
 
-export * from './delete-user.dto';
+export * from './delete.dto';
 
-export * from './get-user-by-id.dto';
+export * from './get-by-id.dto';
