@@ -8,6 +8,7 @@ export type IconName =
     | 'cubes'
     | 'desktop-screen'
     | 'grip-vertical'
+    | 'heart'
     | 'information-circle'
     | 'minus'
     | 'mobile-screen'
