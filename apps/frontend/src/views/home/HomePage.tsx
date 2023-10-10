@@ -13,8 +13,7 @@ const HomePage: React.FunctionComponent = () => {
                     color="primary"
                     href="./editor"
                     reloadDocument
-                    endContent={<Icon name={'arrow-small-up'} className="rotate-90" />}
-                >
+                    endContent={<Icon name={'arrow-small-up'} className="rotate-90" />}>
                     Go to the editor
                 </Button>
             </main>

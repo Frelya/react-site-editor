@@ -1,5 +1,12 @@
 import {
-    Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, Link, Switch, Spacer
+    Navbar,
+    NavbarBrand,
+    NavbarContent,
+    NavbarItem,
+    Button,
+    Link,
+    Switch,
+    Spacer
 } from '@nextui-org/react';
 import { Icon } from '@components/Decorators';
 
@@ -18,7 +25,7 @@ const NavBar: React.FunctionComponent = () => {
                             Features
                         </Link>
                     </NavbarItem>
-                    <Spacer x="3"/>
+                    <Spacer x="3" />
                     <NavbarItem isActive>
                         <Link href="#" aria-current="page">
                             Components
@@ -31,8 +38,7 @@ const NavBar: React.FunctionComponent = () => {
                             showAnchorIcon
                             color="foreground"
                             underline="hover"
-                            href="https://github.com/frelya/react-site-editor/"
-                        >
+                            href="https://github.com/frelya/react-site-editor/">
                             Github
                         </Link>
                     </NavbarItem>
@@ -45,10 +51,7 @@ const NavBar: React.FunctionComponent = () => {
                             as={Link}
                             color="default"
                             href="#"
-                            startContent={
-                                <Icon name="heart" className="text-[#f5417f]" />
-                            }
-                        >
+                            startContent={<Icon name="heart" className="text-[#f5417f]" />}>
                             Sponsor
                         </Button>
                     </NavbarItem>
@@ -71,6 +74,6 @@ const NavBar: React.FunctionComponent = () => {
             </NavbarContent>
         </Navbar>
     );
-}
+};
 
 export default NavBar;
