@@ -1,10 +1,10 @@
-name: Deployment on prod
+name: Deployment on stagging
 
 on:
   push:
-    branches: [ "feat/ci-build" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "feat/ci-build" ]
+    branches: [ "main" ]
 
 
 jobs:
