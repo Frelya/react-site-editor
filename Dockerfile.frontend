@@ -1,10 +1,11 @@
 # build stage
 FROM node:18-alpine as build-stage
+RUN npm install -g pnpm
 WORKDIR /frontend
 COPY package*.json ./
-RUN npm install
+RUN pnpm install
 COPY . .
-RUN cd apps/frontend && npm run build
+RUN cd apps/frontend && pnpm run build
 
 # production stage
 FROM nginx:stable-alpine as production-stage
