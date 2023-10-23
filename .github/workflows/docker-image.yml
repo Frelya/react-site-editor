@@ -30,5 +30,6 @@ jobs:
       with:
         context: .
         push: true
+        file: Dockerfile.frontend
         tags: ghcr.io/epoundor/react-site-editor:stagging
         no-cache: true
