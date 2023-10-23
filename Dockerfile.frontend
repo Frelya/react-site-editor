@@ -5,7 +5,9 @@ WORKDIR /frontend
 COPY package*.json ./
 RUN pnpm install
 COPY . .
-RUN cd apps/frontend && pnpm run build
+# RUN cd apps/frontend 
+RUN pnpm frontend install
+RUN pnpm frontend:build
 
 # production stage
 FROM nginx:stable-alpine as production-stage
