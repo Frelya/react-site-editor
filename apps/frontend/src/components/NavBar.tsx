@@ -25,13 +25,13 @@ const NavBar: React.FunctionComponent = () => {
                             Features
                         </Link>
                     </NavbarItem>
-                    <Spacer x="3" />
+                    <Spacer x="2" />
                     <NavbarItem isActive>
                         <Link href="#" aria-current="page">
                             Components
                         </Link>
                     </NavbarItem>
-                    <Spacer x="3" />
+                    <Spacer x="2" />
                     <NavbarItem>
                         <Link
                             isExternal
@@ -42,6 +42,7 @@ const NavBar: React.FunctionComponent = () => {
                             Github
                         </Link>
                     </NavbarItem>
+                    <Spacer x="3" />
                 </NavbarContent>
             </NavbarContent>
             <NavbarContent justify="end">
