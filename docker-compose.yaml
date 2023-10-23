@@ -1,0 +1,27 @@
+version: '3'
+services:
+    backend:
+        image: rse-backend
+        build:
+            context: .
+            dockerfile: ./apps/backend/backend.Dockerfile
+        volumes:
+            - ./backend:/app
+        env_file:
+            - ./apps/backend/.env
+        ports:
+            - "8000:8000"
+
+    frontend:
+        image: rse-frontend
+        build:
+            context: .
+            dockerfile: ./apps/frontend/frontend.Dockerfile
+        volumes:
+            - ./frontend:/app
+        env_file:
+            - ./apps/frontend/.env
+        depends_on:
+            - backend
+        ports:
+            - "5179:5179"

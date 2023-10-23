@@ -10,10 +10,17 @@ export default ({ mode }: UserConfig) => {
 
     process.env = Object.assign(process.env, loadEnv(mode, process.cwd(), ''));
 
+    const port = process.env.APP_PORT;
+
+    if (!port || port === '' || isNaN(parseInt(port))) {
+        throw new Error('App port is not a number');
+    }
+
     return defineConfig({
         envPrefix: 'APP_',
         server: {
-            port: parseInt(process.env.APP_PORT ?? '3000')
+            port: parseInt(port),
+            strictPort: true,
         },
         plugins: [react()],
         build: {
