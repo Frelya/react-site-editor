@@ -12,6 +12,16 @@ services:
         ports:
             - "8000:8000"
 
+    ui:
+        image: rse-ui
+        build:
+            context: .
+            dockerfile: ./packages/ui/ui.Dockerfile
+        volumes:
+            - ./ui:/app
+        ports:
+            - "3000:3000"
+
     frontend:
         image: rse-frontend
         build:

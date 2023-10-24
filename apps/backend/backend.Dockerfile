@@ -15,4 +15,4 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["pnpm", "backend", "start"]
+CMD ["pnpm", "backend:start"]

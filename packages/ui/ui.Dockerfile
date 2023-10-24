@@ -1,4 +1,4 @@
-# Frontend Application Dockerfile
+# UI Package Dockerfile
 FROM node:18.15-slim
 
 WORKDIR /usr/app
@@ -9,12 +9,11 @@ RUN npm install -g pnpm
 
 RUN pnpm install --filter ./packages/types/
 RUN pnpm install --filter ./packages/functions/
-RUN pnpm install --filter ./packages/ui/
 
 RUN pnpm install
 
 COPY . .
 
-EXPOSE 5179
+EXPOSE 3000
 
-CMD ["pnpm", "frontend:start", "--host"]
+CMD ["pnpm", "ui:docs"]

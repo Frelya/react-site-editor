@@ -4,9 +4,14 @@ import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    server: {
+        port: 3000,
+        strictPort: true,
+    },
     plugins: [react()],
     build: {
-        target: 'esnext'
+        target: 'esnext',
+        outDir: './dist'
     },
     resolve: {
         alias: [
