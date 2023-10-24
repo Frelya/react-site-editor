@@ -92,19 +92,21 @@ export class UserService {
             UpdateUserDto
         );
 
-        const identifierKey: keyof Database.UserWhereUniqueInput = isMongoId(userIdentifier)
-            ? 'id'
-            : 'email';
+        const identifiedById = isMongoId(userIdentifier);
+
+        const userSelector: Database.UserWhereUniqueInput = identifiedById
+            ? { id: userIdentifier }
+            : { email: userIdentifier };
 
         const user = await this.databaseService.user.findUnique({
-            where: { [identifierKey]: userIdentifier }
+            where: userSelector
         });
 
         if (!user) {
             throw new NotFoundException(ERRORS.USER_NOT_FOUND);
         }
 
-        if (user[identifierKey] !== userIdentifier) {
+        if (identifiedById && user.id !== this.request.user.id) {
             throw new ForbiddenException(ERRORS.USER_NOT_ALLOWED);
         }
 
@@ -119,7 +121,7 @@ export class UserService {
         return this.clean(
             await this.databaseService.user.update({
                 data: updateData,
-                where: { [identifierKey]: userIdentifier }
+                where: userSelector
             }),
             sensitivesToInclude
         );

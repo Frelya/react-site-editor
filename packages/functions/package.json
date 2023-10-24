@@ -7,7 +7,7 @@
         "test": "echo \"Error: no test specified\""
     },
     "dependencies": {
-        "@react-site-editor/types": "^0.0.1"
+        "@react-site-editor/types": "workspace:^"
     },
     "author": "Frelya",
     "license": "MIT"
