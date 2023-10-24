@@ -5,8 +5,6 @@ services:
         build:
             context: .
             dockerfile: ./apps/backend/backend.Dockerfile
-        volumes:
-            - ./backend:/app
         env_file:
             - ./apps/backend/.env
         ports:
@@ -17,8 +15,6 @@ services:
         build:
             context: .
             dockerfile: ./packages/ui/ui.Dockerfile
-        volumes:
-            - ./ui:/app
         ports:
             - "3000:3000"
 
@@ -27,8 +23,6 @@ services:
         build:
             context: .
             dockerfile: ./apps/frontend/frontend.Dockerfile
-        volumes:
-            - ./frontend:/app
         env_file:
             - ./apps/frontend/.env
         depends_on:
